@@ -15,3 +15,22 @@
     --events-color: #EE8959;
     --events-text-color: white;
 }
+
+html, body, #root {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* the main app */
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+main {
+    background-color: green;
+    height: 100%;
+}
