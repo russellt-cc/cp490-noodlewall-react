@@ -7,6 +7,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    z-index: 999;
 }
 
 /* anchor tags in the navbar */
@@ -89,32 +91,26 @@ nav ul li>button:focus {
 /* drop down elements */
 .drop {
     position: absolute;
-    right: 0px;
+    top: 70px;
+    right: -650px;
     display: flex;
     justify-content: right;
     background-color: white;
     border: 3px solid var(--events-color);
     border-bottom-left-radius: 10px;
-    z-index: -1;
-    transition: top 0.5s ease-out;
+    transition: right 0.5s ease-in-out;
 }
 
 /* the browse and create drop downs */
 #browse_drop, #create_drop {
-    top: 0px;
     column-gap: 5px;
     padding: 5px;
-}
-
-/* the user drop down */
-#user_drop {
-    top: -550px;
 }
 
 /* drop on click */
 #browse_button:focus-within .drop, #create_button:focus-within .drop, #user_button:focus-within .drop {
     pointer-events: auto;
-    top: 70px;
+    right: 0px;
 }
 
 /* items in the browse and create drop downs */
