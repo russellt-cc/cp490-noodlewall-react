@@ -1,0 +1,108 @@
+/* style the navbar have a background color, fixed position, full width and on top of everything else */
+nav {
+    background-color: var(--events-color);
+    color: var(--events-text-color);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* anchor tags in the navbar */
+nav a {
+    text-decoration: none;
+    color: var(--events-text-color);
+}
+
+/* columns in the navbar */
+nav .nav_column {
+    display: flex;
+    align-items: center;
+}
+
+/* items in the columns */
+nav .nav_column>* {
+    padding: 10px;
+}
+
+/* nav logo */
+nav #nav_logo {
+    filter: invert(100%);
+}
+
+/* list for the right side buttons */
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+/* right side buttons */
+nav ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+/* drop down elements */
+.drop {
+    display: none;
+}
+
+/* drop on click */
+.drop_button:focus-within .drop {
+    pointer-events: auto;
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    display: flex;
+    justify-content: right;
+    background-color: white;
+    border: 3px solid var(--events-color);
+    border-bottom-left-radius: 10px;
+}
+
+#browse_drop, #create_drop {
+    column-gap: 5px;
+    padding: 5px;
+}
+
+#browse_drop>*, #create_drop>* {
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+#browse_drop a, #create_drop a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#browse_dreams_button, #create_dream_button {
+    background-color: var(--dreams-color);
+}
+
+#browse_events_button, #create_event_button {
+    background-color: var(--events-color);
+}
+
+.user_drop_column {
+    width: 200px;
+    height: 600px;
+    color: black;
+    text-align: center;
+}
+
+#user_drop_middle {
+    border-left: 3px solid var(--events-color);
+    border-right: 3px solid var(--events-color);
+}
