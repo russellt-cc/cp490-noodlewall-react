@@ -1,0 +1,48 @@
+/* style the footer */
+footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: var(--events-color);
+    color: var(--events-text-color);
+    width: 100%;
+    display: flex;
+}
+
+/* columns in the footer */
+.footer_column {
+    display: flex;
+    flex-direction: column;
+    width: 33.33%;
+    align-items: center;
+    row-gap: 20px;
+    padding: 50px 0px;
+}
+
+/* the center column */
+#footer_center {
+    justify-content: center;
+}
+
+/* paragraphs in the footer */
+footer p {
+    margin: 0px;
+}
+
+/* anchor tags in the footer */
+footer a {
+    color: var(--events-text-color);
+    text-decoration: none;
+}
+
+/* image in the footer (the logo) */
+footer img {
+    filter: invert(100%);
+}
+
+/* links divs in the footer */
+.footer_links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
