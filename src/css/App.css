@@ -34,3 +34,8 @@ main {
     background-color: green;
     height: 100%;
 }
+
+/* buttons */
+button:hover {
+    cursor: pointer;
+}

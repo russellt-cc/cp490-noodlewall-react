@@ -10,21 +10,21 @@ class Footer extends React.Component {
         <div id="footer_left" class="footer_column">
           <p><strong>ABOUT NOODLEWALL</strong></p>
           <div class="footer_links">
-            <a href="#">How it Works</a>
-            <a href="#">Pricing</a>
-            <a href="#">Community Guidelines</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
+            <a href="/#">How it Works</a>
+            <a href="/#">Pricing</a>
+            <a href="/#">Community Guidelines</a>
+            <a href="/#">Terms of Service</a>
+            <a href="/#">Privacy Policy</a>
           </div>
         </div>
         <div id="footer_center" class="footer_column">
-          <a href="index.html"><img src={logo} height="40px"/></a>
+          <a href="index.html"><img src={logo} height="40px" alt="Noodlewall Logo"/></a>
           <p>&copy; 2021 Noodlewall</p>
         </div>
         <div id="footer_right" class="footer_column">
           <p><strong>SUPPORT</strong></p>
           <div class="footer_links">
-            <a href="#">Contact Us</a>
+            <a href="/#">Contact Us</a>
           </div>
         </div>
       </footer>    

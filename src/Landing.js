@@ -27,16 +27,16 @@ class Landing extends React.Component {
               <h4>Share</h4>
               <ul id="share_buttons">
                 <li class="share_button">
-                  <a href="#"><img alt="Facebook" src="images/Facebook-share-50p.png"/></a>
+                  <a href="/#"><img alt="Facebook" src="images/Facebook-share-50p.png"/></a>
                 </li>
                 <li class="share_button">
-                  <a href="#"><img alt="LinkedIn" src="images/linkedin-share-50p.png"/></a>
+                  <a href="/#"><img alt="LinkedIn" src="images/linkedin-share-50p.png"/></a>
                 </li>
                 <li class="share_button">
-                  <a href="#"><img alt="Pinterest" src="images/pinterest-share-50p.png"/></a>
+                  <a href="/#"><img alt="Pinterest" src="images/pinterest-share-50p.png"/></a>
                 </li>
                 <li class="share_button">
-                  <a href="#"><img alt="Reddit" src="images/reddit-share-50p.png"/></a>
+                  <a href="/#"><img alt="Reddit" src="images/reddit-share-50p.png"/></a>
                 </li>
               </ul>
             </div>
