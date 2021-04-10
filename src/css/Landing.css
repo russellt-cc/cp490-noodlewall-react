@@ -1,0 +1,73 @@
+/* Style the intro section */
+#intro {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* columns in the intro */
+.intro_column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* left side of the intro */
+#intro_left {
+    padding-right: 20px;
+}
+
+/* h1 header in the left column */
+#intro_left h1 {
+    font-size: 2em;
+}
+
+/* browse button */
+#intro_left button {
+    width: 200px;
+    background-color: var(--events-color);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 16px 0px;
+    color: white;
+    font-family: century-gothic, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+#intro_left button:focus {
+    outline: none;
+}
+
+/* right column of the intro */
+#intro_right {
+    width: 384px;
+    height: 682px;
+    border: 10px solid black;
+    border-top: 20px solid black;
+    border-bottom: 40px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+/* the intro video */
+#intro_right video {
+    width: 384px;
+    height: 216px;
+    padding-top: 20px;
+}
+
+/* share list */
+#intro_right ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-inline-start: 0px;
+    column-gap: 10px;
+}

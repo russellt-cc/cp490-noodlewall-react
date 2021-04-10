@@ -31,11 +31,21 @@ html, body, #root {
 }
 
 main {
-    background-color: green;
     height: 100%;
+    padding: 20px;
 }
 
 /* buttons */
 button:hover {
     cursor: pointer;
+}
+
+/* text spans */
+
+.dreams_color_text {
+    color: var(--dreams-color);
+}
+
+.events_color_text {
+    color: var(--events-color);
 }
