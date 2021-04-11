@@ -13,11 +13,22 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin: 10px;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+.noodle>* {
     padding-left: 10px;
     padding-right: 10px;
-    box-sizing: border-box;
+}
+
+.noodle img, .noodle .noodle_image_link {
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 20px;
+    width: 100%;
 }
 
 .dream {
@@ -26,6 +37,14 @@
 
 .event {
     border: 3px solid var(--events-color);
+}
+
+.dream .checked {
+    color: var(--dreams-color)
+}
+
+.event .checked {
+    color: var(--events-color)
 }
 
 .noodle_title>a, .noodle_noodler>a {

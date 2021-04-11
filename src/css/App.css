@@ -1,6 +1,9 @@
 /* import fonts */
 @import url("https://use.typekit.net/oov2wcw.css");
 
+/* Add icon library */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
 /* Set fonts and colors for all pages */
 :root {
     /* Main font */
