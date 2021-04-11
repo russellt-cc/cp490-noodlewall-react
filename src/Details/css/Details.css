@@ -67,6 +67,6 @@
   background-color: var(--dreams-color);
 }
 
-#details_host_intro>a#details_buy_button {
+#details_host_intro_event>a#details_buy_button, #details_host_intro_dream>a#details_buy_button {
   height: 100px;
 }
