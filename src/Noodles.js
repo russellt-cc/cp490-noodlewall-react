@@ -35,36 +35,8 @@ class Noodle extends React.Component {
         const status = data.noodleStatus
         const userRating = data.userRating
         // Make an array to store the star classes
-        var star_classes = ["", "", "", "", ""]
         // Determine which ones are checked based on the rating
-        switch (userRating) {
-            case 5:
-                star_classes[5] = "checked"
-                star_classes[4] = "checked"
-                star_classes[3] = "checked"
-                star_classes[2] = "checked"
-                star_classes[1] = "checked"
-                break
-            case 4:
-                star_classes[4] = "checked"
-                star_classes[3] = "checked"
-                star_classes[2] = "checked"
-                star_classes[1] = "checked"
-                break
-            case 3:
-                star_classes[3] = "checked"
-                star_classes[2] = "checked"
-                star_classes[1] = "checked"
-                break
-            case 2:
-                star_classes[2] = "checked"
-                star_classes[1] = "checked"
-                break
-            case 1:
-            default:
-                star_classes[1] = "checked"
-                break
-        }
+        const star_classes = setRatingClasses(userRating)
         return(
             // div for each noodle
             <div className={`noodle ${status}`}>
@@ -72,17 +44,7 @@ class Noodle extends React.Component {
                 <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
                 <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={`/details/${noodleID}`}>{data.noodleTitle}</Link></p>
                 <p className={`noodle_status`}><span className="noodle_label">Status: </span>{status}</p>
-                <div className={`noodle_userinfo`}>
-                    <p className={`noodle_userid`}><span className="noodle_label">User ID: </span>{userID}</p>
-                    <p className={`noodle_noodler`}><span className="noodle_label">Noodler: </span><Link to={`/user/${userID}`}>{data.userName}</Link></p>
-                    <p class="user_rating">
-                        <span className={`fa fa-star ${star_classes[1]}`}></span>
-                        <span className={`fa fa-star ${star_classes[2]}`}></span>
-                        <span className={`fa fa-star ${star_classes[3]}`}></span>
-                        <span className={`fa fa-star ${star_classes[4]}`}></span>
-                        <span className={`fa fa-star ${star_classes[5]}`}></span>
-                    </p>
-                </div>
+                <Noodler data={data}/>
                 <p className={`noodle_description`}><span className="noodle_label">Description: </span>{data.noodleDescription}</p>
                 <div className={`noodle_tags_section`}>
                     <p className="noodle_label">Tags:</p>
@@ -96,6 +58,66 @@ class Noodle extends React.Component {
             </div>
         )
     }
+}
+
+// Class to structure the data for a user
+class Noodler extends React.Component {
+    render() {
+        const data = this.props.data
+        const userID = this.props.userID
+        const userRating = data.userRating
+        // Make an array to store the star classes
+        // Determine which ones are checked based on the rating
+        const star_classes = setRatingClasses(userRating)
+        return (
+            <div className={`noodle_userinfo`}>
+                <p className={`noodle_userid`}><span className="noodle_label">User ID: </span>{userID}</p>
+                <p className={`noodle_noodler`}><span className="noodle_label">Noodler: </span><Link to={`/user/${userID}`}>{data.userName}</Link></p>
+                <p class="user_rating">
+                    <span className={`fa fa-star ${star_classes[1]}`}></span>
+                    <span className={`fa fa-star ${star_classes[2]}`}></span>
+                    <span className={`fa fa-star ${star_classes[3]}`}></span>
+                    <span className={`fa fa-star ${star_classes[4]}`}></span>
+                    <span className={`fa fa-star ${star_classes[5]}`}></span>
+                </p>
+            </div>
+        )
+    }
+}
+
+function setRatingClasses (userRating) {
+    // Make an array to store the star classes
+    var star_classes = ["", "", "", "", ""]
+    // Determine which ones are checked based on the rating    
+    switch (userRating) {
+        case 5:
+            star_classes[5] = "checked"
+            star_classes[4] = "checked"
+            star_classes[3] = "checked"
+            star_classes[2] = "checked"
+            star_classes[1] = "checked"
+            break
+        case 4:
+            star_classes[4] = "checked"
+            star_classes[3] = "checked"
+            star_classes[2] = "checked"
+            star_classes[1] = "checked"
+            break
+        case 3:
+            star_classes[3] = "checked"
+            star_classes[2] = "checked"
+            star_classes[1] = "checked"
+            break
+        case 2:
+            star_classes[2] = "checked"
+            star_classes[1] = "checked"
+            break
+        case 1:
+        default:
+            star_classes[1] = "checked"
+            break
+    }
+    return star_classes
 }
 
 export default NoodleList;
