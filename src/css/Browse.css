@@ -1,0 +1,61 @@
+.noodle_list {
+    display: flex;
+    flex-direction: column;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.noodle {
+    width: 300px;
+    height: 600px;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.dream {
+    border: 3px solid var(--dreams-color);
+}
+
+.event {
+    border: 3px solid var(--events-color);
+}
+
+.noodle_title>a, .noodle_noodler>a {
+    color: black;
+}
+
+.noodle_tag_list {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.noodle_tag {
+    border-radius: 5px;
+    padding: 5px;
+    color: black;
+}
+
+.noodle_id, .noodle_userid, .noodle_status, .noodle_label {
+    display: none;
+}
+
+@media screen and (max-width: 360px) {
+    main {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .noodle {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}

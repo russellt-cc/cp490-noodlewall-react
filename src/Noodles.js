@@ -7,12 +7,16 @@ import {noodleData} from "./noodleData.js";
 import React from 'react';
 import {Link} from "react-router-dom"
 
+// The list of noodles from the JSON data
+// Could be modified to pull data from a database
 class NoodleList extends React.Component {
     render() {
         return(
+            // div for the list of dreams and events
             <div className="noodle_list">
                 {/* Mapping array of objects */}
                 {noodleData.map ((item, i) => (
+                    // create a noodle object for each JSON item
                     <Noodle data={item} />
                 ))}
             </div>
@@ -20,18 +24,31 @@ class NoodleList extends React.Component {
     }
 }
 
+// Class to structure the data for each noodle
 class Noodle extends React.Component {
     render() {
+        const data = this.props.data
+        const noodleID = data.noodleID
+        const userID = data.noodleID
+        const status = data.noodleStatus
         return(
-            <div className="noodle">
-                <p className="noodle id">ID: {this.props.data.noodleID}</p>
-                <p className="noodle title">Title: {this.props.data.noodleTitle}</p>
-                <p className="noodle status">Status: {this.props.data.noodleStatus}</p>
-                <p className="noodle noodler">Noodler: {this.props.data.noodlerName}</p>
-                <p className="noodle description">Description: {this.props.data.noodleDescription}</p>
-                <p className="noodle tags">Tags: {this.props.data.noodleTags.map(item => {
-                    return <Link className="noodle tags tag" to={`/browse/${item}`}>#{item}</Link>
-                })}</p>
+            // div for each noodle
+            <div className={`noodle ${status}`}>
+                <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
+                <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={`/details/${noodleID}`}>{data.noodleTitle}</Link></p>
+                <p className={`noodle_status`}><span className="noodle_label">Status: </span>{status}</p>
+                <p className={`noodle_userid`}><span className="noodle_label">User ID: </span>{userID}</p>
+                <p className={`noodle_noodler`}><span className="noodle_label">Noodler: </span><Link to={`/user/${userID}`}>{data.noodlerName}</Link></p>
+                <p className={`noodle_description`}><span className="noodle_label">Description: </span>{data.noodleDescription}</p>
+                <div className={`noodle_tags_section`}>
+                    <p className="noodle_label">Tags:</p>
+                    <div className={`noodle_tag_list`}>
+                        {data.noodleTags.map(item => {
+                            // create a link for each tag
+                            return <Link className={`noodle_tag ${status}_tag`} to={`/browse/${item}`}>#{item}</Link>
+                        })}
+                    </div>
+                </div>
             </div>
         )
     }
