@@ -3,10 +3,10 @@
 //https://www.pluralsight.com/guides/convert-a-json-file-to-an-array-in-react
 
 // Get local JSON file
-import {noodleData, userData} from "./noodleData.js"
+import {noodleData, userData} from "../noodleData.js"
 import React from 'react';
 import {Link} from "react-router-dom"
-import fishing from "./images/fishing-crop.png"
+import fishing from "../images/fishing-crop.png"
 
 // The list of noodles from the JSON data
 // Could be modified to pull data from a database

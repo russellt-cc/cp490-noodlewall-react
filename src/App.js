@@ -11,10 +11,10 @@ import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 
 // Noodlewall pages as React components
-import Landing from './Landing.js';
-import Browse from './Browse.js';
-import Details from './Details.js';
-import Create from './Create.js';
+import Landing from './Landing/Landing.js';
+import Browse from './Browse/Browse.js';
+import Details from './Details/Details.js';
+import Create from './Create/Create.js';
 
 // React Router
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
