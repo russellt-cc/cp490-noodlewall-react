@@ -1,6 +1,7 @@
 import './css/Browse.css';
 import React from 'react';
-import { Noodles } from './Noodles.js'
+// import { Noodles } from './Noodles.js'
+import Noodles from './Noodles.js'
 
 class Browse extends React.Component {
   render() {
