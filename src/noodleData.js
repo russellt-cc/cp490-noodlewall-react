@@ -1,4 +1,4 @@
-export var noodleData = [
+export const noodleData = [
     {
         "noodleID":1,
         "noodleTitle":"Fishing with Friends",
@@ -91,7 +91,7 @@ export var noodleData = [
     }
 ]
 
-export var userData = [
+export const userData = [
     {
         "userID":1,
         "userName":"Pam Poovey",
