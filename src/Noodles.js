@@ -3,7 +3,7 @@
 //https://www.pluralsight.com/guides/convert-a-json-file-to-an-array-in-react
 
 // Get local JSON file
-import {noodleData} from "./noodleData.js"
+import {noodleData, userData} from "./noodleData.js"
 import React from 'react';
 import {Link} from "react-router-dom"
 import fishing from "./images/fishing-crop.png"
@@ -18,7 +18,7 @@ class NoodleList extends React.Component {
                 {/* Mapping array of objects */}
                 {noodleData.map ((item, i) => (
                     // create a noodle object for each JSON item
-                    <Noodle data={item} />
+                    <NoodleCard data={item} />
                 ))}
             </div>
         )
@@ -26,17 +26,16 @@ class NoodleList extends React.Component {
 }
 
 // Class to structure the data for each noodle
-class Noodle extends React.Component {
+class NoodleCard extends React.Component {
     render() {
         // Get the noodle data from the props
         const data = this.props.data
         const noodleID = data.noodleID
         const userID = data.userID
         const status = data.noodleStatus
-        const userRating = data.userRating
-        // Make an array to store the star classes
-        // Determine which ones are checked based on the rating
-        const star_classes = setRatingClasses(userRating)
+        // Get the user data
+        // Covert to zero-based index
+        const user = userData[userID - 1]
         return(
             // div for each noodle
             <div className={`noodle ${status}`}>
@@ -44,7 +43,7 @@ class Noodle extends React.Component {
                 <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
                 <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={`/details/${noodleID}`}>{data.noodleTitle}</Link></p>
                 <p className={`noodle_status`}><span className="noodle_label">Status: </span>{status}</p>
-                <Noodler data={data}/>
+                <NoodlerSummary data={user}/>
                 <p className={`noodle_description`}><span className="noodle_label">Description: </span>{data.noodleDescription}</p>
                 <div className={`noodle_tags_section`}>
                     <p className="noodle_label">Tags:</p>
@@ -61,7 +60,7 @@ class Noodle extends React.Component {
 }
 
 // Class to structure the data for a user
-class Noodler extends React.Component {
+class NoodlerSummary extends React.Component {
     render() {
         const data = this.props.data
         const userID = this.props.userID
