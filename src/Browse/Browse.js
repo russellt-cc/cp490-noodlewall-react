@@ -9,7 +9,7 @@ class Browse extends React.Component {
     return (
       <main>
         {/* Show the list of noodles. Pass filters as properties to the NoodleList. */}
-        <NoodleList 
+        <NoodleList
           query={this.props.location.search}
           type={this.props.match.params.type}
         />

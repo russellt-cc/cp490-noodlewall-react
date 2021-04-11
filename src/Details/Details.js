@@ -1,6 +1,6 @@
 import './css/Details.css';
 import React from 'react';
-import {noodleData} from "../noodleData.js"
+import { noodleData } from "../noodleData.js"
 
 class Details extends React.Component {
   render() {
@@ -10,7 +10,16 @@ class Details extends React.Component {
     // Return the details page
     return (
       <main>
+
+        <section id="intro">
           <h1>{noodle.noodleTitle}</h1>
+
+        </section>
+
+        <section id="details">
+
+        </section>
+
       </main>
     );
   }

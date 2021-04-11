@@ -19,7 +19,7 @@ class Footer extends React.Component {
           </div>
         </div>
         <div id="footer_center" className="footer_column">
-          <a href="index.html"><img src={logo} height="40px" alt="Noodlewall Logo"/></a>
+          <a href="index.html"><img src={logo} height="40px" alt="Noodlewall Logo" /></a>
           <p>&copy; 2021 Noodlewall</p>
         </div>
         <div id="footer_right" className="footer_column">
@@ -28,7 +28,7 @@ class Footer extends React.Component {
             <a href="/#">Contact Us</a>
           </div>
         </div>
-      </footer>    
+      </footer>
     );
   }
 }

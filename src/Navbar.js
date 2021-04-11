@@ -2,7 +2,7 @@ import logo from './images/noodlewall-logo-50p.png';
 import user_icon from './images/usericon-50p.png';
 import './css/Navbar.css';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
   render() {
@@ -12,10 +12,10 @@ class Navbar extends React.Component {
         {/* left div has the logo and search box */}
         <div id="nav_left" className="nav_column">
           <Link to="/">
-            <img id="nav_logo" src={logo} height="50px" alt="Noodlewall Logo"/>
+            <img id="nav_logo" src={logo} height="50px" alt="Noodlewall Logo" />
           </Link>
           <form action="/browse" autoComplete="off">
-            <input type="search" id="mySearch" name="q" placeholder="Search"/>
+            <input type="search" id="mySearch" name="q" placeholder="Search" />
           </form>
         </div>
         {/* right div has the browse, create, and user buttons */}
@@ -58,7 +58,7 @@ class Navbar extends React.Component {
             </li>
             <li id="user_button" className="drop_button">
               <button id="user_button_button">
-                <img id="nav_user_image" src={user_icon} height="50px" alt="User"/>
+                <img id="nav_user_image" src={user_icon} height="50px" alt="User" />
               </button>
               <div id="user_drop" className="drop">
                 <div className="user_drop_column" id="user_drop_left">

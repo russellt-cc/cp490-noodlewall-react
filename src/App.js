@@ -17,7 +17,7 @@ import Details from './Details/Details.js';
 import Create from './Create/Create.js';
 
 // React Router
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Main App function
 // Uses React Router to show different components
@@ -28,28 +28,28 @@ function App() {
       {/* Router component to use React Router */}
       <Router>
         {/* Show the Noodlewall navbar */}
-        <Navbar/>
+        <Navbar />
         {/* Switch the main component based on the url */}
         <Switch>
           {/* if the url goes to create with a type, load the create component */}
-          <Route path="/create/:type" component={Create}/>
+          <Route path="/create/:type" component={Create} />
           {/* if the url goes to details with an ID, load the details component */}
-          <Route path="/details/:id" component={Details}/>
+          <Route path="/details/:id" component={Details} />
           {/* if the url goes to browse with a type, load the browse component */}
-          <Route path="/browse/:type" component={Browse}/>
+          <Route path="/browse/:type" component={Browse} />
           {/* if the url goes to create, load the create component */}
           <Route path="/create">
-            <Create/>
+            <Create />
           </Route>
           {/* if the url goes to browse, load the browse component */}
-          <Route path="/browse" component={Browse}/>
+          <Route path="/browse" component={Browse} />
           {/* if the url goes to root, load the landing page */}
           <Route path="/">
-            <Landing/>
+            <Landing />
           </Route>
         </Switch>
         {/* Show the Noodlewall footer */}
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );

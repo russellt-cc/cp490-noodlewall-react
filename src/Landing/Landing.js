@@ -6,7 +6,7 @@ import pinterest_logo from '../images/Pinterest-share-50p.png';
 import reddit_logo from '../images/reddit-share-50p.png';
 import './css/Landing.css';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Landing extends React.Component {
   render() {
@@ -25,7 +25,7 @@ class Landing extends React.Component {
           {/* right div has the video */}
           <div id="intro_right" className="intro_column">
             <video controls name="media" poster={intro_poster} width="384px">
-              <source src={intro_video} type="video/mp4"/>
+              <source src={intro_video} type="video/mp4" />
             </video>
             <div>
               <p>Create revenue, No overhead.</p>
@@ -35,16 +35,16 @@ class Landing extends React.Component {
               <h4>Share</h4>
               <ul id="share_buttons">
                 <li className="share_button">
-                  <a href="/#"><img alt="Facebook" src={facebook_logo}/></a>
+                  <a href="/#"><img alt="Facebook" src={facebook_logo} /></a>
                 </li>
                 <li className="share_button">
-                  <a href="/#"><img alt="LinkedIn" src={linkedin_logo}/></a>
+                  <a href="/#"><img alt="LinkedIn" src={linkedin_logo} /></a>
                 </li>
                 <li className="share_button">
-                  <a href="/#"><img alt="Pinterest" src={pinterest_logo}/></a>
+                  <a href="/#"><img alt="Pinterest" src={pinterest_logo} /></a>
                 </li>
                 <li className="share_button">
-                  <a href="/#"><img alt="Reddit" src={reddit_logo}/></a>
+                  <a href="/#"><img alt="Reddit" src={reddit_logo} /></a>
                 </li>
               </ul>
             </div>
