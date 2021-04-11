@@ -2,6 +2,7 @@ import logo from './images/noodlewall-logo-50p.png';
 import user_icon from './images/usericon-50p.png';
 import './css/Navbar.css';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class Navbar extends React.Component {
   render() {
@@ -9,10 +10,10 @@ class Navbar extends React.Component {
       <nav>
         {/* left div has the logo and search box */}
         <div id="nav_left" className="nav_column">
-          <a href="index.html">
+          <Link to="/">
             <img id="nav_logo" src={logo} height="50px" alt="Noodlewall Logo"/>
-          </a>
-          <form action="browse.html" autoComplete="off">
+          </Link>
+          <form action="/browse" autoComplete="off">
             <input type="search" id="mySearch" name="q" placeholder="Search"/>
           </form>
         </div>
@@ -24,17 +25,17 @@ class Navbar extends React.Component {
               <div id="browse_drop" className="drop">
                 <div id="browse_dreams_button" className="browse_drop_button">
                   <span className="dreams_color_text">
-                    <a href="browse.html?type=dreams">Browse Dreams</a>
+                    <Link to="/browse/dreams">Browse Dreams</Link>
                   </span>
                 </div>
                 <div id="browse_all_button" className="browse_drop_button">
                   <span>
-                    <a href="browse.html?type=all">Browse All</a>
+                    <Link to="/browse/all">Browse All</Link>
                   </span>
                 </div>
                 <div id="browse_events_button" className="browse_drop_button">
                   <span className="events_color_text">
-                    <a href="browse.html?type=events">Browse Events</a>
+                    <Link to="/browse/events">Browse Events</Link>
                   </span>
                 </div>
               </div>
@@ -44,12 +45,12 @@ class Navbar extends React.Component {
               <div id="create_drop" className="drop">
                 <div id="create_dream_button" className="create_drop_button">
                   <span className="dreams_color_text">
-                    <a href="/#">Create a Dream</a>
+                    <Link to="/create/dream">Create a Dream</Link>
                   </span>
                 </div>
                 <div id="create_event_button" className="create_drop_button">
                   <span className="events_color_text">
-                    <a href="/#">Create an Event</a>
+                    <Link to="/create/event">Create an Event</Link>
                   </span>
                 </div>
               </div>
