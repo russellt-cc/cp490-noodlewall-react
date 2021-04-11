@@ -2,7 +2,6 @@ import './css/Details.css';
 import React from 'react';
 import { noodleData, userData } from "../noodleData.js"
 import { Link } from 'react-router-dom';
-import fishing from "../images/fishing-crop.png"
 
 class Details extends React.Component {
   render() {
@@ -14,13 +13,13 @@ class Details extends React.Component {
     const host = userData[noodle.userID - 1]
     // Return the details page
     return (
-      <main>
+      <main id={`details ${noodle.noodleStatus}`}>
 
         <section id="details_intro">
           <div id="details_intro_left" className="details_intro_column">
             <h1>{noodle.noodleTitle}</h1>
             <p>Days Left to Make it Happen: </p>
-            <img src={fishing} alt="Noodle"></img>
+            <img src={noodle.noodleImage} alt="Noodle"></img>
             <p>Status bar goes here!</p>
           </div>
           <div id="details_intro_right" className="details_intro_column">
@@ -39,7 +38,7 @@ class Details extends React.Component {
                 })}
               </div>
             </div>
-            <div id="details_host_intro">
+            <div id={`details_host_intro_${noodle.noodleStatus}`}>
               <p>Host: {host.userName}</p>
               <Link to={`/user/${host.userID}/contact`}>Contact {host.userName}</Link>
               <Link to={`/user/${host.userID}/follow`}>Follow {host.userName}</Link>

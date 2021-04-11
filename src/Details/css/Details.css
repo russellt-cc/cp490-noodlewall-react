@@ -13,6 +13,10 @@
   width: 60%;
 }
 
+#details_intro_left>img {
+  border-radius: 20px;
+}
+
 #details_intro_right {
   width: 20%;
 }
@@ -42,9 +46,8 @@
   flex-direction: column;
 }
 
-#details_host_intro>a {
+#details_host_intro_event>a, #details_host_intro_dream>a {
   text-decoration: none;
-  background-color: var(--events-color);
   color: white;
   text-align: center;
   margin: 5px 0px;
@@ -54,6 +57,14 @@
   align-items: center;
   padding: 0px 10px;
   border-radius: 10px;
+}
+
+#details_host_intro_event>a {
+  background-color: var(--events-color);
+}
+
+#details_host_intro_dream>a {
+  background-color: var(--dreams-color);
 }
 
 #details_host_intro>a#details_buy_button {

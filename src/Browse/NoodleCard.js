@@ -1,7 +1,6 @@
 import { userData } from "../noodleData.js"
 import React from 'react';
 import { Link } from "react-router-dom"
-import fishing from "../images/fishing-crop.png"
 import NoodlerSummary from "./NoodlerSummary.js"
 
 // Class to structure the data for each noodle
@@ -19,7 +18,7 @@ class NoodleCard extends React.Component {
     return (
       // div for each noodle
       <div className={`noodle ${status}`}>
-        <Link class="noodle_image_link" to={`/details/${noodleID}`}><img src={fishing} alt="Noodle"></img></Link>
+        <Link class="noodle_image_link" to={`/details/${noodleID}`}><img src={data.noodleImage} alt="Noodle"></img></Link>
         <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
         <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={`/details/${noodleID}`}>{data.noodleTitle}</Link></p>
         <p className={`noodle_status`}><span className="noodle_label">Status: </span>{status}</p>

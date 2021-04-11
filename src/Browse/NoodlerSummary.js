@@ -6,7 +6,7 @@ import setRatingClasses from "../setRatingClasses.js"
 class NoodlerSummary extends React.Component {
   render() {
     const data = this.props.data
-    const userID = this.props.userID
+    const userID = data.userID
     const userRating = data.userRating
     // Make an array to store the star classes
     // Determine which ones are checked based on the rating
