@@ -73,3 +73,24 @@
     padding-inline-start: 0px;
     column-gap: 10px;
 }
+
+/* Style for mobile */
+
+@media screen and (max-width: 800px) {
+  #intro {
+    flex-direction: column;
+    align-items: center;
+  }
+  #intro_left {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #intro_right {
+    border: none;
+  }
+}

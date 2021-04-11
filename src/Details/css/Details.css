@@ -10,15 +10,15 @@
 }
 
 #details_intro_left {
-  width: 60%;
+  width: 50%;
+}
+
+#details_intro_right {
+  width: 25%;
 }
 
 #details_intro_left>img {
   border-radius: 20px;
-}
-
-#details_intro_right {
-  width: 20%;
 }
 
 #details_summary>p {
@@ -69,4 +69,19 @@
 
 #details_host_intro_event>a#details_buy_button, #details_host_intro_dream>a#details_buy_button {
   height: 100px;
+}
+
+/* Style for mobile */
+
+@media screen and (max-width: 800px) {
+  #details_intro {
+    flex-direction: column;
+  }
+  #details_intro_left, #details_intro_right {
+    width: 100%;
+    text-align: center;
+  }
+  #details_tags {
+    justify-content: center;
+  }
 }

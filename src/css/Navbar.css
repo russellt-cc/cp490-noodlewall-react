@@ -154,3 +154,33 @@ nav ul li>button:focus {
     border-left: 3px solid var(--events-color);
     border-right: 3px solid var(--events-color);
 }
+
+/* style for mobile */
+
+@media screen and (max-width: 800px) {
+  nav img#nav_logo {
+    width: 50px;
+    object-fit: cover;
+    object-position: 0% 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #nav_left form {
+    padding-right: 0px;
+  }
+  nav input[type="search"] {
+    width: 50px;
+    padding-right: 0px;
+  }
+  #nav_right ul {
+    padding-left: 0px;
+  }
+  #browse_drop, #create_drop {
+    flex-direction: column;
+    width: 95%;
+  }
+  #browse_drop>*, #create_drop>* {
+    width: 100%;
+  }
+}
