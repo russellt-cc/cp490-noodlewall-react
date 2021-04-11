@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 
 class Navbar extends React.Component {
   render() {
+    // Return the Noodlewall navbar
     return (
       <nav>
         {/* left div has the logo and search box */}

@@ -4,6 +4,7 @@ import React from 'react';
 
 class Footer extends React.Component {
   render() {
+    // Return the Noodlewall footer
     return (
       <footer>
         {/* split into columns so we can do a horizontal display */}

@@ -22,6 +22,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 // Main App function
 // Uses React Router to show different components
 function App() {
+  // Return the main Noodlewall app
   return (
     <div className="App">
       {/* Router component to use React Router */}

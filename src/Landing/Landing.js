@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 
 class Landing extends React.Component {
   render() {
+    // Return the landing page
     return (
       <main>
         {/* intro section is the top of the page with the intro text and video */}

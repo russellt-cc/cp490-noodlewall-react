@@ -5,6 +5,7 @@ import NoodleList from './NoodleList.js'
 class Browse extends React.Component {
   render() {
     // Getting information about events
+    // Return the browse page
     return (
       <main>
         {/* Show the list of noodles. Pass filters as properties to the NoodleList. */}

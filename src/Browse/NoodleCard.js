@@ -15,6 +15,7 @@ class NoodleCard extends React.Component {
         // Get the user data
         // Covert to zero-based index
         const user = userData[userID - 1]
+        // Return the card for the noodle
         return(
             // div for each noodle
             <div className={`noodle ${status}`}>

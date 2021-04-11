@@ -3,7 +3,7 @@
 //https://www.pluralsight.com/guides/convert-a-json-file-to-an-array-in-react
 
 // Get local JSON file
-import {noodleData, userData} from "../noodleData.js"
+import {noodleData} from "../noodleData.js"
 import React from 'react';
 import NoodleCard from "./NoodleCard.js"
 
@@ -11,6 +11,9 @@ import NoodleCard from "./NoodleCard.js"
 // Could be modified to pull data from a database
 class NoodleList extends React.Component {
     render() {
+        // Get the JSON data from file
+        // Replace with database query
+        const data = noodleData
         // Function to determine if the noodle matches the filters
         function filterNoodles (item, filters) {
             // Return false if the type doesn't match
@@ -32,6 +35,7 @@ class NoodleList extends React.Component {
             return true
         }
         // Create the noodle list and start looping through entries
+        // Return the list of noodles that match filters
         return(
             // div for the list of dreams and events
             <div className="noodle_list">
@@ -39,7 +43,7 @@ class NoodleList extends React.Component {
                 Send the data to filter noodles function
                 to return the data or not
                 depending on filters. */}
-                {noodleData.map ((item, i) => {
+                {data.map ((item, i) => {
                     // If the filters match, return the data
                     if (filterNoodles(item, this.props)){
                         return <NoodleCard data={item} index={i}/>

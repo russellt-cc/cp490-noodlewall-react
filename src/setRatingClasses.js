@@ -35,6 +35,7 @@ function setRatingClasses (userRating) {
             star_classes[1] = "checked"
             break
     }
+    // Return the classes as an array of strings
     return star_classes
 }
 

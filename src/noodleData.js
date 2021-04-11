@@ -1,7 +1,9 @@
+// The noodle data
+// Replace with database
 export const noodleData = [
     {
         "noodleID":1,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 1",
         "userID":1,
         "noodleStatus":"dream",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -10,7 +12,7 @@ export const noodleData = [
     },
     {
         "noodleID":2,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 2",
         "userID":1,
         "noodleStatus":"dream",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -19,7 +21,7 @@ export const noodleData = [
     },
     {
         "noodleID":3,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 3",
         "userID":1,
         "noodleStatus":"event",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -28,7 +30,7 @@ export const noodleData = [
     },
     {
         "noodleID":4,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 4",
         "userID":1,
         "noodleStatus":"dream",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -37,7 +39,7 @@ export const noodleData = [
     },
     {
         "noodleID":5,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 5",
         "userID":1,
         "noodleStatus":"event",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -46,7 +48,7 @@ export const noodleData = [
     },
     {
         "noodleID":6,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 6",
         "userID":1,
         "noodleStatus":"dream",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -55,7 +57,7 @@ export const noodleData = [
     },
     {
         "noodleID":7,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 7",
         "userID":1,
         "noodleStatus":"dream",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -64,7 +66,7 @@ export const noodleData = [
     },
     {
         "noodleID":8,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 8",
         "userID":1,
         "noodleStatus":"event",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -73,7 +75,7 @@ export const noodleData = [
     },
     {
         "noodleID":9,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 9",
         "userID":1,
         "noodleStatus":"dream",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -82,7 +84,7 @@ export const noodleData = [
     },
     {
         "noodleID":10,
-        "noodleTitle":"Fishing with Friends",
+        "noodleTitle":"Fishing with Friends 10",
         "userID":1,
         "noodleStatus":"event",
         "noodleDescription":"Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
@@ -91,6 +93,8 @@ export const noodleData = [
     }
 ]
 
+// User data
+// Replace with database
 export const userData = [
     {
         "userID":1,
