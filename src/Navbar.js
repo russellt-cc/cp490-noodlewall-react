@@ -3,6 +3,7 @@ import user_icon from './images/usericon-50p.png'
 import './css/Navbar.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import user_image_large from "./images/user-pam.png"
 
 class Navbar extends React.Component {
   render() {
@@ -62,13 +63,25 @@ class Navbar extends React.Component {
               </button>
               <div id="user_drop" className="drop">
                 <div className="user_drop_column" id="user_drop_left">
-                  Left Column
+                  <h3>Tickets</h3>
                 </div>
                 <div className="user_drop_column" id="user_drop_middle">
-                  Middle Column
+                  <h3>Following</h3>
                 </div>
                 <div className="user_drop_column" id="user_drop_right">
-                  Right Column
+                  <div>
+                    <h3>Your Account</h3>
+                    <img src={user_image_large}></img>
+                    <p>Pam's Fishing</p>
+                    <Link class="noodle_button">Manage Your Account</Link>
+                  </div>
+                  <div>
+                    <Link class="noodle_button">Sign Out</Link>
+                  </div>
+                  <div>
+                    <Link>Terms of Service</Link>
+                    <Link>Privacy Policy</Link>
+                  </div>
                 </div>
               </div>
             </li>

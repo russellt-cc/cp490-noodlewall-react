@@ -147,6 +147,26 @@ nav ul li>button:focus {
     height: 600px;
     color: black;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user_drop_column>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.user_drop_column .noodle_button {
+  width: 150px;
+  color: white;
+}
+
+.user_drop_column a {
+  color: black;
+  padding: 10px 0px;
 }
 
 /* the middle column in the user drop down */
