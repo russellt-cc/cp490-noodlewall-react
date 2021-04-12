@@ -4,9 +4,6 @@ import UserRating from "../UserRating"
 
 // Class to structure the data for a user
 class NoodlerSummary extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <div className={`noodle_userinfo`}>
