@@ -7,10 +7,8 @@ class User extends React.Component {
 
   constructor(props) {
     super(props)
-    const params = this.props.match.params
     this.state = {
-      userData: userData[params.id - 1],
-      action: params.action
+      userData: userData[this.props.match.params.id - 1]
     }
   }
 
@@ -24,29 +22,27 @@ class User extends React.Component {
 
   render() {
 
-    const userData = this.state.userData
-
     return(
       <main id="user_profile">
           
           <section id="user_profile_intro">
             
             <div className="user_profile_intro_column" id="user_profile_intro_left">
-              <img src={userData.userImage} alt={userData.userName}/>
-              <h3>{userData.userFirstName} {userData.userLastName}</h3>
-              <UserRating rating={userData.userRating}/>
+              <img src={this.state.userData.userImage} alt={this.state.userData.userName}/>
+              <h3>{this.state.userData.userFirstName} {this.state.userData.userLastName}</h3>
+              <UserRating rating={this.state.userData.userRating}/>
             </div>
 
             <div className="user_profile_intro_column" id="user_profile_intro_right">
-              <h1>About {userData.userName}</h1>
-              <p>{userData.userBioLong}</p>
+              <h1>About {this.state.userData.userName}</h1>
+              <p>{this.state.userData.userBioLong}</p>
               <p className="user_actions">
                 <button className="noodle_button" onClick={
                   () => {this.follow()}
-                }>Follow {userData.userName}</button>
+                }>Follow {this.state.userData.userName}</button>
                 <button className="noodle_button" onClick={
                   () => {this.contact()}
-                }>Contact {userData.userName}</button>
+                }>Contact {this.state.userData.userName}</button>
               </p>
             </div>
 
@@ -64,9 +60,7 @@ class User extends React.Component {
 
   componentDidMount() {
 
-    const action = this.state.action
-
-      switch (action) {
+      switch (this.props.match.params.action) {
         case "follow":
           this.follow()
           break

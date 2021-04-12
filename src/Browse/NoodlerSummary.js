@@ -6,15 +6,13 @@ import UserRating from "../UserRating"
 class NoodlerSummary extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {data: this.props.data}
   }
   render() {
-    const data = this.state.data
     return (
       <div className={`noodle_userinfo`}>
-        <p className={`noodle_userid`}><span className="noodle_label">User ID: </span>{data.userID}</p>
-        <p className={`noodle_noodler`}><span className="noodle_label">Noodler: </span><Link to={`/user/${data.userID}`}>{data.userName}</Link></p>
-        <UserRating rating={data.userRating}/>
+        <p className={`noodle_userid`}><span className="noodle_label">User ID: </span>{this.props.data.userID}</p>
+        <p className={`noodle_noodler`}><span className="noodle_label">Noodler: </span><Link to={`/user/${this.props.data.userID}`}>{this.props.data.userName}</Link></p>
+        <UserRating rating={this.props.data.userRating}/>
       </div>
     )
   }

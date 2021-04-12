@@ -16,9 +16,8 @@ class NoodleList extends React.Component {
     // Replace with database query
     this.state = {data: noodleData}
   }
-  render() {
-    // Function to determine if the noodle matches the filters
-    function filterNoodles(item, filters) {
+  // Method to determine if the noodle matches the filters
+  filterNoodles = (item, filters) => {
       // Return false if the type doesn't match
       switch (filters.type) {
         case "dreams":
@@ -36,7 +35,8 @@ class NoodleList extends React.Component {
       }
       // If the filters match, return the data
       return true
-    }
+  }
+  render() {
     // Create the noodle list and start looping through entries
     // Return the list of noodles that match filters
     return (
@@ -48,7 +48,7 @@ class NoodleList extends React.Component {
                 depending on filters. */}
         {this.state.data.map((item, i) => {
           // If the filters match, return the data
-          if (filterNoodles(item, this.props)) {
+          if (this.filterNoodles(item, this.props)) {
             return <NoodleCard data={item} index={i} />
           } else {
             return null
