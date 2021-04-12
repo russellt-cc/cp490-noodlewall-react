@@ -1,5 +1,5 @@
-import './css/Browse.css';
-import React from 'react';
+import './css/Browse.css'
+import React from 'react'
 import NoodleList from './NoodleList.js'
 
 class Browse extends React.Component {
@@ -14,8 +14,8 @@ class Browse extends React.Component {
           type={this.props.match.params.type}
         />
       </main>
-    );
+    )
   }
 }
 
-export default Browse;
+export default Browse

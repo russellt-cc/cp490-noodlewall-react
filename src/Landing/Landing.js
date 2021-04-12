@@ -1,12 +1,12 @@
-import intro_video from '../videos/NoodleWall.mp4';
-import intro_poster from '../images/noodlewall-video-poster-384p.png';
-import facebook_logo from '../images/Facebook-share-50p.png';
-import linkedin_logo from '../images/linkedin-share-50p.png';
-import pinterest_logo from '../images/Pinterest-share-50p.png';
-import reddit_logo from '../images/reddit-share-50p.png';
-import './css/Landing.css';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import intro_video from '../videos/NoodleWall.mp4'
+import intro_poster from '../images/noodlewall-video-poster-384p.png'
+import facebook_logo from '../images/Facebook-share-50p.png'
+import linkedin_logo from '../images/linkedin-share-50p.png'
+import pinterest_logo from '../images/Pinterest-share-50p.png'
+import reddit_logo from '../images/reddit-share-50p.png'
+import './css/Landing.css'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Landing extends React.Component {
   render() {
@@ -51,8 +51,8 @@ class Landing extends React.Component {
           </div>
         </section>
       </main>
-    );
+    )
   }
 }
 
-export default Landing;
+export default Landing

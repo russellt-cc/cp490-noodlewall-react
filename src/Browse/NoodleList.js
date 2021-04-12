@@ -4,7 +4,7 @@
 
 // Get local JSON file
 import { noodleData } from "../noodleData.js"
-import React from 'react';
+import React from 'react'
 import NoodleCard from "./NoodleCard.js"
 
 // The list of noodles from the JSON data
@@ -56,4 +56,4 @@ class NoodleList extends React.Component {
   }
 }
 
-export default NoodleList;
+export default NoodleList

@@ -1,7 +1,7 @@
 //images
 import fishing from "./images/fishing-crop.png"
-import bowlingDream from "./images/bowling-crop-dream.png";
-import cookingDream from "./images/cooking-crop-dream.png";
+import bowlingDream from "./images/bowling-crop-dream.png"
+import cookingDream from "./images/cooking-crop-dream.png"
 
 // The noodle data
 // Replace with database

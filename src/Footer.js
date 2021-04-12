@@ -1,6 +1,6 @@
-import logo from './images/noodlewall-logo-50p.png';
-import './css/Footer.css';
-import React from 'react';
+import logo from './images/noodlewall-logo-50p.png'
+import './css/Footer.css'
+import React from 'react'
 
 class Footer extends React.Component {
   render() {
@@ -29,8 +29,8 @@ class Footer extends React.Component {
           </div>
         </div>
       </footer>
-    );
+    )
   }
 }
 
-export default Footer;
+export default Footer

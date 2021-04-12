@@ -52,3 +52,7 @@ button:hover {
 .events_color_text {
     color: var(--events-color);
 }
+
+a {
+  color: black;
+}

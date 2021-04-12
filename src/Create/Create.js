@@ -1,5 +1,5 @@
-import './css/Create.css';
-import React from 'react';
+import './css/Create.css'
+import React from 'react'
 
 class Create extends React.Component {
   render() {
@@ -8,8 +8,8 @@ class Create extends React.Component {
       <main>
         testing creating {this.props.match.params.type}
       </main>
-    );
+    )
   }
 }
 
-export default Create;
+export default Create

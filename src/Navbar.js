@@ -1,8 +1,8 @@
-import logo from './images/noodlewall-logo-50p.png';
-import user_icon from './images/usericon-50p.png';
-import './css/Navbar.css';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import logo from './images/noodlewall-logo-50p.png'
+import user_icon from './images/usericon-50p.png'
+import './css/Navbar.css'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Navbar extends React.Component {
   render() {
@@ -75,8 +75,8 @@ class Navbar extends React.Component {
           </ul>
         </div>
       </nav>
-    );
+    )
   }
 }
 
-export default Navbar;
+export default Navbar

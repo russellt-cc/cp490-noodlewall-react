@@ -1,8 +1,8 @@
-import './css/Details.css';
-import React from 'react';
+import './css/Details.css'
+import React from 'react'
 import { noodleData, userData } from "../noodleData.js"
-import { Link } from 'react-router-dom';
-import CapitalizedText from "../CapitalizedText.js";
+import { Link } from 'react-router-dom'
+import CapitalizedText from "../CapitalizedText.js"
 
 class Details extends React.Component {
   render() {
@@ -40,7 +40,7 @@ class Details extends React.Component {
               </div>
             </div>
             <div id={`details_host_intro_${noodle.noodleStatus}`}>
-              <p>Host: {host.userName}</p>
+              <p>Host: <Link to={`/user/${host.userID}`}>{host.userName}</Link></p>
               <Link to={`/user/${host.userID}/contact`}>Contact {host.userName}</Link>
               <Link to={`/user/${host.userID}/follow`}>Follow {host.userName}</Link>
               <Link id="details_buy_button" to={`/buy/${noodle.noodleID}`}>Buy a Ticket</Link>
@@ -53,8 +53,8 @@ class Details extends React.Component {
         </section>
 
       </main>
-    );
+    )
   }
 }
 
-export default Details;
+export default Details
