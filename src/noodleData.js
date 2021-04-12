@@ -2,6 +2,8 @@
 import fishing from "./images/fishing-crop.png"
 import bowlingDream from "./images/bowling-crop-dream.png"
 import cookingDream from "./images/cooking-crop-dream.png"
+//user images
+import pam from "./images/user-pam.png"
 
 // The noodle data
 // Replace with database
@@ -52,7 +54,8 @@ export const userData = [
     "userLastName": "Poovey",
     "userRating": 4,
     "userBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum.",
-    "userImage": "pam"
+    "userBioLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras varius arcu tellus, et eleifend turpis porta id. Aliquam commodo leo leo, eget rhoncus enim dictum nec. Morbi porta elementum ex sollicitudin porttitor.",
+    "userImage": pam
   },
   {
     "userID": 2,
@@ -61,6 +64,7 @@ export const userData = [
     "userLastName": "Bowling Team",
     "userRating": 4,
     "userBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum.",
+    "userBioLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras varius arcu tellus, et eleifend turpis porta id. Aliquam commodo leo leo, eget rhoncus enim dictum nec. Morbi porta elementum ex sollicitudin porttitor.",
     "userImage": "pam"
   }
 ]

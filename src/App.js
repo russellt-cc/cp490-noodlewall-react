@@ -32,6 +32,8 @@ function App() {
         <Navbar />
         {/* Switch the main component based on the url */}
         <Switch>
+          {/* if the url goes to user with an ID and an action, load the user component */}
+          <Route path="/user/:id/:action" component={User}/>
           {/* if the url goes to user with an ID, load the user component */}
           <Route path="/user/:id" component={User}/>
           {/* if the url goes to create with a type, load the create component */}

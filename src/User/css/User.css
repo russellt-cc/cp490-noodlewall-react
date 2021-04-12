@@ -1,13 +1,32 @@
 #user_profile_intro {
   display: flex;
   justify-content: space-evenly;
-  text-align: center;
+}
+
+.user_profile_intro_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #user_profile_intro_left {
   width: 25%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 #user_profile_intro_right {
+  width: 50%;
+  text-align: left;
+}
+
+#user_profile_intro .user_actions {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 5px;
+}
+
+#user_profile_intro .noodle_button {
   width: 50%;
 }

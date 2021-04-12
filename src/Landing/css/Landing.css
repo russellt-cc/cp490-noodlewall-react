@@ -21,23 +21,6 @@
     font-size: 2em;
 }
 
-/* browse button */
-#intro_left button, #intro_left a {
-    width: 200px;
-    background-color: var(--events-color);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 16px 0px;
-    color: white;
-    font-family: century-gothic, sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-}
-
 #intro_left button:focus {
     outline: none;
 }

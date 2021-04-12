@@ -20,7 +20,7 @@ class Landing extends React.Component {
             <h1>Take a <span className="dreams_color_text">dream</span> and <span className="events_color_text">make it happen!</span></h1>
             <p>Have a dream worth sharing? Make it reality with <span className="dreams_color_text">Noodlewall</span>.</p>
             <p><span className="events_color_text">You're an influencer</span>, a person who makes events happen. <span className="dreams_color_text">Make your life easier</span> and <span className="events_color_text">risk free!</span></p>
-            <Link to="/browse">Browse</Link>
+            <Link className="noodle_button" to="/browse">Browse</Link>
           </div>
           {/* right div has the video */}
           <div id="intro_right" className="intro_column">
