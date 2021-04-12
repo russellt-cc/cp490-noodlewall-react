@@ -46,29 +46,23 @@
   flex-direction: column;
 }
 
-#details_host_intro_event>a, #details_host_intro_dream>a {
-  text-decoration: none;
-  color: white;
-  text-align: center;
+#details_host_intro_event>a, #details_host_intro_dream>a, #details_host_intro_event>button, #details_host_intro_dream>button {
   margin: 5px 0px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px 10px;
-  border-radius: 10px;
+  width: auto;
 }
 
-#details_host_intro_event>a {
-  background-color: var(--events-color);
-}
-
-#details_host_intro_dream>a {
+#details_host_intro_dream>a, #details_host_intro_dream>button {
   background-color: var(--dreams-color);
 }
 
-#details_host_intro_event>a#details_buy_button, #details_host_intro_dream>a#details_buy_button {
+#details_host_intro_event>#details_buy_button, #details_host_intro_dream>#details_buy_button {
   height: 100px;
+  width: 100%;
 }
 
 /* Style for mobile */

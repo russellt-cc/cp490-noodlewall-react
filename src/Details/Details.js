@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import CapitalizedText from "../CapitalizedText.js"
 
 class Details extends React.Component {
+  // Constructor method
   constructor(props) {
     super(props)
     // Get the JSON from the file
@@ -16,11 +17,15 @@ class Details extends React.Component {
       hostData: userData[noodleData[this.props.match.params.id - 1].userID - 1]
     }
   }
+  // Method to handle the buy button
+  buyTicket = () => {
+    alert("Buy ticket component goes here!")
+  }
+  // Render method
   render() {
     // Return the details page
     return (
       <main id={`details ${noodleData.noodleStatus}`}>
-
         <section id="details_intro">
           <div id="details_intro_left" className="details_intro_column">
             <h1>{this.state.noodleData.noodleTitle}</h1>
@@ -46,17 +51,16 @@ class Details extends React.Component {
             </div>
             <div id={`details_host_intro_${this.state.noodleData.noodleStatus}`}>
               <p>Host: <Link to={`/user/${this.state.hostData.userID}`}>{this.state.hostData.userName}</Link></p>
-              <Link to={`/user/${this.state.hostData.userID}/contact`}>Contact {this.state.hostData.userName}</Link>
-              <Link to={`/user/${this.state.hostData.userID}/follow`}>Follow {this.state.hostData.userName}</Link>
-              <Link id="details_buy_button" to={`/buy/${this.state.noodleData.noodleID}`}>Buy a Ticket</Link>
+              <Link class="noodle_button" to={`/user/${this.state.hostData.userID}/contact`}>Contact {this.state.hostData.userName}</Link>
+              <Link class="noodle_button" to={`/user/${this.state.hostData.userID}/follow`}>Follow {this.state.hostData.userName}</Link>
+              <button class="noodle_button" id="details_buy_button" onClick={() => {
+                this.buyTicket()
+              }}>Buy a Ticket</button>
             </div>
           </div>
         </section>
-
         <section id="details_details">
-
         </section>
-
       </main>
     )
   }
