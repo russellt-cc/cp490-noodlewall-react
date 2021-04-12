@@ -2,6 +2,7 @@ import './css/Details.css';
 import React from 'react';
 import { noodleData, userData } from "../noodleData.js"
 import { Link } from 'react-router-dom';
+import CapitalizedText from "../CapitalizedText.js";
 
 class Details extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class Details extends React.Component {
             <p>Status bar goes here!</p>
           </div>
           <div id="details_intro_right" className="details_intro_column">
-            <h1>Event Details</h1>
+            <h1>{<CapitalizedText text={noodle.noodleStatus}/>} Details</h1>
             <div id="details_summary">
               <p>Location: {noodle.noodleLocation}</p>
               <p>Date and Time: {noodle.noodleDate}</p>
