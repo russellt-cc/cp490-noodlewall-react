@@ -56,3 +56,13 @@ button:hover {
 a {
   color: black;
 }
+
+/* rating stars */
+
+.dream .checked {
+  color: var(--dreams-color)
+}
+
+.checked {
+  color: var(--events-color)
+}

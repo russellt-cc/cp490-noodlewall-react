@@ -48,14 +48,6 @@
   margin: 0px;
 }
 
-.dream .checked {
-    color: var(--dreams-color)
-}
-
-.event .checked {
-    color: var(--events-color)
-}
-
 .noodle_title>a, .noodle_noodler>a {
     color: black;
 }

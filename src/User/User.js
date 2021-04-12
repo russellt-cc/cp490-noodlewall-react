@@ -1,6 +1,7 @@
 import React from "react"
 import "./css/User.css"
 import { userData } from "../noodleData.js"
+import UserRating from "../UserRating.js"
 
 class User extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class User extends React.Component {
             <div className="user_profile_intro_column" id="user_profile_intro_left">
               <p>Picture goes here</p>
               <p>{userData.userFirstName} {userData.userLastName}</p>
-              <p>Rating goes here</p>
+              <UserRating rating={userData.userRating}/>
             </div>
 
             <div className="user_profile_intro_column" id="user_profile_intro_right">
