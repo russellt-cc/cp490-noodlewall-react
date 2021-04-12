@@ -1,0 +1,13 @@
+#user_profile_intro {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#user_profile_intro_left {
+  width: 25%;
+}
+
+#user_profile_intro_right {
+  width: 50%;
+}
