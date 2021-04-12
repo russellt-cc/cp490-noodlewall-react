@@ -47,6 +47,8 @@ class NoodleList extends React.Component {
           // If the filters match, return the data
           if (filterNoodles(item, this.props)) {
             return <NoodleCard data={item} index={i} />
+          } else {
+            return null
           }
         })}
       </div>
