@@ -16,6 +16,10 @@
   justify-content: center;
 }
 
+#user_profile_intro_left img {
+  max-width: 75%;
+}
+
 #user_profile_intro_right {
   width: 50%;
   text-align: left;
