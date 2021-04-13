@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.noodle {
+.noodle_card {
   width: 300px;
   height: 533px;
   border-radius: 20px;
@@ -19,66 +19,66 @@
   padding-bottom: 20px;
 }
 
-.noodle > * {
+.noodle_card > * {
   padding-left: 10px;
   padding-right: 10px;
   margin: 0px;
 }
 
-.noodle img,
-.noodle .noodle_image_link {
+.noodle_card img,
+.noodle_card .noodle_image_link {
   padding-left: 0px;
   padding-right: 0px;
   border-radius: 20px;
   width: 100%;
 }
 
-.dream {
+.noodle_card.dream {
   border: 3px solid var(--dreams-color);
 }
 
-.event {
+.noodle_card.event {
   border: 3px solid var(--events-color);
 }
 
-.noodle > .noodle_description {
+.noodle_card > .noodle_description {
   height: 120px;
 }
 
-.noodle_userinfo > * {
+.noodle_card .noodle_userinfo > * {
   margin: 0px;
 }
 
-.noodle_title > a,
-.noodle_noodler > a {
+.noodle_card .noodle_title > a,
+.noodle_card .noodle_noodler > a {
   color: black;
 }
 
-.noodle_tag_list {
+.noodle_card .noodle_tag_list {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
 }
 
-.noodle_tag {
+.noodle_card .noodle_tag {
   border-radius: 5px;
   padding: 5px;
   color: black;
 }
 
-.noodle_id,
-.noodle_userid,
-.noodle_status,
-.noodle_label {
+.noodle_card .noodle_id,
+.noodle_card .noodle_userid,
+.noodle_card .noodle_status,
+.noodle_card .noodle_label {
   display: none;
 }
 
-.noodle a.noodle_image_link {
+.noodle_card a.noodle_image_link {
   position: relative;
 }
 
-.noodle_list img.overlay {
+.noodle_card img.overlay {
   position: absolute;
   bottom: 3px;
   right: 0px;
@@ -88,16 +88,16 @@
   border-top-right-radius: 0px;
 }
 
-.noodle_link {
+.noodle_list .noodle_link {
   text-decoration: none;
 }
 
 @media screen and (max-width: 360px) {
-  main {
+  main#browse {
     padding-left: 0px;
     padding-right: 0px;
   }
-  .noodle {
+  .noodle_card {
     margin-left: 0px;
     margin-right: 0px;
   }

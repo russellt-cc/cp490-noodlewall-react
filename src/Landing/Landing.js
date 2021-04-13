@@ -12,7 +12,7 @@ class Landing extends React.Component {
   render() {
     // Return the landing page
     return (
-      <main>
+      <main id="landing">
         {/* intro section is the top of the page with the intro text and video */}
         <section id="intro">
           {/* left div has the text and browse button */}

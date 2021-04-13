@@ -31,6 +31,8 @@ class Details extends React.Component {
     // Use object destructuring to get constants
     const { noodleTitle, noodleStatus, noodleImage, noodleLocation, noodleDate, noodleTime, noodlePrice, noodleMinTickets, noodleMaxTickets, noodleTags } = this.state.noodleData
     const { userID, userName } = this.state.hostData
+    // Get the type for tag links
+    const filterType = this.props.match.params.filterType
     // Return the details page
     return (
       <main className={`${noodleStatus}`} id="details">
@@ -56,7 +58,7 @@ class Details extends React.Component {
               <div id="details_tags">
                 {noodleTags.map((item, i) => {
                   // create a link for each tag
-                  return <Link className={`noodle_tag ${noodleStatus}_tag`} to={`/browse/${item}`} key={i}>#{item}</Link>
+                  return <Link className={`noodle_tag ${noodleStatus}_tag`} to={`/browse/${filterType}/${item}`} key={i}>#{item}</Link>
                 })}
               </div>
             </div>

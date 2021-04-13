@@ -32,26 +32,29 @@ function App() {
         <Navbar />
         {/* Switch the main component based on the url */}
         <Switch>
-          {/* if the url goes to user with an ID and an action, load the user component */}
-          <Route path="/user/:id/:action" component={User}/>
-          {/* if the url goes to user with an ID, load the user component */}
-          <Route path="/user/:id" component={User}/>
-          {/* if the url goes to create with a type, load the create component */}
+          {/* ------------------------------------------------------------ */}
+          {/* Create Module */}
           <Route path="/create/:type" component={Create}/>
-          {/* if the url goes to details with an ID, load the details component */}
+          <Route path="/create" component={Create}/>
+          {/* ------------------------------------------------------------ */}
+          {/* User Module */}
+          <Route path="/user/:id/:action" component={User}/>
+          <Route path="/user/:id" component={User}/>
+          {/* ------------------------------------------------------------ */}
+          {/* Details Module */}
+          <Route path="/details/:filterType/:id" component={Details}/>
           <Route path="/details/:id" component={Details}/>
-          {/* if the url goes to browse with a type, load the browse component */}
+          {/* ------------------------------------------------------------ */}
+          {/* Browse Module */}
+          <Route path="/browse/:type/:tag" component={Browse}/>
           <Route path="/browse/:type" component={Browse}/>
-          {/* if the url goes to create, load the create component */}
-          <Route path="/create">
-            <Create />
-          </Route>
-          {/* if the url goes to browse, load the browse component */}
           <Route path="/browse" component={Browse}/>
-          {/* if the url goes to root, load the landing page */}
+          {/* ------------------------------------------------------------ */}
+          {/* Landing Module */}
           <Route path="/">
             <Landing />
           </Route>
+          {/* ------------------------------------------------------------ */}
         </Switch>
         {/* Show the Noodlewall footer */}
         <Footer />

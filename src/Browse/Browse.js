@@ -7,7 +7,7 @@ class Browse extends React.Component {
     // Getting information about events
     // Return the browse page
     return (
-      <main>
+      <main id="browse">
         {/* Show the list of noodles. Pass filters as properties to the NoodleList. */}
         <NoodleList
           query={this.props.location.search}

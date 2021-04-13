@@ -56,7 +56,7 @@ class NoodleList extends React.Component {
         {this.state.data.map((item, i) => {
           // If the filters match, return the data
           if (this.filterNoodles(item, this.props)) {
-            return <NoodleCard data={item} key={i} />
+            return <NoodleCard data={item} key={i} filterType={this.props.type}/>
           } else {
             return null
           }

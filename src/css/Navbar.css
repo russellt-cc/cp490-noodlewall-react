@@ -1,178 +1,185 @@
 /* style the navbar have a background color, fixed position, full width and on top of everything else */
 nav {
-    background-color: var(--events-color);
-    color: var(--events-text-color);
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    z-index: 999;
+  background-color: var(--events-color);
+  color: var(--events-text-color);
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
 }
 
 /* anchor tags in the navbar */
 nav a {
-    text-decoration: none;
-    color: var(--events-text-color);
+  text-decoration: none;
+  color: var(--events-text-color);
 }
 
 /* columns in the navbar */
 nav .nav_column {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 /* items in the columns */
-nav .nav_column>* {
-    padding: 10px;
+nav .nav_column > * {
+  padding: 10px;
 }
 
 /* nav logo */
 nav #nav_logo {
-    filter: invert(100%);
+  filter: invert(100%);
 }
 
 /* seach box */
 nav input[type="search"] {
-    height: 50px;
-    border: none;
-    border-radius: 10px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
 }
 
 nav input[type="search"]:focus {
-    outline: none;
+  outline: none;
 }
 
 /* list for the right side buttons */
 nav ul {
-    list-style-type: none;
-    display: flex;
+  list-style-type: none;
+  display: flex;
 }
 
 /* right side buttons list items */
 nav ul li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
 /* right side buttons */
-nav ul li>button {
-    border: none;
-    padding: 10px;
-    background: none;
-    color: var(--events-text-color);
-    font-family: century-gothic, sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    border-radius: 10px;
+nav ul li > button {
+  border: none;
+  padding: 10px;
+  background: none;
+  color: var(--events-text-color);
+  font-family: century-gothic, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  border-radius: 10px;
 }
 
-#user_button {
-    padding: 0px;
+nav #user_button {
+  padding: 0px;
 }
 
-#user_button_button {
-    padding: 5px;
-    border-radius: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+nav #user_button_button {
+  padding: 5px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* the button when clicked */
-nav ul li>button:focus {
-    outline: none;
-    background-color: var(--dreams-color);
+nav ul li > button:focus {
+  outline: none;
+  background-color: var(--dreams-color);
 }
 
 /* drop down elements */
-.drop {
-    position: absolute;
-    top: 70px;
-    right: -650px;
-    display: flex;
-    justify-content: right;
-    background-color: white;
-    border: 3px solid var(--events-color);
-    border-bottom-left-radius: 10px;
-    transition: right 0.5s ease-in-out;
+nav .drop {
+  position: absolute;
+  top: 70px;
+  right: -650px;
+  display: flex;
+  justify-content: right;
+  background-color: white;
+  border: 3px solid var(--events-color);
+  border-bottom-left-radius: 10px;
+  transition: right 0.5s ease-in-out;
 }
 
 /* the browse and create drop downs */
-#browse_drop, #create_drop {
-    column-gap: 5px;
-    padding: 5px;
+nav #browse_drop,
+#create_drop {
+  column-gap: 5px;
+  padding: 5px;
 }
 
 /* drop on click */
-#browse_button:focus-within .drop, #create_button:focus-within .drop, #user_button:focus-within .drop {
-    pointer-events: auto;
-    right: 0px;
+nav #browse_button:focus-within .drop,
+nav #create_button:focus-within .drop,
+nav #user_button:focus-within .drop {
+  pointer-events: auto;
+  right: 0px;
 }
 
 /* items in the browse and create drop downs */
-#browse_drop>*, #create_drop>* {
-    width: 200px;
-    height: 50px;
-    background-color: black;
-    border-radius: 10px;
+nav #browse_drop > *,
+nav #create_drop > * {
+  width: 200px;
+  height: 50px;
+  background-color: black;
+  border-radius: 10px;
 }
 
 /* anchor tags in the browse and create drop downs */
-#browse_drop a, #create_drop a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+nav #browse_drop a,
+nav #create_drop a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* the browse dreams and create dream buttons */
-#browse_dreams_button, #create_dream_button {
-    background-color: var(--dreams-color);
+nav #browse_dreams_button,
+nav #create_dream_button {
+  background-color: var(--dreams-color);
 }
 
 /* the browse events and create event buttons */
-#browse_events_button, #create_event_button {
-    background-color: var(--events-color);
+nav #browse_events_button,
+nav #create_event_button {
+  background-color: var(--events-color);
 }
 
 /* columns in the user drop down */
-.user_drop_column {
-    width: 200px;
-    height: 600px;
-    color: black;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+nav .user_drop_column {
+  width: 200px;
+  height: 600px;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.user_drop_column>div {
+nav .user_drop_column > div {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.user_drop_column .noodle_button {
+nav .user_drop_column .noodle_button {
   width: 150px;
   color: white;
 }
 
-.user_drop_column a {
+nav .user_drop_column a {
   color: black;
   padding: 10px 0px;
 }
 
 /* the middle column in the user drop down */
-#user_drop_middle {
-    border-left: 3px solid var(--events-color);
-    border-right: 3px solid var(--events-color);
+nav #user_drop_middle {
+  border-left: 3px solid var(--events-color);
+  border-right: 3px solid var(--events-color);
 }
 
 /* style for mobile */
@@ -196,11 +203,13 @@ nav ul li>button:focus {
   #nav_right ul {
     padding-left: 0px;
   }
-  #browse_drop, #create_drop {
+  nav #browse_drop,
+  nav #create_drop {
     flex-direction: column;
     width: 95%;
   }
-  #browse_drop>*, #create_drop>* {
+  nav #browse_drop > *,
+  nav #create_drop > * {
     width: 100%;
   }
 }

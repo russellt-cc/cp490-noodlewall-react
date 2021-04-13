@@ -13,16 +13,20 @@ class NoodleCard extends React.Component {
     // Get the user data
     // Covert to zero-based index
     const hostData = userData[this.props.data.userID - 1]
+    // Get the filter type for tag links
+    const filterType = this.props.filterType
+    // The link to the noodle
+    const noodleLink = `/details/${filterType}/${noodleID}`
     // Return the card for the noodle
     return (
       // div for each noodle
-      <Link className="noodle_link" to={`/details/${noodleID}`}><div className={`noodle ${noodleStatus}`}>
-        <Link className="noodle_image_link" to={`/details/${noodleID}`}>
+      <Link className="noodle_link" to={noodleLink}><div className={`noodle_card ${noodleStatus}`}>
+        <Link className="noodle_image_link" to={noodleLink}>
           <img src={noodleImage} alt="Noodle"></img>
           {generateNoodleOverlay(noodleStatus)}
         </Link>
         <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
-        <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={`/details/${noodleID}`}>{noodleTitle}</Link></p>
+        <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={noodleLink}>{noodleTitle}</Link></p>
         <p className={`noodle_status`}><span className="noodle_label">Status: </span>{noodleStatus}</p>
         <NoodlerSummary data={hostData} />
         <p className={`noodle_description`}><span className="noodle_label">Description: </span>{noodleDescription}</p>
@@ -31,7 +35,7 @@ class NoodleCard extends React.Component {
           <div className={`noodle_tag_list`}>
             {noodleTags.map(item => {
               // create a link for each tag
-              return <Link className={`noodle_tag ${noodleStatus}_tag`} to={`/browse/${item}`}>#{item}</Link>
+              return <Link className={`noodle_tag ${noodleStatus}_tag`} to={`/browse/${filterType}/${item}`}>#{item}</Link>
             })}
           </div>
         </div>

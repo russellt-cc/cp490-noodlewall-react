@@ -1,70 +1,70 @@
 /* Style the intro section */
-#intro {
-    display: flex;
-    justify-content: space-evenly;
+#landing #intro {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* columns in the intro */
-.intro_column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#landing .intro_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* left side of the intro */
-#intro_left {
-    padding-right: 20px;
+#landing #intro_left {
+  padding-right: 20px;
 }
 
 /* h1 header in the left column */
-#intro_left h1 {
-    font-size: 2em;
+#landing #intro_left h1 {
+  font-size: 2em;
 }
 
-#intro_left button:focus {
-    outline: none;
+#landing #intro_left button:focus {
+  outline: none;
 }
 
 /* right column of the intro */
-#intro_right {
-    width: 384px;
-    height: 682px;
-    border: 10px solid black;
-    border-top: 20px solid black;
-    border-bottom: 40px solid black;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+#landing #intro_right {
+  width: 384px;
+  height: 682px;
+  border: 10px solid black;
+  border-top: 20px solid black;
+  border-bottom: 40px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
 
 /* the intro video */
-#intro_right video {
-    width: 384px;
-    height: 216px;
-    padding-top: 20px;
+#landing #intro_right video {
+  width: 384px;
+  height: 216px;
+  padding-top: 20px;
 }
 
 /* share list */
-#intro_right ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    padding-inline-start: 0px;
-    column-gap: 10px;
+#landing #intro_right ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-inline-start: 0px;
+  column-gap: 10px;
 }
 
 /* Style for mobile */
 
 @media screen and (max-width: 800px) {
-  #intro {
+  #landing #intro {
     flex-direction: column;
     align-items: center;
   }
-  #intro_left {
+  #landing #intro_left {
     width: 100%;
     text-align: center;
     display: flex;
@@ -73,7 +73,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  #intro_right {
+  #landing #intro_right {
     border: none;
   }
 }
