@@ -51,7 +51,7 @@ class UserRating extends React.Component {
   render() {
     // Return the rating element
     return(
-      <p class="user_rating">
+      <p className="user_rating">
         <span className={`fa fa-star ${this.state.star_classes[1]}`}></span>
         <span className={`fa fa-star ${this.state.star_classes[2]}`}></span>
         <span className={`fa fa-star ${this.state.star_classes[3]}`}></span>

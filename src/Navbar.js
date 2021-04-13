@@ -71,16 +71,16 @@ class Navbar extends React.Component {
                 <div className="user_drop_column" id="user_drop_right">
                   <div>
                     <h3>Your Account</h3>
-                    <img src={user_image_large}></img>
+                    <img src={user_image_large} alt="User"></img>
                     <p>Pam's Fishing</p>
-                    <Link class="noodle_button">Manage Your Account</Link>
+                    <Link className="noodle_button" to="/">Manage Your Account</Link>
                   </div>
                   <div>
-                    <Link class="noodle_button">Sign Out</Link>
+                    <Link className="noodle_button" to="/">Sign Out</Link>
                   </div>
                   <div>
-                    <Link>Terms of Service</Link>
-                    <Link>Privacy Policy</Link>
+                    <Link to="/">Terms of Service</Link>
+                    <Link to="/">Privacy Policy</Link>
                   </div>
                 </div>
               </div>

@@ -47,17 +47,17 @@ class Details extends React.Component {
               <p>Minimum Tickets Sold: {this.state.noodleData.noodleMinTickets}</p>
               <p>Maximum Tickets Sold: {this.state.noodleData.noodleMaxTickets}</p>
               <div id="details_tags">
-                {this.state.noodleData.noodleTags.map(item => {
+                {this.state.noodleData.noodleTags.map((item, i) => {
                   // create a link for each tag
-                  return <Link className={`noodle_tag ${this.state.noodleData.noodleStatus}_tag`} to={`/browse/${item}`}>#{item}</Link>
+                  return <Link className={`noodle_tag ${this.state.noodleData.noodleStatus}_tag`} to={`/browse/${item}`} key={i}>#{item}</Link>
                 })}
               </div>
             </div>
             <div id={`details_host_intro_${this.state.noodleData.noodleStatus}`}>
               <p>Host: <Link to={`/user/${this.state.hostData.userID}`}>{this.state.hostData.userName}</Link></p>
-              <Link class="noodle_button" to={`/user/${this.state.hostData.userID}/contact`}>Contact {this.state.hostData.userName}</Link>
-              <Link class="noodle_button" to={`/user/${this.state.hostData.userID}/follow`}>Follow {this.state.hostData.userName}</Link>
-              <button class="noodle_button" id="details_buy_button" onClick={() => {
+              <Link className="noodle_button" to={`/user/${this.state.hostData.userID}/contact`}>Contact {this.state.hostData.userName}</Link>
+              <Link className="noodle_button" to={`/user/${this.state.hostData.userID}/follow`}>Follow {this.state.hostData.userName}</Link>
+              <button className="noodle_button" id="details_buy_button" onClick={() => {
                 this.buyTicket()
               }}>Buy a Ticket</button>
             </div>
