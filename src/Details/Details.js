@@ -6,57 +6,64 @@ import CapitalizedText from "../CapitalizedText.js"
 import generateNoodleOverlay from "../generateNoodleOverlay.js"
 
 class Details extends React.Component {
-  // Constructor method
+  // Constructor
   constructor(props) {
     super(props)
-    // Get the JSON from the file
-    // Get the host details
-    // Covert to zero-based index
-    // Replace with database query
-    this.state = {
-      noodleData: noodleData[this.props.match.params.id - 1],
-      hostData: userData[noodleData[this.props.match.params.id - 1].userID - 1]
-    }
+    this.state = { noodleData: { "noodleStatus": "", "noodleTags": [] }, hostData: {} }
   }
   // Method to handle the buy button
   buyTicket = () => {
     alert("Buy ticket component goes here!")
   }
+  // Component Did Mount method
+  componentDidMount() {
+    // Get the JSON data and put in state
+    // Replace with AJAX request to PHP server
+    this.setState({
+      noodleData: noodleData[this.props.match.params.id - 1],
+      hostData: userData[noodleData[this.props.match.params.id - 1].userID - 1]
+    })
+  }
   // Render method
   render() {
+    // Get the noodle and host details
+    // Covert to zero-based index
+    // Use object destructuring to get constants
+    const { noodleTitle, noodleStatus, noodleImage, noodleLocation, noodleDate, noodleTime, noodlePrice, noodleMinTickets, noodleMaxTickets, noodleTags } = this.state.noodleData
+    const { userID, userName } = this.state.hostData
     // Return the details page
     return (
-      <main className={`${noodleData.noodleStatus}`} id="details">
+      <main className={`${noodleStatus}`} id="details">
         <section id="details_intro">
           <div id="details_intro_left" className="details_intro_column">
-            <h1>{this.state.noodleData.noodleTitle}</h1>
+            <h1>{noodleTitle}</h1>
             <p>Days Left to Make it Happen: </p>
             <div id="details_image_container">
-              <img src={this.state.noodleData.noodleImage} alt="Noodle"></img>
-              {generateNoodleOverlay(this.state.noodleData.noodleStatus)}
+              <img src={noodleImage} alt="Noodle"></img>
+              {generateNoodleOverlay(noodleStatus)}
             </div>
             <p>Status bar goes here!</p>
           </div>
           <div id="details_intro_right" className="details_intro_column">
-            <h3>{<CapitalizedText text={this.state.noodleData.noodleStatus}/>} Details</h3>
+            <h3>{<CapitalizedText text={noodleStatus}/>} Details</h3>
             <div id="details_summary">
-              <p>Location: {this.state.noodleData.noodleLocation}</p>
-              <p>Date and Time: {this.state.noodleData.noodleDate}</p>
-              <p>{this.state.noodleData.noodleTime}</p>
-              <p>Ticket Price: {this.state.noodleData.noodlePrice}</p>
-              <p>Minimum Tickets Sold: {this.state.noodleData.noodleMinTickets}</p>
-              <p>Maximum Tickets Sold: {this.state.noodleData.noodleMaxTickets}</p>
+              <p>Location: {noodleLocation}</p>
+              <p>Date and Time: {noodleDate}</p>
+              <p>{noodleTime}</p>
+              <p>Ticket Price: {noodlePrice}</p>
+              <p>Minimum Tickets Sold: {noodleMinTickets}</p>
+              <p>Maximum Tickets Sold: {noodleMaxTickets}</p>
               <div id="details_tags">
-                {this.state.noodleData.noodleTags.map((item, i) => {
+                {noodleTags.map((item, i) => {
                   // create a link for each tag
-                  return <Link className={`noodle_tag ${this.state.noodleData.noodleStatus}_tag`} to={`/browse/${item}`} key={i}>#{item}</Link>
+                  return <Link className={`noodle_tag ${noodleStatus}_tag`} to={`/browse/${item}`} key={i}>#{item}</Link>
                 })}
               </div>
             </div>
-            <div id={`details_host_intro_${this.state.noodleData.noodleStatus}`}>
-              <p>Host: <Link to={`/user/${this.state.hostData.userID}`}>{this.state.hostData.userName}</Link></p>
-              <Link className="noodle_button" to={`/user/${this.state.hostData.userID}/contact`}>Contact {this.state.hostData.userName}</Link>
-              <Link className="noodle_button" to={`/user/${this.state.hostData.userID}/follow`}>Follow {this.state.hostData.userName}</Link>
+            <div id={`details_host_intro_${noodleStatus}`}>
+              <p>Host: <Link to={`/user/${userID}`}>{userName}</Link></p>
+              <Link className="noodle_button" to={`/user/${userID}/contact`}>Contact {userName}</Link>
+              <Link className="noodle_button" to={`/user/${userID}/follow`}>Follow {userName}</Link>
               <button className="noodle_button" id="details_buy_button" onClick={() => {
                 this.buyTicket()
               }}>Buy a Ticket</button>

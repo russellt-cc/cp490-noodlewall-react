@@ -10,11 +10,17 @@ import NoodleCard from "./NoodleCard.js"
 // The list of noodles from the JSON data
 // Could be modified to pull data from a database
 class NoodleList extends React.Component {
+  // Constructor
   constructor(props) {
     super(props)
-    // Get the JSON data from file
-    // Replace with database query
-    this.state = {data: noodleData}
+    // Initialize state
+    this.state = {data: []}
+  }
+  // Component Did Mount
+  componentDidMount() {
+    // Get the JSON data and put in state
+    // Replace with AJAX request to PHP server
+    this.setState({data: noodleData})
   }
   // Method to determine if the noodle matches the filters
   filterNoodles = (item, filters) => {
@@ -36,6 +42,7 @@ class NoodleList extends React.Component {
       // If the filters match, return the data
       return true
   }
+  // Render
   render() {
     // Create the noodle list and start looping through entries
     // Return the list of noodles that match filters
