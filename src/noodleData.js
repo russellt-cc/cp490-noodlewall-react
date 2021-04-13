@@ -30,7 +30,7 @@ export const noodleData = [
     "userID": 2,
     "noodleStatus": "dream",
     "noodleDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
-    "noodleTags": ["fishing", "food", "hobby", "friends", "sports"],
+    "noodleTags": ["bowling", "hobby", "sports"],
     "noodleImage": bowling
   },
   {
@@ -39,7 +39,7 @@ export const noodleData = [
     "userID": 1,
     "noodleStatus": "dream",
     "noodleDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
-    "noodleTags": ["fishing", "food", "hobby", "friends", "sports"],
+    "noodleTags": ["cooking", "food", "hobby", "kids"],
     "noodleImage": cooking
   }
 ]

@@ -39,6 +39,13 @@ class NoodleList extends React.Component {
         default:
           break
       }
+      // Filter by tag
+      if (filters.tag !== undefined) {
+        const tagsMatch = (tag) => tag === filters.tag
+        if (!item.noodleTags.some(tagsMatch)) {
+          return false
+        }
+      }
       // If the filters match, return the data
       return true
   }
@@ -55,8 +62,8 @@ class NoodleList extends React.Component {
                 depending on filters. */}
         {this.state.data.map((item, i) => {
           // If the filters match, return the data
-          if (this.filterNoodles(item, this.props)) {
-            return <NoodleCard data={item} key={i} filterType={this.props.type}/>
+          if (this.filterNoodles(item, this.props.filters)) {
+            return <NoodleCard data={item} key={i} filterType={this.props.filters.type}/>
           } else {
             return null
           }

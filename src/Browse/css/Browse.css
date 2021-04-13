@@ -43,6 +43,7 @@
 
 .noodle_card > .noodle_description {
   height: 120px;
+  overflow: hidden;
 }
 
 .noodle_card .noodle_userinfo > * {
@@ -58,7 +59,9 @@
   display: flex;
   flex-flow: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  height: 60px;
+  overflow: hidden;
 }
 
 .noodle_card .noodle_tag {
