@@ -1,7 +1,7 @@
 //images
 import fishing from "./images/fishing-crop.png"
-import bowlingDream from "./images/bowling-crop-dream.png"
-import cookingDream from "./images/cooking-crop-dream.png"
+import bowling from "./images/bowling-crop.png"
+import cooking from "./images/cooking-crop.png"
 //user images
 import pam from "./images/user-pam.png"
 
@@ -31,7 +31,7 @@ export const noodleData = [
     "noodleStatus": "dream",
     "noodleDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
     "noodleTags": ["fishing", "food", "hobby", "friends", "sports"],
-    "noodleImage": bowlingDream
+    "noodleImage": bowling
   },
   {
     "noodleID": 3,
@@ -40,7 +40,7 @@ export const noodleData = [
     "noodleStatus": "dream",
     "noodleDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
     "noodleTags": ["fishing", "food", "hobby", "friends", "sports"],
-    "noodleImage": cookingDream
+    "noodleImage": cooking
   }
 ]
 
@@ -65,6 +65,6 @@ export const userData = [
     "userRating": 3,
     "userBio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum.",
     "userBioLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras varius arcu tellus, et eleifend turpis porta id. Aliquam commodo leo leo, eget rhoncus enim dictum nec. Morbi porta elementum ex sollicitudin porttitor.",
-    "userImage": bowlingDream
+    "userImage": bowling
   }
 ]

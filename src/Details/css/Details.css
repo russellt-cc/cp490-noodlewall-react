@@ -17,11 +17,11 @@
   width: 25%;
 }
 
-#details_intro_left>img {
+#details_intro_left img {
   border-radius: 20px;
 }
 
-#details_summary>p {
+#details_summary > p {
   margin: 5px 0px;
 }
 
@@ -37,7 +37,7 @@
   column-gap: 5px;
 }
 
-#details_tags>a {
+#details_tags > a {
   padding: 0px;
 }
 
@@ -46,7 +46,10 @@
   flex-direction: column;
 }
 
-#details_host_intro_event>a, #details_host_intro_dream>a, #details_host_intro_event>button, #details_host_intro_dream>button {
+#details_host_intro_event > a,
+#details_host_intro_dream > a,
+#details_host_intro_event > button,
+#details_host_intro_dream > button {
   margin: 5px 0px;
   height: 50px;
   display: flex;
@@ -56,13 +59,32 @@
   width: auto;
 }
 
-#details_host_intro_dream>a, #details_host_intro_dream>button {
+#details_host_intro_dream > a,
+#details_host_intro_dream > button {
   background-color: var(--dreams-color);
 }
 
-#details_host_intro_event>#details_buy_button, #details_host_intro_dream>#details_buy_button {
+#details_host_intro_event > #details_buy_button,
+#details_host_intro_dream > #details_buy_button {
   height: 100px;
   width: 100%;
+}
+
+#details_image_container {
+  position: relative;
+}
+
+#details_image_container > img {
+  width: 100%;
+}
+
+#details_image_container > img.overlay {
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 0px;
+  width: 25%;
+  position: absolute;
+  right: 0px;
+  bottom: 3px;
 }
 
 /* Style for mobile */
@@ -71,7 +93,8 @@
   #details_intro {
     flex-direction: column;
   }
-  #details_intro_left, #details_intro_right {
+  #details_intro_left,
+  #details_intro_right {
     width: 100%;
     text-align: center;
   }

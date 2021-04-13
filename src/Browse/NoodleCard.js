@@ -2,21 +2,27 @@ import { userData } from "../noodleData.js"
 import React from 'react'
 import { Link } from "react-router-dom"
 import NoodlerSummary from "./NoodlerSummary.js"
+import generateNoodleOverlay from "../generateNoodleOverlay.js"
 
 // Class to structure the data for each noodle
 class NoodleCard extends React.Component {
+  // Constructor method
   constructor(props) {
     super(props)
     // Get the user data
     // Covert to zero-based index
     this.state = {hostData: userData[this.props.data.userID - 1]}
   }
+  // Render method
   render() {
     // Return the card for the noodle
     return (
       // div for each noodle
-      <div className={`noodle ${this.props.data.noodleStatus}`}>
-        <Link class="noodle_image_link" to={`/details/${this.props.data.noodleID}`}><img src={this.props.data.noodleImage} alt="Noodle"></img></Link>
+      <Link class="noodle_link" to={`/details/${this.props.data.noodleID}`}><div className={`noodle ${this.props.data.noodleStatus}`}>
+        <Link class="noodle_image_link" to={`/details/${this.props.data.noodleID}`}>
+          <img src={this.props.data.noodleImage} alt="Noodle"></img>
+          {generateNoodleOverlay(this.props.data.noodleStatus)}
+        </Link>
         <p className={`noodle_id`}><span className="noodle_label">ID: </span>{this.props.data.noodleID}</p>
         <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={`/details/${this.props.data.noodleID}`}>{this.props.data.noodleTitle}</Link></p>
         <p className={`noodle_status`}><span className="noodle_label">Status: </span>{this.props.data.noodleStatus}</p>
@@ -31,7 +37,7 @@ class NoodleCard extends React.Component {
             })}
           </div>
         </div>
-      </div>
+      </div></Link>
     )
   }
 }

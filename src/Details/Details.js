@@ -3,6 +3,7 @@ import React from 'react'
 import { noodleData, userData } from "../noodleData.js"
 import { Link } from 'react-router-dom'
 import CapitalizedText from "../CapitalizedText.js"
+import generateNoodleOverlay from "../generateNoodleOverlay.js"
 
 class Details extends React.Component {
   // Constructor method
@@ -25,12 +26,15 @@ class Details extends React.Component {
   render() {
     // Return the details page
     return (
-      <main id={`details ${noodleData.noodleStatus}`}>
+      <main className={`${noodleData.noodleStatus}`} id="details">
         <section id="details_intro">
           <div id="details_intro_left" className="details_intro_column">
             <h1>{this.state.noodleData.noodleTitle}</h1>
             <p>Days Left to Make it Happen: </p>
-            <img src={this.state.noodleData.noodleImage} alt="Noodle"></img>
+            <div id="details_image_container">
+              <img src={this.state.noodleData.noodleImage} alt="Noodle"></img>
+              {generateNoodleOverlay(this.state.noodleData.noodleStatus)}
+            </div>
             <p>Status bar goes here!</p>
           </div>
           <div id="details_intro_right" className="details_intro_column">
