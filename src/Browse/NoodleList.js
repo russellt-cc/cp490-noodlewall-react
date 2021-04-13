@@ -25,29 +25,29 @@ class NoodleList extends React.Component {
   componentDidMount() {
     // Get the JSON data and put in state
     // Replace with AJAX request to PHP server
-    this.setState({
-      data: noodleData,
-      userData: userData,
-      isLoaded: true
-    })
+    // this.setState({
+    //   data: noodleData,
+    //   userData: userData,
+    //   isLoaded: true
+    // })
     // AJAX request
-    // fetch("http://www.gatkinson.site/noodlewall/product/read.php")
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         data: result.records,
-    //         userData: results.users
-    //       })
-    //     },
-    //     (error) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         error
-    //       })
-    //     }
-    //   )
+    fetch("http://www.gatkinson.site/noodlewall/product/read.php")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            data: result.events,
+            userData: result.users
+          })
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          })
+        }
+      )
   }
   // Method to determine if the noodle matches the filters
   filterNoodles = (item, filters) => {
