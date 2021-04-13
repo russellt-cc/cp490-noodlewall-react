@@ -1,12 +1,23 @@
 import logo from './images/noodlewall-logo-50p.png'
-import user_icon from './images/usericon-50p.png'
 import './css/Navbar.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import user_image_large from "./images/user-pam.png"
+import { userData } from "./noodleData.js"
 
 class Navbar extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {userData: {}}
+  }
+  componentDidMount() {
+    // Get the current user data
+    // Replace the JSON file with AJAX request
+    // Replace the index with user ID from session
+    this.setState({userData: userData[0]})
+  }
   render() {
+    // Destructure the current user data
+    const { userID, userName, userImage } = this.state.userData
     // Return the Noodlewall navbar
     return (
       <nav>
@@ -59,7 +70,7 @@ class Navbar extends React.Component {
             </li>
             <li id="user_button" className="drop_button">
               <button id="user_button_button">
-                <img id="nav_user_image" src={user_icon} height="50px" alt="User" />
+                <img id="nav_user_image" src={userImage} height="50px" width="50px" alt="User" />
               </button>
               <div id="user_drop" className="drop">
                 <div className="user_drop_column" id="user_drop_left">
@@ -71,11 +82,12 @@ class Navbar extends React.Component {
                 <div className="user_drop_column" id="user_drop_right">
                   <div>
                     <h3>Your Account</h3>
-                    <img src={user_image_large} alt="User"></img>
-                    <p>Pam's Fishing</p>
+                    <Link to={`/user/${userID}`}>
+                      <img src={userImage} alt="User"></img>
+                      <p>{userName}</p>
+                    </Link>
                     <Link className="noodle_button" to="/">Manage Your Account</Link>
-                  </div>
-                  <div>
+                    <Link className="noodle_button" to="/">View Dashboard</Link>
                     <Link className="noodle_button" to="/">Sign Out</Link>
                   </div>
                   <div>

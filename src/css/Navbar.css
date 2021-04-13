@@ -164,6 +164,7 @@ nav .user_drop_column > div {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 nav .user_drop_column .noodle_button {
@@ -180,6 +181,10 @@ nav .user_drop_column a {
 nav #user_drop_middle {
   border-left: 3px solid var(--events-color);
   border-right: 3px solid var(--events-color);
+}
+
+nav #user_drop_right img {
+  max-width: 150px;
 }
 
 /* style for mobile */
