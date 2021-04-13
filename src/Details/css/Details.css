@@ -6,7 +6,8 @@
 #details .details_intro_column {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  row-gap: 30px;
 }
 
 #details #details_intro_left {
@@ -19,6 +20,15 @@
 
 #details #details_intro_left img {
   border-radius: 20px;
+}
+
+#details #details_intro_left h1,
+#details #details_intro_left p {
+  margin: 0px;
+}
+
+#details #details_intro_right h3 {
+  margin: 0px;
 }
 
 #details #details_summary > p {
@@ -70,6 +80,12 @@
   width: 100%;
 }
 
+#details .details_status_container_container {
+  background-color: lightgray;
+  padding: 10px 10px 0px 10px;
+  border-radius: 10px;
+}
+
 #details #details_image_container {
   position: relative;
 }
@@ -87,7 +103,8 @@
   bottom: 3px;
 }
 
-#details .details_status_container {
+#details .details_status_container,
+#details .details_progress_container {
   position: relative;
   display: flex;
   align-items: center;
@@ -95,53 +112,86 @@
 }
 
 #details .details_status_container > span {
-  height: 50px;
+  height: 25px;
   text-align: center;
-  color: lightgray;
+  color: white;
+  /* color: lightgray; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkgray;
+  font-size: 14px;
+}
+
+#details .details_progress_container > meter {
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: lightgray;
 }
 
-#details .details_status_dream {
+#details meter::-webkit-meter-bar {
+  background-color: lightgray;
+  border: none;
+}
+
+#details .details_status_dream,
+#details
+  .details_progress_container
+  > .details_progress_dream::-webkit-meter-bar {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
-#details .details_status_sold_out {
+#details .details_status_sold_out,
+#details
+  .details_progress_container
+  > .details_progress_sold_out::-webkit-meter-bar {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 #details .details_status_dream,
-#details .details_status_sold_out {
+#details .details_status_sold_out,
+#details .details_progress_dream,
+#details .details_progress_sold_out {
   width: 20%;
 }
 
 #details .details_status_not_happening,
-#details .details_status_happening {
+#details .details_status_happening,
+#details .details_progress_not_happening,
+#details .details_progress_happening {
   width: 30%;
 }
 
-#details .details_status_dream.passed {
+#details .details_progress_container > meter::-webkit-meter-bar {
+  border-radius: 0px;
+}
+
+#details .details_status_dream.passed,
+#details .details_progress_dream::-webkit-meter-optimum-value {
   background-color: var(--dreams-color);
-  color: var(--dreams-color);
+  /* color: var(--dreams-color); */
 }
 
-#details .details_status_not_happening.passed {
+#details .details_status_not_happening.passed,
+#details .details_progress_not_happening::-webkit-meter-optimum-value {
   background-color: var(--moss-green);
-  color: var(--moss-green);
+  /* color: var(--moss-green); */
 }
 
-#details .details_status_happening.passed {
+#details .details_status_happening.passed,
+#details .details_progress_happening::-webkit-meter-optimum-value {
   background-color: var(--events-color);
-  color: var(--events-color);
+  /* color: var(--events-color); */
 }
 
-#details .details_status_sold_out.passed {
+#details .details_status_sold_out.passed,
+#details .details_progress_sold_out::-webkit-meter-optimum-value {
   background-color: var(--orange-soda);
-  color: var(--orange-soda);
+  /* color: var(--orange-soda); */
 }
 
 #details .details_status_dream.checked {

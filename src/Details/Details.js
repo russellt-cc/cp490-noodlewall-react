@@ -81,25 +81,49 @@ class Details extends React.Component {
               <img src={noodleImage} alt="Noodle"></img>
               {NoodleOverlay(noodleStatus)}
             </div>
-            <div className="details_status_container">
-              <span className={`details_status_dream ${status_classes.dream}`}>
-                Dream
-              </span>
-              <span
-                className={`details_status_not_happening ${status_classes.notHappening}`}
-              >
-                Not Happening
-              </span>
-              <span
-                className={`details_status_happening ${status_classes.happening}`}
-              >
-                Happening
-              </span>
-              <span
-                className={`details_status_sold_out ${status_classes.soldOut}`}
-              >
-                Sold Out
-              </span>
+            <div className="details_status_container_container">
+              <div className="details_status_container">
+                <span
+                  className={`details_status_dream ${status_classes.dream}`}
+                >
+                  Dream
+                </span>
+                <span
+                  className={`details_status_not_happening ${status_classes.notHappening}`}
+                >
+                  Not Happening
+                </span>
+                <span
+                  className={`details_status_happening ${status_classes.happening}`}
+                >
+                  Happening
+                </span>
+                <span
+                  className={`details_status_sold_out ${status_classes.soldOut}`}
+                >
+                  Sold Out
+                </span>
+              </div>
+              <div className="details_progress_container">
+                <meter className="details_progress_dream" value="1"></meter>
+                <meter
+                  className="details_progress_not_happening"
+                  max={noodleMinTickets + 1}
+                  value={noodleTicketsSold + 1}
+                ></meter>
+                <meter
+                  className="details_progress_happening"
+                  min={noodleMinTickets}
+                  max={noodleMaxTickets + 1}
+                  value={noodleTicketsSold + 1}
+                ></meter>
+                <meter
+                  className="details_progress_sold_out"
+                  min={noodleMaxTickets}
+                  max={noodleMaxTickets + 1}
+                  value={noodleTicketsSold + 1}
+                ></meter>
+              </div>
             </div>
           </div>
           <div id="details_intro_right" className="details_intro_column">
