@@ -3,7 +3,7 @@
 //https://www.pluralsight.com/guides/convert-a-json-file-to-an-array-in-react
 
 // Get local JSON file
-import { noodleData } from "../noodleData.js"
+import { noodleData, userData } from "../noodleData.js"
 import React from 'react'
 import NoodleCard from "./NoodleCard.js"
 
@@ -14,13 +14,40 @@ class NoodleList extends React.Component {
   constructor(props) {
     super(props)
     // Initialize state
-    this.state = {data: []}
+    this.state = {
+      error: null,
+      isLoaded: false,
+      data: [],
+      userData: []
+    }
   }
   // Component Did Mount
   componentDidMount() {
     // Get the JSON data and put in state
     // Replace with AJAX request to PHP server
-    this.setState({data: noodleData})
+    this.setState({
+      data: noodleData,
+      userData: userData,
+      isLoaded: true
+    })
+    // AJAX request
+    // fetch("http://www.gatkinson.site/noodlewall/product/read.php")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         data: result.records,
+    //         userData: results.users
+    //       })
+    //     },
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       })
+    //     }
+    //   )
   }
   // Method to determine if the noodle matches the filters
   filterNoodles = (item, filters) => {
@@ -51,25 +78,38 @@ class NoodleList extends React.Component {
   }
   // Render
   render() {
-    // Create the noodle list and start looping through entries
-    // Return the list of noodles that match filters
-    return (
-      // div for the list of dreams and events
-      <div className="noodle_list">
-        {/* Mapping array of objects.
-                Send the data to filter noodles function
-                to return the data or not
-                depending on filters. */}
-        {this.state.data.map((item, i) => {
-          // If the filters match, return the data
-          if (this.filterNoodles(item, this.props.filters)) {
-            return <NoodleCard data={item} key={i} filterType={this.props.filters.type}/>
-          } else {
-            return null
-          }
-        })}
-      </div>
-    )
+    // Destructure the props and state
+    const { filters } = this.props
+    const { error, isLoaded, data, userData } = this.state
+    // Check for error
+    if (error) {
+      return <div>Error: {error.message}</div>
+    } else if (!isLoaded) {
+      return <div>Loading...</div>
+    } else {
+      // Create the noodle list and start looping through entries
+      // Return the list of noodles that match filters
+      return (
+        // div for the list of dreams and events
+        <div className="noodle_list">
+          {/* Mapping array of objects.
+          Send the data to filter noodles function
+          to return the data or not
+          depending on filters. */}
+          {data.map((item, i) => {
+            // If the filters match, return the data
+            if (this.filterNoodles(item, filters)) {
+              // Get the user data
+              // Covert to zero-based index
+              const hostData = userData[item.userID - 1]
+              return <NoodleCard data={item} hostData={hostData} key={i} filterType={filters.type}/>
+            } else {
+              return null
+            }
+          })}
+        </div>
+      )
+    }
   }
 }
 

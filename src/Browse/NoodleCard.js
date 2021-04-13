@@ -1,4 +1,3 @@
-import { userData } from "../noodleData.js"
 import React from 'react'
 import { Link } from "react-router-dom"
 import NoodlerSummary from "./NoodlerSummary.js"
@@ -10,9 +9,6 @@ class NoodleCard extends React.Component {
     // Get the noodle data
     // Use object destructuring to get constants from data
     const { noodleID, noodleTitle, noodleStatus, noodleDescription, noodleTags, noodleImage } = this.props.data
-    // Get the user data
-    // Covert to zero-based index
-    const hostData = userData[this.props.data.userID - 1]
     // Get the filter type for tag links
     const filterType = this.props.filterType
     // The link to the noodle
@@ -28,7 +24,7 @@ class NoodleCard extends React.Component {
         <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
         <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={noodleLink}>{noodleTitle}</Link></p>
         <p className={`noodle_status`}><span className="noodle_label">Status: </span>{noodleStatus}</p>
-        <NoodlerSummary data={hostData} />
+        <NoodlerSummary data={this.props.hostData} />
         <p className={`noodle_description`}><span className="noodle_label">Description: </span>{noodleDescription}</p>
         <div className={`noodle_tags_section`}>
           <p className="noodle_label">Tags:</p>
