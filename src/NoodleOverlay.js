@@ -1,13 +1,13 @@
-import noodleOverlay from "./images/dream_watermark_512.png"
-  
+import noodleOverlay from "./images/dream_watermark_512.png";
+
 // Functional Stateless Component
 // Function to return the overlay
 const NoodleOverlay = (noodleStatus) => {
   if (noodleStatus === "dream") {
-    return <img src={noodleOverlay} alt="Noodle" className="overlay"></img>
+    return <img src={noodleOverlay} alt="Noodle" className="overlay"></img>;
   } else {
-    return null
+    return null;
   }
-}
+};
 
-export default NoodleOverlay
+export default NoodleOverlay;

@@ -1,6 +1,6 @@
-import logo from './images/noodlewall-logo-50p.png'
-import './css/Footer.css'
-import React from 'react'
+import logo from "./images/noodlewall-logo-50p.png";
+import "./css/Footer.css";
+import React from "react";
 
 class Footer extends React.Component {
   render() {
@@ -9,7 +9,9 @@ class Footer extends React.Component {
       <footer>
         {/* split into columns so we can do a horizontal display */}
         <div id="footer_left" className="footer_column">
-          <p><strong>ABOUT NOODLEWALL</strong></p>
+          <p>
+            <strong>ABOUT NOODLEWALL</strong>
+          </p>
           <div className="footer_links">
             <a href="/#">How it Works</a>
             <a href="/#">Pricing</a>
@@ -19,18 +21,22 @@ class Footer extends React.Component {
           </div>
         </div>
         <div id="footer_center" className="footer_column">
-          <a href="index.html"><img src={logo} height="40px" alt="Noodlewall Logo" /></a>
+          <a href="index.html">
+            <img src={logo} height="40px" alt="Noodlewall Logo" />
+          </a>
           <p>&copy; 2021 Noodlewall</p>
         </div>
         <div id="footer_right" className="footer_column">
-          <p><strong>SUPPORT</strong></p>
+          <p>
+            <strong>SUPPORT</strong>
+          </p>
           <div className="footer_links">
             <a href="/#">Contact Us</a>
           </div>
         </div>
       </footer>
-    )
+    );
   }
 }
 
-export default Footer
+export default Footer;

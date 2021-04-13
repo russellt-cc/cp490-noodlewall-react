@@ -1,23 +1,23 @@
-import logo from './images/noodlewall-logo-50p.png'
-import './css/Navbar.css'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { userData } from "./noodleData.js"
+import logo from "./images/noodlewall-logo-50p.png";
+import "./css/Navbar.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import { userData } from "./noodleData.js";
 
 class Navbar extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {userData: {}}
+  constructor(props) {
+    super(props);
+    this.state = { userData: {} };
   }
   componentDidMount() {
     // Get the current user data
     // Replace the JSON file with AJAX request
     // Replace the index with user ID from session
-    this.setState({userData: userData[0]})
+    this.setState({ userData: userData[0] });
   }
   render() {
     // Destructure the current user data
-    const { userID, userName, userImage } = this.state.userData
+    const { userID, userName, userImage } = this.state.userData;
     // Return the Noodlewall navbar
     return (
       <nav>
@@ -34,7 +34,9 @@ class Navbar extends React.Component {
         <div id="nav_right" className="nav_column">
           <ul>
             <li id="browse_button" className="drop_button">
-              <button><strong>Browse</strong></button>
+              <button>
+                <strong>Browse</strong>
+              </button>
               <div id="browse_drop" className="drop">
                 <div id="browse_dreams_button" className="browse_drop_button">
                   <span className="dreams_color_text">
@@ -54,7 +56,9 @@ class Navbar extends React.Component {
               </div>
             </li>
             <li id="create_button" className="drop_button">
-              <button><strong>Create</strong></button>
+              <button>
+                <strong>Create</strong>
+              </button>
               <div id="create_drop" className="drop">
                 <div id="create_dream_button" className="create_drop_button">
                   <span className="dreams_color_text">
@@ -70,7 +74,13 @@ class Navbar extends React.Component {
             </li>
             <li id="user_button" className="drop_button">
               <button id="user_button_button">
-                <img id="nav_user_image" src={userImage} height="50px" width="50px" alt="User" />
+                <img
+                  id="nav_user_image"
+                  src={userImage}
+                  height="50px"
+                  width="50px"
+                  alt="User"
+                />
               </button>
               <div id="user_drop" className="drop">
                 <div className="user_drop_column" id="user_drop_left">
@@ -86,9 +96,15 @@ class Navbar extends React.Component {
                       <img src={userImage} alt="User"></img>
                       <p>{userName}</p>
                     </Link>
-                    <Link className="noodle_button" to="/">Manage Your Account</Link>
-                    <Link className="noodle_button" to="/">View Dashboard</Link>
-                    <Link className="noodle_button" to="/">Sign Out</Link>
+                    <Link className="noodle_button" to="/">
+                      Manage Your Account
+                    </Link>
+                    <Link className="noodle_button" to="/">
+                      View Dashboard
+                    </Link>
+                    <Link className="noodle_button" to="/">
+                      Sign Out
+                    </Link>
                   </div>
                   <div>
                     <Link to="/">Terms of Service</Link>
@@ -100,8 +116,8 @@ class Navbar extends React.Component {
           </ul>
         </div>
       </nav>
-    )
+    );
   }
 }
 
-export default Navbar
+export default Navbar;
