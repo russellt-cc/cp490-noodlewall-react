@@ -45,8 +45,14 @@ class Details extends React.Component {
     // Get the noodle and host details
     // Covert to zero-based index
     // Use object destructuring to get constants
-    const { id } = this.props.match.params;
+    const { id: noodleID } = this.props.match.params;
     const { noodleData, userData } = this.props;
+    // Get the right details page
+    const thisNoodle = noodleData.filter((noodle) => {
+      return noodle.noodleID == noodleID;
+    });
+    // Destructure the details and rename user id to host id
+    // this noodle is an array so we need to get the first index which is 0
     const {
       noodleTitle,
       noodleStatus,
@@ -59,8 +65,15 @@ class Details extends React.Component {
       noodleMaxTickets,
       noodleTicketsSold,
       noodleTags,
-    } = noodleData[id - 1];
-    const { userID, userName } = userData[noodleData[id - 1].userID - 1];
+      userID: hostID,
+    } = thisNoodle[0];
+    // Get the right user details
+    const thisHost = userData.filter((user) => {
+      return user.userID == hostID;
+    });
+    // Destructure the user details and rename
+    // this host is an array so we get the first index
+    const { userName: hostName } = thisHost[0];
     // Get the type for tag links
     const filterType = this.props.match.params.filterType;
     // Get status classes
@@ -105,20 +118,23 @@ class Details extends React.Component {
                 </span>
               </div>
               <div className="details_progress_container">
-                <meter className="details_progress_dream" value="1"></meter>
                 <meter
-                  className="details_progress_not_happening"
+                  className={`details_progress_dream ${status_classes.dream}`}
+                  value="1"
+                ></meter>
+                <meter
+                  className={`details_progress_not_happening ${status_classes.notHappening}`}
                   max={noodleMinTickets + 1}
                   value={noodleTicketsSold + 1}
                 ></meter>
                 <meter
-                  className="details_progress_happening"
+                  className={`details_progress_happening ${status_classes.happening}`}
                   min={noodleMinTickets}
                   max={noodleMaxTickets + 1}
                   value={noodleTicketsSold + 1}
                 ></meter>
                 <meter
-                  className="details_progress_sold_out"
+                  className={`details_progress_sold_out ${status_classes.soldOut}`}
                   min={noodleMaxTickets}
                   max={noodleMaxTickets + 1}
                   value={noodleTicketsSold + 1}
@@ -152,13 +168,13 @@ class Details extends React.Component {
             </div>
             <div id={`details_host_intro_${noodleStatus}`}>
               <p>
-                Host: <Link to={`/user/${userID}`}>{userName}</Link>
+                Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
               </p>
-              <Link className="noodle_button" to={`/user/${userID}/contact`}>
-                Contact {userName}
+              <Link className="noodle_button" to={`/user/${hostID}/contact`}>
+                Contact {hostName}
               </Link>
-              <Link className="noodle_button" to={`/user/${userID}/follow`}>
-                Follow {userName}
+              <Link className="noodle_button" to={`/user/${hostID}/follow`}>
+                Follow {hostName}
               </Link>
               <button
                 className="noodle_button"

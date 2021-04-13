@@ -38,7 +38,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     // Configure whether we are using the API for data
-    const useAPI = false;
+    const useAPI = true;
     const apiURL = "http://www.gatkinson.site/noodlewall/product/read.php";
     if (useAPI) {
       // AJAX request to PHP server
