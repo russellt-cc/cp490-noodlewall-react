@@ -2,7 +2,7 @@ import { userData } from "../noodleData.js"
 import React from 'react'
 import { Link } from "react-router-dom"
 import NoodlerSummary from "./NoodlerSummary.js"
-import generateNoodleOverlay from "../generateNoodleOverlay.js"
+import NoodleOverlay from "../NoodleOverlay.js"
 
 // Class to structure the data for each noodle
 class NoodleCard extends React.Component {
@@ -23,7 +23,7 @@ class NoodleCard extends React.Component {
       <Link className="noodle_link" to={noodleLink}><div className={`noodle_card ${noodleStatus}`}>
         <Link className="noodle_image_link" to={noodleLink}>
           <img src={noodleImage} alt="Noodle"></img>
-          {generateNoodleOverlay(noodleStatus)}
+          {NoodleOverlay(noodleStatus)}
         </Link>
         <p className={`noodle_id`}><span className="noodle_label">ID: </span>{noodleID}</p>
         <p className={`noodle_title`}><span className="noodle_label">Title: </span><Link to={noodleLink}>{noodleTitle}</Link></p>

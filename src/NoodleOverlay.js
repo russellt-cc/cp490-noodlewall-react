@@ -1,7 +1,8 @@
 import noodleOverlay from "./images/dream_watermark_512.png"
   
+// Functional Stateless Component
 // Function to return the overlay
-function generateNoodleOverlay(noodleStatus) {
+const NoodleOverlay = (noodleStatus) => {
   if (noodleStatus === "dream") {
     return <img src={noodleOverlay} alt="Noodle" className="overlay"></img>
   } else {
@@ -9,4 +10,4 @@ function generateNoodleOverlay(noodleStatus) {
   }
 }
 
-export default generateNoodleOverlay
+export default NoodleOverlay

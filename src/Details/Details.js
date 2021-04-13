@@ -3,7 +3,7 @@ import React from 'react'
 import { noodleData, userData } from "../noodleData.js"
 import { Link } from 'react-router-dom'
 import CapitalizedText from "../CapitalizedText.js"
-import generateNoodleOverlay from "../generateNoodleOverlay.js"
+import NoodleOverlay from "../NoodleOverlay.js"
 
 class Details extends React.Component {
   // Constructor
@@ -42,7 +42,7 @@ class Details extends React.Component {
             <p>Days Left to Make it Happen: </p>
             <div id="details_image_container">
               <img src={noodleImage} alt="Noodle"></img>
-              {generateNoodleOverlay(noodleStatus)}
+              {NoodleOverlay(noodleStatus)}
             </div>
             <p>Status bar goes here!</p>
           </div>
