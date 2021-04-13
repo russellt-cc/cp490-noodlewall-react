@@ -20,48 +20,167 @@ import User from "./User/User.js";
 // React Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+// Get local JSON file
+import { noodleData, userData } from "./noodleData.js";
+
 // Main App class
 // Uses React Router to show different components
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    // Initialize state
+    this.state = {
+      error: null,
+      isLoaded: false,
+      noodleData: [],
+      userData: [],
+    };
+  }
+  componentDidMount() {
+    // Configure whether we are using the API for data
+    const useAPI = false;
+    const apiURL = "http://www.gatkinson.site/noodlewall/product/read.php";
+    if (useAPI) {
+      // AJAX request to PHP server
+      fetch(apiURL)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              noodleData: result.events,
+              userData: result.users,
+            });
+          },
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error,
+            });
+          }
+        );
+    } else {
+      // Get the JSON data and put in state
+      this.setState({
+        noodleData: noodleData,
+        userData: userData,
+        isLoaded: true,
+      });
+    }
+  }
   render() {
-    // Return the main Noodlewall app
-    return (
-      <div className="App">
-        {/* Router component to use React Router */}
-        <Router>
-          {/* Show the Noodlewall navbar */}
-          <Navbar />
-          {/* Switch the main component based on the url */}
-          <Switch>
-            {/* ------------------------------------------------------------ */}
-            {/* Create Module */}
-            <Route path="/create/:type" component={Create} />
-            <Route path="/create" component={Create} />
-            {/* ------------------------------------------------------------ */}
-            {/* User Module */}
-            <Route path="/user/:id/:action" component={User} />
-            <Route path="/user/:id" component={User} />
-            {/* ------------------------------------------------------------ */}
-            {/* Details Module */}
-            <Route path="/details/:filterType/:id" component={Details} />
-            <Route path="/details/:id" component={Details} />
-            {/* ------------------------------------------------------------ */}
-            {/* Browse Module */}
-            <Route path="/browse/:type/:tag" component={Browse} />
-            <Route path="/browse/:type" component={Browse} />
-            <Route path="/browse" component={Browse} />
-            {/* ------------------------------------------------------------ */}
-            {/* Landing Module */}
-            <Route path="/">
-              <Landing />
-            </Route>
-            {/* ------------------------------------------------------------ */}
-          </Switch>
-          {/* Show the Noodlewall footer */}
-          <Footer />
-        </Router>
-      </div>
-    );
+    // Destructure the props and state
+    const { error, isLoaded, noodleData, userData } = this.state;
+    // Check for error
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        // Return the main Noodlewall app
+        <div className="App">
+          {/* Router component to use React Router */}
+          <Router>
+            {/* Show the Noodlewall navbar */}
+            {/* Replace the static user id with
+            user id from session */}
+            <Navbar userData={userData} userID={1} />
+            {/* Switch the main component based on the url */}
+            <Switch>
+              {/* ------------------------------------------------------------ */}
+              {/* Create Module */}
+              <Route path="/create/:type" component={Create} />
+              <Route path="/create" component={Create} />
+              {/* ------------------------------------------------------------ */}
+              {/* User Module */}
+              <Route
+                path="/user/:id/:action"
+                render={(props) => (
+                  <User
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              <Route
+                path="/user/:id"
+                render={(props) => (
+                  <User
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              {/* ------------------------------------------------------------ */}
+              {/* Details Module */}
+              <Route
+                path="/details/:filterType/:id"
+                render={(props) => (
+                  <Details
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              <Route
+                path="/details/:id"
+                render={(props) => (
+                  <Details
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              {/* ------------------------------------------------------------ */}
+              {/* Browse Module */}
+              <Route
+                path="/browse/:type/:tag"
+                render={(props) => (
+                  <Browse
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              <Route
+                path="/browse/:type"
+                render={(props) => (
+                  <Browse
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              <Route
+                path="/browse"
+                render={(props) => (
+                  <Browse
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                  />
+                )}
+              />
+              {/* ------------------------------------------------------------ */}
+              {/* Landing Module */}
+              <Route path="/">
+                <Landing />
+              </Route>
+              {/* ------------------------------------------------------------ */}
+            </Switch>
+            {/* Show the Noodlewall footer */}
+            <Footer />
+          </Router>
+        </div>
+      );
+    }
   }
 }
 

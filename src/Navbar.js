@@ -2,22 +2,13 @@ import logo from "./images/noodlewall-logo-50p.png";
 import "./css/Navbar.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import { userData } from "./noodleData.js";
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { userData: {} };
-  }
-  componentDidMount() {
-    // Get the current user data
-    // Replace the JSON file with AJAX request
-    // Replace the index with user ID from session
-    this.setState({ userData: userData[0] });
-  }
   render() {
+    // Get the current user data
     // Destructure the current user data
-    const { userID, userName, userImage } = this.state.userData;
+    const userID = this.props.userID;
+    const { userName, userImage } = this.props.userData[userID - 1];
     // Return the Noodlewall navbar
     return (
       <nav>

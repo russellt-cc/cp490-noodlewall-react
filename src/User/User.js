@@ -1,13 +1,12 @@
 import React from "react";
 import "./css/User.css";
-import { userData } from "../noodleData.js";
 import UserRating from "../UserRating.js";
 
 class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: userData[this.props.match.params.id - 1],
+      userData: this.props.userData[this.props.match.params.id - 1],
     };
   }
 

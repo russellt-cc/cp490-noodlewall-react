@@ -1,37 +1,21 @@
 import "./css/Details.css";
 import React from "react";
-import { noodleData, userData } from "../noodleData.js";
 import { Link } from "react-router-dom";
 import CapitalizedText from "../CapitalizedText.js";
 import NoodleOverlay from "../NoodleOverlay.js";
 
 class Details extends React.Component {
-  // Constructor
-  constructor(props) {
-    super(props);
-    this.state = {
-      noodleData: { noodleStatus: "", noodleTags: [] },
-      hostData: {},
-    };
-  }
   // Method to handle the buy button
   buyTicket = () => {
     alert("Buy ticket component goes here!");
   };
-  // Component Did Mount method
-  componentDidMount() {
-    // Get the JSON data and put in state
-    // Replace with AJAX request to PHP server
-    this.setState({
-      noodleData: noodleData[this.props.match.params.id - 1],
-      hostData: userData[noodleData[this.props.match.params.id - 1].userID - 1],
-    });
-  }
   // Render method
   render() {
     // Get the noodle and host details
     // Covert to zero-based index
     // Use object destructuring to get constants
+    const { id } = this.props.match.params;
+    const { noodleData, userData } = this.props;
     const {
       noodleTitle,
       noodleStatus,
@@ -43,8 +27,8 @@ class Details extends React.Component {
       noodleMinTickets,
       noodleMaxTickets,
       noodleTags,
-    } = this.state.noodleData;
-    const { userID, userName } = this.state.hostData;
+    } = noodleData[id - 1];
+    const { userID, userName } = userData[noodleData[id - 1].userID - 1];
     // Get the type for tag links
     const filterType = this.props.match.params.filterType;
     // Return the details page

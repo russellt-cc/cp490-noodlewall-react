@@ -14,7 +14,13 @@ class Browse extends React.Component {
     return (
       <main id="browse">
         {/* Show the list of noodles. Pass filters as properties to the NoodleList. */}
-        <NoodleList query={this.props.location.search} filters={filters} />
+        {/* Pass data to the NoodleList as properties */}
+        <NoodleList
+          noodleData={this.props.noodleData}
+          userData={this.props.userData}
+          query={this.props.location.search}
+          filters={filters}
+        />
       </main>
     );
   }
