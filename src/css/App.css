@@ -18,6 +18,8 @@
   --dreams-text-color: white;
   --events-color: #ee8959;
   --events-text-color: white;
+  /* color between dreams and events (not happening) */
+  --moss-green: #8f9d6e;
 }
 
 html,

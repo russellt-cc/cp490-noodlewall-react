@@ -87,6 +87,79 @@
   bottom: 3px;
 }
 
+#details .details_status_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#details .details_status_container > span {
+  height: 50px;
+  text-align: center;
+  color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+}
+
+#details .details_status_dream {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#details .details_status_sold_out {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#details .details_status_dream,
+#details .details_status_sold_out {
+  width: 20%;
+}
+
+#details .details_status_not_happening,
+#details .details_status_happening {
+  width: 30%;
+}
+
+#details .details_status_dream.passed {
+  background-color: var(--dreams-color);
+  color: var(--dreams-color);
+}
+
+#details .details_status_not_happening.passed {
+  background-color: var(--moss-green);
+  color: var(--moss-green);
+}
+
+#details .details_status_happening.passed {
+  background-color: var(--events-color);
+  color: var(--events-color);
+}
+
+#details .details_status_sold_out.passed {
+  background-color: var(--orange-soda);
+  color: var(--orange-soda);
+}
+
+#details .details_status_dream.checked {
+  color: white;
+}
+
+#details .details_status_not_happening.checked {
+  color: white;
+}
+
+#details .details_status_happening.checked {
+  color: white;
+}
+
+#details .details_status_sold_out.checked {
+  color: white;
+}
+
 /* Style for mobile */
 
 @media screen and (max-width: 800px) {

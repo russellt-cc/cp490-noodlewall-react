@@ -9,6 +9,37 @@ class Details extends React.Component {
   buyTicket = () => {
     alert("Buy ticket component goes here!");
   };
+
+  // Method to determine classes of the status bar
+  setStatusClasses = (
+    noodleStatus,
+    noodleMinTickets,
+    noodleMaxTickets,
+    noodleTicketsSold
+  ) => {
+    let status_classes = {
+      dream: "notChecked",
+      notHappening: "notChecked",
+      happening: "notChecked",
+      soldOut: "notChecked",
+    };
+    if (noodleStatus === "dream") {
+      status_classes.dream = "passed checked";
+    } else if (noodleTicketsSold < noodleMinTickets) {
+      status_classes.dream = "passed";
+      status_classes.notHappening = "passed checked";
+    } else if (noodleTicketsSold < noodleMaxTickets) {
+      status_classes.dream = "passed";
+      status_classes.notHappening = "passed";
+      status_classes.happening = "passed checked";
+    } else {
+      status_classes.dream = "passed";
+      status_classes.notHappening = "passed";
+      status_classes.happening = "passed";
+      status_classes.soldOut = "passed checked";
+    }
+    return status_classes;
+  };
   // Render method
   render() {
     // Get the noodle and host details
@@ -26,11 +57,19 @@ class Details extends React.Component {
       noodlePrice,
       noodleMinTickets,
       noodleMaxTickets,
+      noodleTicketsSold,
       noodleTags,
     } = noodleData[id - 1];
     const { userID, userName } = userData[noodleData[id - 1].userID - 1];
     // Get the type for tag links
     const filterType = this.props.match.params.filterType;
+    // Get status classes
+    const status_classes = this.setStatusClasses(
+      noodleStatus,
+      noodleMinTickets,
+      noodleMaxTickets,
+      noodleTicketsSold
+    );
     // Return the details page
     return (
       <main className={`${noodleStatus}`} id="details">
@@ -42,7 +81,26 @@ class Details extends React.Component {
               <img src={noodleImage} alt="Noodle"></img>
               {NoodleOverlay(noodleStatus)}
             </div>
-            <p>Status bar goes here!</p>
+            <div className="details_status_container">
+              <span className={`details_status_dream ${status_classes.dream}`}>
+                Dream
+              </span>
+              <span
+                className={`details_status_not_happening ${status_classes.notHappening}`}
+              >
+                Not Happening
+              </span>
+              <span
+                className={`details_status_happening ${status_classes.happening}`}
+              >
+                Happening
+              </span>
+              <span
+                className={`details_status_sold_out ${status_classes.soldOut}`}
+              >
+                Sold Out
+              </span>
+            </div>
           </div>
           <div id="details_intro_right" className="details_intro_column">
             <h3>{<CapitalizedText text={noodleStatus} />} Details</h3>

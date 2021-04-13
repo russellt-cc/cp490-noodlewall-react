@@ -14,7 +14,7 @@ class UserRating extends React.Component {
   // be filled or not using html classes
   setRatingClasses = (userRating) => {
     // Make an array to store the star classes
-    var star_classes = ["", "", "", "", ""];
+    let star_classes = ["", "", "", "", ""];
     // Determine which ones are checked based on the rating
     switch (userRating) {
       case 5:
