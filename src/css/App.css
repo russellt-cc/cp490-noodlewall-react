@@ -94,3 +94,9 @@ button:focus {
 .checked {
   color: var(--events-color);
 }
+
+/* hidden items */
+
+.hidden {
+  display: none;
+}

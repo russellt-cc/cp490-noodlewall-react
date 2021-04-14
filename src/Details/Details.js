@@ -9,7 +9,6 @@ class Details extends React.Component {
   buyTicket = () => {
     alert("Buy ticket component goes here!");
   };
-
   // Method to determine classes of the status bar
   setStatusClasses = (
     noodleStatus,
@@ -39,6 +38,37 @@ class Details extends React.Component {
       status_classes.soldOut = "passed checked";
     }
     return status_classes;
+  };
+  // Method to determine classes of page elements
+  setElementClasses = (
+    noodleStatus,
+    noodleLocation,
+    noodleDate,
+    noodleTime
+  ) => {
+    const visible = "visible";
+    const hidden = "hidden";
+    let element_classes = {
+      noodleDaysLeft: visible,
+      noodleLocation: visible,
+      noodleDate: visible,
+      noodleTime: visible,
+      noodleTicketPrice: visible,
+      noodleMinTickets: visible,
+      noodleMaxTickets: visible,
+      noodleBuyButton: visible,
+    };
+    if (noodleStatus == "dream") {
+      element_classes.noodleDaysLeft = hidden;
+      element_classes.noodleTicketPrice = hidden;
+      element_classes.noodleMinTickets = hidden;
+      element_classes.noodleMaxTickets = hidden;
+      element_classes.noodleBuyButton = hidden;
+    }
+    if (noodleLocation == null) element_classes.noodleLocation = hidden;
+    if (noodleDate == null) element_classes.noodleDate = hidden;
+    if (noodleTime == null) element_classes.noodleTime = hidden;
+    return element_classes;
   };
   // Render method
   render() {
@@ -83,13 +113,22 @@ class Details extends React.Component {
       noodleMaxTickets,
       noodleTicketsSold
     );
+    // Get element classes
+    const element_classes = this.setElementClasses(
+      noodleStatus,
+      noodleLocation,
+      noodleDate,
+      noodleTime
+    );
     // Return the details page
     return (
       <main className={`${noodleStatus}`} id="details">
         <section id="details_intro">
           <div id="details_intro_left" className="details_intro_column">
             <h1>{noodleTitle}</h1>
-            <p>Days Left to Make it Happen: </p>
+            <p class={element_classes.noodleDaysLeft}>
+              Days Left to Make it Happen:{" "}
+            </p>
             <div id="details_image_container">
               <img src={noodleImage} alt="Noodle"></img>
               {NoodleOverlay(noodleStatus)}
@@ -145,12 +184,22 @@ class Details extends React.Component {
           <div id="details_intro_right" className="details_intro_column">
             <h3>{<CapitalizedText text={noodleStatus} />} Details</h3>
             <div id="details_summary">
-              <p>Location: {noodleLocation}</p>
-              <p>Date and Time: {noodleDate}</p>
-              <p>{noodleTime}</p>
-              <p>Ticket Price: {noodlePrice}</p>
-              <p>Minimum Tickets Sold: {noodleMinTickets}</p>
-              <p>Maximum Tickets Sold: {noodleMaxTickets}</p>
+              <p class={element_classes.noodleLocation}>
+                Location: {noodleLocation}
+              </p>
+              <p class={element_classes.noodleDate}>
+                Date and Time: {noodleDate}
+              </p>
+              <p class={element_classes.noodleTime}>{noodleTime}</p>
+              <p class={element_classes.noodleTicketPrice}>
+                Ticket Price: {noodlePrice}
+              </p>
+              <p class={element_classes.noodleMinTickets}>
+                Minimum Tickets Sold: {noodleMinTickets}
+              </p>
+              <p class={element_classes.noodleMaxTickets}>
+                Maximum Tickets Sold: {noodleMaxTickets}
+              </p>
               <div id="details_tags">
                 {noodleTags.map((item, i) => {
                   // create a link for each tag
@@ -177,7 +226,7 @@ class Details extends React.Component {
                 Follow {hostName}
               </Link>
               <button
-                className="noodle_button"
+                className={`noodle_button ${element_classes.noodleBuyButton}`}
                 id="details_buy_button"
                 onClick={() => {
                   this.buyTicket();
