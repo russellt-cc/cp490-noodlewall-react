@@ -16,27 +16,44 @@ class Details extends React.Component {
     const thisNoodle = noodleData.filter((noodle) => {
       return parseInt(noodle.noodleID) === parseInt(noodleID);
     })[0];
-    // Get the right user details
-    const thisHost = userData.filter((user) => {
-      return parseInt(user.userID) === parseInt(thisNoodle.userID);
-    })[0];
-    // Save this noodle in state so we can modify it
-    this.state = {
-      thisNoodle: thisNoodle,
-      thisHost: thisHost,
-    };
+    // Check if we have a valid noodle
+    if (thisNoodle != undefined) {
+      // Get the right user details
+      const thisHost = userData.filter((user) => {
+        return parseInt(user.userID) === parseInt(thisNoodle.userID);
+      })[0];
+      // Save this noodle in state so we can modify it
+      this.state = {
+        thisNoodle: thisNoodle,
+        thisHost: thisHost,
+        error: false,
+      };
+    } else {
+      this.state = {
+        error: true,
+      };
+    }
   }
   // Render method
   render() {
-    const { thisNoodle, thisHost } = this.state;
-    const { noodleStatus } = thisNoodle;
-    // Return the details page
-    return (
-      <main className={`${noodleStatus}`} id="details">
-        <DetailsIntro thisNoodle={thisNoodle} thisHost={thisHost} />
-        <section id="details_details"></section>
-      </main>
-    );
+    const { error } = this.state;
+    if (error) {
+      return (
+        <main>
+          <div>Noodle not found!</div>
+        </main>
+      );
+    } else {
+      const { thisNoodle, thisHost } = this.state;
+      const { noodleStatus } = thisNoodle;
+      // Return the details page
+      return (
+        <main className={`${noodleStatus}`} id="details">
+          <DetailsIntro thisNoodle={thisNoodle} thisHost={thisHost} />
+          <section id="details_details"></section>
+        </main>
+      );
+    }
   }
 }
 
