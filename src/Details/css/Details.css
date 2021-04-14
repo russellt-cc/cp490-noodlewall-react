@@ -234,6 +234,15 @@
 #details .details_status_container > span:hover {
   color: white;
   cursor: pointer;
+  background-color: var(--dreams-color);
+}
+
+#details .details_status_container > span.details_status_dream.checked:hover {
+  background-color: var(--dreams-color);
+}
+
+#details .details_status_container > span.passed:hover {
+  background-color: var(--events-color);
 }
 
 #details .details_status_dream.finished {
@@ -262,9 +271,16 @@
 }
 
 #details .details_status_container_container > p {
-  padding-top: 10px;
   text-align: center;
   user-select: none;
+}
+
+#details .status_message_1 {
+  padding-bottom: 10px;
+}
+
+#details .status_message_2 {
+  padding-top: 10px;
 }
 
 /* Style for mobile */
@@ -272,6 +288,7 @@
 @media screen and (max-width: 800px) {
   #details #details_intro {
     flex-direction: column;
+    row-gap: 50px;
   }
   #details #details_intro_left,
   #details #details_intro_right {

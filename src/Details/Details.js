@@ -1,7 +1,6 @@
 import "./css/Details.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import CapitalizedText from "../CapitalizedText.js";
 import NoodleOverlay from "../NoodleOverlay.js";
 
 class Details extends React.Component {
@@ -97,7 +96,55 @@ class Details extends React.Component {
     if (noodleTime == null) element_classes.noodleTime = hidden;
     return element_classes;
   };
-  // Method to determine a status message
+  // Methods to determine a status message
+  getStatus = () => {
+    const {
+      noodleStatus: status,
+      noodleTicketsSold: sold,
+      noodleMinTickets: min,
+      noodleMaxTickets: max,
+    } = this.state.thisNoodle;
+    if (status == "dream") {
+      return (
+        <p className="status_message_1">
+          Status:{" "}
+          <span className="dreams_color_text">
+            <strong>Dream Event</strong>
+          </span>
+        </p>
+      );
+    } else if (sold < min) {
+      const diff = min - sold;
+      return (
+        <p className="status_message_1">
+          Status:{" "}
+          <span className="dreams_color_text">
+            <strong>Not Happening</strong>
+          </span>{" "}
+          (Yet!)
+        </p>
+      );
+    } else if (sold < max) {
+      const diff = max - sold;
+      return (
+        <p className="status_message_1">
+          Status:{" "}
+          <span className="events_color_text">
+            <strong>Happening</strong>
+          </span>
+        </p>
+      );
+    } else {
+      return (
+        <p className="status_message_1">
+          Status:{" "}
+          <span className="events_color_text">
+            <strong>Sold Out</strong>
+          </span>
+        </p>
+      );
+    }
+  };
   getStatusMessage = () => {
     const {
       noodleStatus: status,
@@ -106,11 +153,19 @@ class Details extends React.Component {
       noodleMaxTickets: max,
     } = this.state.thisNoodle;
     if (status == "dream") {
-      return <p>Like this dream event to show your support!</p>;
+      return (
+        <p className="status_message_2">
+          Like this{" "}
+          <span className="dreams_color_text">
+            <strong>Dream Event</strong>
+          </span>{" "}
+          to show your support!
+        </p>
+      );
     } else if (sold < min) {
       const diff = min - sold;
       return (
-        <p>
+        <p className="status_message_2">
           Only{" "}
           <span class="dreams_color_text">
             <strong>{diff}</strong>
@@ -122,7 +177,7 @@ class Details extends React.Component {
     } else if (sold < max) {
       const diff = max - sold;
       return (
-        <p>
+        <p className="status_message_2">
           Only{" "}
           <span class="events_color_text">
             <strong>{diff}</strong>
@@ -131,7 +186,14 @@ class Details extends React.Component {
         </p>
       );
     } else {
-      return <p>This event is all sold out!</p>;
+      return (
+        <p className="status_message_2">
+          This event is all{" "}
+          <span className="events_color_text">
+            <strong>Sold Out!</strong>
+          </span>
+        </p>
+      );
     }
   };
   // Render method
@@ -183,6 +245,7 @@ class Details extends React.Component {
               {NoodleOverlay(noodleStatus)}
             </div>
             <div className="details_status_container_container">
+              {this.getStatus()}
               <div className="details_status_container">
                 <span
                   className={`details_status_dream ${status_classes.dream} ${
@@ -191,16 +254,31 @@ class Details extends React.Component {
                       ? "unfinished"
                       : "finished"
                   }`}
+                  onClick={() => {
+                    alert(
+                      "Dream events allow an organizer to gauge interest in an idea before starting to sell tickets."
+                    );
+                  }}
                 >
                   Dream
                 </span>
                 <span
                   className={`details_status_not_happening ${status_classes.notHappening}`}
+                  onClick={() => {
+                    alert(
+                      "Not happening events have not sold enough tickets to meet the minimum required for the event to take place."
+                    );
+                  }}
                 >
                   Not Happening
                 </span>
                 <span
                   className={`details_status_happening ${status_classes.happening}`}
+                  onClick={() => {
+                    alert(
+                      "Happening events have sold the minimum number for the event to take place but still have more available."
+                    );
+                  }}
                 >
                   Happening
                 </span>
@@ -208,6 +286,11 @@ class Details extends React.Component {
                   className={`details_status_sold_out ${
                     status_classes.soldOut
                   } ${noodleStatus == "dream" ? "dream" : "event"}`}
+                  onClick={() =>
+                    alert(
+                      "Sold out events are happening events that do not have any tickets remaining."
+                    )
+                  }
                 >
                   Sold Out
                 </span>
