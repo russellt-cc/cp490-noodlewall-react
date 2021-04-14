@@ -35,12 +35,13 @@ class Details extends React.Component {
     this.setState({ thisNoodle: thisNoodle });
   };
   // Method to determine classes of the status bar
-  getStatusClasses = (
-    noodleStatus,
-    noodleMinTickets,
-    noodleMaxTickets,
-    noodleTicketsSold
-  ) => {
+  getStatusClasses = () => {
+    const {
+      noodleStatus,
+      noodleMinTickets,
+      noodleMaxTickets,
+      noodleTicketsSold,
+    } = this.state.thisNoodle;
     let status_classes = {
       dream: "notChecked",
       notHappening: "notChecked",
@@ -65,12 +66,13 @@ class Details extends React.Component {
     return status_classes;
   };
   // Method to determine classes of page elements
-  getElementClasses = (
-    noodleStatus,
-    noodleLocation,
-    noodleDate,
-    noodleTime
-  ) => {
+  getElementClasses = () => {
+    const {
+      noodleStatus,
+      noodleLocation,
+      noodleDate,
+      noodleTime,
+    } = this.state.thisNoodle;
     const visible = "visible";
     const hidden = "hidden";
     let element_classes = {
@@ -98,7 +100,7 @@ class Details extends React.Component {
     return element_classes;
   };
   // Methods to determine a status message
-  getStatus = () => {
+  getStatusMessage1 = () => {
     const {
       noodleStatus: status,
       noodleTicketsSold: sold,
@@ -144,7 +146,7 @@ class Details extends React.Component {
       );
     }
   };
-  getStatusMessage = () => {
+  getStatusMessage2 = () => {
     const {
       noodleStatus: status,
       noodleTicketsSold: sold,
@@ -195,6 +197,33 @@ class Details extends React.Component {
       );
     }
   };
+  // Method to determine the days left
+  getDaysLeft = () => {
+    const {
+      noodleStatus,
+      noodleTicketsSold,
+      noodleMinTickets,
+      noodleCutoff,
+      noodleDate,
+    } = this.state.thisNoodle;
+    let wholeDaysLeft = 0;
+    if (noodleStatus === "event" && noodleTicketsSold < noodleMinTickets) {
+      // Determine the days left to make it happen
+      const now = DateTime.now();
+      const cutoff = DateTime.fromFormat(noodleCutoff, "yyyy-MM-dd");
+      const interval = Interval.fromDateTimes(now, cutoff);
+      const daysLeft = interval.length("days");
+      wholeDaysLeft = parseInt(daysLeft);
+    } else if (noodleStatus === "event") {
+      // Determine the days left until the event
+      const now = DateTime.now();
+      const event = DateTime.fromFormat(noodleDate, "yyyy-MM-dd");
+      const interval = Interval.fromDateTimes(now, event);
+      const daysLeft = interval.length("days");
+      wholeDaysLeft = parseInt(daysLeft);
+    }
+    return wholeDaysLeft;
+  };
   // Render method
   render() {
     // Destructure the details and rename user id to host id
@@ -213,40 +242,16 @@ class Details extends React.Component {
       noodleTags,
       userID: hostID,
     } = this.state.thisNoodle;
-    let wholeDaysLeft = 0;
-    if (noodleStatus === "event" && noodleTicketsSold < noodleMinTickets) {
-      // Determine the days left to make it happen
-      const now = DateTime.now();
-      const cutoff = DateTime.fromFormat(noodleCutoff, "yyyy-MM-dd");
-      const interval = Interval.fromDateTimes(now, cutoff);
-      const daysLeft = interval.length("days");
-      wholeDaysLeft = parseInt(daysLeft);
-    } else if (noodleStatus === "event") {
-      // Determine the days left until the event
-      const now = DateTime.now();
-      const event = DateTime.fromFormat(noodleDate, "yyyy-MM-dd");
-      const interval = Interval.fromDateTimes(now, event);
-      const daysLeft = interval.length("days");
-      wholeDaysLeft = parseInt(daysLeft);
-    }
+    // Determine the days left
+    const wholeDaysLeft = this.getDaysLeft();
     // Destructure the user details and rename
     const { userName: hostName } = this.state.thisHost;
     // Get the type for tag links
     const filterType = this.props.match.params.filterType;
     // Get status classes
-    const status_classes = this.getStatusClasses(
-      noodleStatus,
-      noodleMinTickets,
-      noodleMaxTickets,
-      noodleTicketsSold
-    );
+    const status_classes = this.getStatusClasses();
     // Get element classes
-    const element_classes = this.getElementClasses(
-      noodleStatus,
-      noodleLocation,
-      noodleDate,
-      noodleTime
-    );
+    const element_classes = this.getElementClasses();
     // Return the details page
     return (
       <main className={`${noodleStatus}`} id="details">
@@ -277,7 +282,7 @@ class Details extends React.Component {
               {NoodleOverlay(noodleStatus)}
             </div>
             <div className="details_status_container_container">
-              {this.getStatus()}
+              {this.getStatusMessage1()}
               <div className="details_status_container">
                 <span
                   className={`details_status_dream ${status_classes.dream} ${
@@ -357,7 +362,7 @@ class Details extends React.Component {
                   value={noodleTicketsSold + 1}
                 ></meter>
               </div>
-              {this.getStatusMessage()}
+              {this.getStatusMessage2()}
             </div>
           </div>
           <div id="details_intro_right" className="details_intro_column">
