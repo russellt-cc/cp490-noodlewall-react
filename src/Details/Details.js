@@ -2,6 +2,7 @@ import "./css/Details.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import NoodleOverlay from "../NoodleOverlay.js";
+import { DateTime, Interval } from "luxon";
 
 class Details extends React.Component {
   // Constructor
@@ -15,11 +16,11 @@ class Details extends React.Component {
     // Get the right details page
     // filter returns an array so we need to get the first index which is 0
     const thisNoodle = noodleData.filter((noodle) => {
-      return noodle.noodleID === noodleID;
+      return noodle.noodleID == noodleID;
     })[0];
     // Get the right user details
     const thisHost = userData.filter((user) => {
-      return user.userID === thisNoodle.userID;
+      return user.userID == thisNoodle.userID;
     })[0];
     // Save this noodle in state so we can modify it
     this.state = {
@@ -212,7 +213,22 @@ class Details extends React.Component {
       noodleTags,
       userID: hostID,
     } = this.state.thisNoodle;
-
+    let wholeDaysLeft = 0;
+    if (noodleStatus === "event" && noodleTicketsSold < noodleMinTickets) {
+      // Determine the days left to make it happen
+      const now = DateTime.now();
+      const cutoff = DateTime.fromFormat(noodleCutoff, "yyyy-MM-dd");
+      const interval = Interval.fromDateTimes(now, cutoff);
+      const daysLeft = interval.length("days");
+      wholeDaysLeft = parseInt(daysLeft);
+    } else if (noodleStatus === "event") {
+      // Determine the days left until the event
+      const now = DateTime.now();
+      const event = DateTime.fromFormat(noodleDate, "yyyy-MM-dd");
+      const interval = Interval.fromDateTimes(now, event);
+      const daysLeft = interval.length("days");
+      wholeDaysLeft = parseInt(daysLeft);
+    }
     // Destructure the user details and rename
     const { userName: hostName } = this.state.thisHost;
     // Get the type for tag links
@@ -237,8 +253,24 @@ class Details extends React.Component {
         <section id="details_intro">
           <div id="details_intro_left" className="details_intro_column">
             <h1>{noodleTitle}</h1>
-            <p class={element_classes.noodleDaysLeft}>
-              Days Left to Make it Happen:{" "}
+            <p
+              class={
+                wholeDaysLeft > 0 ? element_classes.noodleDaysLeft : "hidden"
+              }
+            >
+              {noodleTicketsSold < noodleMinTickets
+                ? "Days Left to Make it Happen"
+                : "Days Left Until The Event"}
+              :{" "}
+              <span
+                className={
+                  noodleTicketsSold < noodleMinTickets
+                    ? "dreams_color_text"
+                    : "events_color_text"
+                }
+              >
+                <strong>{wholeDaysLeft}</strong>
+              </span>
             </p>
             <div id="details_image_container">
               <img src={noodleImage} alt="Noodle"></img>

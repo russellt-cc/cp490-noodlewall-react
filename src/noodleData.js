@@ -24,7 +24,7 @@ export const noodleData = [
     noodleMinTickets: 5,
     noodleMaxTickets: 10,
     noodleTicketsSold: 0,
-    noodleCutoff: "2021-04-31",
+    noodleCutoff: "2021-04-30",
   },
   {
     noodleID: 2,
