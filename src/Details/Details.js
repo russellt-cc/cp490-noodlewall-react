@@ -15,11 +15,11 @@ class Details extends React.Component {
     // Get the right details page
     // filter returns an array so we need to get the first index which is 0
     const thisNoodle = noodleData.filter((noodle) => {
-      return noodle.noodleID == noodleID;
+      return noodle.noodleID === noodleID;
     })[0];
     // Get the right user details
     const thisHost = userData.filter((user) => {
-      return user.userID == thisNoodle.userID;
+      return user.userID === thisNoodle.userID;
     })[0];
     // Save this noodle in state so we can modify it
     this.state = {
@@ -83,7 +83,7 @@ class Details extends React.Component {
       noodleTicketsSold: visible,
       noodleBuyButton: visible,
     };
-    if (noodleStatus == "dream") {
+    if (noodleStatus === "dream") {
       element_classes.noodleDaysLeft = hidden;
       element_classes.noodleTicketPrice = hidden;
       element_classes.noodleMinTickets = hidden;
@@ -104,7 +104,7 @@ class Details extends React.Component {
       noodleMinTickets: min,
       noodleMaxTickets: max,
     } = this.state.thisNoodle;
-    if (status == "dream") {
+    if (status === "dream") {
       return (
         <p className="status_message_1">
           Status:{" "}
@@ -114,7 +114,6 @@ class Details extends React.Component {
         </p>
       );
     } else if (sold < min) {
-      const diff = min - sold;
       return (
         <p className="status_message_1">
           Status:{" "}
@@ -125,7 +124,6 @@ class Details extends React.Component {
         </p>
       );
     } else if (sold < max) {
-      const diff = max - sold;
       return (
         <p className="status_message_1">
           Status:{" "}
@@ -152,7 +150,7 @@ class Details extends React.Component {
       noodleMinTickets: min,
       noodleMaxTickets: max,
     } = this.state.thisNoodle;
-    if (status == "dream") {
+    if (status === "dream") {
       return (
         <p className="status_message_2">
           Like this{" "}
@@ -214,6 +212,7 @@ class Details extends React.Component {
       noodleTags,
       userID: hostID,
     } = this.state.thisNoodle;
+
     // Destructure the user details and rename
     const { userName: hostName } = this.state.thisHost;
     // Get the type for tag links
@@ -250,7 +249,7 @@ class Details extends React.Component {
               <div className="details_status_container">
                 <span
                   className={`details_status_dream ${status_classes.dream} ${
-                    noodleStatus != "dream" &&
+                    noodleStatus !== "dream" &&
                     noodleTicketsSold < noodleMaxTickets
                       ? "unfinished"
                       : "finished"
@@ -286,7 +285,7 @@ class Details extends React.Component {
                 <span
                   className={`details_status_sold_out ${
                     status_classes.soldOut
-                  } ${noodleStatus == "dream" ? "dream" : "event"}`}
+                  } ${noodleStatus === "dream" ? "dream" : "event"}`}
                   onClick={() =>
                     alert(
                       "Sold out events are happening events that do not have any tickets remaining."
@@ -298,7 +297,7 @@ class Details extends React.Component {
               </div>
               <div
                 className={`details_progress_container ${
-                  noodleStatus != "dream" &&
+                  noodleStatus !== "dream" &&
                   noodleTicketsSold < noodleMaxTickets
                     ? "visible"
                     : "hidden"
@@ -330,7 +329,7 @@ class Details extends React.Component {
             </div>
           </div>
           <div id="details_intro_right" className="details_intro_column">
-            <h3>{noodleStatus == "dream" ? "Dream " : ""}Event Details</h3>
+            <h3>{noodleStatus === "dream" ? "Dream " : ""}Event Details</h3>
             <div id="details_summary">
               <p class={element_classes.noodleLocation}>
                 Location: {noodleLocation}
