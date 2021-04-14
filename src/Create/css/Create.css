@@ -27,3 +27,24 @@
   font-weight: var(--font-weight);
   font-style: var(--font-style);
 }
+
+#create #create_submit_bar {
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px -20px -20px -20px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid black;
+  column-gap: 20px;
+}
+
+#create #create_submit_bar .noodle_button {
+  margin: 0px;
+}
+
+#create #create_submit_bar #create_dream_button {
+  background-color: var(--dreams-color);
+}

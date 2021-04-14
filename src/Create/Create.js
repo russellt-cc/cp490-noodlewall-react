@@ -18,7 +18,7 @@ class Create extends React.Component {
     // Return the create page
     return (
       <main id="create">
-        <form>
+        <form id="create_form">
           <section id="organizer_information">
             <h1>Organizer Information</h1>
             <p>Enter some information about who is organizing the event.</p>
@@ -108,6 +108,14 @@ class Create extends React.Component {
               <input type="date" name="eventCutoff"></input>
             </div>
           </section>
+          <div id="create_submit_bar">
+            <button id="create_dream_button" class="noodle_button">
+              Save as Dream
+            </button>
+            <button id="create_event_button" class="noodle_button">
+              Make it Happen
+            </button>
+          </div>
         </form>
       </main>
     );
