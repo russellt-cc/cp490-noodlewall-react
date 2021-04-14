@@ -6,7 +6,7 @@ class Create extends React.Component {
     // Get the type of noodle we are creating
     let { type: noodleStatus } = this.props.match.params;
     // Check validity of the status
-    if (noodleStatus != "dream" && noodleStatus != "event") {
+    if (noodleStatus !== "dream" && noodleStatus !== "event") {
       noodleStatus = "event";
     }
     // Get current user data to pre fill the form

@@ -17,7 +17,7 @@ class Details extends React.Component {
       return parseInt(noodle.noodleID) === parseInt(noodleID);
     })[0];
     // Check if we have a valid noodle
-    if (thisNoodle != undefined) {
+    if (thisNoodle !== undefined) {
       // Get the right user details
       const thisHost = userData.filter((user) => {
         return parseInt(user.userID) === parseInt(thisNoodle.userID);

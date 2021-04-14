@@ -13,7 +13,7 @@ class User extends React.Component {
       return parseInt(user.userID) === parseInt(profileUserID);
     })[0];
 
-    if (thisUser != undefined) {
+    if (thisUser !== undefined) {
       // Check to see if a user is viewing their own page
       let isOwnProfile = false;
       if (parseInt(currentUserID) === parseInt(profileUserID)) {
