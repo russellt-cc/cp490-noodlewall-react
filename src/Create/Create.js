@@ -58,7 +58,6 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="location">
-            {" "}
             <h1>Location</h1>
             <p>Where is your event located?</p>
             <div>
@@ -66,7 +65,17 @@ class Create extends React.Component {
               <input type="text" name="eventLocation"></input>
             </div>
           </section>
-          <section id="date_time"></section>
+          <section id="date_time">
+            <h1>Date and Time</h1>
+            <div>
+              <label for="eventDate">Event Date</label>
+              <input type="date" name="eventDate"></input>
+            </div>
+            <div>
+              <label for="eventTime">Event Time</label>
+              <input type="time" name="eventTime"></input>
+            </div>
+          </section>
           <section id="images"></section>
           <section id="tickets"></section>
           <section id="make_it_happen"></section>
