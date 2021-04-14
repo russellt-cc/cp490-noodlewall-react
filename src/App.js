@@ -34,6 +34,7 @@ class App extends React.Component {
       isLoaded: false,
       noodleData: [],
       userData: [],
+      currentUserID: 1,
     };
   }
   componentDidMount() {
@@ -70,7 +71,7 @@ class App extends React.Component {
   }
   render() {
     // Destructure the props and state
-    const { error, isLoaded, noodleData, userData } = this.state;
+    const { error, isLoaded, noodleData, userData, currentUserID } = this.state;
     // Check for error
     if (error) {
       return <p>Error: {error.message} noodles</p>;
@@ -85,7 +86,7 @@ class App extends React.Component {
             {/* Show the Noodlewall navbar */}
             {/* Replace the static user id with
             user id from session */}
-            <Navbar userData={userData} userID={1} />
+            <Navbar userData={userData} userID={currentUserID} />
             {/* Switch the main component based on the url */}
             <Switch>
               {/* ------------------------------------------------------------ */}
@@ -101,6 +102,7 @@ class App extends React.Component {
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
+                    currentUserID={currentUserID}
                   />
                 )}
               />
@@ -111,6 +113,7 @@ class App extends React.Component {
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
+                    currentUserID={currentUserID}
                   />
                 )}
               />

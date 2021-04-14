@@ -6,16 +6,22 @@ class User extends React.Component {
   constructor(props) {
     super(props);
 
-    const { userData } = this.props;
-    const { id: userID } = this.props.match.params;
+    const { userData, currentUserID } = this.props;
+    const { id: profileUserID } = this.props.match.params;
 
     const thisUser = userData.filter((user) => {
-      return parseInt(user.userID) === parseInt(userID);
+      return parseInt(user.userID) === parseInt(profileUserID);
     })[0];
 
     if (thisUser != undefined) {
+      // Check to see if a user is viewing their own page
+      let isOwnProfile = false;
+      if (parseInt(currentUserID) === parseInt(profileUserID)) {
+        isOwnProfile = true;
+      }
       this.state = {
         userData: thisUser,
+        isOwnProfile: isOwnProfile,
         error: false,
       };
     } else {
@@ -26,11 +32,103 @@ class User extends React.Component {
   }
 
   follow = () => {
-    alert("Follow component goes here!");
+    if (!this.state.isOwnProfile) {
+      alert("Follow component goes here!");
+    } else {
+      alert("You can't follow yourself!");
+    }
   };
 
   contact = () => {
-    alert("Contact component goes here!");
+    if (!this.state.isOwnProfile) {
+      alert("Contact component goes here!");
+    } else {
+      alert("You can't contact yourself!");
+    }
+  };
+
+  edit = () => {
+    if (this.state.isOwnProfile) {
+      alert("Edit component goes here!");
+    } else {
+      alert("You can't edit someone else's profile!");
+    }
+  };
+
+  manage = () => {
+    if (this.state.isOwnProfile) {
+      alert("Manage component goes here!");
+    } else {
+      alert("You can't manage someone else's events!");
+    }
+  };
+
+  dashboard = () => {
+    if (this.state.isOwnProfile) {
+      alert("Dashboard component goes here!");
+    } else {
+      alert("You can't view someone else's dashboard!");
+    }
+  };
+
+  getUserActionButtons = () => {
+    const { isOwnProfile } = this.state;
+
+    const otherProfileActions = (
+      <p className="user_actions">
+        <button
+          className="noodle_button"
+          onClick={() => {
+            this.follow();
+          }}
+        >
+          Follow {this.state.userData.userName}
+        </button>
+        <button
+          className="noodle_button"
+          onClick={() => {
+            this.contact();
+          }}
+        >
+          Contact {this.state.userData.userName}
+        </button>
+      </p>
+    );
+
+    const ownProfileActions = (
+      <p className="user_actions">
+        <button
+          className="noodle_button"
+          onClick={() => {
+            this.edit();
+          }}
+        >
+          Edit Profile
+        </button>
+        <button
+          className="noodle_button"
+          onClick={() => {
+            this.manage();
+          }}
+        >
+          Manage Events
+        </button>
+        <button
+          className="noodle_button"
+          onClick={() => {
+            this.dashboard();
+          }}
+        >
+          View Dashboard
+        </button>
+      </p>
+    );
+
+    if (!isOwnProfile) {
+      return otherProfileActions;
+    } else {
+      return ownProfileActions;
+    }
   };
 
   render() {
@@ -67,24 +165,7 @@ class User extends React.Component {
             >
               <h1>About {this.state.userData.userName}</h1>
               <p>{this.state.userData.userBioLong}</p>
-              <p className="user_actions">
-                <button
-                  className="noodle_button"
-                  onClick={() => {
-                    this.follow();
-                  }}
-                >
-                  Follow {this.state.userData.userName}
-                </button>
-                <button
-                  className="noodle_button"
-                  onClick={() => {
-                    this.contact();
-                  }}
-                >
-                  Contact {this.state.userData.userName}
-                </button>
-              </p>
+              {this.getUserActionButtons()}
             </div>
           </section>
 
@@ -102,6 +183,14 @@ class User extends React.Component {
       case "contact":
         this.contact();
         break;
+      case "edit":
+        this.edit();
+        break;
+      case "manage":
+        this.manage();
+        break;
+      case "dashboard":
+        this.dashboard();
       default:
         break;
     }

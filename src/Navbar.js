@@ -91,10 +91,16 @@ class Navbar extends React.Component {
                         {userFirstName} {userLastName}
                       </p>
                     </Link>
-                    <Link className="noodle_button" to="/">
+                    <Link
+                      className="noodle_button"
+                      to={`/user/${userID}/manage`}
+                    >
                       Manage Your Account
                     </Link>
-                    <Link className="noodle_button" to="/">
+                    <Link
+                      className="noodle_button"
+                      to={`/user/${userID}/dashboard`}
+                    >
                       View Dashboard
                     </Link>
                     <Link className="noodle_button" to="/">
