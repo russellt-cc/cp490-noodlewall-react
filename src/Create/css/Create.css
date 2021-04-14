@@ -23,4 +23,7 @@
   resize: none;
   border: 1px solid lightgray;
   border-radius: 10px;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
 }

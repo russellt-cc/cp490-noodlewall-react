@@ -9,6 +9,12 @@ class Create extends React.Component {
     if (noodleStatus != "dream" && noodleStatus != "event") {
       noodleStatus = "event";
     }
+    // Get current user data to pre fill the form
+    const { userData, currentUserID } = this.props;
+    const thisUser = userData.filter((user) => {
+      return parseInt(user.userID) === parseInt(currentUserID);
+    })[0];
+    const { userName, userBio, userBioLong } = thisUser;
     // Return the create page
     return (
       <main id="create">
@@ -18,19 +24,48 @@ class Create extends React.Component {
             <p>Enter some information about who is organizing the event.</p>
             <div>
               <label for="hostName">Organizer Name</label>
-              <input type="text" name="hostName"></input>
+              <input type="text" name="hostName" value={userName}></input>
             </div>
             <div>
               <label for="hostBioShort">Organizer Detail Short</label>
-              <textarea name="hostBioShort" rows="2"></textarea>
+              <textarea name="hostBioShort" rows="2" value={userBio}></textarea>
             </div>
             <div>
               <label for="hostBioLong">Organizer Detail Long</label>
-              <textarea name="hostBioLong" rows="5"></textarea>
+              <textarea
+                name="hostBioLong"
+                rows="5"
+                value={userBioLong}
+              ></textarea>
             </div>
           </section>
-          <section id="the_basics"></section>
-          <section id="location"></section>
+          <section id="the_basics">
+            <h1>Basic Info</h1>
+            <p>
+              Enter the name of the event and some essential details about it.
+            </p>
+            <div>
+              <label for="eventName">Event Name</label>
+              <input type="text" name="eventName"></input>
+            </div>
+            <div>
+              <label for="eventBioShort">Event Summary</label>
+              <textarea name="eventBioShort" rows="2"></textarea>
+            </div>
+            <div>
+              <label for="eventBioLong">Event Description</label>
+              <textarea name="eventBioLong" rows="5"></textarea>
+            </div>
+          </section>
+          <section id="location">
+            {" "}
+            <h1>Location</h1>
+            <p>Where is your event located?</p>
+            <div>
+              <label for="eventLocation">Event Location</label>
+              <input type="text" name="eventLocation"></input>
+            </div>
+          </section>
           <section id="date_time"></section>
           <section id="images"></section>
           <section id="tickets"></section>

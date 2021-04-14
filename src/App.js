@@ -91,8 +91,26 @@ class App extends React.Component {
             <Switch>
               {/* ------------------------------------------------------------ */}
               {/* Create Module */}
-              <Route path="/create/:type" component={Create} />
-              <Route path="/create" component={Create} />
+              <Route
+                path="/create/:type"
+                render={(props) => (
+                  <Create
+                    {...props}
+                    userData={userData}
+                    currentUserID={currentUserID}
+                  />
+                )}
+              />
+              <Route
+                path="/create"
+                render={(props) => (
+                  <Create
+                    {...props}
+                    userData={userData}
+                    currentUserID={currentUserID}
+                  />
+                )}
+              />
               {/* ------------------------------------------------------------ */}
               {/* User Module */}
               <Route
