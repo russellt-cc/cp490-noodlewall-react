@@ -191,6 +191,7 @@ class User extends React.Component {
         break;
       case "dashboard":
         this.dashboard();
+        break;
       default:
         break;
     }
