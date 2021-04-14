@@ -341,8 +341,8 @@ class DetailsIntro extends React.Component {
               <meter
                 className={`details_progress_sold_out ${status_classes.soldOut}`}
                 min={noodleMaxTickets}
-                max={noodleMaxTickets + 1}
-                value={noodleTicketsSold + 1}
+                max={parseInt(noodleMaxTickets) + 1}
+                value={parseInt(noodleTicketsSold) + 1}
               ></meter>
             </div>
             {this.getStatusMessage2()}

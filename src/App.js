@@ -73,9 +73,9 @@ class App extends React.Component {
     const { error, isLoaded, noodleData, userData } = this.state;
     // Check for error
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <p>Error: {error.message} noodles</p>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <p>Cooking Noodles...</p>;
     } else {
       return (
         // Return the main Noodlewall app

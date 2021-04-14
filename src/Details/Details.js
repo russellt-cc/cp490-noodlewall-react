@@ -40,7 +40,7 @@ class Details extends React.Component {
     if (error) {
       return (
         <main>
-          <div>Noodle not found!</div>
+          <p>Noodle not found!</p>
         </main>
       );
     } else {
