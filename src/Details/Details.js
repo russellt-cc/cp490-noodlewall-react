@@ -205,6 +205,7 @@ class Details extends React.Component {
       noodleImage,
       noodleLocation,
       noodleDate,
+      noodleCutoff,
       noodleTime,
       noodlePrice,
       noodleMinTickets,
@@ -376,7 +377,11 @@ class Details extends React.Component {
                 Follow {hostName}
               </Link>
               <button
-                className={`noodle_button ${element_classes.noodleBuyButton}`}
+                className={`noodle_button ${
+                  noodleTicketsSold < noodleMaxTickets
+                    ? element_classes.noodleBuyButton
+                    : "hidden"
+                }`}
                 id="details_buy_button"
                 onClick={() => {
                   this.buyTicket();

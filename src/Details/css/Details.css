@@ -69,6 +69,10 @@
   width: auto;
 }
 
+#details #details_host_intro_event > button.hidden {
+  display: none;
+}
+
 #details #details_host_intro_dream > a,
 #details #details_host_intro_dream > button {
   background-color: var(--dreams-color);
