@@ -14,11 +14,11 @@ class Details extends React.Component {
     // Get the right details page
     // filter returns an array so we need to get the first index which is 0
     const thisNoodle = noodleData.filter((noodle) => {
-      return noodle.noodleID === parseInt(noodleID);
+      return parseInt(noodle.noodleID) === parseInt(noodleID);
     })[0];
     // Get the right user details
     const thisHost = userData.filter((user) => {
-      return user.userID === thisNoodle.userID;
+      return parseInt(user.userID) === parseInt(thisNoodle.userID);
     })[0];
     // Save this noodle in state so we can modify it
     this.state = {
