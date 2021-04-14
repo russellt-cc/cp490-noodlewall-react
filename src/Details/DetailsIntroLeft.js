@@ -3,6 +3,7 @@ import NoodleOverlay from "../NoodleOverlay.js";
 import { DateTime, Interval } from "luxon";
 import DetailsProgress from "./DetailsProgress";
 
+// The left column of the details intro
 class DetailsIntroLeft extends React.Component {
   // Method to determine the days left
   getDaysLeft = () => {

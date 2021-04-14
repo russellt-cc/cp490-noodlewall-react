@@ -2,6 +2,7 @@ import React from "react";
 import DetailsIntroLeft from "./DetailsIntroLeft";
 import DetailsIntroRight from "./DetailsIntroRight";
 
+// The intro section of the details page
 class DetailsIntro extends React.Component {
   // Constructor
   constructor(props) {

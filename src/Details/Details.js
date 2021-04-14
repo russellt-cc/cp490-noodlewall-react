@@ -2,6 +2,7 @@ import "./css/Details.css";
 import React from "react";
 import DetailsIntro from "./DetailsIntro.js";
 
+// The event / dreams details page
 class Details extends React.Component {
   // Constructor
   constructor(props) {

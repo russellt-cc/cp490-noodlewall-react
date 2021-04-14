@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// The right column of the details intro
 class DetailsIntroRight extends React.Component {
   render() {
     // Get data from props

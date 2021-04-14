@@ -1,6 +1,7 @@
 import "./css/Create.css";
 import React from "react";
 
+// The create dream / event page
 class Create extends React.Component {
   render() {
     // Get the type of noodle we are creating

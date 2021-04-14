@@ -1,5 +1,6 @@
 import React from "react";
 
+// The progress bar element on the details page
 class DetailsProgress extends React.Component {
   // Methods to determine a status message
   getStatusMessage1 = () => {
