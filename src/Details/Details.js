@@ -5,9 +5,34 @@ import CapitalizedText from "../CapitalizedText.js";
 import NoodleOverlay from "../NoodleOverlay.js";
 
 class Details extends React.Component {
+  // Constructor
+  constructor(props) {
+    super(props);
+    // Get the noodle and host details
+    // Covert to zero-based index
+    // Use object destructuring to get constants
+    const { id: noodleID } = this.props.match.params;
+    const { noodleData, userData } = this.props;
+    // Get the right details page
+    // filter returns an array so we need to get the first index which is 0
+    const thisNoodle = noodleData.filter((noodle) => {
+      return noodle.noodleID == noodleID;
+    })[0];
+    // Get the right user details
+    const thisHost = userData.filter((user) => {
+      return user.userID == thisNoodle.userID;
+    })[0];
+    // Save this noodle in state so we can modify it
+    this.state = {
+      thisNoodle: thisNoodle,
+      thisHost: thisHost,
+    };
+  }
   // Method to handle the buy button
   buyTicket = () => {
-    alert("Buy ticket component goes here!");
+    let thisNoodle = this.state.thisNoodle;
+    thisNoodle.noodleTicketsSold++;
+    this.setState({ thisNoodle: thisNoodle });
   };
   // Method to determine classes of the status bar
   setStatusClasses = (
@@ -72,17 +97,7 @@ class Details extends React.Component {
   };
   // Render method
   render() {
-    // Get the noodle and host details
-    // Covert to zero-based index
-    // Use object destructuring to get constants
-    const { id: noodleID } = this.props.match.params;
-    const { noodleData, userData } = this.props;
-    // Get the right details page
-    const thisNoodle = noodleData.filter((noodle) => {
-      return noodle.noodleID == noodleID;
-    });
     // Destructure the details and rename user id to host id
-    // this noodle is an array so we need to get the first index which is 0
     const {
       noodleTitle,
       noodleStatus,
@@ -96,14 +111,9 @@ class Details extends React.Component {
       noodleTicketsSold,
       noodleTags,
       userID: hostID,
-    } = thisNoodle[0];
-    // Get the right user details
-    const thisHost = userData.filter((user) => {
-      return user.userID == hostID;
-    });
+    } = this.state.thisNoodle;
     // Destructure the user details and rename
-    // this host is an array so we get the first index
-    const { userName: hostName } = thisHost[0];
+    const { userName: hostName } = this.state.thisHost;
     // Get the type for tag links
     const filterType = this.props.match.params.filterType;
     // Get status classes
@@ -136,7 +146,12 @@ class Details extends React.Component {
             <div className="details_status_container_container">
               <div className="details_status_container">
                 <span
-                  className={`details_status_dream ${status_classes.dream}`}
+                  className={`details_status_dream ${status_classes.dream} ${
+                    noodleStatus != "dream" &&
+                    noodleTicketsSold < noodleMaxTickets
+                      ? "unfinished"
+                      : "finished"
+                  }`}
                 >
                   Dream
                 </span>
@@ -151,12 +166,21 @@ class Details extends React.Component {
                   Happening
                 </span>
                 <span
-                  className={`details_status_sold_out ${status_classes.soldOut}`}
+                  className={`details_status_sold_out ${
+                    status_classes.soldOut
+                  } ${noodleStatus == "dream" ? "dream" : "event"}`}
                 >
                   Sold Out
                 </span>
               </div>
-              <div className="details_progress_container">
+              <div
+                className={`details_progress_container ${
+                  noodleStatus != "dream" &&
+                  noodleTicketsSold < noodleMaxTickets
+                    ? "visible"
+                    : "hidden"
+                }`}
+              >
                 <meter
                   className={`details_progress_dream ${status_classes.dream}`}
                   value="1"

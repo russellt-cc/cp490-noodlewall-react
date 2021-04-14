@@ -21,9 +21,9 @@ export const noodleData = [
     noodleDate: "2021-04-01",
     noodleTime: "8:30AM-5:00PM",
     noodlePrice: "$17.00",
-    noodleMinTickets: 2,
-    noodleMaxTickets: 3,
-    noodleTicketsSold: 1,
+    noodleMinTickets: 25,
+    noodleMaxTickets: 50,
+    noodleTicketsSold: 0,
   },
   {
     noodleID: 2,

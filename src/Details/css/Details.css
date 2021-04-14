@@ -82,7 +82,7 @@
 
 #details .details_status_container_container {
   background-color: lightgray;
-  padding: 10px 10px 0px 10px;
+  padding: 10px 10px 10px 10px;
   border-radius: 10px;
 }
 
@@ -104,7 +104,7 @@
 }
 
 #details .details_status_container,
-#details .details_progress_container {
+#details .details_progress_container.visible {
   position: relative;
   display: flex;
   align-items: center;
@@ -114,12 +114,17 @@
 #details .details_status_container > span {
   height: 25px;
   text-align: center;
-  color: white;
+  color: darkgray;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: darkgray;
   font-size: 14px;
+}
+
+#details .details_progress_container {
+  overflow: hidden;
+  height: 25px;
 }
 
 #details .details_progress_container > meter {
@@ -135,19 +140,27 @@
   border: none;
 }
 
-#details .details_status_dream,
+#details .details_status_dream {
+  border-top-left-radius: 10px;
+}
+
 #details
   .details_progress_container
   > .details_progress_dream::-webkit-meter-bar {
-  border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
-#details .details_status_sold_out,
+#details .details_status_sold_out {
+  border-top-right-radius: 10px;
+}
+
+#details .details_status_sold_out.rounded {
+  border-bottom-left-radius: 10px;
+}
+
 #details
   .details_progress_container
   > .details_progress_sold_out::-webkit-meter-bar {
-  border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
@@ -171,22 +184,25 @@
 
 #details .details_status_dream.passed,
 #details .details_progress_dream.passed::-webkit-meter-optimum-value {
-  background-color: var(--dreams-color);
+  background-color: var(--events-color);
+  color: var(--events-color);
 }
 
 #details .details_status_not_happening.passed,
 #details .details_progress_not_happening.passed::-webkit-meter-optimum-value {
-  background-color: var(--moss-green);
+  background-color: var(--events-color);
+  color: var(--events-color);
 }
 
 #details .details_status_happening.passed,
 #details .details_progress_happening.passed::-webkit-meter-optimum-value {
   background-color: var(--events-color);
+  color: var(--events-color);
 }
 
 #details .details_status_sold_out.passed,
 #details .details_progress_sold_out.passed::-webkit-meter-optimum-value {
-  background-color: var(--orange-soda);
+  background-color: var(--events-color);
 }
 
 #details meter::-webkit-meter-optimum-value {
@@ -195,6 +211,11 @@
 
 #details .details_status_dream.checked {
   color: white;
+  background-color: var(--dreams-color);
+}
+
+#details .details_status_dream.finished {
+  border-bottom-left-radius: 10px;
 }
 
 #details .details_status_not_happening.checked {
@@ -207,6 +228,11 @@
 
 #details .details_status_sold_out.checked {
   color: white;
+  border-bottom-right-radius: 10px;
+}
+
+#details .details_status_sold_out.dream {
+  border-bottom-right-radius: 10px;
 }
 
 #details #details_host_intro_dream > button.hidden {
