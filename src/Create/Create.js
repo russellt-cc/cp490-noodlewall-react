@@ -16,12 +16,57 @@ class Create extends React.Component {
       return parseInt(user.userID) === parseInt(currentUserID);
     })[0];
     const { userName, userBio, userBioLong } = thisUser;
+
+    // Set data for the sections
+    const section1 = { name: "Organizer Information" };
+    const section2 = { name: "Basic Info" };
+    const section3 = { name: "Location" };
+    const section4 = { name: "Date and Time" };
+    const section5 = { name: "Upload Images" };
+    const section6 = { name: "Create Tickets" };
+    const section7 = { name: "Make It Happen" };
+
     // Return the create page
     return (
       <main id="create">
         <form id="create_form">
+          <div id="create_nav_progress_bar">
+            <div id="create_nav_progress_bar_line"></div>
+            <div id="create_nav_progress_bar_buttons">
+              <div>
+                <a href="#1">1</a>
+                <p>{section1.name}</p>
+              </div>
+              <div>
+                <a href="#2">2</a>
+                <p>{section2.name}</p>
+              </div>
+              <div>
+                <a href="#3">3</a>
+                <p>{section3.name}</p>
+              </div>
+              <div>
+                <a href="#4">4</a>
+                <p>{section4.name}</p>
+              </div>
+              <div>
+                <a href="#5">5</a>
+                <p>{section5.name}</p>
+              </div>
+              <div>
+                <a href="#6">6</a>
+                <p>{section6.name}</p>
+              </div>
+              <div>
+                <a href="#7">7</a>
+                <p>{section7.name}</p>
+              </div>
+            </div>
+          </div>
           <section id="organizer_information">
-            <h1>Organizer Information</h1>
+            <a name="1">
+              <h1>{section1.name}</h1>
+            </a>
             <p>Enter some information about who is organizing the event.</p>
             <div>
               <label for="hostName">Organizer Name</label>
@@ -41,7 +86,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="the_basics">
-            <h1>Basic Info</h1>
+            <a name="2">
+              <h1>{section2.name}</h1>
+            </a>
             <p>
               Enter the name of the event and some essential details about it.
             </p>
@@ -59,7 +106,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="location">
-            <h1>Location</h1>
+            <a name="3">
+              <h1>{section3.name}</h1>
+            </a>
             <p>Where is your event located?</p>
             <div>
               <label for="eventLocation">Event Location</label>
@@ -67,7 +116,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="date_time">
-            <h1>Date and Time</h1>
+            <a name="4">
+              <h1>{section4.name}</h1>
+            </a>
             <p>Set the date and time of the event.</p>
             <div>
               <label for="eventDate">Event Date</label>
@@ -79,7 +130,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="images">
-            <h1>Upload Images</h1>
+            <a name="5">
+              <h1>{section5.name}</h1>
+            </a>
             <p>
               Upload as many images as you would like to be displayed on the
               event page.
@@ -90,7 +143,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="tickets">
-            <h1>Create Tickets</h1>
+            <a name="6">
+              <h1>{section6.name}</h1>
+            </a>
             <p>Create ticket types available for the event.</p>
             <div>
               <label for="eventTicketPrice">Ticket Price</label>
@@ -98,7 +153,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="secret_sauce">
-            <h1>Secret Sauce</h1>
+            <a name="7">
+              <h1>{section7.name}</h1>
+            </a>
             <p>Adjust the secret sauce details to make the noodle stick.</p>
             <div>
               <label for="eventMinTickets">Minimum Tickets Required</label>
