@@ -81,8 +81,9 @@
 }
 
 #details .details_status_container_container {
-  background-color: lightgray;
-  padding: 10px 10px 10px 10px;
+  /* background-color: lightgray; */
+  /* padding: 10px 10px 10px 10px; */
+  padding: 10px 0px;
   border-radius: 10px;
 }
 
@@ -114,12 +115,13 @@
 #details .details_status_container > span {
   height: 25px;
   text-align: center;
-  color: darkgray;
+  color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: darkgray;
+  background-color: lightgray;
   font-size: 14px;
+  user-select: none;
 }
 
 #details .details_progress_container {
@@ -132,11 +134,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  /* background-color: lightgray; */
 }
 
 #details meter::-webkit-meter-bar {
-  background-color: darkgray;
+  background-color: lightgray;
   border: none;
 }
 
@@ -182,52 +184,72 @@
   border-radius: 0px;
 }
 
-#details .details_status_dream.passed,
+#details .details_status_dream.passed {
+  background-color: var(--events-color);
+  color: var(--events-color);
+}
+
 #details .details_progress_dream.passed::-webkit-meter-optimum-value {
+  background-color: var(--dreams-color);
+}
+
+#details .details_status_not_happening.passed {
   background-color: var(--events-color);
   color: var(--events-color);
 }
 
-#details .details_status_not_happening.passed,
 #details .details_progress_not_happening.passed::-webkit-meter-optimum-value {
+  background-color: var(--dreams-color);
+}
+
+#details .details_status_happening.passed {
   background-color: var(--events-color);
   color: var(--events-color);
 }
 
-#details .details_status_happening.passed,
 #details .details_progress_happening.passed::-webkit-meter-optimum-value {
+  background-color: var(--dreams-color);
+}
+
+#details .details_status_sold_out.passed {
   background-color: var(--events-color);
   color: var(--events-color);
 }
 
-#details .details_status_sold_out.passed,
 #details .details_progress_sold_out.passed::-webkit-meter-optimum-value {
   background-color: var(--events-color);
 }
 
 #details meter::-webkit-meter-optimum-value {
   background-color: darkgray;
+  transition: 1s width;
 }
 
 #details .details_status_dream.checked {
-  color: white;
+  /* color: white; */
   background-color: var(--dreams-color);
+  color: var(--dreams-color);
+}
+
+#details .details_status_container > span:hover {
+  color: white;
+  cursor: pointer;
 }
 
 #details .details_status_dream.finished {
   border-bottom-left-radius: 10px;
 }
 
-#details .details_status_not_happening.checked {
+/* #details .details_status_not_happening.checked {
   color: white;
-}
+} */
 
-#details .details_status_happening.checked {
+/* #details .details_status_happening.checked {
   color: white;
-}
+} */
 
 #details .details_status_sold_out.checked {
-  color: white;
+  /* color: white; */
   border-bottom-right-radius: 10px;
 }
 
@@ -237,6 +259,12 @@
 
 #details #details_host_intro_dream > button.hidden {
   display: none;
+}
+
+#details .details_status_container_container > p {
+  padding-top: 10px;
+  text-align: center;
+  user-select: none;
 }
 
 /* Style for mobile */

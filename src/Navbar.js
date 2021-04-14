@@ -8,7 +8,9 @@ class Navbar extends React.Component {
     // Get the current user data
     // Destructure the current user data
     const userID = this.props.userID;
-    const { userName, userImage } = this.props.userData[userID - 1];
+    const { userFirstName, userLastName, userImage } = this.props.userData[
+      userID - 1
+    ];
     // Return the Noodlewall navbar
     return (
       <nav>
@@ -85,7 +87,9 @@ class Navbar extends React.Component {
                     <h3>Your Account</h3>
                     <Link to={`/user/${userID}`}>
                       <img src={userImage} alt="User"></img>
-                      <p>{userName}</p>
+                      <p>
+                        {userFirstName} {userLastName}
+                      </p>
                     </Link>
                     <Link className="noodle_button" to="/">
                       Manage Your Account

@@ -35,7 +35,7 @@ class Details extends React.Component {
     this.setState({ thisNoodle: thisNoodle });
   };
   // Method to determine classes of the status bar
-  setStatusClasses = (
+  getStatusClasses = (
     noodleStatus,
     noodleMinTickets,
     noodleMaxTickets,
@@ -65,7 +65,7 @@ class Details extends React.Component {
     return status_classes;
   };
   // Method to determine classes of page elements
-  setElementClasses = (
+  getElementClasses = (
     noodleStatus,
     noodleLocation,
     noodleDate,
@@ -81,6 +81,7 @@ class Details extends React.Component {
       noodleTicketPrice: visible,
       noodleMinTickets: visible,
       noodleMaxTickets: visible,
+      noodleTicketsSold: visible,
       noodleBuyButton: visible,
     };
     if (noodleStatus == "dream") {
@@ -88,12 +89,50 @@ class Details extends React.Component {
       element_classes.noodleTicketPrice = hidden;
       element_classes.noodleMinTickets = hidden;
       element_classes.noodleMaxTickets = hidden;
+      element_classes.noodleTicketsSold = hidden;
       element_classes.noodleBuyButton = hidden;
     }
     if (noodleLocation == null) element_classes.noodleLocation = hidden;
     if (noodleDate == null) element_classes.noodleDate = hidden;
     if (noodleTime == null) element_classes.noodleTime = hidden;
     return element_classes;
+  };
+  // Method to determine a status message
+  getStatusMessage = () => {
+    const {
+      noodleStatus: status,
+      noodleTicketsSold: sold,
+      noodleMinTickets: min,
+      noodleMaxTickets: max,
+    } = this.state.thisNoodle;
+    if (status == "dream") {
+      return <p>Like this dream event to show your support!</p>;
+    } else if (sold < min) {
+      const diff = min - sold;
+      return (
+        <p>
+          Only{" "}
+          <span class="dreams_color_text">
+            <strong>{diff}</strong>
+          </span>{" "}
+          ticket
+          {diff > 1 ? "s" : ""} left to make it happen!
+        </p>
+      );
+    } else if (sold < max) {
+      const diff = max - sold;
+      return (
+        <p>
+          Only{" "}
+          <span class="events_color_text">
+            <strong>{diff}</strong>
+          </span>{" "}
+          ticket{diff > 1 ? "s" : ""} remaining!
+        </p>
+      );
+    } else {
+      return <p>This event is all sold out!</p>;
+    }
   };
   // Render method
   render() {
@@ -117,14 +156,14 @@ class Details extends React.Component {
     // Get the type for tag links
     const filterType = this.props.match.params.filterType;
     // Get status classes
-    const status_classes = this.setStatusClasses(
+    const status_classes = this.getStatusClasses(
       noodleStatus,
       noodleMinTickets,
       noodleMaxTickets,
       noodleTicketsSold
     );
     // Get element classes
-    const element_classes = this.setElementClasses(
+    const element_classes = this.getElementClasses(
       noodleStatus,
       noodleLocation,
       noodleDate,
@@ -187,14 +226,14 @@ class Details extends React.Component {
                 ></meter>
                 <meter
                   className={`details_progress_not_happening ${status_classes.notHappening}`}
-                  max={noodleMinTickets + 1}
-                  value={noodleTicketsSold + 1}
+                  max={noodleMinTickets}
+                  value={noodleTicketsSold}
                 ></meter>
                 <meter
                   className={`details_progress_happening ${status_classes.happening}`}
                   min={noodleMinTickets}
-                  max={noodleMaxTickets + 1}
-                  value={noodleTicketsSold + 1}
+                  max={noodleMaxTickets}
+                  value={noodleTicketsSold}
                 ></meter>
                 <meter
                   className={`details_progress_sold_out ${status_classes.soldOut}`}
@@ -203,10 +242,11 @@ class Details extends React.Component {
                   value={noodleTicketsSold + 1}
                 ></meter>
               </div>
+              {this.getStatusMessage()}
             </div>
           </div>
           <div id="details_intro_right" className="details_intro_column">
-            <h3>{<CapitalizedText text={noodleStatus} />} Details</h3>
+            <h3>{noodleStatus == "dream" ? "Dream " : ""}Event Details</h3>
             <div id="details_summary">
               <p class={element_classes.noodleLocation}>
                 Location: {noodleLocation}
@@ -217,6 +257,9 @@ class Details extends React.Component {
               <p class={element_classes.noodleTime}>{noodleTime}</p>
               <p class={element_classes.noodleTicketPrice}>
                 Ticket Price: {noodlePrice}
+              </p>
+              <p class={element_classes.noodleTicketsSold}>
+                Tickets Sold: {noodleTicketsSold}
               </p>
               <p class={element_classes.noodleMinTickets}>
                 Minimum Tickets Sold: {noodleMinTickets}
