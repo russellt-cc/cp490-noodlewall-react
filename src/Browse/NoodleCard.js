@@ -49,12 +49,13 @@ class NoodleCard extends React.Component {
           <div className={`noodle_tags_section`}>
             <p className="noodle_label">Tags:</p>
             <div className={`noodle_tag_list`}>
-              {noodleTags.map((item) => {
+              {noodleTags.map((item, i) => {
                 // create a link for each tag
                 return (
                   <Link
                     className={`noodle_tag ${noodleStatus}_tag`}
                     to={`/browse/${filterType}/${item}`}
+                    key={i}
                   >
                     #{item}
                   </Link>

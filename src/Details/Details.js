@@ -256,7 +256,7 @@ class Details extends React.Component {
         <div id="details_intro_left" className="details_intro_column">
           <h1>{noodleTitle}</h1>
           <p
-            class={
+            className={
               wholeDaysLeft > 0 ? element_classes.noodleDaysLeft : "hidden"
             }
           >
