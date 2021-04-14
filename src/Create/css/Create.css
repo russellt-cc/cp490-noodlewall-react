@@ -37,6 +37,7 @@
   text-decoration: none;
   color: white;
   border-radius: 25px;
+  font-weight: bold;
 }
 
 #create #create_nav_progress_bar_buttons > div > p {
@@ -54,6 +55,17 @@
 
 main#create {
   margin-top: 170px;
+}
+
+#create > form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#create .create_section_heading {
+  padding-top: 200px;
+  margin-top: -200px;
 }
 
 #create section {

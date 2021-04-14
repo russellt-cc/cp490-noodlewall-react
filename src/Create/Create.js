@@ -34,39 +34,39 @@ class Create extends React.Component {
             <div id="create_nav_progress_bar_line"></div>
             <div id="create_nav_progress_bar_buttons">
               <div>
-                <a href="#1">1</a>
+                <a href="#section1">1</a>
                 <p>{section1.name}</p>
               </div>
               <div>
-                <a href="#2">2</a>
+                <a href="#section2">2</a>
                 <p>{section2.name}</p>
               </div>
               <div>
-                <a href="#3">3</a>
+                <a href="#section3">3</a>
                 <p>{section3.name}</p>
               </div>
               <div>
-                <a href="#4">4</a>
+                <a href="#section4">4</a>
                 <p>{section4.name}</p>
               </div>
               <div>
-                <a href="#5">5</a>
+                <a href="#section5">5</a>
                 <p>{section5.name}</p>
               </div>
               <div>
-                <a href="#6">6</a>
+                <a href="#section6">6</a>
                 <p>{section6.name}</p>
               </div>
               <div>
-                <a href="#7">7</a>
+                <a href="#section7">7</a>
                 <p>{section7.name}</p>
               </div>
             </div>
           </div>
           <section id="organizer_information">
-            <a name="1">
-              <h1>{section1.name}</h1>
-            </a>
+            <h1 id="section1" class="create_section_heading">
+              {section1.name}
+            </h1>
             <p>Enter some information about who is organizing the event.</p>
             <div>
               <label for="hostName">Organizer Name</label>
@@ -86,9 +86,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="the_basics">
-            <a name="2">
-              <h1>{section2.name}</h1>
-            </a>
+            <h1 id="section2" class="create_section_heading">
+              {section2.name}
+            </h1>
             <p>
               Enter the name of the event and some essential details about it.
             </p>
@@ -106,9 +106,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="location">
-            <a name="3">
-              <h1>{section3.name}</h1>
-            </a>
+            <h1 id="section3" class="create_section_heading">
+              {section3.name}
+            </h1>
             <p>Where is your event located?</p>
             <div>
               <label for="eventLocation">Event Location</label>
@@ -116,9 +116,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="date_time">
-            <a name="4">
-              <h1>{section4.name}</h1>
-            </a>
+            <h1 id="section4" class="create_section_heading">
+              {section4.name}
+            </h1>
             <p>Set the date and time of the event.</p>
             <div>
               <label for="eventDate">Event Date</label>
@@ -130,9 +130,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="images">
-            <a name="5">
-              <h1>{section5.name}</h1>
-            </a>
+            <h1 id="section5" class="create_section_heading">
+              {section5.name}
+            </h1>
             <p>
               Upload as many images as you would like to be displayed on the
               event page.
@@ -143,9 +143,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="tickets">
-            <a name="6">
-              <h1>{section6.name}</h1>
-            </a>
+            <h1 id="section6" class="create_section_heading">
+              {section6.name}
+            </h1>
             <p>Create ticket types available for the event.</p>
             <div>
               <label for="eventTicketPrice">Ticket Price</label>
@@ -153,9 +153,9 @@ class Create extends React.Component {
             </div>
           </section>
           <section id="secret_sauce">
-            <a name="7">
-              <h1>{section7.name}</h1>
-            </a>
+            <h1 id="section7" class="create_section_heading">
+              {section7.name}
+            </h1>
             <p>Adjust the secret sauce details to make the noodle stick.</p>
             <div>
               <label for="eventMinTickets">Minimum Tickets Required</label>
