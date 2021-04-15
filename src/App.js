@@ -36,7 +36,8 @@ class App extends React.Component {
     // Initialize state
     this.state = {
       error: null,
-      isLoaded: false,
+      noodlesAreCooked: false,
+      noodlersAreLoaded: false,
       noodleData: [],
       userData: [],
       currentUserID: 1,
@@ -107,23 +108,43 @@ class App extends React.Component {
     const { useAPI } = this.state;
     if (useAPI) {
       // AJAX request to PHP server
+      // Get noodles
       const { apiURL, apiRead } = this.state;
-      let apiPath = "product/";
+      let apiPath = "event/";
       fetch(apiURL + apiPath + apiRead)
         .then((res) => res.json())
         .then(
           (result) => {
             console.log(result);
             this.setState({
-              isLoaded: true,
-              noodleData: result.events,
-              userData: result.users,
+              noodlesAreCooked: true,
+              noodleData: result.records,
             });
           },
           (error) => {
             console.log(error);
             this.setState({
-              isLoaded: true,
+              noodlesAreCooked: true,
+              error,
+            });
+          }
+        );
+      // Get users
+      apiPath = "user/";
+      fetch(apiURL + apiPath + apiRead)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            console.log(result);
+            this.setState({
+              noodlersAreLoaded: true,
+              userData: result.records,
+            });
+          },
+          (error) => {
+            console.log(error);
+            this.setState({
+              noodlersAreLoaded: true,
               error,
             });
           }
@@ -133,7 +154,8 @@ class App extends React.Component {
       this.setState({
         noodleData: noodleData,
         userData: userData,
-        isLoaded: true,
+        noodlesAreCooked: true,
+        noodlersAreLoaded: true,
       });
     }
   };
@@ -144,12 +166,26 @@ class App extends React.Component {
   // Render method
   render() {
     // Destructure the props and state
-    const { error, isLoaded, noodleData, userData, currentUserID } = this.state;
+    const {
+      error,
+      noodlesAreCooked,
+      noodlersAreLoaded,
+      noodleData,
+      userData,
+      currentUserID,
+    } = this.state;
     // Check for error
     if (error) {
       return <p>Error: {error.message} noodles</p>;
-    } else if (!isLoaded) {
+    } else if (!noodlesAreCooked) {
       return <p>Cooking Noodles...</p>;
+    } else if (!noodlersAreLoaded) {
+      return (
+        <div>
+          <p>Cooking Noodles...</p>
+          <p>Searching for Noodlers...</p>
+        </div>
+      );
     } else {
       // Handle redirects
       const { redirect } = this.state;
