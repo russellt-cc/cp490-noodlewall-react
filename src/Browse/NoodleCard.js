@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NoodlerSummary from "./NoodlerSummary.js";
-import NoodleOverlay from "../NoodleOverlay.js";
+import NoodleOverlay from "../Common/NoodleOverlay.js";
 
 // Class to structure the data for each noodle
 class NoodleCard extends React.Component {

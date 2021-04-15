@@ -1,5 +1,5 @@
 import React from "react";
-import NoodleOverlay from "../NoodleOverlay.js";
+import NoodleOverlay from "../Common/NoodleOverlay.js";
 import { DateTime, Interval } from "luxon";
 import DetailsProgress from "./DetailsProgress";
 

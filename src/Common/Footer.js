@@ -1,5 +1,5 @@
-import logo from "./images/noodlewall-logo-50p.png";
-import "./css/Footer.css";
+import logo from "../images/noodlewall-logo-50p.png";
+import "./Footer.css";
 import React from "react";
 
 class Footer extends React.Component {

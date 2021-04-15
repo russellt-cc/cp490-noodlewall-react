@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UserRating from "../UserRating";
+import UserRating from "../Common/UserRating";
 
 // Class to structure the data for a user
 class NoodlerSummary extends React.Component {

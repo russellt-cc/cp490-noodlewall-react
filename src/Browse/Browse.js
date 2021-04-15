@@ -1,4 +1,4 @@
-import "./css/Browse.css";
+import "./Browse.css";
 import React from "react";
 import NoodleList from "./NoodleList.js";
 

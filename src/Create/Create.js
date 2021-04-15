@@ -1,4 +1,4 @@
-import "./css/Create.css";
+import "./Create.css";
 import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";

@@ -1,4 +1,4 @@
-import "./css/Details.css";
+import "./Details.css";
 import React from "react";
 import DetailsIntro from "./DetailsIntro.js";
 

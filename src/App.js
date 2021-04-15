@@ -1,14 +1,14 @@
 //https://www.freecodecamp.org/news/a-complete-beginners-guide-to-react-router-include-router-hooks/
 
 // CSS
-import "./css/App.css";
+import "./App.css";
 
 // React
 import React from "react";
 
 // Noodlewall navbar and footer as React components
-import Navbar from "./Navbar.js";
-import Footer from "./Footer.js";
+import Navbar from "./Common/Navbar.js";
+import Footer from "./Common/Footer.js";
 
 // Noodlewall pages as React components
 import Landing from "./Landing/Landing.js";
@@ -21,7 +21,7 @@ import User from "./User/User.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Get local JSON file
-import { noodleData, userData } from "./noodleData.js";
+import { noodleData, userData } from "./Common/noodleData.js";
 
 // Main App class
 // Uses React Router to show different components

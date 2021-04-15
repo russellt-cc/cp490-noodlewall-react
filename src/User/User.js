@@ -1,6 +1,6 @@
 import React from "react";
-import "./css/User.css";
-import UserRating from "../UserRating.js";
+import "./User.css";
+import UserRating from "../Common/UserRating.js";
 
 // The user profile page
 class User extends React.Component {

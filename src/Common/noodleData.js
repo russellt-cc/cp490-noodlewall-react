@@ -1,10 +1,10 @@
 //images
-import fishing from "./images/fishing-crop.png";
-import bowling from "./images/bowling-crop.png";
-import cooking from "./images/cooking-crop.png";
+import fishing from "../images/fishing-crop.png";
+import bowling from "../images/bowling-crop.png";
+import cooking from "../images/cooking-crop.png";
 //user images
-import pam from "./images/user-pam.png";
-import rogue from "./images/user-rogue.png";
+import pam from "../images/user-pam.png";
+import rogue from "../images/user-rogue.png";
 
 // The noodle data
 // Replace with database
