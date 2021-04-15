@@ -6,10 +6,13 @@ class DetailsProgress extends React.Component {
   getStatusMessage1 = () => {
     const {
       noodleStatus: status,
-      noodleTicketsSold: sold,
-      noodleMinTickets: min,
-      noodleMaxTickets: max,
+      noodleTicketsSold,
+      noodleMinTickets,
+      noodleMaxTickets,
     } = this.props.thisNoodle;
+    const sold = parseInt(noodleTicketsSold);
+    const min = parseInt(noodleMinTickets);
+    const max = parseInt(noodleMaxTickets);
     if (status === "dream") {
       return (
         <p className="status_message_1">
@@ -52,10 +55,13 @@ class DetailsProgress extends React.Component {
   getStatusMessage2 = () => {
     const {
       noodleStatus: status,
-      noodleTicketsSold: sold,
-      noodleMinTickets: min,
-      noodleMaxTickets: max,
+      noodleTicketsSold,
+      noodleMinTickets,
+      noodleMaxTickets,
     } = this.props.thisNoodle;
+    const sold = parseInt(noodleTicketsSold);
+    const min = parseInt(noodleMinTickets);
+    const max = parseInt(noodleMaxTickets);
     if (status === "dream") {
       return (
         <p className="status_message_2">
@@ -112,6 +118,9 @@ class DetailsProgress extends React.Component {
       noodleMaxTickets,
       noodleMinTickets,
     } = this.props.thisNoodle;
+    const sold = parseInt(noodleTicketsSold);
+    const min = parseInt(noodleMinTickets);
+    const max = parseInt(noodleMaxTickets);
     const status_classes = this.props.status_classes;
     return (
       <div className="details_status_container_container">
@@ -119,9 +128,7 @@ class DetailsProgress extends React.Component {
         <div className="details_status_container">
           <span
             className={`details_status_dream ${status_classes.dream} ${
-              noodleStatus !== "dream" && noodleTicketsSold < noodleMaxTickets
-                ? "unfinished"
-                : "finished"
+              noodleStatus !== "dream" && sold < max ? "unfinished" : "finished"
             }`}
             onClick={() => {
               alert(
@@ -166,9 +173,7 @@ class DetailsProgress extends React.Component {
         </div>
         <div
           className={`details_progress_container ${
-            noodleStatus !== "dream" && noodleTicketsSold < noodleMaxTickets
-              ? "visible"
-              : "hidden"
+            noodleStatus !== "dream" && sold < max ? "visible" : "hidden"
           }`}
         >
           <meter
@@ -177,20 +182,20 @@ class DetailsProgress extends React.Component {
           ></meter>
           <meter
             className={`details_progress_not_happening ${status_classes.notHappening}`}
-            max={noodleMinTickets}
-            value={noodleTicketsSold}
+            max={min}
+            value={sold}
           ></meter>
           <meter
             className={`details_progress_happening ${status_classes.happening}`}
-            min={noodleMinTickets}
-            max={noodleMaxTickets}
-            value={noodleTicketsSold}
+            min={min}
+            max={max}
+            value={sold}
           ></meter>
           <meter
             className={`details_progress_sold_out ${status_classes.soldOut}`}
-            min={noodleMaxTickets}
-            max={parseInt(noodleMaxTickets) + 1}
-            value={parseInt(noodleTicketsSold) + 1}
+            min={max}
+            max={parseInt(max) + 1}
+            value={parseInt(sold) + 1}
           ></meter>
         </div>
         {this.getStatusMessage2()}

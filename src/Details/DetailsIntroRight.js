@@ -19,8 +19,20 @@ class DetailsIntroRight extends React.Component {
       noodleTags,
       userID: hostID,
     } = this.props.thisNoodle;
+
+    const sold = parseInt(noodleTicketsSold);
+    const min = parseInt(noodleMinTickets);
+    const max = parseInt(noodleMaxTickets);
+
+    let hostName = undefined;
+
+    if (this.props.thisHost !== undefined) {
+      hostName = this.props.thisHost.userName;
+    }
+
     // Destructure the user details and rename
-    const { userName: hostName } = this.props.thisHost;
+    // const { userName: hostName } = this.props.thisHost;
+
     // Get the type for tag links
     const filterType = this.props.filterType;
 
@@ -36,14 +48,12 @@ class DetailsIntroRight extends React.Component {
           <p class={element_classes.noodleTicketPrice}>
             Ticket Price: {noodlePrice}
           </p>
-          <p class={element_classes.noodleTicketsSold}>
-            Tickets Sold: {noodleTicketsSold}
-          </p>
+          <p class={element_classes.noodleTicketsSold}>Tickets Sold: {sold}</p>
           <p class={element_classes.noodleMinTickets}>
-            Minimum Tickets Sold: {noodleMinTickets}
+            Minimum Tickets Sold: {min}
           </p>
           <p class={element_classes.noodleMaxTickets}>
-            Maximum Tickets Sold: {noodleMaxTickets}
+            Maximum Tickets Sold: {max}
           </p>
           <div id="details_tags">
             {noodleTags.map((item, i) => {
@@ -72,9 +82,7 @@ class DetailsIntroRight extends React.Component {
           </Link>
           <button
             className={`noodle_button ${
-              noodleTicketsSold < noodleMaxTickets
-                ? element_classes.noodleBuyButton
-                : "hidden"
+              sold < max ? element_classes.noodleBuyButton : "hidden"
             }`}
             id="details_buy_button"
             onClick={() => {

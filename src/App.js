@@ -34,32 +34,21 @@ class App extends React.Component {
       isLoaded: false,
       noodleData: [],
       userData: [],
-      currentUserID: 3,
+      currentUserID: 1,
+      useAPI: true,
+      apiURL: "http://www.gatkinson.site/noodlewall/product/",
+      apiCreate: "create.php",
+      apiRead: "read.php",
+      apiUpdate: "update.php",
+      apiDelete: "delete.php",
     };
   }
   componentDidMount() {
     // Configure whether we are using the API for data
-    const useAPI = false;
-    const apiURL = "http://www.gatkinson.site/noodlewall/product/read.php";
+    const { useAPI } = this.state;
     if (useAPI) {
       // AJAX request to PHP server
-      fetch(apiURL)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            this.setState({
-              isLoaded: true,
-              noodleData: result.events,
-              userData: result.users,
-            });
-          },
-          (error) => {
-            this.setState({
-              isLoaded: true,
-              error,
-            });
-          }
-        );
+      this.read();
     } else {
       // Get the JSON data and put in state
       this.setState({
@@ -69,6 +58,35 @@ class App extends React.Component {
       });
     }
   }
+  // Methods to handle CRUD
+  // Create
+
+  // Read
+  read = () => {
+    const { apiURL, apiRead } = this.state;
+    fetch(apiURL + apiRead)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            noodleData: result.events,
+            userData: result.users,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
+  // Update
+
+  // Delete
+
+  // Render method
   render() {
     // Destructure the props and state
     const { error, isLoaded, noodleData, userData, currentUserID } = this.state;

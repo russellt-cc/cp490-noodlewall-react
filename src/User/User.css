@@ -14,6 +14,7 @@ main#user_profile {
   right: 0px;
   text-align: center;
   height: 50px;
+  z-index: 1;
 }
 
 #user_profile #user_profile_intro {

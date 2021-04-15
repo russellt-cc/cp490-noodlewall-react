@@ -27,6 +27,9 @@ class DetailsIntro extends React.Component {
       noodleMaxTickets,
       noodleTicketsSold,
     } = this.state.thisNoodle;
+    const sold = parseInt(noodleTicketsSold);
+    const min = parseInt(noodleMinTickets);
+    const max = parseInt(noodleMaxTickets);
     let status_classes = {
       dream: "notChecked",
       notHappening: "notChecked",
@@ -35,10 +38,10 @@ class DetailsIntro extends React.Component {
     };
     if (noodleStatus === "dream") {
       status_classes.dream = "passed checked";
-    } else if (noodleTicketsSold < noodleMinTickets) {
+    } else if (sold < min) {
       status_classes.dream = "passed";
       status_classes.notHappening = "passed checked";
-    } else if (noodleTicketsSold < noodleMaxTickets) {
+    } else if (sold < max) {
       status_classes.dream = "passed";
       status_classes.notHappening = "passed";
       status_classes.happening = "passed checked";
