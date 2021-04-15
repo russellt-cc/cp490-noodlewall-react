@@ -23,7 +23,7 @@ class Create extends React.Component {
     })[0];
     const { userName, userBio, userBioLong } = thisUser;
 
-    // Put data in state
+    // Put default data in state for testing
     this.state = {
       noodleStatus: noodleStatus,
       userName: userName,
@@ -42,6 +42,9 @@ class Create extends React.Component {
       noodleAddTag: "noodle",
       noodleImage: "https://picsum.photos/1280/720",
       noodleTicketPrice: "10.00",
+      noodleMinTickets: 5,
+      noodleMaxTickets: 10,
+      noodleCutoff: "2021-04-30",
     };
   }
 
@@ -105,6 +108,7 @@ class Create extends React.Component {
       noodleTicketPrice,
       noodleMinTickets,
       noodleMaxTickets,
+      noodleCutoff,
     } = this.state;
 
     // Set data for the sections
@@ -162,7 +166,18 @@ class Create extends React.Component {
           ? "finished"
           : "unfinished",
     };
-    const section7 = { name: "Make It Happen", className: "unfinished" };
+    const section7 = {
+      name: "Make It Happen",
+      className:
+        this.state.noodleMinTickets !== undefined &&
+        this.state.noodleMinTickets !== "" &&
+        this.state.noodleMaxTickets !== undefined &&
+        this.state.noodleMaxTickets !== "" &&
+        this.state.noodleCutoff !== undefined &&
+        this.state.noodleCutoff !== ""
+          ? "finished"
+          : "unfinished",
+    };
 
     // Return the create page
     return (
@@ -438,11 +453,32 @@ class Create extends React.Component {
             <p>Adjust the secret sauce details to make the noodle stick.</p>
             <div>
               <label for="noodleMinTickets">Minimum Tickets Required</label>
-              <input type="number" name="noodleMinTickets"></input>
+              <input
+                type="number"
+                min="1"
+                step="1"
+                max="2500"
+                name="noodleMinTickets"
+                value={noodleMinTickets}
+                onChange={this.handleChange}
+              ></input>
               <label for="noodleMaxTickets">Maximum Tickets Available</label>
-              <input type="number" name="noodleMaxTickets"></input>
+              <input
+                type="number"
+                min="1"
+                step="1"
+                max="2500"
+                name="noodleMaxTickets"
+                value={noodleMaxTickets}
+                onChange={this.handleChange}
+              ></input>
               <label for="noodleCutoff">Cutoff Date</label>
-              <input type="date" name="noodleCutoff"></input>
+              <input
+                type="date"
+                name="noodleCutoff"
+                value={noodleCutoff}
+                onChange={this.handleChange}
+              ></input>
             </div>
           </section>
           <div id="create_submit_bar">
