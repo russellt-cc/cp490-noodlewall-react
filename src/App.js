@@ -26,7 +26,7 @@ import {
 } from "react-router-dom";
 
 // Get local JSON file
-import { noodleData, userData } from "./Common/noodleData.js";
+import { noodleData, userData } from "./Data/noodleData.js";
 
 // Main App class
 // Uses React Router to show different components
