@@ -140,3 +140,14 @@ main#create {
   pointer-events: none;
   user-select: none;
 }
+
+/* style for mobile */
+
+@media screen and (max-width: 800px) {
+  #create #create_nav_progress_bar {
+    display: none;
+  }
+  main#create {
+    margin-top: 70px;
+  }
+}
