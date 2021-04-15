@@ -1,6 +1,8 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import "./User.css";
 import UserRating from "../Common/UserRating.js";
+import NoodleList from "../Common/NoodleList.js";
 
 // The user profile page
 class User extends React.Component {
@@ -142,6 +144,28 @@ class User extends React.Component {
         </main>
       );
     } else {
+      const eventFilters = {
+        type: "events",
+        userID: this.state.userData.userID,
+      };
+      const userEvents = (
+        <NoodleList
+          noodleData={this.props.noodleData}
+          userData={this.props.userData}
+          filters={eventFilters}
+        />
+      );
+      const dreamFilters = {
+        type: "dreams",
+        userID: this.state.userData.userID,
+      };
+      const userDreams = (
+        <NoodleList
+          noodleData={this.props.noodleData}
+          userData={this.props.userData}
+          filters={dreamFilters}
+        />
+      );
       return (
         <main id="user_profile">
           <section id="user_profile_intro">
@@ -170,7 +194,23 @@ class User extends React.Component {
             </div>
           </section>
 
-          <section id="user_noodles"></section>
+          {userEvents ? (
+            <section id="user_events">
+              <p>Events by {this.state.userData.userName}</p>
+              {userEvents}
+            </section>
+          ) : (
+            <></>
+          )}
+
+          {userDreams ? (
+            <section id="user_dreams">
+              <p>Dreams by {this.state.userData.userName}</p>
+              {userDreams}
+            </section>
+          ) : (
+            <></>
+          )}
         </main>
       );
     }

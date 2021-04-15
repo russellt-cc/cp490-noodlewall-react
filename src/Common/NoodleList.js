@@ -28,6 +28,12 @@ class NoodleList extends React.Component {
         return false;
       }
     }
+    // Filter by user
+    if (filters.userID !== undefined) {
+      if (parseInt(item.userID) !== parseInt(filters.userID)) {
+        return false;
+      }
+    }
     // If the filters match, return the data
     return true;
   };
@@ -35,21 +41,24 @@ class NoodleList extends React.Component {
   render() {
     // Destructure the props
     const { filters, noodleData, userData } = this.props;
+    // Let to count our filtered noodles
+    let noodleCount = 0;
     // Create the noodle list and start looping through entries
-    // Return the list of noodles that match filters
-    return (
-      // div for the list of dreams and events
+    // Create the list of noodles that match filters
+    const noodleList = (
       <div className="noodle_list">
         {/* Mapping array of objects.
-          Send the data to filter noodles function
-          to return the data or not
-          depending on filters. */}
+      Send the data to filter noodles function
+      to return the data or not
+      depending on filters. */}
         {noodleData.map((item, i) => {
           // If the filters match, return the data
           if (this.filterNoodles(item, filters)) {
             // Get the user data
             // Covert to zero-based index
             const hostData = userData[item.userID - 1];
+            // Increment our count
+            noodleCount++;
             return (
               <NoodleCard
                 data={item}
@@ -64,6 +73,13 @@ class NoodleList extends React.Component {
         })}
       </div>
     );
+    if (noodleCount > 0) {
+      // Return the list if we have data
+      return noodleList;
+    } else {
+      // Return empty element
+      return <></>;
+    }
   }
 }
 

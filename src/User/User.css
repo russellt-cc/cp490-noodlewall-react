@@ -1,3 +1,10 @@
+main#user_profile {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding-top: 40px;
+}
+
 #user_profile #user_profile_intro {
   display: flex;
   justify-content: space-evenly;
@@ -40,4 +47,11 @@
 
 #user_profile #user_profile_intro .noodle_button {
   width: 50%;
+}
+
+#user_profile #user_events,
+#user_profile #user_dreams {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
