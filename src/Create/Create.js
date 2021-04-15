@@ -1,3 +1,5 @@
+//https://medium.com/@650egor/react-30-day-challenge-day-2-image-upload-preview-2d534f8eaaa
+
 import "./Create.css";
 import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
@@ -36,12 +38,24 @@ class Create extends React.Component {
       noodleTime: "12:00",
       noodleTags: ["test1", "test2", "test3"],
       noodleAddTag: "noodle",
+      noodleImage: "",
     };
   }
 
   handleChange = (event) => {
     const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    let value = undefined;
+    switch (target.type) {
+      case "checkbox":
+        value = target.checked;
+        break;
+      case "file":
+        value = URL.createObjectURL(target.files[0]);
+        break;
+      default:
+        value = target.value;
+        break;
+    }
     const name = target.name;
     this.setState({
       [name]: value,
@@ -132,7 +146,13 @@ class Create extends React.Component {
           ? "finished"
           : "unfinished",
     };
-    const section5 = { name: "Upload Images", className: "unfinished" };
+    const section5 = {
+      name: "Upload Images",
+      className:
+        this.state.noodleImage !== undefined && this.state.noodleImage !== ""
+          ? "finished"
+          : "unfinished",
+    };
     const section6 = { name: "Create Tickets", className: "unfinished" };
     const section7 = { name: "Make It Happen", className: "unfinished" };
 
@@ -373,7 +393,13 @@ class Create extends React.Component {
             </p>
             <div>
               <label for="noodleImage">Event Image</label>
-              <input type="file" accept="image/*" name="noodleImage"></input>
+              <input
+                type="file"
+                accept="image/*"
+                name="noodleImage"
+                onChange={this.handleChange}
+              ></input>
+              <img src={this.state.noodleImage} />
             </div>
           </section>
           <section id="tickets" className={section6.className}>

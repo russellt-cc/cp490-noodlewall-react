@@ -7,6 +7,10 @@
   border: 3px solid var(--events-color);
 }
 
+#create img {
+  max-width: 200px;
+}
+
 #create #create_nav_progress_bar {
   display: flex;
   flex-direction: column;
