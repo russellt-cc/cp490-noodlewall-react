@@ -59,12 +59,19 @@ class App extends React.Component {
         case "dream":
         case "event":
           // AJAX request to PHP server
-
           const { apiURL, apiCreate } = this.state;
-          fetch(apiURL + apiCreate).then((result) => console.log(result));
-
+          fetch(apiURL + apiCreate, {
+            method: "POST",
+            body: JSON.stringify(data),
+          }).then(
+            (result) => {
+              console.log(result);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
           break;
-
         default:
           alert("Error: Unknown Type");
           break;

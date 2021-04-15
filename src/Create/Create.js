@@ -278,7 +278,7 @@ class Create extends React.Component {
             </h1>
             <p>Enter some information about who is organizing the event.</p>
             <div>
-              <label for="userName">Organizer Name</label>
+              <label htmlFor="userName">Organizer Name</label>
               <Textbox
                 attributesInput={{ name: "userName" }}
                 value={userName}
@@ -288,7 +288,7 @@ class Create extends React.Component {
               />
             </div>
             <div>
-              <label for="userBio">Organizer Detail Short</label>
+              <label htmlFor="userBio">Organizer Detail Short</label>
               <Textarea
                 attributesInput={{ name: "userBio", rows: 3 }}
                 value={userBio}
@@ -298,7 +298,7 @@ class Create extends React.Component {
               />
             </div>
             <div>
-              <label for="userBioLong">Organizer Detail Long</label>
+              <label htmlFor="userBioLong">Organizer Detail Long</label>
               <Textarea
                 attributesInput={{ name: "userBioLong", rows: 5 }}
                 value={userBioLong}
@@ -316,7 +316,7 @@ class Create extends React.Component {
               Enter the name of the event and some essential details about it.
             </p>
             <div>
-              <label for="noodleTitle">Event Name</label>
+              <label htmlFor="noodleTitle">Event Name</label>
               <Textbox
                 attributesInput={{ name: "noodleTitle" }}
                 value={noodleTitle}
@@ -326,7 +326,7 @@ class Create extends React.Component {
               />
             </div>
             <div>
-              <label for="noodleSummary">Event Summary</label>
+              <label htmlFor="noodleSummary">Event Summary</label>
               <Textarea
                 attributesInput={{ name: "noodleSummary", rows: 3 }}
                 value={noodleSummary}
@@ -336,7 +336,7 @@ class Create extends React.Component {
               />
             </div>
             <div>
-              <label for="noodleDescription">Event Description</label>
+              <label htmlFor="noodleDescription">Event Description</label>
               <Textarea
                 attributesInput={{ name: "noodleDescription", rows: 5 }}
                 value={noodleDescription}
@@ -346,7 +346,7 @@ class Create extends React.Component {
               />
             </div>
             <div id="noodle_tags_container">
-              <label for="noodleAddTag">Event Tags</label>
+              <label htmlFor="noodleAddTag">Event Tags</label>
               <div id="noodle_add_tags">
                 <Textbox
                   attributesInput={{
@@ -371,7 +371,7 @@ class Create extends React.Component {
               <ul id="noodleTagsList">
                 {noodleTags.map((item, i) => {
                   return (
-                    <li>
+                    <li key={i}>
                       <span>{item}</span>
                       <button
                         type="button"
@@ -393,7 +393,7 @@ class Create extends React.Component {
             </h1>
             <p>Where is your event located?</p>
             <div>
-              <label for="noodleLocation">Event Location</label>
+              <label htmlFor="noodleLocation">Event Location</label>
               <Textbox
                 attributesInput={{ name: "noodleLocation" }}
                 value={noodleLocation}
@@ -401,7 +401,7 @@ class Create extends React.Component {
                   this.setState({ noodleLocation });
                 }}
               />
-              <label for="noodleDirections">Event Directions</label>
+              <label htmlFor="noodleDirections">Event Directions</label>
               <Textarea
                 attributesInput={{ name: "noodleDirections", rows: 5 }}
                 value={noodleDirections}
@@ -417,7 +417,7 @@ class Create extends React.Component {
             </h1>
             <p>Set the date and time of the event.</p>
             <div>
-              <label for="noodleDate">Event Date</label>
+              <label htmlFor="noodleDate">Event Date</label>
               <input
                 type="date"
                 name="noodleDate"
@@ -426,7 +426,7 @@ class Create extends React.Component {
               ></input>
             </div>
             <div>
-              <label for="noodleTime">Event Time</label>
+              <label htmlFor="noodleTime">Event Time</label>
               <input
                 type="time"
                 name="noodleTime"
@@ -444,7 +444,7 @@ class Create extends React.Component {
               event page.
             </p>
             <div>
-              <label for="noodleImage">Event Image</label>
+              <label htmlFor="noodleImage">Event Image</label>
               <input
                 type="file"
                 accept="image/*"
@@ -460,7 +460,7 @@ class Create extends React.Component {
             </h1>
             <p>Create ticket types available for the event.</p>
             <div>
-              <label for="noodleTicketPrice">Ticket Price</label>
+              <label htmlFor="noodleTicketPrice">Ticket Price</label>
               <div id="noodle_ticket_price_container">
                 <span>$</span>
                 <input
@@ -475,13 +475,13 @@ class Create extends React.Component {
               </div>
             </div>
           </section>
-          <section id="secret_sauce" class={section7.className}>
+          <section id="secret_sauce" className={section7.className}>
             <h1 id="section7" className="create_section_heading">
               {section7.name}
             </h1>
             <p>Adjust the secret sauce details to make the noodle stick.</p>
             <div>
-              <label for="noodleMinTickets">Minimum Tickets Required</label>
+              <label htmlFor="noodleMinTickets">Minimum Tickets Required</label>
               <input
                 type="number"
                 min="1"
@@ -491,7 +491,9 @@ class Create extends React.Component {
                 value={noodleMinTickets}
                 onChange={this.handleChange}
               ></input>
-              <label for="noodleMaxTickets">Maximum Tickets Available</label>
+              <label htmlFor="noodleMaxTickets">
+                Maximum Tickets Available
+              </label>
               <input
                 type="number"
                 min="1"
@@ -501,7 +503,7 @@ class Create extends React.Component {
                 value={noodleMaxTickets}
                 onChange={this.handleChange}
               ></input>
-              <label for="noodleCutoff">Cutoff Date</label>
+              <label htmlFor="noodleCutoff">Cutoff Date</label>
               <input
                 type="date"
                 name="noodleCutoff"

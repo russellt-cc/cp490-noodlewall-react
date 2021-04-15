@@ -77,12 +77,12 @@ class DetailsProgress extends React.Component {
       return (
         <p className="status_message_2">
           Only{" "}
-          <span class="dreams_color_text">
+          <span className="dreams_color_text">
             <strong>{diff}</strong>
           </span>{" "}
           ticket
           {diff > 1 ? "s" : ""} left to{" "}
-          <span class="events_color_text">
+          <span className="events_color_text">
             <strong>make it happen!</strong>
           </span>
         </p>
@@ -92,7 +92,7 @@ class DetailsProgress extends React.Component {
       return (
         <p className="status_message_2">
           Only{" "}
-          <span class="events_color_text">
+          <span className="events_color_text">
             <strong>{diff}</strong>
           </span>{" "}
           ticket{diff > 1 ? "s" : ""} remaining!

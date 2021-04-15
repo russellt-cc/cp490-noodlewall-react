@@ -40,19 +40,23 @@ class DetailsIntroRight extends React.Component {
       <div id="details_intro_right" className="details_intro_column">
         <h3>{noodleStatus === "dream" ? "Dream " : ""}Event Details</h3>
         <div id="details_summary">
-          <p class={element_classes.noodleLocation}>
+          <p className={element_classes.noodleLocation}>
             Location: {noodleLocation}
           </p>
-          <p class={element_classes.noodleDate}>Date and Time: {noodleDate}</p>
-          <p class={element_classes.noodleTime}>{noodleTime}</p>
-          <p class={element_classes.noodleTicketPrice}>
+          <p className={element_classes.noodleDate}>
+            Date and Time: {noodleDate}
+          </p>
+          <p className={element_classes.noodleTime}>{noodleTime}</p>
+          <p className={element_classes.noodleTicketPrice}>
             Ticket Price: {noodlePrice}
           </p>
-          <p class={element_classes.noodleTicketsSold}>Tickets Sold: {sold}</p>
-          <p class={element_classes.noodleMinTickets}>
+          <p className={element_classes.noodleTicketsSold}>
+            Tickets Sold: {sold}
+          </p>
+          <p className={element_classes.noodleMinTickets}>
             Minimum Tickets Sold: {min}
           </p>
-          <p class={element_classes.noodleMaxTickets}>
+          <p className={element_classes.noodleMaxTickets}>
             Maximum Tickets Sold: {max}
           </p>
           <div id="details_tags">
