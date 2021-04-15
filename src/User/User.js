@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./User.css";
 import UserRating from "../Common/UserRating.js";
 import NoodleList from "../Common/NoodleList.js";
@@ -194,7 +195,11 @@ class User extends React.Component {
             </div>
           </section>
 
-          {userEvents ? (
+          {/* If the user has any events, show them here. 
+          Use ReactDOMServer.renderToString to return a truthy or falsey 
+          value from the userEvents JSX. Include Router tags because we have Link
+          components inside the userEvents component if it returns true. */}
+          {ReactDOMServer.renderToString(<Router>{userEvents}</Router>) ? (
             <section id="user_events">
               <p>Events by {this.state.userData.userName}</p>
               {userEvents}
@@ -203,7 +208,8 @@ class User extends React.Component {
             <></>
           )}
 
-          {userDreams ? (
+          {/* If the user has any dreams, show them here */}
+          {ReactDOMServer.renderToString(<Router>{userDreams}</Router>) ? (
             <section id="user_dreams">
               <p>Dreams by {this.state.userData.userName}</p>
               {userDreams}
