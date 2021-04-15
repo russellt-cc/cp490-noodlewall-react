@@ -34,6 +34,8 @@ class Create extends React.Component {
       noodleDirections: "There aren't any.",
       noodleDate: "2021-05-30",
       noodleTime: "12:00",
+      noodleTags: ["test1", "test2", "test3"],
+      noodleAddTag: "noodle",
     };
   }
 
@@ -54,6 +56,22 @@ class Create extends React.Component {
     }
   };
 
+  addNoodleTag = () => {
+    const { noodleTags, noodleAddTag } = this.state;
+    if (!noodleTags.includes(noodleAddTag)) {
+      const index = noodleTags.length;
+      let splicedNoodles = [...noodleTags];
+      splicedNoodles.splice(index, 0, noodleAddTag);
+      this.setState({ noodleTags: splicedNoodles });
+    }
+  };
+
+  removeNoodleTag = (index) => {
+    let splicedNoodles = [...this.state.noodleTags];
+    splicedNoodles.splice(index, 1);
+    this.setState({ noodleTags: splicedNoodles });
+  };
+
   render() {
     // Get data from state
     const {
@@ -65,6 +83,8 @@ class Create extends React.Component {
       noodleLocation,
       noodleDirections,
       noodleTitle,
+      noodleTags,
+      noodleAddTag,
     } = this.state;
 
     // Set data for the sections
@@ -252,6 +272,47 @@ class Create extends React.Component {
                   this.setState({ noodleDescription });
                 }}
               />
+            </div>
+            <div id="noodle_tags_container">
+              <label for="noodleAddTag">Event Tags</label>
+              <div id="noodle_add_tags">
+                <Textbox
+                  attributesInput={{
+                    name: "noodleAddTag",
+                    id: "noodleAddTagInput",
+                  }}
+                  value={noodleAddTag}
+                  onChange={(noodleAddTag, e) => {
+                    this.setState({ noodleAddTag });
+                  }}
+                />
+                <button
+                  type="button"
+                  id="noodleAddTagButton"
+                  onClick={() => {
+                    this.addNoodleTag();
+                  }}
+                >
+                  Add Tag
+                </button>
+              </div>
+              <ul id="noodleTagsList">
+                {noodleTags.map((item, i) => {
+                  return (
+                    <li>
+                      <span>{item}</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          this.removeNoodleTag(i);
+                        }}
+                      >
+                        X
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </section>
           <section id="location" className={section3.className}>

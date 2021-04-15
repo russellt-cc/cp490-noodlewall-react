@@ -87,6 +87,7 @@ main#create {
 #create .create_section_heading {
   padding-top: 200px;
   margin-top: -200px;
+  z-index: -1;
 }
 
 #create section {
@@ -121,6 +122,52 @@ main#create {
   margin: 0px;
   position: relative;
   padding: 10px;
+}
+
+#create label {
+  padding-bottom: 10px;
+}
+
+#create #noodle_add_tags {
+  display: flex;
+  column-gap: 10px;
+}
+
+#create #noodleAddTagInput,
+#create #noodleAddTagButton {
+  width: 200px;
+  border-radius: 10px;
+}
+
+#create #noodleAddTagButton {
+  border: none;
+  background-color: var(--events-color);
+  color: white;
+}
+
+#create #noodleTagsList {
+  list-style-type: none;
+  display: flex;
+  justify-content: left;
+  column-gap: 10px;
+  padding-inline: 0px;
+}
+
+#create #noodleTagsList > li {
+  border: 1px solid var(--events-color);
+  width: 200px;
+  display: inline-flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#create #noodleTagsList button {
+  color: white;
+  background-color: var(--events-color);
+  border: none;
+  border-radius: 10px;
 }
 
 #create #create_submit_bar {
