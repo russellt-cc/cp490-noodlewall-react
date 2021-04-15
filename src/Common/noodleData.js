@@ -2,6 +2,11 @@
 import fishing from "../images/fishing-crop.png";
 import bowling from "../images/bowling-crop.png";
 import cooking from "../images/cooking-crop.png";
+import pewdiepie from "../images/pewdiepie.png";
+import jamie_oliver from "../images/jamie-oliver.jpg";
+import aimee_song from "../images/aimee-song.jpg";
+import marques_brownlee from "../images/marques-brownlee.jpg";
+import tfue from "../images/tfue.jpg";
 //user images
 import pam from "../images/user-pam.png";
 import rogue from "../images/user-rogue.png";
@@ -46,6 +51,96 @@ export const noodleData = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
     noodleTags: ["cooking", "food", "hobby", "kids"],
     noodleImage: cooking,
+  },
+  {
+    noodleID: 4,
+    noodleTitle: "PewDiePie Live Comedy",
+    userID: 3,
+    noodleStatus: "event",
+    noodleDescription:
+      "Felix Arvid Ulf Kjellberg, known online as PewDiePie, is a Swedish YouTuber and comedian, known primarily for his Let's Play videos and comedic formatted shows.",
+    noodleTags: ["comedy", "youtube"],
+    noodleImage: pewdiepie,
+    noodleLocation: "Sydney, Ontario",
+    noodleDate: "2021-05-15",
+    noodleTime: "8:30AM-5:00PM",
+    noodlePrice: "$17.00",
+    noodleMinTickets: 5,
+    noodleMaxTickets: 10,
+    noodleTicketsSold: 0,
+    noodleCutoff: "2021-04-30",
+  },
+  {
+    noodleID: 5,
+    noodleTitle: "Jamie Oliver Cooks",
+    userID: 3,
+    noodleStatus: "event",
+    noodleDescription:
+      "Jamie Trevor Oliver MBE is a British chef and restaurateur. He is known for his approachable cuisine, which has led him to front numerous television shows and open many restaurants.",
+    noodleTags: ["cooking", "food"],
+    noodleImage: jamie_oliver,
+    noodleLocation: "Sydney, Ontario",
+    noodleDate: "2021-05-15",
+    noodleTime: "8:30AM-5:00PM",
+    noodlePrice: "$17.00",
+    noodleMinTickets: 5,
+    noodleMaxTickets: 10,
+    noodleTicketsSold: 0,
+    noodleCutoff: "2021-04-30",
+  },
+  {
+    noodleID: 6,
+    noodleTitle: "Aimee Song Fashion Convention",
+    userID: 3,
+    noodleStatus: "event",
+    noodleDescription:
+      "Aimee Song is an American fashion blogger and fashion designer. She has over 2 million page views per month on her blog called Song of Style and five million Instagram followers. She started blogging in 2008 while studying Interior Architecture in San Francisco.",
+    noodleTags: ["fashion", "instagram"],
+    noodleImage: aimee_song,
+    noodleLocation: "Sydney, Ontario",
+    noodleDate: "2021-05-15",
+    noodleTime: "8:30AM-5:00PM",
+    noodlePrice: "$17.00",
+    noodleMinTickets: 5,
+    noodleMaxTickets: 10,
+    noodleTicketsSold: 0,
+    noodleCutoff: "2021-04-30",
+  },
+  {
+    noodleID: 7,
+    noodleTitle: "Marques Brownlee Tech Convention",
+    userID: 3,
+    noodleStatus: "event",
+    noodleDescription:
+      "Marques Keith Brownlee, also known professionally as MKBHD, is an American YouTuber and professional ultimate frisbee player, best known for his technology-focused videos as well as his podcast, Waveform: The MKBHD Podcast. The name of his YouTube channel is a concatenation of MKB and HD.",
+    noodleTags: ["tech", "youtube"],
+    noodleImage: marques_brownlee,
+    noodleLocation: "Sydney, Ontario",
+    noodleDate: "2021-05-15",
+    noodleTime: "8:30AM-5:00PM",
+    noodlePrice: "$17.00",
+    noodleMinTickets: 5,
+    noodleMaxTickets: 10,
+    noodleTicketsSold: 0,
+    noodleCutoff: "2021-04-30",
+  },
+  {
+    noodleID: 8,
+    noodleTitle: "Tfue Fortnite Tournament",
+    userID: 3,
+    noodleStatus: "event",
+    noodleDescription:
+      "Turner Tenney, better known by his online alias Tfue, is an American streamer and esports player, best known for playing Fortnite.",
+    noodleTags: ["gaming", "esports", "fortnite", "twitch"],
+    noodleImage: tfue,
+    noodleLocation: "Sydney, Ontario",
+    noodleDate: "2021-05-15",
+    noodleTime: "8:30AM-5:00PM",
+    noodlePrice: "$17.00",
+    noodleMinTickets: 5,
+    noodleMaxTickets: 10,
+    noodleTicketsSold: 0,
+    noodleCutoff: "2021-04-30",
   },
 ];
 

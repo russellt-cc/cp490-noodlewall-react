@@ -22,7 +22,10 @@
   padding-left: 0px;
   padding-right: 0px;
   border-radius: 20px;
-  width: 100%;
+  width: 294px;
+  height: 165.38px;
+  object-fit: cover;
+  object-position: 100% 0%;
 }
 
 .noodle_card.dream {

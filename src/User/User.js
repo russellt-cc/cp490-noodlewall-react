@@ -201,7 +201,7 @@ class User extends React.Component {
           components inside the userEvents component if it returns true. */}
           {ReactDOMServer.renderToString(<Router>{userEvents}</Router>) ? (
             <section id="user_events">
-              <p>Events by {this.state.userData.userName}</p>
+              <h3>Events by {this.state.userData.userName}</h3>
               {userEvents}
             </section>
           ) : (
