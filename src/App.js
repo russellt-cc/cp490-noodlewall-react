@@ -50,12 +50,13 @@ class App extends React.Component {
   // Methods to handle CRUD
   // Create
 
-  create = (type) => {
+  create = (type, data) => {
     // Check whether we are using the API for data
     const { useAPI } = this.state;
     if (useAPI) {
       // AJAX request to PHP server
       alert(type);
+      console.log(data);
     } else {
       // Just show a message
       alert("You can't create data when using the static JSON data.");

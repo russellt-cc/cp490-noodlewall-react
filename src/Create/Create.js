@@ -71,9 +71,31 @@ class Create extends React.Component {
   create = (status) => {
     switch (status) {
       case "dream":
-        this.props.onCreate(status);
+        // Get the required data
+        const { noodleTitle, noodleDescription, noodleTags } = this.state;
+        const { currentUserID: userID } = this.props;
+        // Validate the required data
+        if (
+          noodleTitle !== undefined &&
+          noodleTitle !== "" &&
+          noodleDescription !== undefined &&
+          noodleDescription !== "" &&
+          noodleTags.length > 0
+        ) {
+          // Create the object to be sent to the API
+          const noodleData = {
+            noodleTitle: noodleTitle,
+            userID: userID,
+            noodleStatus: status,
+            noodleDescription: noodleDescription,
+            noodleTags: noodleTags,
+          };
+          // Send the data to the main create function
+          this.props.onCreate(status, noodleData);
+        } else {
+          alert("You must fill in the basic information to save as a dream!");
+        }
         break;
-
       case "event":
         this.props.onCreate(status);
         break;
