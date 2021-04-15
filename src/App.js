@@ -18,7 +18,12 @@ import Create from "./Create/Create.js";
 import User from "./User/User.js";
 
 // React Router
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 // Get local JSON file
 import { noodleData, userData } from "./Common/noodleData.js";
@@ -36,11 +41,14 @@ class App extends React.Component {
       userData: [],
       currentUserID: 1,
       useAPI: true,
-      apiURL: "http://www.gatkinson.site/noodlewall/product/",
+      apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
       apiRead: "read.php",
       apiUpdate: "update.php",
       apiDelete: "delete.php",
+      apiNoodlePath: "event/",
+      apiUserPath: "user/",
+      redirect: null,
     };
   }
   componentDidMount() {
@@ -52,30 +60,41 @@ class App extends React.Component {
 
   create = (type, data) => {
     // Check whether we are using the API for data
-    const { useAPI } = this.state;
+    const { useAPI, apiNoodlePath, apiUserPath } = this.state;
     if (useAPI) {
+      let apiPath = "product";
       // Check the type
       switch (type) {
         case "dream":
         case "event":
-          // AJAX request to PHP server
-          const { apiURL, apiCreate } = this.state;
-          fetch(apiURL + apiCreate, {
-            method: "POST",
-            body: JSON.stringify(data),
-          }).then(
-            (result) => {
-              console.log(result);
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
+          apiPath = apiNoodlePath;
+          break;
+        case "user":
+          apiPath = apiUserPath;
           break;
         default:
           alert("Error: Unknown Type");
-          break;
+          return;
       }
+      // AJAX request to PHP server
+      const { apiURL, apiCreate } = this.state;
+      fetch(apiURL + apiPath + apiCreate, {
+        method: "POST",
+        body: JSON.stringify(data),
+      }).then(
+        (result) => {
+          console.log(result);
+          // Reload data
+          this.read();
+          // Redirect to user page
+          const redirect = "/user/" + this.state.currentUserID;
+          this.setState({ redirect: redirect });
+        },
+        (error) => {
+          console.log(error);
+          alert(error.message);
+        }
+      );
     } else {
       // Just show a message
       alert("You can't create data when using the static JSON data.");
@@ -89,10 +108,12 @@ class App extends React.Component {
     if (useAPI) {
       // AJAX request to PHP server
       const { apiURL, apiRead } = this.state;
-      fetch(apiURL + apiRead)
+      let apiPath = "product/";
+      fetch(apiURL + apiPath + apiRead)
         .then((res) => res.json())
         .then(
           (result) => {
+            console.log(result);
             this.setState({
               isLoaded: true,
               noodleData: result.events,
@@ -100,6 +121,7 @@ class App extends React.Component {
             });
           },
           (error) => {
+            console.log(error);
             this.setState({
               isLoaded: true,
               error,
@@ -129,6 +151,12 @@ class App extends React.Component {
     } else if (!isLoaded) {
       return <p>Cooking Noodles...</p>;
     } else {
+      // Handle redirects
+      const { redirect } = this.state;
+      let redirectJSX = <></>;
+      if (redirect) {
+        redirectJSX = <Redirect to={redirect} />;
+      }
       return (
         // Return the main Noodlewall app
         <div className="App">
@@ -138,6 +166,8 @@ class App extends React.Component {
             {/* Replace the static user id with
             user id from session */}
             <Navbar userData={userData} userID={currentUserID} />
+            {/* Element to redirect if needed */}
+            {redirectJSX}
             {/* Switch the main component based on the url */}
             <Switch>
               {/* ------------------------------------------------------------ */}
