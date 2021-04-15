@@ -34,7 +34,7 @@ class App extends React.Component {
       isLoaded: false,
       noodleData: [],
       userData: [],
-      currentUserID: 1,
+      currentUserID: 3,
     };
   }
   componentDidMount() {

@@ -4,6 +4,7 @@ import bowling from "./images/bowling-crop.png";
 import cooking from "./images/cooking-crop.png";
 //user images
 import pam from "./images/user-pam.png";
+import rogue from "./images/user-rogue.png";
 
 // The noodle data
 // Replace with database
@@ -74,5 +75,17 @@ export const userData = [
     userBioLong:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras varius arcu tellus, et eleifend turpis porta id. Aliquam commodo leo leo, eget rhoncus enim dictum nec. Morbi porta elementum ex sollicitudin porttitor.",
     userImage: bowling,
+  },
+  {
+    userID: 3,
+    userName: "Rogue Rocket",
+    userFirstName: "Philip",
+    userLastName: "DeFranco",
+    userRating: 5,
+    userBio:
+      "Production Company founded by online entrepreneur Philip DeFranco in 2017 that is working to create an independent news network.",
+    userBioLong:
+      "Production Company founded by online entrepreneur Philip DeFranco in 2017 that is working to create an independent news network. Welcome to your new go-to place for all of the news, information, entertainment, and pop culture you need in your life! When in doubt... GO ROGUE.",
+    userImage: rogue,
   },
 ];
