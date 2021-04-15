@@ -68,11 +68,18 @@ class Create extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
-    if (event.nativeEvent.submitter.name === "create_dream") {
-      alert("Create dream goes here!");
-    } else if (event.nativeEvent.submitter.name === "create_event") {
-      alert("Create event goes here!");
+  create = (status) => {
+    switch (status) {
+      case "dream":
+        this.props.onCreate(status);
+        break;
+
+      case "event":
+        this.props.onCreate(status);
+        break;
+
+      default:
+        break;
     }
   };
 
@@ -492,7 +499,7 @@ class Create extends React.Component {
               }`}
               name="create_dream"
               type="button"
-              onClick={() => alert("Create Dream")}
+              onClick={() => this.create("dream")}
             >
               Save as Dream
             </button>
@@ -511,7 +518,7 @@ class Create extends React.Component {
               }`}
               name="create_event"
               type="button"
-              onClick={() => alert("Create Event")}
+              onClick={() => this.create("event")}
             >
               Make it Happen
             </button>

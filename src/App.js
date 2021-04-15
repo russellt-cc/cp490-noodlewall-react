@@ -50,6 +50,18 @@ class App extends React.Component {
   // Methods to handle CRUD
   // Create
 
+  create = (type) => {
+    // Check whether we are using the API for data
+    const { useAPI } = this.state;
+    if (useAPI) {
+      // AJAX request to PHP server
+      alert(type);
+    } else {
+      // Just show a message
+      alert("You can't create data when using the static JSON data.");
+    }
+  };
+
   // Read
   read = () => {
     // Check whether we are using the API for data
@@ -117,6 +129,7 @@ class App extends React.Component {
                     {...props}
                     userData={userData}
                     currentUserID={currentUserID}
+                    onCreate={this.create}
                   />
                 )}
               />
@@ -127,6 +140,7 @@ class App extends React.Component {
                     {...props}
                     userData={userData}
                     currentUserID={currentUserID}
+                    onCreate={this.create}
                   />
                 )}
               />
