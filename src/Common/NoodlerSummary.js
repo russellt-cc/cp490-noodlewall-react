@@ -6,7 +6,7 @@ import UserRating from "../Common/UserRating";
 class NoodlerSummary extends React.Component {
   render() {
     // Check if data is valid
-    if (this.props.data != undefined) {
+    if (this.props.data !== undefined) {
       const { userID, userName, userRating } = this.props.data;
       return (
         <div className={`noodle_userinfo`}>

@@ -54,9 +54,21 @@ class App extends React.Component {
     // Check whether we are using the API for data
     const { useAPI } = this.state;
     if (useAPI) {
-      // AJAX request to PHP server
-      alert(type);
-      console.log(data);
+      // Check the type
+      switch (type) {
+        case "dream":
+        case "event":
+          // AJAX request to PHP server
+
+          const { apiURL, apiCreate } = this.state;
+          fetch(apiURL + apiCreate).then((result) => console.log(result));
+
+          break;
+
+        default:
+          alert("Error: Unknown Type");
+          break;
+      }
     } else {
       // Just show a message
       alert("You can't create data when using the static JSON data.");

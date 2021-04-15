@@ -451,7 +451,7 @@ class Create extends React.Component {
                 name="noodleImage"
                 onChange={this.handleChange}
               ></input>
-              <img src={this.state.noodleImage} />
+              <img src={this.state.noodleImage} alt="Noodle" />
             </div>
           </section>
           <section id="tickets" className={section6.className}>
