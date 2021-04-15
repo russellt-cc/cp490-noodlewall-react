@@ -2,7 +2,18 @@ main#user_profile {
   display: flex;
   flex-direction: column;
   row-gap: 40px;
-  padding-top: 40px;
+  padding-top: 90px;
+}
+
+#user_profile #profile_own_profile_status_bar {
+  border: 1px solid black;
+  position: fixed;
+  background-color: white;
+  top: 70px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  height: 50px;
 }
 
 #user_profile #user_profile_intro {

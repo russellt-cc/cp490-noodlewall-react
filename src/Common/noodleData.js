@@ -178,9 +178,9 @@ export const userData = [
     userLastName: "DeFranco",
     userRating: 5,
     userBio:
-      "Production Company founded by online entrepreneur Philip DeFranco in 2017 that is working to create an independent news network.",
-    userBioLong:
       "Production Company founded by online entrepreneur Philip DeFranco in 2017 that is working to create an independent news network. Welcome to your new go-to place for all of the news, information, entertainment, and pop culture you need in your life! When in doubt... GO ROGUE.",
+    userBioLong:
+      "Production Company founded by online entrepreneur Philip DeFranco in 2017 that is working to create an independent news network. Welcome to your new go-to place for all of the news, information, entertainment, and pop culture you need in your life! When in doubt... GO ROGUE. Our mission is to start a conversation about this crazy world we live in, in the most inviting way possible. We aim to bring various, vibrant voices, and stories to the forefront as we strive to contribute to the new-age way in which we as a society consume news and spread information.",
     userImage: rogue,
   },
 ];

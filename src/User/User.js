@@ -136,7 +136,7 @@ class User extends React.Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, isOwnProfile } = this.state;
 
     if (error) {
       return (
@@ -145,6 +145,16 @@ class User extends React.Component {
         </main>
       );
     } else {
+      const {
+        userID,
+        userFirstName,
+        userImage,
+        userName,
+        userLastName,
+        userRating,
+        userBioLong,
+      } = this.state.userData;
+
       const eventFilters = {
         type: "events",
         userID: this.state.userData.userID,
@@ -158,7 +168,7 @@ class User extends React.Component {
       );
       const dreamFilters = {
         type: "dreams",
-        userID: this.state.userData.userID,
+        userID: userID,
       };
       const userDreams = (
         <NoodleList
@@ -169,28 +179,35 @@ class User extends React.Component {
       );
       return (
         <main id="user_profile">
+          {isOwnProfile ? (
+            <div id="profile_own_profile_status_bar">
+              <p>
+                Hi {userFirstName}! You can edit your profile, manage events,
+                and view your dashboard from this page.
+              </p>
+            </div>
+          ) : (
+            <></>
+          )}
+
           <section id="user_profile_intro">
             <div
               className="user_profile_intro_column"
               id="user_profile_intro_left"
             >
-              <img
-                src={this.state.userData.userImage}
-                alt={this.state.userData.userName}
-              />
+              <img src={userImage} alt={userName} />
               <h3>
-                {this.state.userData.userFirstName}{" "}
-                {this.state.userData.userLastName}
+                {userFirstName} {userLastName}
               </h3>
-              <UserRating rating={this.state.userData.userRating} />
+              <UserRating rating={userRating} />
             </div>
 
             <div
               className="user_profile_intro_column"
               id="user_profile_intro_right"
             >
-              <h1>About {this.state.userData.userName}</h1>
-              <p>{this.state.userData.userBioLong}</p>
+              <h1>About {userName}</h1>
+              <p>{userBioLong}</p>
               {this.getUserActionButtons()}
             </div>
           </section>
@@ -201,7 +218,7 @@ class User extends React.Component {
           components inside the userEvents component if it returns true. */}
           {ReactDOMServer.renderToString(<Router>{userEvents}</Router>) ? (
             <section id="user_events">
-              <h3>Events by {this.state.userData.userName}</h3>
+              <h3>Events by {userName}</h3>
               {userEvents}
             </section>
           ) : (
@@ -211,7 +228,7 @@ class User extends React.Component {
           {/* If the user has any dreams, show them here */}
           {ReactDOMServer.renderToString(<Router>{userDreams}</Router>) ? (
             <section id="user_dreams">
-              <p>Dreams by {this.state.userData.userName}</p>
+              <p>Dreams by {userName}</p>
               {userDreams}
             </section>
           ) : (
