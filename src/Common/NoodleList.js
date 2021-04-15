@@ -1,5 +1,6 @@
 import React from "react";
 import NoodleCard from "./NoodleCard.js";
+import "./NoodleList.css";
 
 // The list of noodles from the JSON data
 class NoodleList extends React.Component {

@@ -1,6 +1,6 @@
 import "./Browse.css";
 import React from "react";
-import NoodleList from "./NoodleList.js";
+import NoodleList from "../Common/NoodleList.js";
 
 class Browse extends React.Component {
   render() {

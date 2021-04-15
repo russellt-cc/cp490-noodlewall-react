@@ -1,0 +1,11 @@
+.noodle_list {
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.noodle_list .noodle_link {
+  text-decoration: none;
+}

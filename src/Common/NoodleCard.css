@@ -1,0 +1,91 @@
+.noodle_card {
+  width: 300px;
+  height: 533px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.noodle_card > * {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0px;
+}
+
+.noodle_card img,
+.noodle_card .noodle_image_link {
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.noodle_card.dream {
+  border: 3px solid var(--dreams-color);
+}
+
+.noodle_card.event {
+  border: 3px solid var(--events-color);
+}
+
+.noodle_card > .noodle_description {
+  height: 120px;
+  overflow: hidden;
+}
+
+.noodle_card .noodle_userinfo > * {
+  margin: 0px;
+}
+
+.noodle_card .noodle_title > a,
+.noodle_card .noodle_noodler > a {
+  color: black;
+}
+
+.noodle_card .noodle_tag_list {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  height: 60px;
+  overflow: hidden;
+}
+
+.noodle_card .noodle_tag {
+  border-radius: 5px;
+  padding: 5px;
+  color: black;
+}
+
+.noodle_card .noodle_id,
+.noodle_card .noodle_userid,
+.noodle_card .noodle_status,
+.noodle_card .noodle_label {
+  display: none;
+}
+
+.noodle_card a.noodle_image_link {
+  position: relative;
+}
+
+.noodle_card img.overlay {
+  position: absolute;
+  bottom: 3px;
+  right: 0px;
+  height: 100px;
+  width: 100px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+@media screen and (max-width: 360px) {
+  .noodle_card {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
