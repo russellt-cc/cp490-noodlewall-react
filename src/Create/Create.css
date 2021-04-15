@@ -143,6 +143,18 @@ main#create {
   border-radius: 10px;
 }
 
+#create input[type="date"],
+#create input[type="time"],
+#create input[name="noodleTicketPrice"],
+#create input[name="noodleMinTickets"],
+#create input[name="noodleMaxTickets"] {
+  width: 200px;
+}
+
+#create input[type="file"] {
+  width: 400px;
+}
+
 #create #noodleAddTagButton {
   border: none;
   background-color: var(--events-color);
@@ -172,6 +184,12 @@ main#create {
   background-color: var(--events-color);
   border: none;
   border-radius: 10px;
+}
+
+#create #noodle_ticket_price_container {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
 }
 
 #create #create_submit_bar {

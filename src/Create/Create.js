@@ -30,15 +30,18 @@ class Create extends React.Component {
       userBio: userBio,
       userBioLong: userBioLong,
       noodleTitle: "Test Event",
-      noodleSummary: "This is a test.",
-      noodleDescription: "This is really actually a test.",
+      noodleSummary:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+      noodleDescription:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras varius arcu tellus, et eleifend turpis porta id. Aliquam commodo leo leo, eget rhoncus enim dictum nec. Morbi porta elementum ex sollicitudin porttitor.",
       noodleLocation: "Nowhere",
       noodleDirections: "There aren't any.",
       noodleDate: "2021-05-30",
       noodleTime: "12:00",
       noodleTags: ["test1", "test2", "test3"],
       noodleAddTag: "noodle",
-      noodleImage: "",
+      noodleImage: "https://picsum.photos/1280/720",
+      noodleTicketPrice: "10.00",
     };
   }
 
@@ -99,17 +102,17 @@ class Create extends React.Component {
       noodleTitle,
       noodleTags,
       noodleAddTag,
+      noodleTicketPrice,
+      noodleMinTickets,
+      noodleMaxTickets,
     } = this.state;
 
     // Set data for the sections
     const section1 = {
       name: "Organizer Information",
       className:
-        this.state.userName !== undefined &&
         this.state.userName !== "" &&
-        this.state.userBio !== undefined &&
         this.state.userBio !== "" &&
-        this.state.userBioLong !== undefined &&
         this.state.userBioLong !== ""
           ? "finished"
           : "unfinished",
@@ -117,12 +120,10 @@ class Create extends React.Component {
     const section2 = {
       name: "Basic Info",
       className:
-        this.state.noodleTitle !== undefined &&
         this.state.noodleTitle !== "" &&
-        this.state.noodleSummary !== undefined &&
         this.state.noodleSummary !== "" &&
-        this.state.noodleDescription !== undefined &&
-        this.state.noodleDescription !== ""
+        this.state.noodleDescription !== "" &&
+        this.state.noodleTags.length !== 0
           ? "finished"
           : "unfinished",
     };
@@ -153,7 +154,14 @@ class Create extends React.Component {
           ? "finished"
           : "unfinished",
     };
-    const section6 = { name: "Create Tickets", className: "unfinished" };
+    const section6 = {
+      name: "Create Tickets",
+      className:
+        this.state.noodleTicketPrice !== undefined &&
+        this.state.noodleTicketPrice !== ""
+          ? "finished"
+          : "unfinished",
+    };
     const section7 = { name: "Make It Happen", className: "unfinished" };
 
     // Return the create page
@@ -409,7 +417,18 @@ class Create extends React.Component {
             <p>Create ticket types available for the event.</p>
             <div>
               <label for="noodleTicketPrice">Ticket Price</label>
-              <input type="number" name="noodleTicketPrice"></input>
+              <div id="noodle_ticket_price_container">
+                <span>$</span>
+                <input
+                  type="number"
+                  min="0.01"
+                  step="0.01"
+                  max="2500"
+                  name="noodleTicketPrice"
+                  value={noodleTicketPrice}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
             </div>
           </section>
           <section id="secret_sauce" class={section7.className}>
