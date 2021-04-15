@@ -27,12 +27,13 @@ class Create extends React.Component {
       userName: userName,
       userBio: userBio,
       userBioLong: userBioLong,
-      noodleName: undefined,
-      noodleSummary: undefined,
-      noodleDescription: undefined,
-      noodleLocation: undefined,
-      noodleDirections: undefined,
-      noodleDate: undefined,
+      noodleTitle: "Test Event",
+      noodleSummary: "This is a test.",
+      noodleDescription: "This is really actually a test.",
+      noodleLocation: "Nowhere",
+      noodleDirections: "There aren't any.",
+      noodleDate: "2021-05-30",
+      noodleTime: "12:00",
     };
   }
 
@@ -64,6 +65,7 @@ class Create extends React.Component {
       noodleDescription,
       noodleLocation,
       noodleDirections,
+      noodleTitle,
     } = this.state;
 
     // Set data for the sections
@@ -82,8 +84,8 @@ class Create extends React.Component {
     const section2 = {
       name: "Basic Info",
       className:
-        this.state.noodleName !== undefined &&
-        this.state.noodleName !== "" &&
+        this.state.noodleTitle !== undefined &&
+        this.state.noodleTitle !== "" &&
         this.state.noodleSummary !== undefined &&
         this.state.noodleSummary !== "" &&
         this.state.noodleDescription !== undefined &&
@@ -210,12 +212,12 @@ class Create extends React.Component {
               Enter the name of the event and some essential details about it.
             </p>
             <div>
-              <label for="noodleName">Event Name</label>
+              <label for="noodleTitle">Event Name</label>
               <Textbox
-                attributesInput={{ name: "noodleName" }}
-                value={noodleName}
-                onChange={(noodleName, e) => {
-                  this.setState({ noodleName });
+                attributesInput={{ name: "noodleTitle" }}
+                value={noodleTitle}
+                onChange={(noodleTitle, e) => {
+                  this.setState({ noodleTitle });
                 }}
               />
             </div>
@@ -328,7 +330,12 @@ class Create extends React.Component {
           <div id="create_submit_bar">
             <button
               id="create_dream_button"
-              className="noodle_button"
+              className={`noodle_button ${
+                section1.className === "finished" &&
+                section2.className === "finished"
+                  ? "finished"
+                  : "unfinished"
+              }`}
               name="create_dream"
               type="button"
               onClick={() => alert("Create Dream")}
