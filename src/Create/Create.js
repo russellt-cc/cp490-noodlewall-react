@@ -1,9 +1,13 @@
 import "./css/Create.css";
 import React from "react";
+import { Textbox, Textarea } from "react-inputs-validation";
+import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 // The create dream / event page
 class Create extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+
     // Get the type of noodle we are creating
     let { type: noodleStatus } = this.props.match.params;
     // Check validity of the status
@@ -16,6 +20,34 @@ class Create extends React.Component {
       return parseInt(user.userID) === parseInt(currentUserID);
     })[0];
     const { userName, userBio, userBioLong } = thisUser;
+
+    // Put data in state
+    this.state = {
+      noodleStatus: noodleStatus,
+      userName: userName,
+      userBio: userBio,
+      userBioLong: userBioLong,
+      noodleName: undefined,
+      noodleSummary: undefined,
+      noodleDescription: undefined,
+      noodleLocation: undefined,
+      noodleDirections: undefined,
+    };
+  }
+
+  render() {
+    // Get data from state
+    const {
+      noodleStatus,
+      userName,
+      userBio,
+      userBioLong,
+      noodleName,
+      noodleSummary,
+      noodleDescription,
+      noodleLocation,
+      noodleDirections,
+    } = this.state;
 
     // Set data for the sections
     const section1 = { name: "Organizer Information" };
@@ -34,15 +66,55 @@ class Create extends React.Component {
             <div id="create_nav_progress_bar_line"></div>
             <div id="create_nav_progress_bar_buttons">
               <div>
-                <a href="#section1">1</a>
+                <a
+                  href="#section1"
+                  className={
+                    this.state.userName !== undefined &&
+                    this.state.userName !== "" &&
+                    this.state.userBio !== undefined &&
+                    this.state.userBio !== "" &&
+                    this.state.userBioLong !== undefined &&
+                    this.state.userBioLong !== ""
+                      ? "finished"
+                      : "unfinished"
+                  }
+                >
+                  1
+                </a>
                 <p>{section1.name}</p>
               </div>
               <div>
-                <a href="#section2">2</a>
+                <a
+                  href="#section2"
+                  className={
+                    this.state.noodleName !== undefined &&
+                    this.state.noodleName !== "" &&
+                    this.state.noodleSummary !== undefined &&
+                    this.state.noodleSummary !== "" &&
+                    this.state.noodleDescription !== undefined &&
+                    this.state.noodleDescription !== ""
+                      ? "finished"
+                      : "unfinished"
+                  }
+                >
+                  2
+                </a>
                 <p>{section2.name}</p>
               </div>
               <div>
-                <a href="#section3">3</a>
+                <a
+                  href="#section3"
+                  className={
+                    this.state.noodleLocation !== undefined &&
+                    this.state.noodleLocation !== "" &&
+                    this.state.noodleDirections !== undefined &&
+                    this.state.noodleDirections !== ""
+                      ? "finished"
+                      : "unfinished"
+                  }
+                >
+                  3
+                </a>
                 <p>{section3.name}</p>
               </div>
               <div>
@@ -63,29 +135,67 @@ class Create extends React.Component {
               </div>
             </div>
           </div>
-          <section id="organizer_information">
+          <section
+            id="organizer_information"
+            className={
+              this.state.userName !== undefined &&
+              this.state.userName !== "" &&
+              this.state.userBio !== undefined &&
+              this.state.userBio !== "" &&
+              this.state.userBioLong !== undefined &&
+              this.state.userBioLong !== ""
+                ? "finished"
+                : "unfinished"
+            }
+          >
             <h1 id="section1" class="create_section_heading">
               {section1.name}
             </h1>
             <p>Enter some information about who is organizing the event.</p>
             <div>
-              <label for="hostName">Organizer Name</label>
-              <input type="text" name="hostName" value={userName}></input>
+              <label for="userName">Organizer Name</label>
+              <Textbox
+                attributesInput={{ name: "userName" }}
+                value={userName}
+                onChange={(userName, e) => {
+                  this.setState({ userName });
+                }}
+              />
             </div>
             <div>
-              <label for="hostBioShort">Organizer Detail Short</label>
-              <textarea name="hostBioShort" rows="2" value={userBio}></textarea>
+              <label for="userBio">Organizer Detail Short</label>
+              <Textarea
+                attributesInput={{ name: "userBio", rows: 3 }}
+                value={userBio}
+                onChange={(userBio, e) => {
+                  this.setState({ userBio });
+                }}
+              />
             </div>
             <div>
-              <label for="hostBioLong">Organizer Detail Long</label>
-              <textarea
-                name="hostBioLong"
-                rows="5"
+              <label for="userBioLong">Organizer Detail Long</label>
+              <Textarea
+                attributesInput={{ name: "userBioLong", rows: 5 }}
                 value={userBioLong}
-              ></textarea>
+                onChange={(userBioLong, e) => {
+                  this.setState({ userBioLong });
+                }}
+              />
             </div>
           </section>
-          <section id="the_basics">
+          <section
+            id="the_basics"
+            className={
+              this.state.noodleName !== undefined &&
+              this.state.noodleName !== "" &&
+              this.state.noodleSummary !== undefined &&
+              this.state.noodleSummary !== "" &&
+              this.state.noodleDescription !== undefined &&
+              this.state.noodleDescription !== ""
+                ? "finished"
+                : "unfinished"
+            }
+          >
             <h1 id="section2" class="create_section_heading">
               {section2.name}
             </h1>
@@ -93,26 +203,68 @@ class Create extends React.Component {
               Enter the name of the event and some essential details about it.
             </p>
             <div>
-              <label for="eventName">Event Name</label>
-              <input type="text" name="eventName"></input>
+              <label for="noodleName">Event Name</label>
+              <Textbox
+                attributesInput={{ name: "noodleName" }}
+                value={noodleName}
+                onChange={(noodleName, e) => {
+                  this.setState({ noodleName });
+                }}
+              />
             </div>
             <div>
-              <label for="eventBioShort">Event Summary</label>
-              <textarea name="eventBioShort" rows="2"></textarea>
+              <label for="noodleSummary">Event Summary</label>
+              <Textarea
+                attributesInput={{ name: "noodleSummary", rows: 3 }}
+                value={noodleSummary}
+                onChange={(noodleSummary, e) => {
+                  this.setState({ noodleSummary });
+                }}
+              />
             </div>
             <div>
-              <label for="eventBioLong">Event Description</label>
-              <textarea name="eventBioLong" rows="5"></textarea>
+              <label for="noodleDescription">Event Description</label>
+              <Textarea
+                attributesInput={{ name: "noodleDescription", rows: 5 }}
+                value={noodleDescription}
+                onChange={(noodleDescription, e) => {
+                  this.setState({ noodleDescription });
+                }}
+              />
             </div>
           </section>
-          <section id="location">
+          <section
+            id="location"
+            className={
+              this.state.noodleLocation !== undefined &&
+              this.state.noodleLocation !== "" &&
+              this.state.noodleDirections !== undefined &&
+              this.state.noodleDirections !== ""
+                ? "finished"
+                : "unfinished"
+            }
+          >
             <h1 id="section3" class="create_section_heading">
               {section3.name}
             </h1>
             <p>Where is your event located?</p>
             <div>
-              <label for="eventLocation">Event Location</label>
-              <input type="text" name="eventLocation"></input>
+              <label for="noodleLocation">Event Location</label>
+              <Textbox
+                attributesInput={{ name: "noodleLocation" }}
+                value={noodleLocation}
+                onChange={(noodleLocation, e) => {
+                  this.setState({ noodleLocation });
+                }}
+              />
+              <label for="noodleDirections">Event Directions</label>
+              <Textarea
+                attributesInput={{ name: "noodleDirections", rows: 5 }}
+                value={noodleDirections}
+                onChange={(noodleDirections, e) => {
+                  this.setState({ noodleDirections });
+                }}
+              />
             </div>
           </section>
           <section id="date_time">

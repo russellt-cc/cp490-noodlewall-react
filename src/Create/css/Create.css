@@ -1,3 +1,12 @@
+#create section {
+  border: 1px solid var(--dreams-color);
+  border-radius: 10px;
+}
+
+#create section.finished {
+  border: 1px solid var(--events-color);
+}
+
 #create #create_nav_progress_bar {
   display: flex;
   flex-direction: column;
@@ -10,6 +19,7 @@
   background-color: white;
   border: 1px solid black;
   height: 100px;
+  z-index: 999;
 }
 
 #create #create_nav_progress_bar_buttons {
@@ -38,6 +48,10 @@
   color: white;
   border-radius: 25px;
   font-weight: bold;
+}
+
+#create #create_nav_progress_bar_buttons > div > a.finished {
+  background-color: var(--events-color);
 }
 
 #create #create_nav_progress_bar_buttons > div > p {
@@ -83,7 +97,6 @@ main#create {
 #create section > div {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
 }
@@ -96,6 +109,9 @@ main#create {
   font-family: var(--font-family);
   font-weight: var(--font-weight);
   font-style: var(--font-style);
+  display: block;
+  margin: 0px;
+  position: relative;
 }
 
 #create #create_submit_bar {
