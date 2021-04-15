@@ -44,11 +44,36 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    // Configure whether we are using the API for data
+    // Load data
+    this.read();
+  }
+  // Methods to handle CRUD
+  // Create
+
+  // Read
+  read = () => {
+    // Check whether we are using the API for data
     const { useAPI } = this.state;
     if (useAPI) {
       // AJAX request to PHP server
-      this.read();
+      const { apiURL, apiRead } = this.state;
+      fetch(apiURL + apiRead)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              noodleData: result.events,
+              userData: result.users,
+            });
+          },
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error,
+            });
+          }
+        );
     } else {
       // Get the JSON data and put in state
       this.setState({
@@ -57,30 +82,6 @@ class App extends React.Component {
         isLoaded: true,
       });
     }
-  }
-  // Methods to handle CRUD
-  // Create
-
-  // Read
-  read = () => {
-    const { apiURL, apiRead } = this.state;
-    fetch(apiURL + apiRead)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            noodleData: result.events,
-            userData: result.users,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
   };
   // Update
 
