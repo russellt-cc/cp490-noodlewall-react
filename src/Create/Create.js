@@ -60,7 +60,6 @@ class Create extends React.Component {
       userName,
       userBio,
       userBioLong,
-      noodleName,
       noodleSummary,
       noodleDescription,
       noodleLocation,
@@ -122,7 +121,20 @@ class Create extends React.Component {
       <main id="create">
         <form id="create_form" onSubmit={this.handleSubmit}>
           <div id="create_nav_progress_bar">
-            <div id="create_nav_progress_bar_line"></div>
+            <div
+              id="create_nav_progress_bar_line"
+              className={`${
+                section1.className === "finished" &&
+                section2.className === "finished" &&
+                section3.className === "finished" &&
+                section4.className === "finished" &&
+                section5.className === "finished" &&
+                section6.className === "finished" &&
+                section7.className === "finished"
+                  ? "finished"
+                  : "unfinished"
+              }`}
+            ></div>
             <div id="create_nav_progress_bar_buttons">
               <div>
                 <a href="#section1" className={section1.className}>

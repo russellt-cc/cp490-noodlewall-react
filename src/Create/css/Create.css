@@ -62,9 +62,16 @@
   display: block;
   height: 5px;
   width: 600px;
-  background-color: lightgray;
   position: absolute;
   top: 30px;
+}
+
+#create #create_nav_progress_bar_line.unfinished {
+  background-color: lightgray;
+}
+
+#create #create_nav_progress_bar_line.finished {
+  background-color: var(--events-color);
 }
 
 main#create {
