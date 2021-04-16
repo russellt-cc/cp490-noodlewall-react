@@ -218,3 +218,9 @@ nav #user_drop_right img {
     width: 100%;
   }
 }
+
+@media screen and (max-height: 600px) {
+  nav {
+    position: absolute;
+  }
+}

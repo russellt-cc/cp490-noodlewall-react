@@ -1,4 +1,5 @@
 //https://www.freecodecamp.org/news/a-complete-beginners-guide-to-react-router-include-router-hooks/
+//https://rapidapi.com/blog/how-to-use-an-api-with-react/
 
 // CSS
 import "./App.css";
@@ -42,7 +43,7 @@ class App extends React.Component {
       noodleData: [],
       userData: [],
       currentUserID: 1,
-      useAPI: true,
+      useAPI: false,
       apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
       apiRead: "read.php",

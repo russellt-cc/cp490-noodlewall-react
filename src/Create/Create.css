@@ -167,6 +167,7 @@ main#create {
   justify-content: left;
   column-gap: 10px;
   padding-inline: 0px;
+  flex-wrap: wrap;
 }
 
 #create #noodleTagsList > li {
@@ -227,5 +228,18 @@ main#create {
   }
   main#create {
     margin-top: 70px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  #create #create_nav_progress_bar {
+    position: absolute;
+  }
+  #create .create_section_heading {
+    padding-top: 20px;
+    margin-top: -20px;
+  }
+  #create #create_submit_bar {
+    position: static;
   }
 }
