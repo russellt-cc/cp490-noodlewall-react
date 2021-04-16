@@ -5,7 +5,15 @@ import { Link } from "react-router-dom";
 class DetailsIntroRight extends React.Component {
   // Delete Method
   delete = () => {
-    this.props.onDelete();
+    // Confirm that the user wants to delete their noodle
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      // Get data we need from props
+      const { noodleStatus, noodleID } = this.props.thisNoodle;
+      // Create the data object
+      const data = { noodleID: noodleID };
+      // Call the delete method
+      this.props.onDelete(noodleStatus, data);
+    }
   };
 
   // Render Method

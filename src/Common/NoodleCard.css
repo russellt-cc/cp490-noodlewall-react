@@ -78,7 +78,7 @@
 
 .noodle_card img.overlay {
   position: absolute;
-  bottom: 3px;
+  bottom: 0px;
   right: 0px;
   height: 100px;
   width: 100px;

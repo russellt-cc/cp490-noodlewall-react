@@ -234,6 +234,7 @@ class App extends React.Component {
       let redirectJSX = <></>;
       if (redirect) {
         redirectJSX = <Redirect to={redirect} />;
+        this.setState({ redirect: null });
       }
       return (
         // Return the main Noodlewall app
