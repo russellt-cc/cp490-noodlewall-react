@@ -84,20 +84,24 @@ class App extends React.Component {
       fetch(apiURL + apiPath + apiCreate, {
         method: "POST",
         body: JSON.stringify(data),
-      }).then(
-        (result) => {
-          console.log(result);
-          // Reload data
-          this.read();
-          // Redirect to user page
-          const redirect = "/user/" + this.state.currentUserID;
-          this.setState({ redirect: redirect });
-        },
-        (error) => {
-          console.log(error);
-          alert(error.message);
-        }
-      );
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            console.log(result);
+            // Reload data
+            this.read();
+            // Redirect to user page
+            const redirect = "/user/" + this.state.currentUserID;
+            // Redirect to noodle page
+            // const redirect = "/details/" + result.noodleID;
+            this.setState({ redirect: redirect });
+          },
+          (error) => {
+            console.log(error);
+            alert(error.message);
+          }
+        );
     } else {
       // Just show a message
       alert("You can't create data when using the static JSON data.");

@@ -1,6 +1,22 @@
 #create section {
   border: 3px solid lightgray;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  row-gap: 10px;
+}
+
+#create section > * {
+  padding: 0px;
+  margin: 0px;
+}
+
+#create section > div {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 #create section.finished {
@@ -94,25 +110,6 @@ main#create {
   z-index: -1;
 }
 
-#create section {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  row-gap: 10px;
-}
-
-#create section > * {
-  padding: 0px;
-  margin: 0px;
-}
-
-#create section > div {
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 10px;
-}
-
 #create input,
 #create textarea,
 #create .react-inputs-validation__textbox__input___20hDL {
@@ -185,6 +182,31 @@ main#create {
   background-color: var(--events-color);
   border: none;
   border-radius: 10px;
+}
+
+#create .noodle_image_container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  border: 1px solid lightgray;
+}
+
+#create .noodle_image_link_container {
+  display: flex;
+  justify-content: left;
+  column-gap: 10px;
+}
+
+#create .noodle_image_link_container .noodleImageLink {
+  width: 400px;
+}
+
+#create .noodleImageChangeUrlButton {
+  width: 200px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--events-color);
+  color: white;
 }
 
 #create #noodle_ticket_price_container {

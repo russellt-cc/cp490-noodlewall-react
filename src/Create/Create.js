@@ -38,7 +38,8 @@ class Create extends React.Component {
       noodleTime: undefined,
       noodleTags: [],
       noodleAddTag: undefined,
-      noodleImage: "https://picsum.photos/1280/720",
+      noodleImage: undefined,
+      noodleChangeImage: undefined,
       noodleTicketPrice: undefined,
       noodleMinTickets: undefined,
       noodleMaxTickets: undefined,
@@ -67,21 +68,45 @@ class Create extends React.Component {
   };
 
   create = (status) => {
+    // Get the required data
+    const {
+      noodleTitle,
+      noodleDescription,
+      noodleTags,
+      noodleSummary,
+      noodleLocation,
+      noodleDirections,
+      noodleDate,
+      noodleTime,
+      noodleImage,
+      noodleTicketPrice,
+      noodleMinTickets,
+      noodleMaxTickets,
+      noodleCutoff,
+    } = this.state;
+    const { currentUserID: userID } = this.props;
+    // Create the object to be sent to the API
+    const noodleData = {
+      noodleTitle: noodleTitle,
+      userID: userID,
+      noodleStatus: status,
+      noodleDescription: noodleDescription,
+      noodleTags: noodleTags,
+      noodleSummary: noodleSummary,
+      noodleLocation: noodleLocation,
+      noodleDirections: noodleDirections,
+      noodleDate: noodleDate,
+      noodleTime: noodleTime,
+      noodleImage: noodleImage,
+      noodleTicketPrice: noodleTicketPrice,
+      noodleMinTickets: noodleMinTickets,
+      noodleMaxTickets: noodleMaxTickets,
+      noodleCutoff: noodleCutoff,
+    };
     switch (status) {
       case "dream":
-        // Get the required data
-        const { noodleTitle, noodleDescription, noodleTags } = this.state;
-        const { currentUserID: userID } = this.props;
         // Validate the required data
         if (noodleTitle && noodleDescription && noodleTags.length) {
-          // Create the object to be sent to the API
-          const noodleData = {
-            noodleTitle: noodleTitle,
-            userID: userID,
-            noodleStatus: status,
-            noodleDescription: noodleDescription,
-            noodleTags: noodleTags,
-          };
           // Send the data to the main create function
           this.props.onCreate(status, noodleData);
         } else {
@@ -89,10 +114,31 @@ class Create extends React.Component {
         }
         break;
       case "event":
-        this.props.onCreate(status);
+        // Validate the required data
+        if (
+          noodleTitle &&
+          noodleDescription &&
+          noodleTags.length &&
+          userID &&
+          noodleSummary &&
+          noodleLocation &&
+          noodleDirections &&
+          noodleDate &&
+          noodleTime &&
+          noodleImage &&
+          noodleTicketPrice &&
+          noodleMinTickets &&
+          noodleMaxTickets &&
+          noodleCutoff
+        ) {
+          // Send the data to the main create function
+          this.props.onCreate(status, noodleData);
+        } else {
+          alert("You must fill in all of the information to save as an event!");
+        }
         break;
-
       default:
+        alert("Error: Invalid Type");
         break;
     }
   };
@@ -130,6 +176,8 @@ class Create extends React.Component {
       noodleMinTickets,
       noodleMaxTickets,
       noodleCutoff,
+      noodleImage,
+      noodleChangeImage,
     } = this.state;
 
     // Set data for the sections
@@ -417,7 +465,7 @@ class Create extends React.Component {
               Upload as many images as you would like to be displayed on the
               event page.
             </p>
-            <div>
+            <div class="noodle_image_container">
               <label htmlFor="noodleImage">Event Image</label>
               <input
                 type="file"
@@ -425,7 +473,54 @@ class Create extends React.Component {
                 name="noodleImage"
                 onChange={this.handleChange}
               ></input>
-              <img src={this.state.noodleImage} alt="Noodle" />
+              <div class="noodle_image_link_container">
+                <Textbox
+                  attributesInput={{
+                    name: "noodleImageLink",
+                    class: "noodleImageLink",
+                  }}
+                  value={noodleImage}
+                  onChange={(noodleChangeImage, e) => {
+                    this.setState({ noodleChangeImage });
+                  }}
+                />
+                <button
+                  type="button"
+                  class="noodleImageChangeUrlButton"
+                  onClick={() => {
+                    this.setState({ noodleImage: noodleChangeImage });
+                  }}
+                >
+                  Change URL
+                </button>
+                <button
+                  type="button"
+                  class="noodleImageChangeUrlButton"
+                  onClick={() => {
+                    // Get a random number for our image seed
+                    const seed = Math.floor(Math.random() * 1000);
+                    const randomImage =
+                      "https://picsum.photos/seed/" + seed + "/1280/720";
+                    this.setState({ noodleImage: randomImage });
+                  }}
+                >
+                  Get a Random Image
+                </button>
+                <button
+                  type="button"
+                  class="noodleImageChangeUrlButton"
+                  onClick={() => {
+                    this.setState({ noodleImage: undefined });
+                  }}
+                >
+                  Remove Image
+                </button>
+              </div>
+              {this.state.noodleImage ? (
+                <img src={this.state.noodleImage} alt="Noodle" />
+              ) : (
+                <></>
+              )}
             </div>
           </section>
           <section id="tickets" className={section6.className}>
