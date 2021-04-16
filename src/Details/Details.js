@@ -47,10 +47,18 @@ class Details extends React.Component {
     } else {
       const { thisNoodle, thisHost } = this.state;
       const { noodleStatus } = thisNoodle;
+      const { currentUserID, onDelete } = this.props;
+      const { filterType } = this.props.match.params;
       // Return the details page
       return (
         <main className={`${noodleStatus}`} id="details">
-          <DetailsIntro thisNoodle={thisNoodle} thisHost={thisHost} />
+          <DetailsIntro
+            thisNoodle={thisNoodle}
+            thisHost={thisHost}
+            currentUserID={currentUserID}
+            onDelete={onDelete}
+            filterType={filterType}
+          />
           <section id="details_details"></section>
         </main>
       );

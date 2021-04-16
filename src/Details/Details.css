@@ -59,14 +59,16 @@
 #details #details_host_intro_event > a,
 #details #details_host_intro_dream > a,
 #details #details_host_intro_event > button,
-#details #details_host_intro_dream > button {
+#details #details_host_intro_dream > button,
+#details #details_host_intro_dream > button.noodle_button {
   margin: 5px 0px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px 10px;
-  width: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #details #details_host_intro_event > button.hidden {

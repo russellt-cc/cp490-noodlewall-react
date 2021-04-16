@@ -91,6 +91,7 @@ class DetailsIntro extends React.Component {
   render() {
     // Get this noodle and host from state
     const { thisNoodle, thisHost } = this.state;
+    const { currentUserID, onDelete, filterType } = this.props;
     // Get element classes
     const element_classes = this.getElementClasses();
     // Get status classes
@@ -107,6 +108,9 @@ class DetailsIntro extends React.Component {
           thisHost={thisHost}
           element_classes={element_classes}
           onBuy={this.buyTicket}
+          currentUserID={currentUserID}
+          onDelete={onDelete}
+          filterType={filterType}
         />
       </section>
     );

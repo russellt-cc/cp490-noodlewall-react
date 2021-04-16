@@ -253,6 +253,17 @@ class App extends React.Component {
               {/* ------------------------------------------------------------ */}
               {/* Create Module */}
               <Route
+                path="/edit/:id"
+                render={(props) => (
+                  <Create
+                    {...props}
+                    userData={userData}
+                    currentUserID={currentUserID}
+                    onCreate={this.create}
+                  />
+                )}
+              />
+              <Route
                 path="/create/:type"
                 render={(props) => (
                   <Create
@@ -307,6 +318,8 @@ class App extends React.Component {
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
+                    currentUserID={currentUserID}
+                    onDelete={this.delete}
                   />
                 )}
               />
@@ -317,6 +330,8 @@ class App extends React.Component {
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
+                    currentUserID={currentUserID}
+                    onDelete={this.delete}
                   />
                 )}
               />

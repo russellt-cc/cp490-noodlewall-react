@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 
 // The right column of the details intro
 class DetailsIntroRight extends React.Component {
+  // Delete Method
+  delete = () => {
+    this.props.onDelete();
+  };
+
+  // Render Method
   render() {
     // Get data from props
-    const { element_classes } = this.props;
+    // Get the type for tag links
+    const { element_classes, filterType, currentUserID } = this.props;
     // Destructure the details and rename user id to host id
     const {
       noodleStatus,
@@ -18,6 +25,7 @@ class DetailsIntroRight extends React.Component {
       noodleTicketsSold,
       noodleTags,
       userID: hostID,
+      noodleID,
     } = this.props.thisNoodle;
 
     const sold = parseInt(noodleTicketsSold);
@@ -30,11 +38,67 @@ class DetailsIntroRight extends React.Component {
       hostName = this.props.thisHost.userName;
     }
 
-    // Destructure the user details and rename
-    // const { userName: hostName } = this.props.thisHost;
-
-    // Get the type for tag links
-    const filterType = this.props.filterType;
+    // Get the action buttons depending on whether a user is viewing another users noodle
+    const actionButtons = () => {
+      if (parseInt(hostID) !== parseInt(currentUserID)) {
+        return (
+          <div id={`details_host_intro_${noodleStatus}`}>
+            <p>
+              Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
+            </p>
+            <Link className="noodle_button" to={`/user/${hostID}/contact`}>
+              Contact {hostName}
+            </Link>
+            <Link className="noodle_button" to={`/user/${hostID}/follow`}>
+              Follow {hostName}
+            </Link>
+            <button
+              className={`noodle_button ${
+                sold < max ? element_classes.noodleBuyButton : "hidden"
+              }`}
+              id="details_buy_button"
+              onClick={() => {
+                /* get buy method from props */
+                this.props.onBuy();
+              }}
+            >
+              Buy a Ticket
+            </button>
+          </div>
+        );
+      } else {
+        const status = () => {
+          switch (noodleStatus) {
+            case "dream":
+              return "Dream Event";
+            case "event":
+              return "Event";
+            default:
+              return "Event";
+          }
+        };
+        return (
+          <div id={`details_host_intro_${noodleStatus}`}>
+            <p>
+              <Link to={`/user/${hostID}`}>
+                You are hosting this {status()}
+              </Link>
+            </p>
+            <Link className="noodle_button" to={`/edit/${noodleID}`}>
+              Edit this {status()}
+            </Link>
+            <button
+              className="noodle_button"
+              onClick={() => {
+                this.delete();
+              }}
+            >
+              Delete this {status()}
+            </button>
+          </div>
+        );
+      }
+    };
 
     return (
       <div id="details_intro_right" className="details_intro_column">
@@ -74,29 +138,7 @@ class DetailsIntroRight extends React.Component {
             })}
           </div>
         </div>
-        <div id={`details_host_intro_${noodleStatus}`}>
-          <p>
-            Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
-          </p>
-          <Link className="noodle_button" to={`/user/${hostID}/contact`}>
-            Contact {hostName}
-          </Link>
-          <Link className="noodle_button" to={`/user/${hostID}/follow`}>
-            Follow {hostName}
-          </Link>
-          <button
-            className={`noodle_button ${
-              sold < max ? element_classes.noodleBuyButton : "hidden"
-            }`}
-            id="details_buy_button"
-            onClick={() => {
-              /* get buy method from props */
-              this.props.onBuy();
-            }}
-          >
-            Buy a Ticket
-          </button>
-        </div>
+        {actionButtons()}
       </div>
     );
   }
