@@ -46,6 +46,31 @@ class DetailsIntroRight extends React.Component {
       hostName = this.props.thisHost.userName;
     }
 
+    const buyOrLikeButton = () => {
+      if (noodleStatus == "event") {
+        return (
+          <button
+            className={`noodle_button ${
+              sold < max ? element_classes.noodleBuyButton : "hidden"
+            }`}
+            id="details_buy_button"
+            onClick={() => {
+              /* get buy method from props */
+              this.props.onBuy();
+            }}
+          >
+            Buy a Ticket
+          </button>
+        );
+      } else {
+        return (
+          <button className="noodle_button" id="details_like_button">
+            Like this Dream Event
+          </button>
+        );
+      }
+    };
+
     // Get the action buttons depending on whether a user is viewing another users noodle
     const actionButtons = () => {
       if (parseInt(hostID) !== parseInt(currentUserID)) {
@@ -60,18 +85,7 @@ class DetailsIntroRight extends React.Component {
             <Link className="noodle_button" to={`/user/${hostID}/follow`}>
               Follow {hostName}
             </Link>
-            <button
-              className={`noodle_button ${
-                sold < max ? element_classes.noodleBuyButton : "hidden"
-              }`}
-              id="details_buy_button"
-              onClick={() => {
-                /* get buy method from props */
-                this.props.onBuy();
-              }}
-            >
-              Buy a Ticket
-            </button>
+            {buyOrLikeButton()}
           </div>
         );
       } else {

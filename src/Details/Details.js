@@ -59,7 +59,18 @@ class Details extends React.Component {
             onDelete={onDelete}
             filterType={filterType}
           />
-          <section id="details_details"></section>
+          <section id="details_details">
+            <div class="details_details_column" id="details_details_left">
+              <div>
+                <h3>Event Description</h3>
+                <p>{thisNoodle.noodleDescription}</p>
+              </div>
+            </div>
+            <div
+              class="details_details_column"
+              id="details_details_right"
+            ></div>
+          </section>
         </main>
       );
     }

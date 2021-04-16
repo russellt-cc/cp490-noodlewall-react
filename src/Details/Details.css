@@ -1,20 +1,32 @@
-#details #details_intro {
+main#details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+#details #details_intro,
+#details #details_details {
   display: flex;
   justify-content: space-evenly;
 }
 
-#details .details_intro_column {
+#details .details_intro_column,
+#details .details_details_column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: 30px;
 }
 
-#details #details_intro_left {
+#details #details_intro_left,
+#details #details_details_left {
   width: 50%;
 }
 
-#details #details_intro_right {
+#details #details_intro_right,
+#details #details_details_right {
   width: 25%;
 }
 
@@ -81,7 +93,7 @@
 }
 
 #details #details_host_intro_event > #details_buy_button,
-#details #details_host_intro_dream > #details_buy_button {
+#details #details_host_intro_dream > #details_like_button {
   height: 100px;
   width: 100%;
 }
