@@ -24,6 +24,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import ScrollToTop from "./Common/ScrollToTop.js";
 
 // Get local JSON file
 import { noodleData, userData } from "./Data/noodleData.js";
@@ -162,7 +163,48 @@ class App extends React.Component {
   // Update
 
   // Delete
-
+  delete = (type, data) => {
+    // Check whether we are using the API for data
+    const { useAPI, apiNoodlePath, apiUserPath } = this.state;
+    if (useAPI) {
+      let apiPath = "product";
+      // Check the type
+      switch (type) {
+        case "dream":
+        case "event":
+          apiPath = apiNoodlePath;
+          break;
+        case "user":
+          apiPath = apiUserPath;
+          break;
+        default:
+          alert("Error: Unknown Type");
+          return;
+      }
+      // AJAX request to PHP server
+      const { apiURL, apiDelete } = this.state;
+      fetch(apiURL + apiPath + apiDelete, {
+        method: "POST",
+        body: JSON.stringify(data),
+      }).then(
+        (result) => {
+          console.log(result);
+          // Reload data
+          this.read();
+          // Redirect to user page
+          const redirect = "/user/" + this.state.currentUserID;
+          this.setState({ redirect: redirect });
+        },
+        (error) => {
+          console.log(error);
+          alert(error.message);
+        }
+      );
+    } else {
+      // Just show a message
+      alert("You can't delete data when using the static JSON data.");
+    }
+  };
   // Render method
   render() {
     // Destructure the props and state
@@ -198,6 +240,8 @@ class App extends React.Component {
         <div className="App">
           {/* Router component to use React Router */}
           <Router>
+            {/* Scroll to top */}
+            <ScrollToTop />
             {/* Show the Noodlewall navbar */}
             {/* Replace the static user id with
             user id from session */}
