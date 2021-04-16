@@ -29,22 +29,20 @@ class Create extends React.Component {
       userName: userName,
       userBio: userBio,
       userBioLong: userBioLong,
-      noodleTitle: "Test Event",
-      noodleSummary:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      noodleDescription:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras varius arcu tellus, et eleifend turpis porta id. Aliquam commodo leo leo, eget rhoncus enim dictum nec. Morbi porta elementum ex sollicitudin porttitor.",
-      noodleLocation: "Nowhere",
-      noodleDirections: "There aren't any.",
-      noodleDate: "2021-05-30",
-      noodleTime: "12:00",
-      noodleTags: ["test1", "test2", "test3"],
-      noodleAddTag: "noodle",
+      noodleTitle: undefined,
+      noodleSummary: undefined,
+      noodleDescription: undefined,
+      noodleLocation: undefined,
+      noodleDirections: undefined,
+      noodleDate: undefined,
+      noodleTime: undefined,
+      noodleTags: [],
+      noodleAddTag: undefined,
       noodleImage: "https://picsum.photos/1280/720",
-      noodleTicketPrice: "10.00",
-      noodleMinTickets: 5,
-      noodleMaxTickets: 10,
-      noodleCutoff: "2021-04-30",
+      noodleTicketPrice: undefined,
+      noodleMinTickets: undefined,
+      noodleMaxTickets: undefined,
+      noodleCutoff: undefined,
     };
   }
 
@@ -75,13 +73,7 @@ class Create extends React.Component {
         const { noodleTitle, noodleDescription, noodleTags } = this.state;
         const { currentUserID: userID } = this.props;
         // Validate the required data
-        if (
-          noodleTitle !== undefined &&
-          noodleTitle !== "" &&
-          noodleDescription !== undefined &&
-          noodleDescription !== "" &&
-          noodleTags.length > 0
-        ) {
+        if (noodleTitle && noodleDescription && noodleTags.length) {
           // Create the object to be sent to the API
           const noodleData = {
             noodleTitle: noodleTitle,
@@ -144,66 +136,48 @@ class Create extends React.Component {
     const section1 = {
       name: "Organizer Information",
       className:
-        this.state.userName !== "" &&
-        this.state.userBio !== "" &&
-        this.state.userBioLong !== ""
+        this.state.userName && this.state.userBio && this.state.userBioLong
           ? "finished"
           : "unfinished",
     };
     const section2 = {
       name: "Basic Info",
       className:
-        this.state.noodleTitle !== "" &&
-        this.state.noodleSummary !== "" &&
-        this.state.noodleDescription !== "" &&
-        this.state.noodleTags.length !== 0
+        this.state.noodleTitle &&
+        this.state.noodleSummary &&
+        this.state.noodleDescription &&
+        this.state.noodleTags.length
           ? "finished"
           : "unfinished",
     };
     const section3 = {
       name: "Location",
       className:
-        this.state.noodleLocation !== undefined &&
-        this.state.noodleLocation !== "" &&
-        this.state.noodleDirections !== undefined &&
-        this.state.noodleDirections !== ""
+        this.state.noodleLocation && this.state.noodleDirections
           ? "finished"
           : "unfinished",
     };
     const section4 = {
       name: "Date and Time",
       className:
-        this.state.noodleDate !== undefined &&
-        this.state.noodleDate !== "" &&
-        this.state.noodleTime !== undefined &&
-        this.state.noodleTime !== ""
+        this.state.noodleDate && this.state.noodleTime
           ? "finished"
           : "unfinished",
     };
     const section5 = {
       name: "Upload Images",
-      className:
-        this.state.noodleImage !== undefined && this.state.noodleImage !== ""
-          ? "finished"
-          : "unfinished",
+      className: this.state.noodleImage ? "finished" : "unfinished",
     };
     const section6 = {
       name: "Create Tickets",
-      className:
-        this.state.noodleTicketPrice !== undefined &&
-        this.state.noodleTicketPrice !== ""
-          ? "finished"
-          : "unfinished",
+      className: this.state.noodleTicketPrice ? "finished" : "unfinished",
     };
     const section7 = {
       name: "Make It Happen",
       className:
-        this.state.noodleMinTickets !== undefined &&
-        this.state.noodleMinTickets !== "" &&
-        this.state.noodleMaxTickets !== undefined &&
-        this.state.noodleMaxTickets !== "" &&
-        this.state.noodleCutoff !== undefined &&
-        this.state.noodleCutoff !== ""
+        this.state.noodleMinTickets &&
+        this.state.noodleMaxTickets &&
+        this.state.noodleCutoff
           ? "finished"
           : "unfinished",
     };

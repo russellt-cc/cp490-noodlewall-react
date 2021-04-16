@@ -43,7 +43,7 @@ class App extends React.Component {
       noodleData: [],
       userData: [],
       currentUserID: 1,
-      useAPI: false,
+      useAPI: true,
       apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
       apiRead: "read.php",

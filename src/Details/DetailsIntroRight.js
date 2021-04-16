@@ -47,7 +47,7 @@ class DetailsIntroRight extends React.Component {
     }
 
     const buyOrLikeButton = () => {
-      if (noodleStatus == "event") {
+      if (noodleStatus === "event") {
         return (
           <button
             className={`noodle_button ${
