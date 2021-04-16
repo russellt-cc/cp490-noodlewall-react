@@ -15,15 +15,16 @@
   font-family: var(--font-family);
   font-weight: var(--font-weight);
   font-style: var(--font-style);
-  /* The orange soda color */
+  /* Set colors that we have picked */
   --orange-soda: #e45c3a;
-  /* Colors to denote and distinguish dreams vs events */
-  --dreams-color: #2fb182;
-  --dreams-text-color: white;
-  --events-color: #ee8959;
-  --events-text-color: white;
-  /* color between dreams and events (not happening) */
+  --mandarin: #ee8959;
   --moss-green: #8f9d6e;
+  --mint: #2fb182;
+  /* Colors to denote and distinguish dreams vs events */
+  --dreams-color: var(--mint);
+  --dreams-text-color: white;
+  --events-color: var(--mandarin);
+  --events-text-color: white;
 }
 
 html,
