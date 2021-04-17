@@ -1,3 +1,5 @@
+//https://stackoverflow.com/questions/38869197/fetch-set-variable-with-fetch-response-and-return-from-function
+
 function getRandomImageFromUnsplash(
   randomImageWidth,
   randomImageHeight,

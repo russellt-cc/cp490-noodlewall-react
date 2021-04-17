@@ -2,6 +2,7 @@ import logo from "../images/noodlewall-logo-50p.png";
 import "./Navbar.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import usericon from "../images/usericon.png";
 
 class Navbar extends React.Component {
   render() {
@@ -69,7 +70,7 @@ class Navbar extends React.Component {
               <button id="user_button_button">
                 <img
                   id="nav_user_image"
-                  src={userImage}
+                  src={userImage ? userImage : usericon}
                   height="50px"
                   width="50px"
                   alt="User"
@@ -86,7 +87,10 @@ class Navbar extends React.Component {
                   <div>
                     <h3>Your Account</h3>
                     <Link to={`/user/${userID}`}>
-                      <img src={userImage} alt="User"></img>
+                      <img
+                        src={userImage ? userImage : usericon}
+                        alt="User"
+                      ></img>
                       <p>
                         {userFirstName} {userLastName}
                       </p>

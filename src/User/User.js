@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./User.css";
 import UserRating from "../Common/UserRating.js";
 import NoodleList from "../Common/NoodleList.js";
+import usericon from "../images/usericon.png";
 
 // The user profile page
 class User extends React.Component {
@@ -195,7 +196,7 @@ class User extends React.Component {
               className="user_profile_intro_column"
               id="user_profile_intro_left"
             >
-              <img src={userImage} alt={userName} />
+              <img src={userImage ? userImage : usericon} alt={userName} />
               <h3>
                 {userFirstName} {userLastName}
               </h3>
