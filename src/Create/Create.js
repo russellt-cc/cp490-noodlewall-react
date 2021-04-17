@@ -12,11 +12,11 @@ import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import CreateNavProgressBar from "./CreateNavProgressBar.js";
 import CreateSection1 from "./CreateSection1.js";
 import CreateSection2 from "./CreateSection2.js";
-import CreateSection3 from "./CreateSection2.js";
-import CreateSection4 from "./CreateSection2.js";
-import CreateSection5 from "./CreateSection2.js";
-import CreateSection6 from "./CreateSection2.js";
-import CreateSection7 from "./CreateSection2.js";
+import CreateSection3 from "./CreateSection3.js";
+import CreateSection4 from "./CreateSection4.js";
+import CreateSection5 from "./CreateSection5.js";
+import CreateSection6 from "./CreateSection6.js";
+import CreateSection7 from "./CreateSection7.js";
 
 // The create dream / event page
 class Create extends React.Component {
@@ -348,30 +348,12 @@ class Create extends React.Component {
       if (mode === "event") {
         return (
           <>
-            <section id="location" className={sections[3 - 1].className}>
-              <h1 id="section3" className="create_section_heading">
-                {sections[3 - 1].name}
-              </h1>
-              <p>Where is your event located?</p>
-              <div>
-                <label htmlFor="noodleLocation">Event Location</label>
-                <Textbox
-                  attributesInput={{ name: "noodleLocation" }}
-                  value={noodleLocation}
-                  onChange={(noodleLocation, e) => {
-                    this.setState({ noodleLocation });
-                  }}
-                />
-                <label htmlFor="noodleDirections">Event Directions</label>
-                <Textarea
-                  attributesInput={{ name: "noodleDirections", rows: 5 }}
-                  value={noodleDirections}
-                  onChange={(noodleDirections, e) => {
-                    this.setState({ noodleDirections });
-                  }}
-                />
-              </div>
-            </section>
+            <CreateSection3
+              sections={sections}
+              noodleLocation={noodleLocation}
+              noodleDirections={noodleDirections}
+              onChange={this.handleChange}
+            ></CreateSection3>
             <section id="date_time" className={sections[4 - 1].className}>
               <h1 id="section4" className="create_section_heading">
                 {sections[4 - 1].name}

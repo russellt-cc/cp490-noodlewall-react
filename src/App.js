@@ -42,7 +42,7 @@ class App extends React.Component {
       noodlersAreLoaded: false,
       noodleData: [],
       userData: [],
-      currentUserID: 2,
+      currentUserID: 1,
       useAPI: true,
       apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
