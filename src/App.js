@@ -42,7 +42,7 @@ class App extends React.Component {
       noodlersAreLoaded: false,
       noodleData: [],
       userData: [],
-      currentUserID: 1,
+      currentUserID: 2,
       useAPI: true,
       apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
@@ -166,6 +166,52 @@ class App extends React.Component {
     }
   };
   // Update
+  update = (type, data) => {
+    // Check whether we are using the API for data
+    const { useAPI, apiNoodlePath, apiUserPath } = this.state;
+    if (useAPI) {
+      let apiPath = "product";
+      // Check the type
+      switch (type) {
+        case "dream":
+        case "event":
+          apiPath = apiNoodlePath;
+          break;
+        case "user":
+          apiPath = apiUserPath;
+          break;
+        default:
+          alert("Error: Unknown Type");
+          return;
+      }
+      // AJAX request to PHP server
+      const { apiURL, apiUpdate } = this.state;
+      fetch(apiURL + apiPath + apiUpdate, {
+        method: "POST",
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            console.log(result);
+            // Reload data
+            this.read();
+            // Redirect to user page
+            const redirect = "/user/" + this.state.currentUserID;
+            // Redirect to noodle page
+            // const redirect = "/details/" + result.noodleID;
+            this.setState({ redirect: redirect });
+          },
+          (error) => {
+            console.log(error);
+            alert(error.message);
+          }
+        );
+    } else {
+      // Just show a message
+      alert("You can't update data when using the static JSON data.");
+    }
+  };
 
   // Delete
   delete = (type, data) => {
@@ -265,7 +311,8 @@ class App extends React.Component {
                     {...props}
                     userData={userData}
                     currentUserID={currentUserID}
-                    onCreate={this.create}
+                    onUpdate={this.update}
+                    noodleData={noodleData}
                   />
                 )}
               />

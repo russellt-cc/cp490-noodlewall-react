@@ -24,31 +24,75 @@ class Create extends React.Component {
     })[0];
     const { userName, userBio, userBioLong } = thisUser;
 
-    // Put default data in state for testing
-    this.state = {
-      noodleStatus: noodleStatus,
-      userName: userName,
-      userBio: userBio,
-      userBioLong: userBioLong,
-      noodleTitle: undefined,
-      noodleSummary: undefined,
-      noodleDescription: undefined,
-      noodleLocation: undefined,
-      noodleDirections: undefined,
-      noodleDate: undefined,
-      noodleTime: undefined,
-      noodleTags: [],
-      noodleAddTag: undefined,
-      noodleImage: undefined,
-      noodleChangeImage: undefined,
-      noodleTicketPrice: undefined,
-      noodleMinTickets: undefined,
-      noodleMaxTickets: undefined,
-      noodleCutoff: undefined,
-      randomImageWidth: 1280,
-      randomImageHeight: 720,
-      noodleImageText: undefined,
-    };
+    // Check if we are editing an existing entry
+    const { id: noodleID } = this.props.match.params;
+
+    if (noodleID) {
+      // Get current noodle data to pre fill the form
+      const { noodleData } = this.props;
+      const thisNoodle = noodleData.filter((noodle) => {
+        return parseInt(noodle.noodleID) === parseInt(noodleID);
+      })[0];
+      // Put data in state for editing
+      this.state = {
+        noodleID,
+        noodleStatus,
+        userName: userName,
+        userBio: userBio,
+        userBioLong: userBioLong,
+        noodleTitle: thisNoodle.noodleTitle,
+        noodleSummary: thisNoodle.noodleSummary
+          ? thisNoodle.noodleSummary
+          : undefined,
+        noodleDescription: thisNoodle.noodleDescription,
+        noodleLocation: thisNoodle.noodleLocation
+          ? thisNoodle.noodleLocation
+          : undefined,
+        noodleDirections: thisNoodle.noodleDirections
+          ? thisNoodle.noodleDirections
+          : undefined,
+        noodleDate: thisNoodle.noodleDate,
+        noodleTime: thisNoodle.noodleTime,
+        noodleTags: thisNoodle.noodleTags,
+        noodleAddTag: thisNoodle.noodleAddTag,
+        noodleImage: thisNoodle.noodleImage,
+        noodleChangeImage: thisNoodle.noodleChangeImage,
+        noodleTicketPrice: thisNoodle.noodleTicketPrice,
+        noodleMinTickets: thisNoodle.noodleMinTickets,
+        noodleMaxTickets: thisNoodle.noodleMaxTickets,
+        noodleCutoff: thisNoodle.noodleCutoff,
+        randomImageWidth: 1280,
+        randomImageHeight: 720,
+        noodleImageText: thisNoodle.noodleImageText,
+      };
+    } else {
+      // Put default data in state for testing
+      this.state = {
+        noodleID: undefined,
+        noodleStatus: noodleStatus,
+        userName: userName,
+        userBio: userBio,
+        userBioLong: userBioLong,
+        noodleTitle: undefined,
+        noodleSummary: undefined,
+        noodleDescription: undefined,
+        noodleLocation: undefined,
+        noodleDirections: undefined,
+        noodleDate: undefined,
+        noodleTime: undefined,
+        noodleTags: [],
+        noodleAddTag: undefined,
+        noodleImage: undefined,
+        noodleChangeImage: undefined,
+        noodleTicketPrice: undefined,
+        noodleMinTickets: undefined,
+        noodleMaxTickets: undefined,
+        noodleCutoff: undefined,
+        randomImageWidth: 1280,
+        randomImageHeight: 720,
+        noodleImageText: undefined,
+      };
+    }
   }
 
   handleChange = (event) => {
@@ -74,6 +118,7 @@ class Create extends React.Component {
   create = (status) => {
     // Get the required data
     const {
+      noodleID,
       noodleTitle,
       noodleDescription,
       noodleTags,
@@ -113,8 +158,11 @@ class Create extends React.Component {
       case "dream":
         // Validate the required data
         if (noodleTitle && noodleDescription && noodleTags.length) {
-          // Send the data to the main create function
-          this.props.onCreate(status, noodleData);
+          // Check mode
+          // Send the data to the main update or create function
+          noodleID
+            ? this.props.onUpdate(status, noodleData)
+            : this.props.onCreate(status, noodleData);
         } else {
           alert("You must fill in the basic information to save as a dream!");
         }
@@ -137,8 +185,11 @@ class Create extends React.Component {
           noodleMaxTickets &&
           noodleCutoff
         ) {
-          // Send the data to the main create function
-          this.props.onCreate(status, noodleData);
+          // Check mode
+          // Send the data to the main update or create function
+          noodleID
+            ? this.props.onUpdate(status, noodleData)
+            : this.props.onCreate(status, noodleData);
         } else {
           alert("You must fill in all of the information to save as an event!");
         }
