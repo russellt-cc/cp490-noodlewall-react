@@ -1,9 +1,3 @@
-//https://medium.com/@650egor/react-30-day-challenge-day-2-image-upload-preview-2d534f8eaaa
-//https://stackoverflow.com/questions/60797390/generate-random-image-by-url
-//https://source.unsplash.com/
-//https://allegra9.medium.com/unsplash-without-api-ab2dcdb503a0
-//https://stackoverflow.com/questions/15130091/amp-character-from-api-url-not-saved-to-mysql-database
-
 import "./Create.css";
 import React from "react";
 
@@ -51,13 +45,13 @@ class Create extends React.Component {
         noodleID,
         createMode: thisNoodle.noodleStatus,
         noodleStatus: thisNoodle.noodleStatus,
-        userName: userName,
-        userBio: userBio,
-        userBioLong: userBioLong,
+        userName: userName ? userName : "User Name",
+        userBio: userBio ? userBio : "User Bio",
+        userBioLong: userBioLong ? userBioLong : "User Bio Long",
         noodleTitle: thisNoodle.noodleTitle,
         noodleSummary: thisNoodle.noodleSummary
           ? thisNoodle.noodleSummary
-          : undefined,
+          : thisNoodle.noodleTitle,
         noodleDescription: thisNoodle.noodleDescription,
         noodleLocation: thisNoodle.noodleLocation
           ? thisNoodle.noodleLocation
@@ -69,8 +63,16 @@ class Create extends React.Component {
         noodleTime: thisNoodle.noodleTime,
         noodleTags: thisNoodle.noodleTags,
         noodleImage: thisNoodle.noodleImage,
-        noodleImages: thisNoodle.noodleImages,
-        noodleImagesText: thisNoodle.noodleImagesText,
+        noodleImages: thisNoodle.noodleImages
+          ? thisNoodle.noodleImages
+          : thisNoodle.noodleImage
+          ? [thisNoodle.noodleImage]
+          : [],
+        noodleImagesText: thisNoodle.noodleImagesText
+          ? thisNoodle.noodleImagesText
+          : thisNoodle.noodleImage
+          ? [""]
+          : [],
         noodlePrice: thisNoodle.noodlePrice,
         noodleMinTickets: thisNoodle.noodleMinTickets,
         noodleMaxTickets: thisNoodle.noodleMaxTickets,
@@ -82,9 +84,9 @@ class Create extends React.Component {
         createMode: noodleStatus,
         noodleID: undefined,
         noodleStatus: undefined,
-        userName: userName,
-        userBio: userBio,
-        userBioLong: userBioLong,
+        userName: userName ? userName : "User Name",
+        userBio: userBio ? userBio : "User Bio",
+        userBioLong: userBioLong ? userBioLong : "User Bio Long",
         noodleTitle: undefined,
         noodleSummary: undefined,
         noodleDescription: undefined,

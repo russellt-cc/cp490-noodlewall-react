@@ -229,6 +229,10 @@ main#create.event {
   margin-top: 10px;
 }
 
+#create .noodle_image_selector.unselected {
+  border: none;
+}
+
 #create #noodle_ticket_price_container {
   display: flex;
   align-items: center;
