@@ -7,8 +7,6 @@ class CreateImage extends React.Component {
     super(props);
     this.state = {
       noodleChangeImage: undefined,
-      noodleImage: undefined,
-      noodleImageText: undefined,
       randomImageWidth: 1280,
       randomImageHeight: 720,
     };
@@ -58,11 +56,13 @@ class CreateImage extends React.Component {
   };
 
   changeImage = (noodleImage) => {
-    this.setState({ noodleImage });
+    const { onChangeImage, index } = this.props;
+    onChangeImage(index, noodleImage);
   };
 
   changeImageText = (noodleImageText) => {
-    this.setState({ noodleImageText });
+    const { onChangeImageText, index } = this.props;
+    onChangeImageText(index, noodleImageText);
   };
 
   delete = () => {
@@ -73,7 +73,8 @@ class CreateImage extends React.Component {
   };
 
   render() {
-    const { noodleChangeImage, noodleImage, noodleImageText } = this.state;
+    const { noodleChangeImage } = this.state;
+    const { noodleImage, noodleImageText } = this.props;
     return (
       <div className="noodle_image_container">
         <div className="noodle_image_header_container">

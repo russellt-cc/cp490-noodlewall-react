@@ -72,7 +72,6 @@ class Create extends React.Component {
         noodleTags: thisNoodle.noodleTags,
         noodleImage: thisNoodle.noodleImage,
         noodleImages: thisNoodle.noodleImages,
-        noodleImageText: thisNoodle.noodleImageText,
         noodleImagesText: thisNoodle.noodleImagesText,
         noodlePrice: thisNoodle.noodlePrice,
         noodleMinTickets: thisNoodle.noodleMinTickets,
@@ -97,9 +96,8 @@ class Create extends React.Component {
         noodleTime: undefined,
         noodleTags: [],
         noodleImage: undefined,
-        noodleImages: ["", "", ""],
-        noodleImageText: undefined,
-        noodleImagesText: ["", "", ""],
+        noodleImages: [],
+        noodleImagesText: [],
         noodlePrice: undefined,
         noodleMinTickets: undefined,
         noodleMaxTickets: undefined,
@@ -141,7 +139,6 @@ class Create extends React.Component {
       noodleDate,
       noodleTime,
       noodleImage,
-      noodleImageText,
       noodleImages,
       noodleImagesText,
       noodlePrice,
@@ -163,7 +160,6 @@ class Create extends React.Component {
       noodleDate: noodleDate,
       noodleTime: noodleTime,
       noodleImage: noodleImage,
-      noodleImageText: noodleImageText,
       noodleImages: noodleImages,
       noodleImagesText: noodleImagesText,
       noodlePrice: noodlePrice,
@@ -226,6 +222,14 @@ class Create extends React.Component {
     this.setState({ noodleImage });
   };
 
+  changeImages = (noodleImages) => {
+    this.setState({ noodleImages });
+  };
+
+  changeImagesText = (noodleImagesText) => {
+    this.setState({ noodleImagesText });
+  };
+
   setMode = (createMode) => {
     this.setState({ createMode });
   };
@@ -248,7 +252,6 @@ class Create extends React.Component {
       noodleMaxTickets,
       noodleCutoff,
       noodleImage,
-      noodleImageText,
       noodleImages,
       noodleImagesText,
       noodleStatus,
@@ -327,12 +330,13 @@ class Create extends React.Component {
             ></CreateSection4>
             <CreateSection5
               sections={sections}
+              noodleTags={noodleTags}
               noodleImage={noodleImage}
-              noodleImageText={noodleImageText}
               noodleImages={noodleImages}
               noodleImagesText={noodleImagesText}
-              noodleTags={noodleTags}
               onChangeImage={this.changeImage}
+              onChangeImages={this.changeImages}
+              onChangeImagesText={this.changeImagesText}
             ></CreateSection5>
             <CreateSection6
               sections={sections}

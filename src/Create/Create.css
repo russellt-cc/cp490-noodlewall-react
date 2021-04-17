@@ -184,6 +184,15 @@ main#create.event {
   border-radius: 10px;
 }
 
+#create #noodleAddImageButton {
+  border: none;
+  background-color: var(--events-color);
+  color: white;
+  width: 200px;
+  border-radius: 10px;
+  height: 40px;
+}
+
 #create .noodle_image_container {
   display: flex;
   flex-direction: column;
