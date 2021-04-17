@@ -2,8 +2,8 @@ import React from "react";
 
 class CreateNavProgressBar extends React.Component {
   render() {
-    const { mode, sections } = this.props;
-    if (mode === "event") {
+    const { createMode, sections } = this.props;
+    if (createMode === "event") {
       return (
         <div id="create_nav_progress_bar">
           <div

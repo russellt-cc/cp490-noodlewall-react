@@ -17,6 +17,7 @@ import CreateSection4 from "./CreateSection4.js";
 import CreateSection5 from "./CreateSection5.js";
 import CreateSection6 from "./CreateSection6.js";
 import CreateSection7 from "./CreateSection7.js";
+import CreateSubmitBar from "./CreateSubmitBar";
 
 // The create dream / event page
 class Create extends React.Component {
@@ -50,6 +51,7 @@ class Create extends React.Component {
       // Put data in state for editing
       this.state = {
         noodleID,
+        createMode: thisNoodle.noodleStatus,
         noodleStatus: thisNoodle.noodleStatus,
         userName: userName,
         userBio: userBio,
@@ -81,8 +83,9 @@ class Create extends React.Component {
     } else {
       // Put default data in state for testing
       this.state = {
+        createMode: noodleStatus,
         noodleID: undefined,
-        noodleStatus: noodleStatus,
+        noodleStatus: undefined,
         userName: userName,
         userBio: userBio,
         userBioLong: userBioLong,
@@ -271,9 +274,14 @@ class Create extends React.Component {
     });
   };
 
+  setMode = (createMode) => {
+    this.setState({ createMode });
+  };
+
   render() {
     // Get data from state
     const {
+      createMode,
       userName,
       userBio,
       userBioLong,
@@ -348,8 +356,8 @@ class Create extends React.Component {
     };
 
     const eventDetails = () => {
-      const mode = this.state.noodleStatus;
-      if (mode === "event") {
+      const { createMode } = this.state;
+      if (createMode === "event") {
         return (
           <>
             <CreateSection3
@@ -481,49 +489,11 @@ class Create extends React.Component {
       }
     };
 
-    const createEventButton = () => {
-      if (noodleStatus === "event") {
-        return (
-          <button
-            id="create_event_button"
-            className={`noodle_button ${
-              sections[1 - 1].className === "finished" &&
-              sections[2 - 1].className === "finished" &&
-              sections[3 - 1].className === "finished" &&
-              sections[4 - 1].className === "finished" &&
-              sections[5 - 1].className === "finished" &&
-              sections[6 - 1].className === "finished" &&
-              sections[7 - 1].className === "finished"
-                ? "finished"
-                : "unfinished"
-            }`}
-            name="create_event"
-            type="button"
-            onClick={() => this.create("event")}
-          >
-            Make it Happen
-          </button>
-        );
-      } else {
-        return (
-          <button
-            id="create_event_button"
-            className="noodle_button"
-            name="create_event"
-            type="button"
-            onClick={() => this.setState({ noodleStatus: "event" })}
-          >
-            Show All
-          </button>
-        );
-      }
-    };
-
     // Return the create page
     return (
-      <main id="create" className={noodleStatus}>
+      <main id="create" className={createMode}>
         <form id="create_form" onSubmit={this.handleSubmit}>
-          <CreateNavProgressBar mode={noodleStatus} sections={sections} />
+          <CreateNavProgressBar createMode={createMode} sections={sections} />
           <CreateSection1
             sections={sections}
             userName={userName}
@@ -542,23 +512,13 @@ class Create extends React.Component {
             onRemoveTag={this.removeNoodleTag}
           />
           {eventDetails()}
-          <div id="create_submit_bar">
-            <button
-              id="create_dream_button"
-              className={`noodle_button ${
-                sections[1 - 1].className === "finished" &&
-                sections[2 - 1].className === "finished"
-                  ? "finished"
-                  : "unfinished"
-              }`}
-              name="create_dream"
-              type="button"
-              onClick={() => this.create("dream")}
-            >
-              Save as Dream
-            </button>
-            {createEventButton()}
-          </div>
+          <CreateSubmitBar
+            sections={sections}
+            noodleStatus={noodleStatus}
+            createMode={createMode}
+            setMode={this.setMode}
+            onCreate={this.create}
+          />
         </form>
       </main>
     );
