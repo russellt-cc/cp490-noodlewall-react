@@ -66,19 +66,17 @@ class CreateImage extends React.Component {
   };
 
   delete = () => {
-    this.changeImage(undefined);
-    this.setState({
-      noodleChangeImage: undefined,
-    });
+    const { onRemoveImage, index } = this.props;
+    onRemoveImage(index);
   };
 
   render() {
     const { noodleChangeImage } = this.state;
-    const { noodleImage, noodleImageText } = this.props;
+    const { noodleImage, noodleImageText, index } = this.props;
     return (
       <div className="noodle_image_container">
         <div className="noodle_image_header_container">
-          <label>Event Image</label>
+          <label>Event Image {index + 1}</label>
           <button
             type="button"
             className="noodleImageRemoveButton"

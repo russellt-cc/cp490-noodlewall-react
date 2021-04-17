@@ -81,6 +81,7 @@ class CreateSection5 extends React.Component {
               noodleTags={noodleTags}
               onChangeImage={this.changeImages}
               onChangeImageText={this.changeImagesText}
+              onRemoveImage={this.removeImage}
             />
           );
         })}
