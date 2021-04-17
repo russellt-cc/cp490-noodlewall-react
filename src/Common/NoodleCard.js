@@ -27,7 +27,7 @@ class NoodleCard extends React.Component {
       // <Link className="noodle_link" to={noodleLink}>
       <div className={`noodle_card ${noodleStatus}`}>
         <Link className="noodle_image_link" to={noodleLink}>
-          <img src={noodleImage} alt="Noodle"></img>
+          <img src={decodeURIComponent(noodleImage)} alt="Noodle"></img>
           {NoodleOverlay(noodleStatus)}
         </Link>
         <p className={`noodle_id`}>

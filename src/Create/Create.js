@@ -1,5 +1,8 @@
 //https://medium.com/@650egor/react-30-day-challenge-day-2-image-upload-preview-2d534f8eaaa
 //https://stackoverflow.com/questions/60797390/generate-random-image-by-url
+//https://source.unsplash.com/
+//https://allegra9.medium.com/unsplash-without-api-ab2dcdb503a0
+//https://stackoverflow.com/questions/15130091/amp-character-from-api-url-not-saved-to-mysql-database
 
 import "./Create.css";
 import React from "react";
@@ -217,6 +220,48 @@ class Create extends React.Component {
     this.setState({ noodleTags: splicedNoodles });
   };
 
+  getRandomImageFromPicsum = () => {
+    const { randomImageWidth, randomImageHeight } = this.state;
+    // Get a random number for our image seed
+    const seed = Math.floor(Math.random() * 1000);
+    const randomImage =
+      "https://picsum.photos/seed/" +
+      seed +
+      "/" +
+      randomImageWidth +
+      "/" +
+      randomImageHeight +
+      "";
+    this.setState({ noodleImage: randomImage });
+  };
+
+  getRandomImageFromUnsplash = () => {
+    const { randomImageWidth, randomImageHeight, noodleTags } = this.state;
+    let randomImageRequest =
+      "https://source.unsplash.com/random/" +
+      randomImageWidth +
+      "x" +
+      randomImageHeight;
+    // Check if we have tags
+    if (noodleTags.length) {
+      // Get images based on tags
+      const tags = noodleTags.join();
+      randomImageRequest = randomImageRequest + "/?" + tags;
+    }
+    // Get random image
+    fetch(randomImageRequest).then((response) => {
+      console.log("Request for random image succeeded");
+      console.log("Outgoing Data");
+      console.log(randomImageRequest);
+      console.log("Incoming Data");
+      console.log(response);
+      const encodedURL = encodeURIComponent(response.url);
+      console.log("Encoded URI");
+      console.log(encodedURL);
+      this.setState({ noodleImage: encodedURL });
+    });
+  };
+
   render() {
     // Get data from state
     const {
@@ -236,8 +281,6 @@ class Create extends React.Component {
       noodleCutoff,
       noodleImage,
       noodleChangeImage,
-      randomImageWidth,
-      randomImageHeight,
       noodleImageText,
       noodleStatus,
     } = this.state;
@@ -478,17 +521,7 @@ class Create extends React.Component {
                       type="button"
                       className="noodleImageButton"
                       onClick={() => {
-                        // Get a random number for our image seed
-                        const seed = Math.floor(Math.random() * 1000);
-                        const randomImage =
-                          "https://picsum.photos/seed/" +
-                          seed +
-                          "/" +
-                          randomImageWidth +
-                          "/" +
-                          randomImageHeight +
-                          "";
-                        this.setState({ noodleImage: randomImage });
+                        this.getRandomImageFromPicsum();
                       }}
                     >
                       Get a Random Image from Picsum
@@ -496,25 +529,18 @@ class Create extends React.Component {
                     <button
                       type="button"
                       className="noodleImageButton"
-                      onClick={() => {
-                        // Get a random number for our image seed
-                        const seed = Math.floor(Math.random() * 1000);
-                        const randomImage =
-                          "https://source.unsplash.com/random/" +
-                          randomImageWidth +
-                          "x" +
-                          randomImageHeight +
-                          "?sig=" +
-                          seed;
-                        this.setState({ noodleImage: randomImage });
-                      }}
+                      onClick={() => this.getRandomImageFromUnsplash()}
                     >
                       Get a Random Image from Unsplash
                     </button>
                   </div>
                 </div>
                 <div className="noodle_image_preview_container">
-                  {noodleImage ? <img src={noodleImage} alt="Noodle" /> : <></>}
+                  {noodleImage ? (
+                    <img src={decodeURIComponent(noodleImage)} alt="Noodle" />
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="noodle_image_text_container">
                   <label htmlFor="noodleImageText">

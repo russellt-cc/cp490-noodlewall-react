@@ -70,7 +70,7 @@ class DetailsIntroLeft extends React.Component {
         </p>
         {noodleImage ? (
           <div id="details_image_container">
-            <img src={noodleImage} alt="Noodle"></img>
+            <img src={decodeURIComponent(noodleImage)} alt="Noodle"></img>
             {NoodleOverlay(noodleStatus)}
           </div>
         ) : (
