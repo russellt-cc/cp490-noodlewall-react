@@ -7,12 +7,28 @@ class CreateSection2 extends React.Component {
     super(props);
     this.state = { noodleAddTag: undefined };
   }
+
+  addNoodleTag = (noodleAddTag) => {
+    const { onChangeTags, noodleTags } = this.props;
+    if (!noodleTags.includes(noodleAddTag)) {
+      const index = noodleTags.length;
+      let splicedNoodles = [...noodleTags];
+      splicedNoodles.splice(index, 0, noodleAddTag);
+      onChangeTags(splicedNoodles);
+    }
+  };
+
+  removeNoodleTag = (index) => {
+    const { onChangeTags, noodleTags } = this.props;
+    let splicedNoodles = [...noodleTags];
+    splicedNoodles.splice(index, 1);
+    onChangeTags(splicedNoodles);
+  };
+
   render() {
     const {
       sections,
       onChange,
-      onAddTag,
-      onRemoveTag,
       noodleTitle,
       noodleSummary,
       noodleDescription,
@@ -72,7 +88,7 @@ class CreateSection2 extends React.Component {
               type="button"
               id="noodleAddTagButton"
               onClick={() => {
-                onAddTag(noodleAddTag);
+                this.addNoodleTag(noodleAddTag);
               }}
             >
               Add Tag
@@ -86,7 +102,7 @@ class CreateSection2 extends React.Component {
                   <button
                     type="button"
                     onClick={() => {
-                      onRemoveTag(index);
+                      this.removeNoodleTag(index);
                     }}
                   >
                     X

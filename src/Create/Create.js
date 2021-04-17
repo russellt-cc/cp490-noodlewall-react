@@ -218,20 +218,8 @@ class Create extends React.Component {
     }
   };
 
-  addNoodleTag = (noodleAddTag) => {
-    const { noodleTags } = this.state;
-    if (!noodleTags.includes(noodleAddTag)) {
-      const index = noodleTags.length;
-      let splicedNoodles = [...noodleTags];
-      splicedNoodles.splice(index, 0, noodleAddTag);
-      this.setState({ noodleTags: splicedNoodles });
-    }
-  };
-
-  removeNoodleTag = (index) => {
-    let splicedNoodles = [...this.state.noodleTags];
-    splicedNoodles.splice(index, 1);
-    this.setState({ noodleTags: splicedNoodles });
+  changeTags = (noodleTags) => {
+    this.setState({ noodleTags });
   };
 
   changeImage = (noodleImage) => {
@@ -382,8 +370,7 @@ class Create extends React.Component {
             noodleDescription={noodleDescription}
             noodleTags={noodleTags}
             onChange={this.handleChange}
-            onAddTag={this.addNoodleTag}
-            onRemoveTag={this.removeNoodleTag}
+            onChangeTags={this.changeTags}
           />
           {eventDetails()}
           <CreateSubmitBar
