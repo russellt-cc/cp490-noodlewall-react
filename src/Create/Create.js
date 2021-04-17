@@ -36,7 +36,7 @@ class Create extends React.Component {
       // Put data in state for editing
       this.state = {
         noodleID,
-        noodleStatus,
+        noodleStatus: thisNoodle.noodleStatus,
         userName: userName,
         userBio: userBio,
         userBioLong: userBioLong,
@@ -238,6 +238,7 @@ class Create extends React.Component {
       randomImageWidth,
       randomImageHeight,
       noodleImageText,
+      noodleStatus,
     } = this.state;
 
     // Set data for the sections
@@ -290,10 +291,10 @@ class Create extends React.Component {
           : "unfinished",
     };
 
-    // Return the create page
-    return (
-      <main id="create">
-        <form id="create_form" onSubmit={this.handleSubmit}>
+    const createNavProgressBar = () => {
+      const mode = this.state.noodleStatus;
+      if (mode === "event") {
+        return (
           <div id="create_nav_progress_bar">
             <div
               id="create_nav_progress_bar_line"
@@ -354,6 +355,288 @@ class Create extends React.Component {
               </div>
             </div>
           </div>
+        );
+      }
+    };
+
+    const eventDetails = () => {
+      const mode = this.state.noodleStatus;
+      if (mode === "event") {
+        return (
+          <>
+            <section id="location" className={section3.className}>
+              <h1 id="section3" className="create_section_heading">
+                {section3.name}
+              </h1>
+              <p>Where is your event located?</p>
+              <div>
+                <label htmlFor="noodleLocation">Event Location</label>
+                <Textbox
+                  attributesInput={{ name: "noodleLocation" }}
+                  value={noodleLocation}
+                  onChange={(noodleLocation, e) => {
+                    this.setState({ noodleLocation });
+                  }}
+                />
+                <label htmlFor="noodleDirections">Event Directions</label>
+                <Textarea
+                  attributesInput={{ name: "noodleDirections", rows: 5 }}
+                  value={noodleDirections}
+                  onChange={(noodleDirections, e) => {
+                    this.setState({ noodleDirections });
+                  }}
+                />
+              </div>
+            </section>
+            <section id="date_time" className={section4.className}>
+              <h1 id="section4" className="create_section_heading">
+                {section4.name}
+              </h1>
+              <p>Set the date and time of the event.</p>
+              <div>
+                <label htmlFor="noodleDate">Event Date</label>
+                <input
+                  type="date"
+                  name="noodleDate"
+                  value={this.state.noodleDate}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div>
+                <label htmlFor="noodleTime">Event Time</label>
+                <input
+                  type="time"
+                  name="noodleTime"
+                  value={this.state.noodleTime}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+            </section>
+            <section id="images" className={section5.className}>
+              <h1 id="section5" className={"create_section_heading"}>
+                {section5.name}
+              </h1>
+              <p>
+                Upload as many images as you would like to be displayed on the
+                event page.
+              </p>
+              <div className="noodle_image_container">
+                <div className="noodle_image_header_container">
+                  <label>Event Image</label>
+                  <button
+                    type="button"
+                    className="noodleImageRemoveButton"
+                    onClick={() => {
+                      this.setState({
+                        noodleImage: undefined,
+                        noodleChangeImage: undefined,
+                      });
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+                <div className="noodle_image_file_upload">
+                  <label htmlFor="noodleImage">
+                    Upload an image from your device
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    name="noodleImage"
+                    onChange={this.handleChange}
+                  ></input>
+                </div>
+                <div className="noodle_image_set_url">
+                  <label htmlFor="noodleImageLink">
+                    Get an image from the internet
+                  </label>
+                  <Textbox
+                    attributesInput={{
+                      name: "noodleImageLink",
+                    }}
+                    value={noodleChangeImage}
+                    onChange={(noodleChangeImage, e) => {
+                      this.setState({ noodleChangeImage });
+                    }}
+                  />
+                  <div className="noodle_image_button_container">
+                    <button
+                      type="button"
+                      className="noodleImageButton"
+                      onClick={() => {
+                        this.setState({
+                          noodleImage: noodleChangeImage,
+                          noodleChangeImage: undefined,
+                        });
+                      }}
+                    >
+                      Get Image from URL
+                    </button>
+                    <button
+                      type="button"
+                      className="noodleImageButton"
+                      onClick={() => {
+                        // Get a random number for our image seed
+                        const seed = Math.floor(Math.random() * 1000);
+                        const randomImage =
+                          "https://picsum.photos/seed/" +
+                          seed +
+                          "/" +
+                          randomImageWidth +
+                          "/" +
+                          randomImageHeight +
+                          "";
+                        this.setState({ noodleImage: randomImage });
+                      }}
+                    >
+                      Get a Random Image from Picsum
+                    </button>
+                    <button
+                      type="button"
+                      className="noodleImageButton"
+                      onClick={() => {
+                        // Get a random number for our image seed
+                        const seed = Math.floor(Math.random() * 1000);
+                        const randomImage =
+                          "https://source.unsplash.com/random/" +
+                          randomImageWidth +
+                          "x" +
+                          randomImageHeight +
+                          "?sig=" +
+                          seed;
+                        this.setState({ noodleImage: randomImage });
+                      }}
+                    >
+                      Get a Random Image from Unsplash
+                    </button>
+                  </div>
+                </div>
+                <div className="noodle_image_preview_container">
+                  {noodleImage ? <img src={noodleImage} alt="Noodle" /> : <></>}
+                </div>
+                <div className="noodle_image_text_container">
+                  <label htmlFor="noodleImageText">
+                    Enter some text to go along with the image
+                  </label>
+                  <Textarea
+                    attributesInput={{ name: "noodleImageText", rows: 5 }}
+                    value={noodleImageText}
+                    onChange={(noodleImageText, e) => {
+                      this.setState({ noodleImageText });
+                    }}
+                  />
+                </div>
+              </div>
+            </section>
+            <section id="tickets" className={section6.className}>
+              <h1 id="section6" className="create_section_heading">
+                {section6.name}
+              </h1>
+              <p>Create ticket types available for the event.</p>
+              <div>
+                <label htmlFor="noodleTicketPrice">Ticket Price</label>
+                <div id="noodle_ticket_price_container">
+                  <span>$</span>
+                  <input
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                    max="2500"
+                    name="noodleTicketPrice"
+                    value={noodleTicketPrice}
+                    onChange={this.handleChange}
+                  ></input>
+                </div>
+              </div>
+            </section>
+            <section id="secret_sauce" className={section7.className}>
+              <h1 id="section7" className="create_section_heading">
+                {section7.name}
+              </h1>
+              <p>Adjust the secret sauce details to make the noodle stick.</p>
+              <div>
+                <label htmlFor="noodleMinTickets">
+                  Minimum Tickets Required
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  step="1"
+                  max="2500"
+                  name="noodleMinTickets"
+                  value={noodleMinTickets}
+                  onChange={this.handleChange}
+                ></input>
+                <label htmlFor="noodleMaxTickets">
+                  Maximum Tickets Available
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  step="1"
+                  max="2500"
+                  name="noodleMaxTickets"
+                  value={noodleMaxTickets}
+                  onChange={this.handleChange}
+                ></input>
+                <label htmlFor="noodleCutoff">Cutoff Date</label>
+                <input
+                  type="date"
+                  name="noodleCutoff"
+                  value={noodleCutoff}
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+            </section>
+          </>
+        );
+      }
+    };
+
+    const createEventButton = () => {
+      if (noodleStatus === "event") {
+        return (
+          <button
+            id="create_event_button"
+            className={`noodle_button ${
+              section1.className === "finished" &&
+              section2.className === "finished" &&
+              section3.className === "finished" &&
+              section4.className === "finished" &&
+              section5.className === "finished" &&
+              section6.className === "finished" &&
+              section7.className === "finished"
+                ? "finished"
+                : "unfinished"
+            }`}
+            name="create_event"
+            type="button"
+            onClick={() => this.create("event")}
+          >
+            Make it Happen
+          </button>
+        );
+      } else {
+        return (
+          <button
+            id="create_event_button"
+            className="noodle_button"
+            name="create_event"
+            type="button"
+            onClick={() => this.setState({ noodleStatus: "event" })}
+          >
+            Show All
+          </button>
+        );
+      }
+    };
+
+    // Return the create page
+    return (
+      <main id="create" class={noodleStatus}>
+        <form id="create_form" onSubmit={this.handleSubmit}>
+          {createNavProgressBar()}
           <section id="organizer_information" className={section1.className}>
             <h1 id="section1" className="create_section_heading">
               {section1.name}
@@ -469,229 +752,9 @@ class Create extends React.Component {
               </ul>
             </div>
           </section>
-          <section id="location" className={section3.className}>
-            <h1 id="section3" className="create_section_heading">
-              {section3.name}
-            </h1>
-            <p>Where is your event located?</p>
-            <div>
-              <label htmlFor="noodleLocation">Event Location</label>
-              <Textbox
-                attributesInput={{ name: "noodleLocation" }}
-                value={noodleLocation}
-                onChange={(noodleLocation, e) => {
-                  this.setState({ noodleLocation });
-                }}
-              />
-              <label htmlFor="noodleDirections">Event Directions</label>
-              <Textarea
-                attributesInput={{ name: "noodleDirections", rows: 5 }}
-                value={noodleDirections}
-                onChange={(noodleDirections, e) => {
-                  this.setState({ noodleDirections });
-                }}
-              />
-            </div>
-          </section>
-          <section id="date_time" className={section4.className}>
-            <h1 id="section4" className="create_section_heading">
-              {section4.name}
-            </h1>
-            <p>Set the date and time of the event.</p>
-            <div>
-              <label htmlFor="noodleDate">Event Date</label>
-              <input
-                type="date"
-                name="noodleDate"
-                value={this.state.noodleDate}
-                onChange={this.handleChange}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="noodleTime">Event Time</label>
-              <input
-                type="time"
-                name="noodleTime"
-                value={this.state.noodleTime}
-                onChange={this.handleChange}
-              ></input>
-            </div>
-          </section>
-          <section id="images" className={section5.className}>
-            <h1 id="section5" className={"create_section_heading"}>
-              {section5.name}
-            </h1>
-            <p>
-              Upload as many images as you would like to be displayed on the
-              event page.
-            </p>
-            <div className="noodle_image_container">
-              <div className="noodle_image_header_container">
-                <label>Event Image</label>
-                <button
-                  type="button"
-                  className="noodleImageRemoveButton"
-                  onClick={() => {
-                    this.setState({
-                      noodleImage: undefined,
-                      noodleChangeImage: undefined,
-                    });
-                  }}
-                >
-                  X
-                </button>
-              </div>
-              <div className="noodle_image_file_upload">
-                <label htmlFor="noodleImage">
-                  Upload an image from your device
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  name="noodleImage"
-                  onChange={this.handleChange}
-                ></input>
-              </div>
-              <div className="noodle_image_set_url">
-                <label htmlFor="noodleImageLink">
-                  Get an image from the internet
-                </label>
-                <Textbox
-                  attributesInput={{
-                    name: "noodleImageLink",
-                  }}
-                  value={noodleChangeImage}
-                  onChange={(noodleChangeImage, e) => {
-                    this.setState({ noodleChangeImage });
-                  }}
-                />
-                <div className="noodle_image_button_container">
-                  <button
-                    type="button"
-                    className="noodleImageButton"
-                    onClick={() => {
-                      this.setState({
-                        noodleImage: noodleChangeImage,
-                        noodleChangeImage: undefined,
-                      });
-                    }}
-                  >
-                    Get Image from URL
-                  </button>
-                  <button
-                    type="button"
-                    className="noodleImageButton"
-                    onClick={() => {
-                      // Get a random number for our image seed
-                      const seed = Math.floor(Math.random() * 1000);
-                      const randomImage =
-                        "https://picsum.photos/seed/" +
-                        seed +
-                        "/" +
-                        randomImageWidth +
-                        "/" +
-                        randomImageHeight +
-                        "";
-                      this.setState({ noodleImage: randomImage });
-                    }}
-                  >
-                    Get a Random Image from Picsum
-                  </button>
-                  <button
-                    type="button"
-                    className="noodleImageButton"
-                    onClick={() => {
-                      // Get a random number for our image seed
-                      const seed = Math.floor(Math.random() * 1000);
-                      const randomImage =
-                        "https://source.unsplash.com/random/" +
-                        randomImageWidth +
-                        "x" +
-                        randomImageHeight +
-                        "?sig=" +
-                        seed;
-                      this.setState({ noodleImage: randomImage });
-                    }}
-                  >
-                    Get a Random Image from Unsplash
-                  </button>
-                </div>
-              </div>
-              <div className="noodle_image_preview_container">
-                {noodleImage ? <img src={noodleImage} alt="Noodle" /> : <></>}
-              </div>
-              <div className="noodle_image_text_container">
-                <label htmlFor="noodleImageText">
-                  Enter some text to go along with the image
-                </label>
-                <Textarea
-                  attributesInput={{ name: "noodleImageText", rows: 5 }}
-                  value={noodleImageText}
-                  onChange={(noodleImageText, e) => {
-                    this.setState({ noodleImageText });
-                  }}
-                />
-              </div>
-            </div>
-          </section>
-          <section id="tickets" className={section6.className}>
-            <h1 id="section6" className="create_section_heading">
-              {section6.name}
-            </h1>
-            <p>Create ticket types available for the event.</p>
-            <div>
-              <label htmlFor="noodleTicketPrice">Ticket Price</label>
-              <div id="noodle_ticket_price_container">
-                <span>$</span>
-                <input
-                  type="number"
-                  min="0.01"
-                  step="0.01"
-                  max="2500"
-                  name="noodleTicketPrice"
-                  value={noodleTicketPrice}
-                  onChange={this.handleChange}
-                ></input>
-              </div>
-            </div>
-          </section>
-          <section id="secret_sauce" className={section7.className}>
-            <h1 id="section7" className="create_section_heading">
-              {section7.name}
-            </h1>
-            <p>Adjust the secret sauce details to make the noodle stick.</p>
-            <div>
-              <label htmlFor="noodleMinTickets">Minimum Tickets Required</label>
-              <input
-                type="number"
-                min="1"
-                step="1"
-                max="2500"
-                name="noodleMinTickets"
-                value={noodleMinTickets}
-                onChange={this.handleChange}
-              ></input>
-              <label htmlFor="noodleMaxTickets">
-                Maximum Tickets Available
-              </label>
-              <input
-                type="number"
-                min="1"
-                step="1"
-                max="2500"
-                name="noodleMaxTickets"
-                value={noodleMaxTickets}
-                onChange={this.handleChange}
-              ></input>
-              <label htmlFor="noodleCutoff">Cutoff Date</label>
-              <input
-                type="date"
-                name="noodleCutoff"
-                value={noodleCutoff}
-                onChange={this.handleChange}
-              ></input>
-            </div>
-          </section>
+
+          {eventDetails()}
+
           <div id="create_submit_bar">
             <button
               id="create_dream_button"
@@ -707,25 +770,7 @@ class Create extends React.Component {
             >
               Save as Dream
             </button>
-            <button
-              id="create_event_button"
-              className={`noodle_button ${
-                section1.className === "finished" &&
-                section2.className === "finished" &&
-                section3.className === "finished" &&
-                section4.className === "finished" &&
-                section5.className === "finished" &&
-                section6.className === "finished" &&
-                section7.className === "finished"
-                  ? "finished"
-                  : "unfinished"
-              }`}
-              name="create_event"
-              type="button"
-              onClick={() => this.create("event")}
-            >
-              Make it Happen
-            </button>
+            {createEventButton()}
           </div>
         </form>
       </main>

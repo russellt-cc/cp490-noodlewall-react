@@ -94,7 +94,7 @@
   background-color: var(--events-color);
 }
 
-main#create {
+main#create.event {
   margin-top: 170px;
 }
 
