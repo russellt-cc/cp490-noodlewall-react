@@ -6,7 +6,9 @@ class UserRating extends React.Component {
   constructor(props) {
     super(props);
     // Get the star classes using the method and save in state
-    this.state = { star_classes: this.setRatingClasses(this.props.rating) };
+    this.state = {
+      star_classes: this.setRatingClasses(parseInt(this.props.rating)),
+    };
   }
   // Method to take in a numeric rating
   // and then generate an array of strings

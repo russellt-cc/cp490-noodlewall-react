@@ -88,6 +88,10 @@ class App extends React.Component {
         .then((res) => res.json())
         .then(
           (result) => {
+            console.log("Create Succeeded");
+            console.log("Outgoing data:");
+            console.log(data);
+            console.log("Incoming data:");
             console.log(result);
             // Reload data
             this.read();
@@ -98,6 +102,10 @@ class App extends React.Component {
             this.setState({ redirect: redirect });
           },
           (error) => {
+            console.log("Create Failed");
+            console.log("Outgoing data:");
+            console.log(data);
+            console.log("Incoming data:");
             console.log(error);
             alert(error.message);
           }
@@ -121,6 +129,8 @@ class App extends React.Component {
         .then((res) => res.json())
         .then(
           (result) => {
+            console.log("Read Noodles Succeeded");
+            console.log("Incoming data:");
             console.log(result);
             this.setState({
               noodlesAreCooked: true,
@@ -128,6 +138,8 @@ class App extends React.Component {
             });
           },
           (error) => {
+            console.log("Read Noodles Failed");
+            console.log("Incoming data:");
             console.log(error);
             this.setState({
               noodlesAreCooked: true,
@@ -141,6 +153,8 @@ class App extends React.Component {
         .then((res) => res.json())
         .then(
           (result) => {
+            console.log("Read Users Succeeded");
+            console.log("Incoming data:");
             console.log(result);
             this.setState({
               noodlersAreLoaded: true,
@@ -148,6 +162,8 @@ class App extends React.Component {
             });
           },
           (error) => {
+            console.log("Read Users Failed");
+            console.log("Incoming data:");
             console.log(error);
             this.setState({
               noodlersAreLoaded: true,
@@ -193,6 +209,11 @@ class App extends React.Component {
         .then((res) => res.json())
         .then(
           (result) => {
+            // Log data to console
+            console.log("Update Succeeded");
+            console.log("Outgoing Data:");
+            console.log(data);
+            console.log("Incoming Data:");
             console.log(result);
             // Reload data
             this.read();
@@ -203,6 +224,8 @@ class App extends React.Component {
             this.setState({ redirect: redirect });
           },
           (error) => {
+            console.log("Update Failed");
+            console.log("Incoming Data:");
             console.log(error);
             alert(error.message);
           }
@@ -239,6 +262,10 @@ class App extends React.Component {
         body: JSON.stringify(data),
       }).then(
         (result) => {
+          console.log("Delete Succeeded");
+          console.log("Outgoing Data:");
+          console.log(data);
+          console.log("Incoming Data:");
           console.log(result);
           // Reload data
           this.read();
@@ -247,6 +274,8 @@ class App extends React.Component {
           this.setState({ redirect: redirect });
         },
         (error) => {
+          console.log("Delete Failed");
+          console.log("Incoming Data:");
           console.log(error);
           alert(error.message);
         }

@@ -153,6 +153,7 @@ class Create extends React.Component {
       noodleMaxTickets: noodleMaxTickets,
       noodleCutoff: noodleCutoff,
       noodleImageText: noodleImageText,
+      noodleID: noodleID,
     };
     switch (status) {
       case "dream":
@@ -634,7 +635,7 @@ class Create extends React.Component {
 
     // Return the create page
     return (
-      <main id="create" class={noodleStatus}>
+      <main id="create" className={noodleStatus}>
         <form id="create_form" onSubmit={this.handleSubmit}>
           {createNavProgressBar()}
           <section id="organizer_information" className={section1.className}>
