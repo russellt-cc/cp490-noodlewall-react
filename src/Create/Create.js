@@ -11,6 +11,12 @@ import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 import CreateNavProgressBar from "./CreateNavProgressBar.js";
 import CreateSection1 from "./CreateSection1.js";
+import CreateSection2 from "./CreateSection2.js";
+import CreateSection3 from "./CreateSection2.js";
+import CreateSection4 from "./CreateSection2.js";
+import CreateSection5 from "./CreateSection2.js";
+import CreateSection6 from "./CreateSection2.js";
+import CreateSection7 from "./CreateSection2.js";
 
 // The create dream / event page
 class Create extends React.Component {
@@ -60,7 +66,6 @@ class Create extends React.Component {
         noodleDate: thisNoodle.noodleDate,
         noodleTime: thisNoodle.noodleTime,
         noodleTags: thisNoodle.noodleTags,
-        noodleAddTag: thisNoodle.noodleAddTag,
         noodleImage: thisNoodle.noodleImage,
         noodleChangeImage: thisNoodle.noodleChangeImage,
         noodleTicketPrice: thisNoodle.noodleTicketPrice,
@@ -87,7 +92,6 @@ class Create extends React.Component {
         noodleDate: undefined,
         noodleTime: undefined,
         noodleTags: [],
-        noodleAddTag: undefined,
         noodleImage: undefined,
         noodleChangeImage: undefined,
         noodleTicketPrice: undefined,
@@ -207,8 +211,8 @@ class Create extends React.Component {
     }
   };
 
-  addNoodleTag = () => {
-    const { noodleTags, noodleAddTag } = this.state;
+  addNoodleTag = (noodleAddTag) => {
+    const { noodleTags } = this.state;
     if (!noodleTags.includes(noodleAddTag)) {
       const index = noodleTags.length;
       let splicedNoodles = [...noodleTags];
@@ -277,7 +281,6 @@ class Create extends React.Component {
       noodleDirections,
       noodleTitle,
       noodleTags,
-      noodleAddTag,
       noodleTicketPrice,
       noodleMinTickets,
       noodleMaxTickets,
@@ -608,88 +611,17 @@ class Create extends React.Component {
             userBioLong={userBioLong}
             onChange={this.handleChange}
           />
-          <section id="the_basics" className={sections[2 - 1].className}>
-            <h1 id="section2" className="create_section_heading">
-              {sections[2 - 1].name}
-            </h1>
-            <p>
-              Enter the name of the event and some essential details about it.
-            </p>
-            <div>
-              <label htmlFor="noodleTitle">Event Name</label>
-              <Textbox
-                attributesInput={{ name: "noodleTitle" }}
-                value={noodleTitle}
-                onChange={(noodleTitle, e) => {
-                  this.setState({ noodleTitle });
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="noodleSummary">Event Summary</label>
-              <Textarea
-                attributesInput={{ name: "noodleSummary", rows: 3 }}
-                value={noodleSummary}
-                onChange={(noodleSummary, e) => {
-                  this.setState({ noodleSummary });
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="noodleDescription">Event Description</label>
-              <Textarea
-                attributesInput={{ name: "noodleDescription", rows: 5 }}
-                value={noodleDescription}
-                onChange={(noodleDescription, e) => {
-                  this.setState({ noodleDescription });
-                }}
-              />
-            </div>
-            <div id="noodle_tags_container">
-              <label htmlFor="noodleAddTag">Event Tags</label>
-              <div id="noodle_add_tags">
-                <Textbox
-                  attributesInput={{
-                    name: "noodleAddTag",
-                    id: "noodleAddTagInput",
-                  }}
-                  value={noodleAddTag}
-                  onChange={(noodleAddTag, e) => {
-                    this.setState({ noodleAddTag });
-                  }}
-                />
-                <button
-                  type="button"
-                  id="noodleAddTagButton"
-                  onClick={() => {
-                    this.addNoodleTag();
-                  }}
-                >
-                  Add Tag
-                </button>
-              </div>
-              <ul id="noodleTagsList">
-                {noodleTags.map((item, i) => {
-                  return (
-                    <li key={i}>
-                      <span>{item}</span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          this.removeNoodleTag(i);
-                        }}
-                      >
-                        X
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </section>
-
+          <CreateSection2
+            sections={sections}
+            noodleTitle={noodleTitle}
+            noodleSummary={noodleSummary}
+            noodleDescription={noodleDescription}
+            noodleTags={noodleTags}
+            onChange={this.handleChange}
+            onAddTag={this.addNoodleTag}
+            onRemoveTag={this.removeNoodleTag}
+          />
           {eventDetails()}
-
           <div id="create_submit_bar">
             <button
               id="create_dream_button"
