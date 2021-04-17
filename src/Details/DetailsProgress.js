@@ -118,9 +118,9 @@ class DetailsProgress extends React.Component {
       noodleMaxTickets,
       noodleMinTickets,
     } = this.props.thisNoodle;
-    const sold = parseInt(noodleTicketsSold);
-    const min = parseInt(noodleMinTickets);
-    const max = parseInt(noodleMaxTickets);
+    const sold = parseInt(noodleTicketsSold) ? parseInt(noodleTicketsSold) : 0;
+    const min = parseInt(noodleMinTickets) ? parseInt(noodleMinTickets) : 0;
+    const max = parseInt(noodleMaxTickets) ? parseInt(noodleMaxTickets) : 0;
     const status_classes = this.props.status_classes;
     return (
       <div className="details_status_container_container">

@@ -68,10 +68,14 @@ class DetailsIntroLeft extends React.Component {
             <strong>{wholeDaysLeft}</strong>
           </span>
         </p>
-        <div id="details_image_container">
-          <img src={noodleImage} alt="Noodle"></img>
-          {NoodleOverlay(noodleStatus)}
-        </div>
+        {noodleImage ? (
+          <div id="details_image_container">
+            <img src={noodleImage} alt="Noodle"></img>
+            {NoodleOverlay(noodleStatus)}
+          </div>
+        ) : (
+          <></>
+        )}
         <DetailsProgress
           thisNoodle={this.props.thisNoodle}
           status_classes={status_classes}
