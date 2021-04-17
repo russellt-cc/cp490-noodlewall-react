@@ -1,4 +1,5 @@
 //https://medium.com/@650egor/react-30-day-challenge-day-2-image-upload-preview-2d534f8eaaa
+//https://stackoverflow.com/questions/60797390/generate-random-image-by-url
 
 import "./Create.css";
 import React from "react";
@@ -44,6 +45,9 @@ class Create extends React.Component {
       noodleMinTickets: undefined,
       noodleMaxTickets: undefined,
       noodleCutoff: undefined,
+      randomImageWidth: 1280,
+      randomImageHeight: 720,
+      noodleImageText: undefined,
     };
   }
 
@@ -83,6 +87,7 @@ class Create extends React.Component {
       noodleMinTickets,
       noodleMaxTickets,
       noodleCutoff,
+      noodleImageText,
     } = this.state;
     const { currentUserID: userID } = this.props;
     // Create the object to be sent to the API
@@ -102,6 +107,7 @@ class Create extends React.Component {
       noodleMinTickets: noodleMinTickets,
       noodleMaxTickets: noodleMaxTickets,
       noodleCutoff: noodleCutoff,
+      noodleImageText: noodleImageText,
     };
     switch (status) {
       case "dream":
@@ -178,6 +184,9 @@ class Create extends React.Component {
       noodleCutoff,
       noodleImage,
       noodleChangeImage,
+      randomImageWidth,
+      randomImageHeight,
+      noodleImageText,
     } = this.state;
 
     // Set data for the sections
@@ -465,62 +474,113 @@ class Create extends React.Component {
               Upload as many images as you would like to be displayed on the
               event page.
             </p>
-            <div class="noodle_image_container">
-              <label htmlFor="noodleImage">Event Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                name="noodleImage"
-                onChange={this.handleChange}
-              ></input>
-              <div class="noodle_image_link_container">
+            <div className="noodle_image_container">
+              <div className="noodle_image_header_container">
+                <label>Event Image</label>
+                <button
+                  type="button"
+                  className="noodleImageRemoveButton"
+                  onClick={() => {
+                    this.setState({
+                      noodleImage: undefined,
+                      noodleChangeImage: undefined,
+                    });
+                  }}
+                >
+                  X
+                </button>
+              </div>
+              <div className="noodle_image_file_upload">
+                <label htmlFor="noodleImage">
+                  Upload an image from your device
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="noodleImage"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div className="noodle_image_set_url">
+                <label htmlFor="noodleImageLink">
+                  Get an image from the internet
+                </label>
                 <Textbox
                   attributesInput={{
                     name: "noodleImageLink",
-                    class: "noodleImageLink",
                   }}
-                  value={noodleImage}
+                  value={noodleChangeImage}
                   onChange={(noodleChangeImage, e) => {
                     this.setState({ noodleChangeImage });
                   }}
                 />
-                <button
-                  type="button"
-                  class="noodleImageChangeUrlButton"
-                  onClick={() => {
-                    this.setState({ noodleImage: noodleChangeImage });
-                  }}
-                >
-                  Change URL
-                </button>
-                <button
-                  type="button"
-                  class="noodleImageChangeUrlButton"
-                  onClick={() => {
-                    // Get a random number for our image seed
-                    const seed = Math.floor(Math.random() * 1000);
-                    const randomImage =
-                      "https://picsum.photos/seed/" + seed + "/1280/720";
-                    this.setState({ noodleImage: randomImage });
-                  }}
-                >
-                  Get a Random Image
-                </button>
-                <button
-                  type="button"
-                  class="noodleImageChangeUrlButton"
-                  onClick={() => {
-                    this.setState({ noodleImage: undefined });
-                  }}
-                >
-                  Remove Image
-                </button>
+                <div className="noodle_image_button_container">
+                  <button
+                    type="button"
+                    className="noodleImageButton"
+                    onClick={() => {
+                      this.setState({
+                        noodleImage: noodleChangeImage,
+                        noodleChangeImage: undefined,
+                      });
+                    }}
+                  >
+                    Get Image from URL
+                  </button>
+                  <button
+                    type="button"
+                    className="noodleImageButton"
+                    onClick={() => {
+                      // Get a random number for our image seed
+                      const seed = Math.floor(Math.random() * 1000);
+                      const randomImage =
+                        "https://picsum.photos/seed/" +
+                        seed +
+                        "/" +
+                        randomImageWidth +
+                        "/" +
+                        randomImageHeight +
+                        "";
+                      this.setState({ noodleImage: randomImage });
+                    }}
+                  >
+                    Get a Random Image from Picsum
+                  </button>
+                  <button
+                    type="button"
+                    className="noodleImageButton"
+                    onClick={() => {
+                      // Get a random number for our image seed
+                      const seed = Math.floor(Math.random() * 1000);
+                      const randomImage =
+                        "https://source.unsplash.com/random/" +
+                        randomImageWidth +
+                        "x" +
+                        randomImageHeight +
+                        "?sig=" +
+                        seed;
+                      this.setState({ noodleImage: randomImage });
+                    }}
+                  >
+                    Get a Random Image from Unsplash
+                  </button>
+                </div>
               </div>
-              {this.state.noodleImage ? (
-                <img src={this.state.noodleImage} alt="Noodle" />
-              ) : (
-                <></>
-              )}
+              <div className="noodle_image_preview_container">
+                {noodleImage ? <img src={noodleImage} alt="Noodle" /> : <></>}
+              </div>
+              <div className="noodle_image_text_container">
+                <label htmlFor="noodleImageText">
+                  Enter some text to go along with the image
+                </label>
+                <Textarea
+                  attributesInput={{ name: "noodleImageText", rows: 5 }}
+                  value={noodleImageText}
+                  onChange={(noodleImageText, e) => {
+                    this.setState({ noodleImageText });
+                  }}
+                />
+              </div>
             </div>
           </section>
           <section id="tickets" className={section6.className}>

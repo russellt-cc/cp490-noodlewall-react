@@ -149,7 +149,7 @@ main#create {
 }
 
 #create input[type="file"] {
-  width: 400px;
+  display: block;
 }
 
 #create #noodleAddTagButton {
@@ -191,22 +191,33 @@ main#create {
   border: 1px solid lightgray;
 }
 
-#create .noodle_image_link_container {
+#create .noodle_image_header_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#create .noodleImageRemoveButton {
+  color: white;
+  background-color: var(--events-color);
+  border: none;
+  border-radius: 10px;
+  height: 20px;
+}
+
+#create .noodle_image_button_container {
   display: flex;
   justify-content: left;
   column-gap: 10px;
 }
 
-#create .noodle_image_link_container .noodleImageLink {
-  width: 400px;
-}
-
-#create .noodleImageChangeUrlButton {
+#create .noodleImageButton {
   width: 200px;
+  height: 40px;
   border-radius: 10px;
   border: none;
   background-color: var(--events-color);
   color: white;
+  margin-top: 10px;
 }
 
 #create #noodle_ticket_price_container {
