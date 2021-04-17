@@ -9,6 +9,8 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+import CreateNavProgressBar from "./CreateNavProgressBar.js";
+
 // The create dream / event page
 class Create extends React.Component {
   constructor(props) {
@@ -285,15 +287,17 @@ class Create extends React.Component {
       noodleStatus,
     } = this.state;
 
+    let sections = [];
+
     // Set data for the sections
-    const section1 = {
+    sections[1 - 1] = {
       name: "Organizer Information",
       className:
         this.state.userName && this.state.userBio && this.state.userBioLong
           ? "finished"
           : "unfinished",
     };
-    const section2 = {
+    sections[2 - 1] = {
       name: "Basic Info",
       className:
         this.state.noodleTitle &&
@@ -303,29 +307,29 @@ class Create extends React.Component {
           ? "finished"
           : "unfinished",
     };
-    const section3 = {
+    sections[3 - 1] = {
       name: "Location",
       className:
         this.state.noodleLocation && this.state.noodleDirections
           ? "finished"
           : "unfinished",
     };
-    const section4 = {
+    sections[4 - 1] = {
       name: "Date and Time",
       className:
         this.state.noodleDate && this.state.noodleTime
           ? "finished"
           : "unfinished",
     };
-    const section5 = {
+    sections[5 - 1] = {
       name: "Upload Images",
       className: this.state.noodleImage ? "finished" : "unfinished",
     };
-    const section6 = {
+    sections[6 - 1] = {
       name: "Create Tickets",
       className: this.state.noodleTicketPrice ? "finished" : "unfinished",
     };
-    const section7 = {
+    sections[7 - 1] = {
       name: "Make It Happen",
       className:
         this.state.noodleMinTickets &&
@@ -335,82 +339,14 @@ class Create extends React.Component {
           : "unfinished",
     };
 
-    const createNavProgressBar = () => {
-      const mode = this.state.noodleStatus;
-      if (mode === "event") {
-        return (
-          <div id="create_nav_progress_bar">
-            <div
-              id="create_nav_progress_bar_line"
-              className={`${
-                section1.className === "finished" &&
-                section2.className === "finished" &&
-                section3.className === "finished" &&
-                section4.className === "finished" &&
-                section5.className === "finished" &&
-                section6.className === "finished" &&
-                section7.className === "finished"
-                  ? "finished"
-                  : "unfinished"
-              }`}
-            ></div>
-            <div id="create_nav_progress_bar_buttons">
-              <div>
-                <a href="#section1" className={section1.className}>
-                  1
-                </a>
-                <p>{section1.name}</p>
-              </div>
-              <div>
-                <a href="#section2" className={section2.className}>
-                  2
-                </a>
-                <p>{section2.name}</p>
-              </div>
-              <div>
-                <a href="#section3" className={section3.className}>
-                  3
-                </a>
-                <p>{section3.name}</p>
-              </div>
-              <div>
-                <a href="#section4" className={section4.className}>
-                  4
-                </a>
-                <p>{section4.name}</p>
-              </div>
-              <div>
-                <a href="#section5" className={section5.className}>
-                  5
-                </a>
-                <p>{section5.name}</p>
-              </div>
-              <div>
-                <a href="#section6" className={section6.className}>
-                  6
-                </a>
-                <p>{section6.name}</p>
-              </div>
-              <div>
-                <a href="#section7" className={section7.className}>
-                  7
-                </a>
-                <p>{section7.name}</p>
-              </div>
-            </div>
-          </div>
-        );
-      }
-    };
-
     const eventDetails = () => {
       const mode = this.state.noodleStatus;
       if (mode === "event") {
         return (
           <>
-            <section id="location" className={section3.className}>
+            <section id="location" className={sections[3 - 1].className}>
               <h1 id="section3" className="create_section_heading">
-                {section3.name}
+                {sections[3 - 1].name}
               </h1>
               <p>Where is your event located?</p>
               <div>
@@ -432,9 +368,9 @@ class Create extends React.Component {
                 />
               </div>
             </section>
-            <section id="date_time" className={section4.className}>
+            <section id="date_time" className={sections[4 - 1].className}>
               <h1 id="section4" className="create_section_heading">
-                {section4.name}
+                {sections[4 - 1].name}
               </h1>
               <p>Set the date and time of the event.</p>
               <div>
@@ -456,9 +392,9 @@ class Create extends React.Component {
                 ></input>
               </div>
             </section>
-            <section id="images" className={section5.className}>
+            <section id="images" className={sections[5 - 1].className}>
               <h1 id="section5" className={"create_section_heading"}>
-                {section5.name}
+                {sections[5 - 1].name}
               </h1>
               <p>
                 Upload as many images as you would like to be displayed on the
@@ -556,9 +492,9 @@ class Create extends React.Component {
                 </div>
               </div>
             </section>
-            <section id="tickets" className={section6.className}>
+            <section id="tickets" className={sections[6 - 1].className}>
               <h1 id="section6" className="create_section_heading">
-                {section6.name}
+                {sections[6 - 1].name}
               </h1>
               <p>Create ticket types available for the event.</p>
               <div>
@@ -577,9 +513,9 @@ class Create extends React.Component {
                 </div>
               </div>
             </section>
-            <section id="secret_sauce" className={section7.className}>
+            <section id="secret_sauce" className={sections[7 - 1].className}>
               <h1 id="section7" className="create_section_heading">
-                {section7.name}
+                {sections[7 - 1].name}
               </h1>
               <p>Adjust the secret sauce details to make the noodle stick.</p>
               <div>
@@ -627,13 +563,13 @@ class Create extends React.Component {
           <button
             id="create_event_button"
             className={`noodle_button ${
-              section1.className === "finished" &&
-              section2.className === "finished" &&
-              section3.className === "finished" &&
-              section4.className === "finished" &&
-              section5.className === "finished" &&
-              section6.className === "finished" &&
-              section7.className === "finished"
+              sections[1 - 1].className === "finished" &&
+              sections[2 - 1].className === "finished" &&
+              sections[3 - 1].className === "finished" &&
+              sections[4 - 1].className === "finished" &&
+              sections[5 - 1].className === "finished" &&
+              sections[6 - 1].className === "finished" &&
+              sections[7 - 1].className === "finished"
                 ? "finished"
                 : "unfinished"
             }`}
@@ -663,10 +599,13 @@ class Create extends React.Component {
     return (
       <main id="create" className={noodleStatus}>
         <form id="create_form" onSubmit={this.handleSubmit}>
-          {createNavProgressBar()}
-          <section id="organizer_information" className={section1.className}>
+          <CreateNavProgressBar mode={noodleStatus} sections={sections} />
+          <section
+            id="organizer_information"
+            className={sections[1 - 1].className}
+          >
             <h1 id="section1" className="create_section_heading">
-              {section1.name}
+              {sections[1 - 1].name}
             </h1>
             <p>Enter some information about who is organizing the event.</p>
             <div>
@@ -700,9 +639,9 @@ class Create extends React.Component {
               />
             </div>
           </section>
-          <section id="the_basics" className={section2.className}>
+          <section id="the_basics" className={sections[2 - 1].className}>
             <h1 id="section2" className="create_section_heading">
-              {section2.name}
+              {sections[2 - 1].name}
             </h1>
             <p>
               Enter the name of the event and some essential details about it.
@@ -786,8 +725,8 @@ class Create extends React.Component {
             <button
               id="create_dream_button"
               className={`noodle_button ${
-                section1.className === "finished" &&
-                section2.className === "finished"
+                sections[1 - 1].className === "finished" &&
+                sections[2 - 1].className === "finished"
                   ? "finished"
                   : "unfinished"
               }`}
