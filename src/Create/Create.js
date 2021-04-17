@@ -45,6 +45,8 @@ class Create extends React.Component {
       const thisNoodle = noodleData.filter((noodle) => {
         return parseInt(noodle.noodleID) === parseInt(noodleID);
       })[0];
+      console.log("Editing noodle");
+      console.log(thisNoodle);
       // Put data in state for editing
       this.state = {
         noodleID,
@@ -68,7 +70,7 @@ class Create extends React.Component {
         noodleTags: thisNoodle.noodleTags,
         noodleImage: thisNoodle.noodleImage,
         noodleChangeImage: thisNoodle.noodleChangeImage,
-        noodleTicketPrice: thisNoodle.noodleTicketPrice,
+        noodlePrice: thisNoodle.noodlePrice,
         noodleMinTickets: thisNoodle.noodleMinTickets,
         noodleMaxTickets: thisNoodle.noodleMaxTickets,
         noodleCutoff: thisNoodle.noodleCutoff,
@@ -94,7 +96,7 @@ class Create extends React.Component {
         noodleTags: [],
         noodleImage: undefined,
         noodleChangeImage: undefined,
-        noodleTicketPrice: undefined,
+        noodlePrice: undefined,
         noodleMinTickets: undefined,
         noodleMaxTickets: undefined,
         noodleCutoff: undefined,
@@ -138,7 +140,7 @@ class Create extends React.Component {
       noodleDate,
       noodleTime,
       noodleImage,
-      noodleTicketPrice,
+      noodlePrice,
       noodleMinTickets,
       noodleMaxTickets,
       noodleCutoff,
@@ -158,7 +160,7 @@ class Create extends React.Component {
       noodleDate: noodleDate,
       noodleTime: noodleTime,
       noodleImage: noodleImage,
-      noodleTicketPrice: noodleTicketPrice,
+      noodlePrice: noodlePrice,
       noodleMinTickets: noodleMinTickets,
       noodleMaxTickets: noodleMaxTickets,
       noodleCutoff: noodleCutoff,
@@ -191,7 +193,7 @@ class Create extends React.Component {
           noodleDate &&
           noodleTime &&
           noodleImage &&
-          noodleTicketPrice &&
+          noodlePrice &&
           noodleMinTickets &&
           noodleMaxTickets &&
           noodleCutoff
@@ -281,7 +283,7 @@ class Create extends React.Component {
       noodleDirections,
       noodleTitle,
       noodleTags,
-      noodleTicketPrice,
+      noodlePrice,
       noodleMinTickets,
       noodleMaxTickets,
       noodleCutoff,
@@ -333,7 +335,7 @@ class Create extends React.Component {
     };
     sections[6 - 1] = {
       name: "Create Tickets",
-      className: this.state.noodleTicketPrice ? "finished" : "unfinished",
+      className: this.state.noodlePrice ? "finished" : "unfinished",
     };
     sections[7 - 1] = {
       name: "Make It Happen",
@@ -462,66 +464,18 @@ class Create extends React.Component {
                 </div>
               </div>
             </section>
-            <section id="tickets" className={sections[6 - 1].className}>
-              <h1 id="section6" className="create_section_heading">
-                {sections[6 - 1].name}
-              </h1>
-              <p>Create ticket types available for the event.</p>
-              <div>
-                <label htmlFor="noodleTicketPrice">Ticket Price</label>
-                <div id="noodle_ticket_price_container">
-                  <span>$</span>
-                  <input
-                    type="number"
-                    min="0.01"
-                    step="0.01"
-                    max="2500"
-                    name="noodleTicketPrice"
-                    value={noodleTicketPrice}
-                    onChange={this.handleChange}
-                  ></input>
-                </div>
-              </div>
-            </section>
-            <section id="secret_sauce" className={sections[7 - 1].className}>
-              <h1 id="section7" className="create_section_heading">
-                {sections[7 - 1].name}
-              </h1>
-              <p>Adjust the secret sauce details to make the noodle stick.</p>
-              <div>
-                <label htmlFor="noodleMinTickets">
-                  Minimum Tickets Required
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  step="1"
-                  max="2500"
-                  name="noodleMinTickets"
-                  value={noodleMinTickets}
-                  onChange={this.handleChange}
-                ></input>
-                <label htmlFor="noodleMaxTickets">
-                  Maximum Tickets Available
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  step="1"
-                  max="2500"
-                  name="noodleMaxTickets"
-                  value={noodleMaxTickets}
-                  onChange={this.handleChange}
-                ></input>
-                <label htmlFor="noodleCutoff">Cutoff Date</label>
-                <input
-                  type="date"
-                  name="noodleCutoff"
-                  value={noodleCutoff}
-                  onChange={this.handleChange}
-                ></input>
-              </div>
-            </section>
+            <CreateSection6
+              sections={sections}
+              noodlePrice={noodlePrice}
+              onChange={this.handleChange}
+            ></CreateSection6>
+            <CreateSection7
+              sections={sections}
+              noodleMinTickets={noodleMinTickets}
+              noodleMaxTickets={noodleMaxTickets}
+              noodleCutoff={noodleCutoff}
+              onChange={this.handleChange}
+            ></CreateSection7>
           </>
         );
       }
