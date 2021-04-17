@@ -289,6 +289,8 @@ class Create extends React.Component {
       noodleChangeImage,
       noodleImageText,
       noodleStatus,
+      noodleDate,
+      noodleTime,
     } = this.state;
 
     let sections = [];
@@ -354,30 +356,12 @@ class Create extends React.Component {
               noodleDirections={noodleDirections}
               onChange={this.handleChange}
             ></CreateSection3>
-            <section id="date_time" className={sections[4 - 1].className}>
-              <h1 id="section4" className="create_section_heading">
-                {sections[4 - 1].name}
-              </h1>
-              <p>Set the date and time of the event.</p>
-              <div>
-                <label htmlFor="noodleDate">Event Date</label>
-                <input
-                  type="date"
-                  name="noodleDate"
-                  value={this.state.noodleDate}
-                  onChange={this.handleChange}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="noodleTime">Event Time</label>
-                <input
-                  type="time"
-                  name="noodleTime"
-                  value={this.state.noodleTime}
-                  onChange={this.handleChange}
-                ></input>
-              </div>
-            </section>
+            <CreateSection4
+              sections={sections}
+              noodleDate={noodleDate}
+              noodleTime={noodleTime}
+              onChange={this.handleChange}
+            ></CreateSection4>
             <section id="images" className={sections[5 - 1].className}>
               <h1 id="section5" className={"create_section_heading"}>
                 {sections[5 - 1].name}
