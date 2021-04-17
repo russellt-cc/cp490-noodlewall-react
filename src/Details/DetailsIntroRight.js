@@ -106,7 +106,7 @@ class DetailsIntroRight extends React.Component {
                 You are hosting this {status()}
               </Link>
             </p>
-            <Link className="noodle_button" to={`/edit/${noodleID}`}>
+            <Link className="noodle_button" to={`/details/${noodleID}/edit`}>
               Edit this {status()}
             </Link>
             <button

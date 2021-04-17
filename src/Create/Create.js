@@ -257,6 +257,7 @@ class Create extends React.Component {
       noodleStatus,
       noodleDate,
       noodleTime,
+      noodleID,
     } = this.state;
 
     let sections = [];
@@ -383,6 +384,7 @@ class Create extends React.Component {
             createMode={createMode}
             setMode={this.setMode}
             onCreate={this.create}
+            noodleID={noodleID}
           />
         </form>
       </main>

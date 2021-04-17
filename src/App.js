@@ -334,7 +334,7 @@ class App extends React.Component {
               {/* ------------------------------------------------------------ */}
               {/* Create Module */}
               <Route
-                path="/edit/:id"
+                path="/details/:id/edit"
                 render={(props) => (
                   <Create
                     {...props}

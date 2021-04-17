@@ -76,6 +76,11 @@ button.noodle_button {
   text-align: center;
 }
 
+a.noodle_button.dream,
+button.noodle_button.dream {
+  background-color: var(--dreams-color);
+}
+
 button:focus {
   outline: none;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class CreateSubmitBar extends React.Component {
   render() {
@@ -8,7 +9,24 @@ class CreateSubmitBar extends React.Component {
       createMode,
       setMode,
       onCreate,
+      noodleID,
     } = this.props;
+
+    const cancelButton = () => {
+      if (noodleStatus) {
+        return (
+          <Link
+            id="edit_cancel_button"
+            className={`noodle_button ${noodleStatus}`}
+            to={`/details/${noodleID}`}
+          >
+            Cancel Editing
+          </Link>
+        );
+      } else {
+        return <></>;
+      }
+    };
 
     const createDreamButton = () => {
       if (noodleStatus !== "event") {
@@ -73,6 +91,7 @@ class CreateSubmitBar extends React.Component {
 
     return (
       <div id="create_submit_bar">
+        {cancelButton()}
         {createDreamButton()}
         {createEventButton()}
       </div>
