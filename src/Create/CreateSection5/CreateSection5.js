@@ -9,11 +9,11 @@ class CreateSection5 extends React.Component {
       onChangeImages,
       onChangeImagesText,
     } = this.props;
-    const index = noodleImages.length;
-    let splicedImages = [...noodleImages];
+    const index = noodleImages ? noodleImages.length : 0;
+    let splicedImages = noodleImages ? [...noodleImages] : [];
     splicedImages.splice(index, 0, undefined);
     onChangeImages(splicedImages);
-    let splicedImagesText = [...noodleImagesText];
+    let splicedImagesText = noodleImagesText ? [...noodleImagesText] : [];
     splicedImagesText.splice(index, 0, undefined);
     onChangeImagesText(splicedImagesText);
   };
@@ -71,20 +71,24 @@ class CreateSection5 extends React.Component {
         >
           Add Image
         </button>
-        {noodleImages.map((item, index) => {
-          return (
-            <CreateImage
-              key={index}
-              index={index}
-              noodleImage={item}
-              noodleImageText={noodleImagesText[index]}
-              noodleTags={noodleTags}
-              onChangeImage={this.changeImages}
-              onChangeImageText={this.changeImagesText}
-              onRemoveImage={this.removeImage}
-            />
-          );
-        })}
+        {noodleImages ? (
+          noodleImages.map((item, index) => {
+            return (
+              <CreateImage
+                key={index}
+                index={index}
+                noodleImage={item}
+                noodleImageText={noodleImagesText[index]}
+                noodleTags={noodleTags}
+                onChangeImage={this.changeImages}
+                onChangeImageText={this.changeImagesText}
+                onRemoveImage={this.removeImage}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
       </section>
     );
   }

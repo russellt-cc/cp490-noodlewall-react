@@ -6,15 +6,13 @@
 
 import "./Create.css";
 import React from "react";
-import { Textbox, Textarea } from "react-inputs-validation";
-import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 import CreateNavProgressBar from "./CreateNavProgressBar.js";
 import CreateSection1 from "./CreateSection1.js";
 import CreateSection2 from "./CreateSection2.js";
 import CreateSection3 from "./CreateSection3.js";
 import CreateSection4 from "./CreateSection4.js";
-import CreateSection5 from "./CreateSection5.js";
+import CreateSection5 from "./CreateSection5/CreateSection5.js";
 import CreateSection6 from "./CreateSection6.js";
 import CreateSection7 from "./CreateSection7.js";
 import CreateSubmitBar from "./CreateSubmitBar";

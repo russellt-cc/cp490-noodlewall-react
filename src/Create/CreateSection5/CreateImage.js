@@ -2,6 +2,9 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+import getRandomImageFromPicsum from "./getRandomImageFromPicsum";
+import getRandomImageFromUnsplash from "./getRandomImageFromUnsplash";
+
 class CreateImage extends React.Component {
   constructor(props) {
     super(props);
@@ -11,49 +14,6 @@ class CreateImage extends React.Component {
       randomImageHeight: 720,
     };
   }
-
-  getRandomImageFromPicsum = () => {
-    const { randomImageWidth, randomImageHeight } = this.state;
-    // Get a random number for our image seed
-    const seed = Math.floor(Math.random() * 1000);
-    const randomImage =
-      "https://picsum.photos/seed/" +
-      seed +
-      "/" +
-      randomImageWidth +
-      "/" +
-      randomImageHeight +
-      "";
-    this.changeImage(randomImage);
-  };
-
-  getRandomImageFromUnsplash = () => {
-    const { randomImageWidth, randomImageHeight } = this.state;
-    const { noodleTags } = this.props;
-    let randomImageRequest =
-      "https://source.unsplash.com/random/" +
-      randomImageWidth +
-      "x" +
-      randomImageHeight;
-    // Check if we have tags
-    if (noodleTags.length) {
-      // Get images based on tags
-      const tags = noodleTags.join();
-      randomImageRequest = randomImageRequest + "/?" + tags;
-    }
-    // Get random image
-    fetch(randomImageRequest).then((response) => {
-      console.log("Request for random image succeeded");
-      console.log("Outgoing Data");
-      console.log(randomImageRequest);
-      console.log("Incoming Data");
-      console.log(response);
-      const encodedURL = encodeURIComponent(response.url);
-      console.log("Encoded URI");
-      console.log(encodedURL);
-      this.changeImage(encodedURL);
-    });
-  };
 
   changeImage = (noodleImage) => {
     const { onChangeImage, index } = this.props;
@@ -71,8 +31,12 @@ class CreateImage extends React.Component {
   };
 
   render() {
-    const { noodleChangeImage } = this.state;
-    const { noodleImage, noodleImageText, index } = this.props;
+    const {
+      noodleChangeImage,
+      randomImageWidth,
+      randomImageHeight,
+    } = this.state;
+    const { noodleImage, noodleImageText, index, noodleTags } = this.props;
     return (
       <div className="noodle_image_container">
         <div className="noodle_image_header_container">
@@ -126,7 +90,11 @@ class CreateImage extends React.Component {
               type="button"
               className="noodleImageButton"
               onClick={() => {
-                this.getRandomImageFromPicsum();
+                const randomImage = getRandomImageFromPicsum(
+                  randomImageWidth,
+                  randomImageHeight
+                );
+                this.changeImage(randomImage);
               }}
             >
               Get a Random Image from Picsum
@@ -134,7 +102,16 @@ class CreateImage extends React.Component {
             <button
               type="button"
               className="noodleImageButton"
-              onClick={() => this.getRandomImageFromUnsplash()}
+              onClick={() => {
+                const randomImage = getRandomImageFromUnsplash(
+                  randomImageWidth,
+                  randomImageHeight,
+                  noodleTags
+                );
+                randomImage.then((randomImage) =>
+                  this.changeImage(randomImage)
+                );
+              }}
             >
               Get a Random Image from Unsplash
             </button>
