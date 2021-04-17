@@ -10,6 +10,7 @@ import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 import CreateNavProgressBar from "./CreateNavProgressBar.js";
+import CreateSection1 from "./CreateSection1.js";
 
 // The create dream / event page
 class Create extends React.Component {
@@ -600,45 +601,13 @@ class Create extends React.Component {
       <main id="create" className={noodleStatus}>
         <form id="create_form" onSubmit={this.handleSubmit}>
           <CreateNavProgressBar mode={noodleStatus} sections={sections} />
-          <section
-            id="organizer_information"
-            className={sections[1 - 1].className}
-          >
-            <h1 id="section1" className="create_section_heading">
-              {sections[1 - 1].name}
-            </h1>
-            <p>Enter some information about who is organizing the event.</p>
-            <div>
-              <label htmlFor="userName">Organizer Name</label>
-              <Textbox
-                attributesInput={{ name: "userName" }}
-                value={userName}
-                onChange={(userName, e) => {
-                  this.setState({ userName });
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="userBio">Organizer Detail Short</label>
-              <Textarea
-                attributesInput={{ name: "userBio", rows: 3 }}
-                value={userBio}
-                onChange={(userBio, e) => {
-                  this.setState({ userBio });
-                }}
-              />
-            </div>
-            <div>
-              <label htmlFor="userBioLong">Organizer Detail Long</label>
-              <Textarea
-                attributesInput={{ name: "userBioLong", rows: 5 }}
-                value={userBioLong}
-                onChange={(userBioLong, e) => {
-                  this.setState({ userBioLong });
-                }}
-              />
-            </div>
-          </section>
+          <CreateSection1
+            sections={sections}
+            userName={userName}
+            userBio={userBio}
+            userBioLong={userBioLong}
+            onChange={this.handleChange}
+          />
           <section id="the_basics" className={sections[2 - 1].className}>
             <h1 id="section2" className="create_section_heading">
               {sections[2 - 1].name}
