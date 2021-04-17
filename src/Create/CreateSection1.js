@@ -4,8 +4,7 @@ import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 class CreateSection1 extends React.Component {
   render() {
-    const { sections, onChange } = this.props;
-    let { userName, userBio, userBioLong } = this.props;
+    const { sections, onChange, userName, userBio, userBioLong } = this.props;
     return (
       <section id="organizer_information" className={sections[1 - 1].className}>
         <h1 id="section1" className="create_section_heading">
