@@ -113,8 +113,10 @@ class App extends React.Component {
                 redirect = "/details/" + result.noodleID;
                 break;
               case "user":
+                // Login to new account
+                this.login(result.userID);
                 // Redirect to user page
-                redirect = "/user/" + this.state.currentUserID;
+                redirect = "/user/" + result.userID;
                 break;
               default:
                 redirect = "/";
@@ -300,9 +302,25 @@ class App extends React.Component {
           console.log(result);
           // Reload data
           this.refresh();
-          // Redirect to user page
-          const redirect = "/user/" + this.state.currentUserID;
-          this.setState({ redirect: redirect });
+          // Handle redirect
+          let redirect;
+          switch (type) {
+            case "dream":
+            case "event":
+              // Redirect to user page
+              redirect = "/user/" + this.state.currentUserID;
+              break;
+            case "user":
+              // Logout
+              this.logout();
+              // Redirect to login
+              redirect = "/login";
+              break;
+            default:
+              redirect = "/";
+              break;
+          }
+          this.setState({ redirect });
         },
         (error) => {
           console.log("Delete Failed");
@@ -406,6 +424,7 @@ class App extends React.Component {
                     userData={userData}
                     currentUserID={currentUserID}
                     onUpdate={this.update}
+                    onDelete={this.delete}
                   />
                 )}
               />
