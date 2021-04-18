@@ -49,7 +49,7 @@ class CreateImage extends React.Component {
             X
           </button>
         </div>
-        <div className="noodle_image_file_upload">
+        {/* <div className="noodle_image_file_upload">
           <label htmlFor="noodleImage">Upload an image from your device</label>
           <input
             type="file"
@@ -59,7 +59,7 @@ class CreateImage extends React.Component {
               this.changeImage(URL.createObjectURL(event.target.files[0]));
             }}
           ></input>
-        </div>
+        </div> */}
         <div className="noodle_image_set_url">
           <label htmlFor="noodleImageLink">
             Get an image from the internet

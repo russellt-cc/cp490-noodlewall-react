@@ -20,4 +20,26 @@
 
 #user_edit img {
   border-radius: 150px;
+  max-width: 300px;
+}
+
+#user_edit #user_edit_image_buttons {
+  display: flex;
+  column-gap: 10px;
+}
+
+#user_edit section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#user_edit .noodle_button {
+  margin: 0px;
+}
+
+main#user_edit {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
