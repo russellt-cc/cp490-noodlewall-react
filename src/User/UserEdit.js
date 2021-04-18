@@ -59,10 +59,10 @@ class UserEdit extends React.Component {
     const { userImageNew: imageURL } = this.state;
     fetch(imageURL).then((response) => {
       const responseURL = response.url;
-      if (responseURL.substring(0, 16) !== "http://localhost") {
-        const encodedURL = encodeURIComponent(responseURL);
-        this.setState({ userImage: encodedURL });
-      }
+      // if (responseURL.substring(0, 16) !== "http://localhost") {
+      const encodedURL = encodeURIComponent(responseURL);
+      this.setState({ userImage: encodedURL });
+      // }
     });
   };
 
@@ -82,6 +82,9 @@ class UserEdit extends React.Component {
           <h1>Profile Picture</h1>
           <img
             src={userImage ? decodeURIComponent(userImage) : usericon}
+            onError={() => {
+              this.setState({ userImage: undefined });
+            }}
             alt="User"
           ></img>
           <Textbox

@@ -47,8 +47,10 @@ function getRandomImageFromUnsplash(
       randomImageHeight +
       "&fit=" +
       paramValues[paramKeys.indexOf("fit")] +
+      // "crop" +
       "&crop=" +
       paramValues[paramKeys.indexOf("crop")];
+    // "entropy";
     // Rebuild the URL
     const myURL = splitURL[0] + "?" + myParams;
     // Encode the URL so we can store in the database
