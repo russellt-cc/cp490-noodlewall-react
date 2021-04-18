@@ -16,7 +16,7 @@ import Landing from "./Landing/Landing.js";
 // User Story 1: Login
 import Login from "./Login";
 // User Story 2: Register
-// register goes here
+import Register from "./Register";
 // User Stories 3 and 9: Browse Events and Dreams
 import Browse from "./Browse/Browse.js";
 // User Stories 4 and 8: View Event or Dream Details
@@ -326,20 +326,17 @@ class App extends React.Component {
     });
     this.read();
   };
-
   // Login
   login = (currentUserID) => {
     const redirect = "/user/" + currentUserID;
     this.setState({ currentUserID, redirect });
   };
-
   // Logout
   logout = () => {
     const currentUserID = null;
     const redirect = "/login";
     this.setState({ currentUserID, redirect });
   };
-
   // Render method
   render() {
     // Destructure the props and state
@@ -391,6 +388,14 @@ class App extends React.Component {
             {redirectJSX}
             {/* Switch the main component based on the url */}
             <Switch>
+              {/* ------------------------------------------------------------ */}
+              {/* Registration Module */}
+              <Route
+                path="/register"
+                render={(props) => (
+                  <Register {...props} onCreate={this.create} />
+                )}
+              />
               {/* ------------------------------------------------------------ */}
               {/* Login Module */}
               <Route

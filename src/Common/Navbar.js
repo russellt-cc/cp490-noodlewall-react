@@ -6,15 +6,23 @@ import usericon from "../Images/usericon.png";
 
 class Navbar extends React.Component {
   render() {
-    const { onRefresh: refresh, onLogout: logout } = this.props;
-    // Get the current user data
-    // Destructure the current user data
-    const userID = this.props.userID;
+    // Destructure props to get data
+    const {
+      onRefresh: refresh,
+      onLogout: logout,
+      userData,
+      userID,
+    } = this.props;
     let userFirstName,
       userLastName,
       userImage = undefined;
+    // If user is signed in get the current user data
+    // Destructure the current user data
+    // If not signed in leave as undefined
     if (userID) {
-      const thisUser = this.props.userData[userID - 1];
+      const thisUser = userData.filter((user) => {
+        return parseInt(user.userID) === parseInt(userID);
+      })[0];
       userFirstName = thisUser.userFirstName;
       userLastName = thisUser.userLastName;
       userImage = thisUser.userImage;
