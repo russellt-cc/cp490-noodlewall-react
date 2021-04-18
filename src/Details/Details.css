@@ -1,6 +1,4 @@
 main#details {
-  display: flex;
-  flex-direction: column;
   row-gap: 30px;
   padding-top: 60px;
   padding-bottom: 60px;

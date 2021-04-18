@@ -1,3 +1,7 @@
+main#user_edit {
+  row-gap: 20px;
+}
+
 #user_edit #user_edit_action_bar {
   display: flex;
   column-gap: 10px;
@@ -36,10 +40,4 @@
 
 #user_edit .noodle_button {
   margin: 0px;
-}
-
-main#user_edit {
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
 }

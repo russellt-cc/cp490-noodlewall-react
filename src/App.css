@@ -47,6 +47,8 @@ body,
 main {
   padding: 20px;
   margin-top: 70px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* buttons, anchor tags, and react router links */

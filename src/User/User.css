@@ -1,6 +1,4 @@
 main#user_profile {
-  display: flex;
-  flex-direction: column;
   row-gap: 40px;
   padding-top: 90px;
 }
