@@ -1,3 +1,7 @@
+#details #details_intro .details_column {
+  row-gap: 30px;
+}
+
 #details #details_intro_left img {
   border-radius: 20px;
 }

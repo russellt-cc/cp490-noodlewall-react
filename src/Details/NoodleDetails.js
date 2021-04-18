@@ -1,6 +1,7 @@
 import "./NoodleDetails.css";
 import React from "react";
 import DetailsIntro from "./DetailsIntro/DetailsIntro";
+import { Link } from "react-router-dom";
 
 // The event / dreams details page
 class NoodleDetails extends React.Component {
@@ -21,8 +22,17 @@ class NoodleDetails extends React.Component {
       const thisHost = userData.filter((user) => {
         return parseInt(user.userID) === parseInt(thisNoodle.userID);
       })[0];
+      // Destructure the data
+      const { noodleStatus, noodleDescription } = thisNoodle;
+      const {
+        userName: hostUserName,
+        userFirstName: hostFirstName,
+        userLastName: hostLastName,
+        userImage: hostImage,
+        userBioLong: hostBioLong,
+        userID: hostID,
+      } = thisHost;
       // Get status and props
-      const { noodleStatus } = thisNoodle;
       const { currentUserID, onDelete } = this.props;
       const { filterType } = this.props.match.params;
       // Return the details page
@@ -37,17 +47,50 @@ class NoodleDetails extends React.Component {
           />
           <section id="details_details">
             <div className="details_column left" id="details_details_left">
-              <div>
-                <h3>Event Description</h3>
-                <p>{thisNoodle.noodleDescription}</p>
-              </div>
+              <h3>Event Description</h3>
+              <p>{noodleDescription}</p>
             </div>
             <div
               className="details_column right"
               id="details_details_right"
             ></div>
           </section>
-          <section id="details_organizer"></section>
+          <section id="details_organizer">
+            <div className="details_column left" id="details_organizer_left">
+              <h3>About {hostUserName}</h3>
+              <div id="details_organizer_column_container">
+                <div
+                  className="details_organizer_column"
+                  id="details_organizer_left_left"
+                >
+                  <Link to={`/user/${hostID}`}>
+                    <img src={hostImage} alt="Host"></img>
+                    <p>
+                      {hostFirstName} {hostLastName}
+                    </p>
+                  </Link>
+                </div>
+                <div
+                  className="details_organizer_column"
+                  id="details_organizer_right_right"
+                >
+                  <p>{hostBioLong}</p>
+                  <div id="details_organizer_actions">
+                    <button className={`noodle_button ${noodleStatus}`}>
+                      Follow Me
+                    </button>
+                    <button className={`noodle_button ${noodleStatus}`}>
+                      Contact Me
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="details_column right"
+              id="details_organizer_right"
+            ></div>
+          </section>
         </main>
       );
     } else {

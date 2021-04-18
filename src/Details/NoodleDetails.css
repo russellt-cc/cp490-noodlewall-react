@@ -13,7 +13,6 @@ main#details {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 30px;
 }
 
 #details .details_column.left {
@@ -22,6 +21,34 @@ main#details {
 
 #details .details_column.right {
   width: 25%;
+}
+
+#details #details_organizer_column_container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 40px;
+  justify-content: left;
+}
+
+#details .details_organizer_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+#details #details_organizer_left_left {
+  text-align: center;
+}
+
+#details #details_organizer img {
+  width: 100px;
+  border-radius: 50px;
+}
+
+#details #details_organizer_actions {
+  display: flex;
+  column-gap: 10px;
 }
 
 /* Style for mobile */
