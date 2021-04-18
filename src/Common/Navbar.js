@@ -6,6 +6,7 @@ import usericon from "../images/usericon.png";
 
 class Navbar extends React.Component {
   render() {
+    const { onRefresh: refresh } = this.props;
     // Get the current user data
     // Destructure the current user data
     const userID = this.props.userID;
@@ -110,6 +111,9 @@ class Navbar extends React.Component {
                     <Link className="noodle_button" to="/">
                       Sign Out
                     </Link>
+                    <button className="noodle_button" onClick={() => refresh()}>
+                      Refresh Noodlewall
+                    </button>
                   </div>
                   <div>
                     <Link to="/">Terms of Service</Link>

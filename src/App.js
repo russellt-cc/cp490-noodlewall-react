@@ -17,6 +17,7 @@ import Browse from "./Browse/Browse.js";
 import Details from "./Details/Details.js";
 import Create from "./Create/Create.js";
 import User from "./User/User.js";
+import UserEdit from "./User/UserEdit";
 
 // React Router
 import {
@@ -60,7 +61,6 @@ class App extends React.Component {
   }
   // Methods to handle CRUD
   // Create
-
   create = (type, data) => {
     // Check whether we are using the API for data
     const { useAPI, apiNoodlePath, apiUserPath } = this.state;
@@ -94,12 +94,24 @@ class App extends React.Component {
             console.log("Incoming data:");
             console.log(result);
             // Reload data
-            this.read();
-            // Redirect to user page
-            const redirect = "/user/" + this.state.currentUserID;
-            // Redirect to noodle page
-            // const redirect = "/details/" + result.noodleID;
-            this.setState({ redirect: redirect });
+            this.refresh();
+            // Handle redirect
+            let redirect;
+            switch (type) {
+              case "dream":
+              case "event":
+                // Redirect to noodle page
+                redirect = "/details/" + result.noodleID;
+                break;
+              case "user":
+                // Redirect to user page
+                redirect = "/user/" + this.state.currentUserID;
+                break;
+              default:
+                redirect = "/";
+                break;
+            }
+            this.setState({ redirect });
           },
           (error) => {
             console.log("Create Failed");
@@ -115,7 +127,6 @@ class App extends React.Component {
       alert("You can't create data when using the static JSON data.");
     }
   };
-
   // Read
   read = () => {
     // Check whether we are using the API for data
@@ -216,12 +227,24 @@ class App extends React.Component {
             console.log("Incoming Data:");
             console.log(result);
             // Reload data
-            this.read();
-            // Redirect to user page
-            const redirect = "/user/" + this.state.currentUserID;
-            // Redirect to noodle page
-            // const redirect = "/details/" + result.noodleID;
-            this.setState({ redirect: redirect });
+            this.refresh();
+            // Handle redirect
+            let redirect;
+            switch (type) {
+              case "dream":
+              case "event":
+                // Redirect to noodle page
+                redirect = "/details/" + data.noodleID;
+                break;
+              case "user":
+                // Redirect to user page
+                redirect = "/user/" + this.state.currentUserID;
+                break;
+              default:
+                redirect = "/";
+                break;
+            }
+            this.setState({ redirect });
           },
           (error) => {
             console.log("Update Failed");
@@ -235,7 +258,6 @@ class App extends React.Component {
       alert("You can't update data when using the static JSON data.");
     }
   };
-
   // Delete
   delete = (type, data) => {
     // Check whether we are using the API for data
@@ -268,7 +290,7 @@ class App extends React.Component {
           console.log("Incoming Data:");
           console.log(result);
           // Reload data
-          this.read();
+          this.refresh();
           // Redirect to user page
           const redirect = "/user/" + this.state.currentUserID;
           this.setState({ redirect: redirect });
@@ -284,6 +306,14 @@ class App extends React.Component {
       // Just show a message
       alert("You can't delete data when using the static JSON data.");
     }
+  };
+  // Refresh
+  refresh = () => {
+    this.setState({
+      noodlesAreCooked: false,
+      noodlersAreLoaded: false,
+    });
+    this.read();
   };
   // Render method
   render() {
@@ -326,7 +356,11 @@ class App extends React.Component {
             {/* Show the Noodlewall navbar */}
             {/* Replace the static user id with
             user id from session */}
-            <Navbar userData={userData} userID={currentUserID} />
+            <Navbar
+              userData={userData}
+              userID={currentUserID}
+              onRefresh={this.refresh}
+            />
             {/* Element to redirect if needed */}
             {redirectJSX}
             {/* Switch the main component based on the url */}
@@ -370,6 +404,17 @@ class App extends React.Component {
               {/* ------------------------------------------------------------ */}
               {/* User Module */}
               <Route
+                path="/user/edit"
+                render={(props) => (
+                  <UserEdit
+                    {...props}
+                    userData={userData}
+                    currentUserID={currentUserID}
+                    onUpdate={this.update}
+                  />
+                )}
+              />
+              <Route
                 path="/user/:id/:action"
                 render={(props) => (
                   <User
@@ -382,6 +427,17 @@ class App extends React.Component {
               />
               <Route
                 path="/user/:id"
+                render={(props) => (
+                  <User
+                    {...props}
+                    noodleData={noodleData}
+                    userData={userData}
+                    currentUserID={currentUserID}
+                  />
+                )}
+              />
+              <Route
+                path="/user"
                 render={(props) => (
                   <User
                     {...props}

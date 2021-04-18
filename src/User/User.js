@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./User.css";
 import UserRating from "../Common/UserRating.js";
 import NoodleList from "../Common/NoodleList.js";
@@ -12,7 +12,10 @@ class User extends React.Component {
     super(props);
 
     const { userData, currentUserID } = this.props;
-    const { id: profileUserID } = this.props.match.params;
+    let { id: profileUserID } = this.props.match.params;
+
+    // Go to users own page by default
+    if (!profileUserID) profileUserID = currentUserID;
 
     const thisUser = userData.filter((user) => {
       return parseInt(user.userID) === parseInt(profileUserID);
@@ -102,14 +105,9 @@ class User extends React.Component {
 
     const ownProfileActions = (
       <p className="user_actions">
-        <button
-          className="noodle_button"
-          onClick={() => {
-            this.edit();
-          }}
-        >
+        <Link className="noodle_button" to="/user/edit">
           Edit Profile
-        </button>
+        </Link>
         <button
           className="noodle_button"
           onClick={() => {

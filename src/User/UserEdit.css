@@ -1,0 +1,4 @@
+#user_edit #user_edit_action_bar {
+  display: flex;
+  column-gap: 10px;
+}
