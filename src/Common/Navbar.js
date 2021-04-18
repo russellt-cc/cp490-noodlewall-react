@@ -10,9 +10,77 @@ class Navbar extends React.Component {
     // Get the current user data
     // Destructure the current user data
     const userID = this.props.userID;
-    const { userFirstName, userLastName, userImage } = this.props.userData[
-      userID - 1
-    ];
+    let userFirstName,
+      userLastName,
+      userImage = undefined;
+    if (userID) {
+      const thisUser = this.props.userData[userID - 1];
+      userFirstName = thisUser.userFirstName;
+      userLastName = thisUser.userLastName;
+      userImage = thisUser.userImage;
+    }
+    // Create the user menu
+    const userDrop = userID ? (
+      <div id="user_drop" className="drop">
+        <div className="user_drop_column" id="user_drop_left">
+          <h3>Tickets</h3>
+        </div>
+        <div className="user_drop_column" id="user_drop_middle">
+          <h3>Following</h3>
+        </div>
+        <div className="user_drop_column" id="user_drop_right">
+          <h3>Your Account</h3>
+          <div>
+            <Link to="/user">
+              <img
+                src={userImage ? decodeURIComponent(userImage) : usericon}
+                alt="User"
+              ></img>
+              <h4>
+                {userFirstName} {userLastName}
+              </h4>
+            </Link>
+          </div>
+          <div>
+            <Link className="noodle_button" to="/manage">
+              Manage Your Account
+            </Link>
+            <Link className="noodle_button" to="/dashboard">
+              View Dashboard
+            </Link>
+            <Link className="noodle_button" to="/logout">
+              Sign Out
+            </Link>
+          </div>
+          <div>
+            <button className="noodle_button" onClick={() => refresh()}>
+              Refresh Noodlewall
+            </button>
+          </div>
+          <div>
+            <Link to="/">Terms of Service</Link>
+            <Link to="/">Privacy Policy</Link>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div id="login_drop" className="drop">
+        <div>
+          <Link className="noodle_button" to="/login">
+            Login to Noodlewall
+          </Link>
+        </div>
+        <div>
+          <button className="noodle_button" onClick={() => refresh()}>
+            Refresh Noodlewall
+          </button>
+        </div>
+        <div>
+          <Link to="/">Terms of Service</Link>
+          <Link to="/">Privacy Policy</Link>
+        </div>
+      </div>
+    );
     // Return the Noodlewall navbar
     return (
       <nav>
@@ -77,51 +145,7 @@ class Navbar extends React.Component {
                   alt="User"
                 />
               </button>
-              <div id="user_drop" className="drop">
-                <div className="user_drop_column" id="user_drop_left">
-                  <h3>Tickets</h3>
-                </div>
-                <div className="user_drop_column" id="user_drop_middle">
-                  <h3>Following</h3>
-                </div>
-                <div className="user_drop_column" id="user_drop_right">
-                  <h3>Your Account</h3>
-                  <div>
-                    <Link to="/user">
-                      <img
-                        src={
-                          userImage ? decodeURIComponent(userImage) : usericon
-                        }
-                        alt="User"
-                      ></img>
-                      <h4>
-                        {userFirstName} {userLastName}
-                      </h4>
-                    </Link>
-                  </div>
-                  <div>
-                    {" "}
-                    <Link className="noodle_button" to="/manage">
-                      Manage Your Account
-                    </Link>
-                    <Link className="noodle_button" to="/dashboard">
-                      View Dashboard
-                    </Link>
-                    <Link className="noodle_button" to="/logout">
-                      Sign Out
-                    </Link>
-                  </div>
-                  <div>
-                    <button className="noodle_button" onClick={() => refresh()}>
-                      Refresh Noodlewall
-                    </button>
-                  </div>
-                  <div>
-                    <Link to="/">Terms of Service</Link>
-                    <Link to="/">Privacy Policy</Link>
-                  </div>
-                </div>
-              </div>
+              {userDrop}
             </li>
           </ul>
         </div>

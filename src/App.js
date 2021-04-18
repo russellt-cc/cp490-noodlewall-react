@@ -13,10 +13,21 @@ import Footer from "./Common/Footer.js";
 
 // Noodlewall pages as React components
 import Landing from "./Landing/Landing.js";
+// User Story 1: Login
+import Login from "./Login";
+// User Story 2: Register
+// register goes here
+// User Stories 3 and 9: Browse Events and Dreams
 import Browse from "./Browse/Browse.js";
+// User Stories 4 and 8: View Event or Dream Details
 import Details from "./Details/Details.js";
+// User Story 5: Buy Ticket
+// buy goes here
+// User Stories 6, 7, 10, and 13: Create Event, Create Dream, Edit Event, Edit Dream
 import Create from "./Create/Create.js";
+// User Stories 11 and 12: View Other Profile, View Own Profile
 import User from "./User/User.js";
+// Edit Own Profile
 import UserEdit from "./User/UserEdit";
 
 // React Router
@@ -43,7 +54,7 @@ class App extends React.Component {
       noodlersAreLoaded: false,
       noodleData: [],
       userData: [],
-      currentUserID: 1,
+      currentUserID: null,
       useAPI: true,
       apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
@@ -315,6 +326,13 @@ class App extends React.Component {
     });
     this.read();
   };
+
+  // Login
+  login = (currentUserID) => {
+    const redirect = "/user/" + this.state.currentUserID;
+    this.setState({ currentUserID, redirect });
+  };
+
   // Render method
   render() {
     // Destructure the props and state
@@ -365,6 +383,14 @@ class App extends React.Component {
             {redirectJSX}
             {/* Switch the main component based on the url */}
             <Switch>
+              {/* ------------------------------------------------------------ */}
+              {/* Login Module */}
+              <Route
+                path="/login"
+                render={(props) => (
+                  <Login {...props} userData={userData} onLogin={this.Login} />
+                )}
+              />
               {/* ------------------------------------------------------------ */}
               {/* Create Module */}
               <Route

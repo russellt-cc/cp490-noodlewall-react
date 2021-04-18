@@ -38,6 +38,7 @@ function getRandomImageFromUnsplash(
       const split = value.split("=");
       paramKeys[index] = split[0];
       paramValues[index] = split[1];
+      return true;
     });
     // Rebuild the parameters
     let myParams =

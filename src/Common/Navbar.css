@@ -202,6 +202,36 @@ nav #user_drop_right img {
   border-radius: 75px;
 }
 
+nav #login_drop {
+  flex-direction: column;
+  row-gap: 5px;
+  width: 200px;
+  height: 200px;
+  padding: 5px;
+  justify-content: space-around;
+}
+
+nav #login_drop > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav #login_drop a {
+  color: black;
+}
+
+nav #login_drop .noodle_button {
+  color: white;
+  margin: 0px;
+  width: 200px;
+  height: 60px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* style for mobile */
 
 @media screen and (max-width: 800px) {
