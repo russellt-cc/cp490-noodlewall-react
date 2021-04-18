@@ -329,7 +329,14 @@ class App extends React.Component {
 
   // Login
   login = (currentUserID) => {
-    const redirect = "/user/" + this.state.currentUserID;
+    const redirect = "/user/" + currentUserID;
+    this.setState({ currentUserID, redirect });
+  };
+
+  // Logout
+  logout = () => {
+    const currentUserID = null;
+    const redirect = "/login";
     this.setState({ currentUserID, redirect });
   };
 
@@ -378,6 +385,7 @@ class App extends React.Component {
               userData={userData}
               userID={currentUserID}
               onRefresh={this.refresh}
+              onLogout={this.logout}
             />
             {/* Element to redirect if needed */}
             {redirectJSX}
@@ -388,7 +396,7 @@ class App extends React.Component {
               <Route
                 path="/login"
                 render={(props) => (
-                  <Login {...props} userData={userData} onLogin={this.Login} />
+                  <Login {...props} userData={userData} onLogin={this.login} />
                 )}
               />
               {/* ------------------------------------------------------------ */}
