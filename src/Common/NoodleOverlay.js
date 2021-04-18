@@ -1,4 +1,4 @@
-import noodleOverlay from "../images/dream_watermark_512.png";
+import noodleOverlay from "../Images/dream_watermark_512.png";
 
 // Functional Stateless Component
 // Function to return the overlay

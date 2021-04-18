@@ -2,3 +2,18 @@
   display: flex;
   column-gap: 10px;
 }
+
+#user_edit input,
+#user_edit textarea,
+#user_edit .react-inputs-validation__textbox__input___20hDL {
+  resize: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  display: block;
+  margin: 0px;
+  position: relative;
+  padding: 10px;
+}

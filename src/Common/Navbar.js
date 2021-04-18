@@ -1,8 +1,8 @@
-import logo from "../images/noodlewall-logo-50p.png";
+import logo from "../Images/noodlewall-logo-50p.png";
 import "./Navbar.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import usericon from "../images/usericon.png";
+import usericon from "../Images/usericon.png";
 
 class Navbar extends React.Component {
   render() {

@@ -1,15 +1,15 @@
 //images
-import fishing from "../images/fishing-crop.png";
-import bowling from "../images/bowling-crop.png";
-import cooking from "../images/cooking-crop.png";
-import pewdiepie from "../images/pewdiepie.png";
-import jamie_oliver from "../images/jamie-oliver.jpg";
-import aimee_song from "../images/aimee-song.jpg";
-import marques_brownlee from "../images/marques-brownlee.jpg";
-import tfue from "../images/tfue.jpg";
+import fishing from "../Images/localData/fishing-crop.png";
+import bowling from "../Images/localData/bowling-crop.png";
+import cooking from "../Images/localData/cooking-crop.png";
+import pewdiepie from "../Images/localData/pewdiepie.png";
+import jamie_oliver from "../Images/localData/jamie-oliver.jpg";
+import aimee_song from "../Images/localData/aimee-song.jpg";
+import marques_brownlee from "../Images/localData/marques-brownlee.jpg";
+import tfue from "../Images/localData/tfue.jpg";
 //user images
-import pam from "../images/user-pam.png";
-import rogue from "../images/user-rogue.png";
+import pam from "../Images/localData/user-pam.png";
+import rogue from "../Images/localData/user-rogue.png";
 
 // The noodle data
 // Replace with database

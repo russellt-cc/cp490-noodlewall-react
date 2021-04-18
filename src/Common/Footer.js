@@ -1,4 +1,4 @@
-import logo from "../images/noodlewall-logo-50p.png";
+import logo from "../Images/noodlewall-logo-50p.png";
 import "./Footer.css";
 import React from "react";
 

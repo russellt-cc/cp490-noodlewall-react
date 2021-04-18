@@ -1,9 +1,9 @@
 import intro_video from "../videos/NoodleWall.mp4";
-import intro_poster from "../images/noodlewall-video-poster-384p.png";
-import facebook_logo from "../images/Facebook-share-50p.png";
-import linkedin_logo from "../images/linkedin-share-50p.png";
-import pinterest_logo from "../images/Pinterest-share-50p.png";
-import reddit_logo from "../images/reddit-share-50p.png";
+import intro_poster from "../Images/noodlewall-video-poster-384p.png";
+import facebook_logo from "../Images/socialMedia/Facebook-share-50p.png";
+import linkedin_logo from "../Images/socialMedia/linkedin-share-50p.png";
+import pinterest_logo from "../Images/socialMedia/Pinterest-share-50p.png";
+import reddit_logo from "../Images/socialMedia/reddit-share-50p.png";
 import "./Landing.css";
 import React from "react";
 import { Link } from "react-router-dom";

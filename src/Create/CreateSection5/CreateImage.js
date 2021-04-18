@@ -2,8 +2,8 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
-import getRandomImageFromPicsum from "./getRandomImageFromPicsum";
-import getRandomImageFromUnsplash from "./getRandomImageFromUnsplash";
+import getRandomImageFromPicsum from "../../Images/getRandomImageFromPicsum";
+import getRandomImageFromUnsplash from "../../Images/getRandomImageFromUnsplash";
 
 class CreateImage extends React.Component {
   constructor(props) {

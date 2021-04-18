@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./User.css";
 import UserRating from "../Common/UserRating.js";
 import NoodleList from "../Common/NoodleList.js";
-import usericon from "../images/usericon.png";
+import usericon from "../Images/usericon.png";
 
 // The user profile page
 class User extends React.Component {
