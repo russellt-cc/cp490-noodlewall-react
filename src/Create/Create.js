@@ -1,14 +1,14 @@
 import "./Create.css";
 import React from "react";
 
-import CreateNavProgressBar from "./CreateNavProgressBar.js";
-import CreateSection1 from "./CreateSection1.js";
-import CreateSection2 from "./CreateSection2.js";
-import CreateSection3 from "./CreateSection3.js";
-import CreateSection4 from "./CreateSection4.js";
-import CreateSection5 from "./CreateSection5/CreateSection5.js";
-import CreateSection6 from "./CreateSection6.js";
-import CreateSection7 from "./CreateSection7.js";
+import CreateNavProgressBar from "./CreateNavProgressBar";
+import CreateSection1 from "./CreateSection1";
+import CreateSection2 from "./CreateSection2";
+import CreateSection3 from "./CreateSection3";
+import CreateSection4 from "./CreateSection4";
+import CreateSection5 from "./CreateSection5/CreateSection5";
+import CreateSection6 from "./CreateSection6";
+import CreateSection7 from "./CreateSection7";
 import CreateSubmitBar from "./CreateSubmitBar";
 
 // The create dream / event page

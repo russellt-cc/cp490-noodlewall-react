@@ -1,6 +1,6 @@
 import "./Details.css";
 import React from "react";
-import DetailsIntro from "./DetailsIntro.js";
+import DetailsIntro from "./DetailsIntro";
 
 // The event / dreams details page
 class Details extends React.Component {

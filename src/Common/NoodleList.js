@@ -1,5 +1,5 @@
 import React from "react";
-import NoodleCard from "./NoodleCard.js";
+import NoodleCard from "./NoodleCard";
 import "./NoodleList.css";
 
 // The list of noodles from the JSON data

@@ -8,25 +8,25 @@ import "./App.css";
 import React from "react";
 
 // Noodlewall navbar and footer as React components
-import Navbar from "./Common/Navbar.js";
-import Footer from "./Common/Footer.js";
+import Navbar from "./Common/Navbar";
+import Footer from "./Common/Footer";
 
 // Noodlewall pages as React components
-import Landing from "./Landing/Landing.js";
+import Landing from "./Landing/Landing";
 // User Story 1: Login
 import Login from "./Login";
 // User Story 2: Register
 import Register from "./Register";
 // User Stories 3 and 9: Browse Events and Dreams
-import Browse from "./Browse/Browse.js";
+import Browse from "./Browse/Browse";
 // User Stories 4 and 8: View Event or Dream Details
-import Details from "./Details/Details.js";
+import Details from "./Details/Details";
 // User Story 5: Buy Ticket
 // buy goes here
 // User Stories 6, 7, 10, and 13: Create Event, Create Dream, Edit Event, Edit Dream
-import Create from "./Create/Create.js";
+import Create from "./Create/Create";
 // User Stories 11 and 12: View Other Profile, View Own Profile
-import User from "./User/User.js";
+import User from "./User/User";
 // Edit Own Profile
 import UserEdit from "./User/UserEdit";
 
@@ -37,10 +37,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import ScrollToTop from "./Common/ScrollToTop.js";
+import ScrollToTop from "./Common/ScrollToTop";
 
 // Get local JSON file
-import { noodleData, userData } from "./Data/noodleData.js";
+import { noodleData, userData } from "./Data/noodleData";
 
 // Main App class
 // Uses React Router to show different components

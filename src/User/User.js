@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./User.css";
-import UserRating from "../Common/UserRating.js";
-import NoodleList from "../Common/NoodleList.js";
+import UserRating from "../Common/UserRating";
+import NoodleList from "../Common/NoodleList";
 import usericon from "../Images/usericon.png";
 
 // The user profile page
