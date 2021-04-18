@@ -50,7 +50,7 @@ class DetailsIntroLeft extends React.Component {
       noodleStatus,
     } = this.props.thisNoodle;
     return (
-      <div id="details_intro_left" className="details_intro_column">
+      <div id="details_intro_left" className="details_column left">
         <h1>{noodleTitle}</h1>
         <p
           className={

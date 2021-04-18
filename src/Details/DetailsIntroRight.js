@@ -122,7 +122,7 @@ class DetailsIntroRight extends React.Component {
     };
 
     return (
-      <div id="details_intro_right" className="details_intro_column">
+      <div id="details_intro_right" className="details_column right">
         <h3>{noodleStatus === "dream" ? "Dream " : ""}Event Details</h3>
         <div id="details_summary">
           <p className={element_classes.noodleLocation}>

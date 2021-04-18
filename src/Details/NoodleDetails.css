@@ -4,27 +4,23 @@ main#details {
   padding-bottom: 60px;
 }
 
-#details #details_intro,
-#details #details_details {
+#details section {
   display: flex;
   justify-content: space-evenly;
 }
 
-#details .details_intro_column,
-#details .details_details_column {
+#details .details_column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   row-gap: 30px;
 }
 
-#details #details_intro_left,
-#details #details_details_left {
+#details .details_column.left {
   width: 50%;
 }
 
-#details #details_intro_right,
-#details #details_details_right {
+#details .details_column.right {
   width: 25%;
 }
 
