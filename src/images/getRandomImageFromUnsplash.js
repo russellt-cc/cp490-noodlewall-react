@@ -1,4 +1,5 @@
 //https://stackoverflow.com/questions/38869197/fetch-set-variable-with-fetch-response-and-return-from-function
+//https://stackoverflow.com/questions/4651990/remove-url-parameters-with-javascript-or-jquery
 
 function getRandomImageFromUnsplash(
   randomImageWidth,

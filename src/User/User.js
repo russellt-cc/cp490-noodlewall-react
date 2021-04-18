@@ -8,142 +8,22 @@ import usericon from "../Images/usericon.png";
 
 // The user profile page
 class User extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const { userData, currentUserID } = this.props;
+  render() {
+    // Destructure the props
+    const { userData, currentUserID, noodleData } = this.props;
     let { id: profileUserID } = this.props.match.params;
-
     // Go to users own page by default
     if (!profileUserID) profileUserID = currentUserID;
-
     const thisUser = userData.filter((user) => {
       return parseInt(user.userID) === parseInt(profileUserID);
     })[0];
-
     if (thisUser !== undefined) {
       // Check to see if a user is viewing their own page
       let isOwnProfile = false;
       if (parseInt(currentUserID) === parseInt(profileUserID)) {
         isOwnProfile = true;
       }
-      this.state = {
-        userData: thisUser,
-        isOwnProfile: isOwnProfile,
-        error: false,
-      };
-    } else {
-      this.state = {
-        error: true,
-      };
-    }
-  }
-
-  follow = () => {
-    if (!this.state.isOwnProfile) {
-      alert("Follow component goes here!");
-    } else {
-      alert("You can't follow yourself!");
-    }
-  };
-
-  contact = () => {
-    if (!this.state.isOwnProfile) {
-      alert("Contact component goes here!");
-    } else {
-      alert("You can't contact yourself!");
-    }
-  };
-
-  edit = () => {
-    if (this.state.isOwnProfile) {
-      alert("Edit component goes here!");
-    } else {
-      alert("You can't edit someone else's profile!");
-    }
-  };
-
-  manage = () => {
-    if (this.state.isOwnProfile) {
-      alert("Manage component goes here!");
-    } else {
-      alert("You can't manage someone else's events!");
-    }
-  };
-
-  dashboard = () => {
-    if (this.state.isOwnProfile) {
-      alert("Dashboard component goes here!");
-    } else {
-      alert("You can't view someone else's dashboard!");
-    }
-  };
-
-  getUserActionButtons = () => {
-    const { isOwnProfile } = this.state;
-
-    const otherProfileActions = (
-      <p className="user_actions">
-        <button
-          className="noodle_button"
-          onClick={() => {
-            this.follow();
-          }}
-        >
-          Follow {this.state.userData.userName}
-        </button>
-        <button
-          className="noodle_button"
-          onClick={() => {
-            this.contact();
-          }}
-        >
-          Contact {this.state.userData.userName}
-        </button>
-      </p>
-    );
-
-    const ownProfileActions = (
-      <p className="user_actions">
-        <Link className="noodle_button" to="/user/edit">
-          Edit Profile
-        </Link>
-        <button
-          className="noodle_button"
-          onClick={() => {
-            this.manage();
-          }}
-        >
-          Manage Events
-        </button>
-        <button
-          className="noodle_button"
-          onClick={() => {
-            this.dashboard();
-          }}
-        >
-          View Dashboard
-        </button>
-      </p>
-    );
-
-    if (!isOwnProfile) {
-      return otherProfileActions;
-    } else {
-      return ownProfileActions;
-    }
-  };
-
-  render() {
-    const { error, isOwnProfile } = this.state;
-
-    if (error) {
-      return (
-        <main>
-          <p>User not found!</p>
-        </main>
-      );
-    } else {
+      // Destructure the user data
       const {
         userID,
         userFirstName,
@@ -152,30 +32,61 @@ class User extends React.Component {
         userLastName,
         userRating,
         userBioLong,
-      } = this.state.userData;
-
-      const eventFilters = {
-        type: "events",
-        userID: this.state.userData.userID,
-      };
+      } = thisUser;
+      // Get the events organized by the user
       const userEvents = (
         <NoodleList
-          noodleData={this.props.noodleData}
-          userData={this.props.userData}
-          filters={eventFilters}
+          noodleData={noodleData}
+          userData={userData}
+          filters={{
+            type: "events",
+            userID: userID,
+          }}
         />
       );
-      const dreamFilters = {
-        type: "dreams",
-        userID: userID,
-      };
+      // Get the dreams created by the user
       const userDreams = (
         <NoodleList
           noodleData={this.props.noodleData}
           userData={this.props.userData}
-          filters={dreamFilters}
+          filters={{
+            type: "dreams",
+            userID: userID,
+          }}
         />
       );
+      // Actions when viewing a users own profile
+      const otherProfileActions = (
+        <p className="user_actions">
+          <button
+            className="noodle_button"
+            onClick={() => {
+              this.follow();
+            }}
+          >
+            Follow {userName}
+          </button>
+          <button
+            className="noodle_button"
+            onClick={() => {
+              this.contact();
+            }}
+          >
+            Contact {userName}
+          </button>
+        </p>
+      );
+      // Actions when viewing another users profile
+      const ownProfileActions = (
+        <p className="user_actions">
+          <Link className="noodle_button" to="/user/edit">
+            Edit Profile
+          </Link>
+          <button className="noodle_button">Manage Events</button>
+          <button className="noodle_button">View Dashboard</button>
+        </p>
+      );
+      // Return the profile page
       return (
         <main id="user_profile">
           {isOwnProfile ? (
@@ -188,7 +99,6 @@ class User extends React.Component {
           ) : (
             <></>
           )}
-
           <section id="user_profile_intro">
             <div
               className="user_profile_intro_column"
@@ -203,17 +113,15 @@ class User extends React.Component {
               </h3>
               <UserRating rating={userRating} />
             </div>
-
             <div
               className="user_profile_intro_column"
               id="user_profile_intro_right"
             >
               <h1>About {userName}</h1>
               <p>{userBioLong}</p>
-              {this.getUserActionButtons()}
+              {isOwnProfile ? ownProfileActions : otherProfileActions}
             </div>
           </section>
-
           {/* If the user has any events, show them here. 
           Use ReactDOMServer.renderToString to return a truthy or falsey 
           value from the userEvents JSX. Include Router tags because we have Link
@@ -226,7 +134,6 @@ class User extends React.Component {
           ) : (
             <></>
           )}
-
           {/* If the user has any dreams, show them here */}
           {ReactDOMServer.renderToString(<Router>{userDreams}</Router>) ? (
             <section id="user_dreams">
@@ -238,28 +145,13 @@ class User extends React.Component {
           )}
         </main>
       );
-    }
-  }
-
-  componentDidMount() {
-    switch (this.props.match.params.action) {
-      case "follow":
-        this.follow();
-        break;
-      case "contact":
-        this.contact();
-        break;
-      case "edit":
-        this.edit();
-        break;
-      case "manage":
-        this.manage();
-        break;
-      case "dashboard":
-        this.dashboard();
-        break;
-      default:
-        break;
+    } else {
+      // Return error message
+      return (
+        <main>
+          <p>User not found!</p>
+        </main>
+      );
     }
   }
 }

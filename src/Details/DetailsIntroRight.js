@@ -15,7 +15,6 @@ class DetailsIntroRight extends React.Component {
       this.props.onDelete(noodleStatus, data);
     }
   };
-
   // Render Method
   render() {
     // Get data from props

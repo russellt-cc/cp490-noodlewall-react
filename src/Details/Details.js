@@ -4,9 +4,7 @@ import DetailsIntro from "./DetailsIntro.js";
 
 // The event / dreams details page
 class Details extends React.Component {
-  // Constructor
-  constructor(props) {
-    super(props);
+  render() {
     // Get the noodle and host details
     // Covert to zero-based index
     // Use object destructuring to get constants
@@ -23,29 +21,7 @@ class Details extends React.Component {
       const thisHost = userData.filter((user) => {
         return parseInt(user.userID) === parseInt(thisNoodle.userID);
       })[0];
-      // Save this noodle in state so we can modify it
-      this.state = {
-        thisNoodle: thisNoodle,
-        thisHost: thisHost,
-        error: false,
-      };
-    } else {
-      this.state = {
-        error: true,
-      };
-    }
-  }
-  // Render method
-  render() {
-    const { error } = this.state;
-    if (error) {
-      return (
-        <main>
-          <p>Noodle not found!</p>
-        </main>
-      );
-    } else {
-      const { thisNoodle, thisHost } = this.state;
+      // Get status and props
       const { noodleStatus } = thisNoodle;
       const { currentUserID, onDelete } = this.props;
       const { filterType } = this.props.match.params;
@@ -71,6 +47,13 @@ class Details extends React.Component {
               id="details_details_right"
             ></div>
           </section>
+        </main>
+      );
+    } else {
+      // Return error message
+      return (
+        <main>
+          <p>Noodle not found!</p>
         </main>
       );
     }

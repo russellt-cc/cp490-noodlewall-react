@@ -15,7 +15,10 @@ class DetailsIntroLeft extends React.Component {
       noodleDate,
     } = this.props.thisNoodle;
     let wholeDaysLeft = 0;
-    if (noodleStatus === "event" && noodleTicketsSold < noodleMinTickets) {
+    if (
+      noodleStatus === "event" &&
+      parseInt(noodleTicketsSold) < parseInt(noodleMinTickets)
+    ) {
       // Determine the days left to make it happen
       const now = DateTime.now();
       const cutoff = DateTime.fromFormat(noodleCutoff, "yyyy-MM-dd");
@@ -54,13 +57,13 @@ class DetailsIntroLeft extends React.Component {
             wholeDaysLeft > 0 ? element_classes.noodleDaysLeft : "hidden"
           }
         >
-          {noodleTicketsSold < noodleMinTickets
+          {parseInt(noodleTicketsSold) < parseInt(noodleMinTickets)
             ? "Days Left to Make it Happen"
             : "Days Left Until The Event"}
           :{" "}
           <span
             className={
-              noodleTicketsSold < noodleMinTickets
+              parseInt(noodleTicketsSold) < parseInt(noodleMinTickets)
                 ? "dreams_color_text"
                 : "events_color_text"
             }
