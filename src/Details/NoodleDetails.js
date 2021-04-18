@@ -1,6 +1,6 @@
 import "./NoodleDetails.css";
 import React from "react";
-import DetailsIntro from "./DetailsIntro";
+import DetailsIntro from "./DetailsIntro/DetailsIntro";
 
 // The event / dreams details page
 class NoodleDetails extends React.Component {
