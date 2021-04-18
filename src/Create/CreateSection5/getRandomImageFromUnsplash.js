@@ -23,9 +23,36 @@ function getRandomImageFromUnsplash(
     console.log(randomImageRequest);
     console.log("Incoming Data");
     console.log(response);
-    const encodedURL = encodeURIComponent(response.url);
-    console.log("Encoded URI");
-    console.log(encodedURL);
+    console.log("Response URL");
+    console.log(response.url);
+    // Break down the URL so it fits in the database
+    // Split URL into URL and parameters and store in an array
+    const splitURL = response.url.split("?");
+    // Split parameters and store in an array
+    const splitParams = splitURL[1].split("&");
+    // Split parameters into key and value and store in parallel arrays
+    let paramKeys = [];
+    let paramValues = [];
+    splitParams.map((value, index) => {
+      const split = value.split("=");
+      paramKeys[index] = split[0];
+      paramValues[index] = split[1];
+    });
+    // Rebuild the parameters
+    let myParams =
+      "w=" +
+      randomImageWidth +
+      "&h=" +
+      randomImageHeight +
+      "&fit=" +
+      paramValues[paramKeys.indexOf("fit")] +
+      "&crop=" +
+      paramValues[paramKeys.indexOf("crop")];
+    // Rebuild the URL
+    const myURL = splitURL[0] + "?" + myParams;
+    // Encode the URL so we can store in the database
+    const encodedURL = encodeURIComponent(myURL);
+    // Return the encoded URL
     return encodedURL;
   });
   // Return the promise
