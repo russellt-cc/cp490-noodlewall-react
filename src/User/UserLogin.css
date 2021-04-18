@@ -1,4 +1,4 @@
-#login #login_user_list {
+#user_login #login_user_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -7,23 +7,23 @@
   row-gap: 20px;
 }
 
-#login .login_user_button {
+#user_login .login_user_button {
   width: 200px;
   height: 200px;
   border-radius: 20px;
 }
 
-#login .login_user_button a {
+#user_login .login_user_button a {
   text-decoration: none;
 }
 
-#login .login_user_button img {
+#user_login .login_user_button img {
   width: 100px;
   height: 100px;
   border-radius: 50px;
 }
 
-#login #add_symbol {
+#user_login #add_symbol {
   width: 100px;
   height: 100px;
   display: inline-flex;

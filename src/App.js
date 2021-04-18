@@ -14,9 +14,9 @@ import Footer from "./Common/Footer";
 // Noodlewall pages as React components
 import Landing from "./Landing/Landing";
 // User Story 1: Login
-import Login from "./Login";
+import UserLogin from "./User/UserLogin";
 // User Story 2: Register
-import Register from "./Register";
+import UserRegister from "./User/UserRegister";
 // User Stories 3 and 9: Browse Events and Dreams
 import Browse from "./Browse/Browse";
 // User Stories 4 and 8: View Event or Dream Details
@@ -393,7 +393,7 @@ class App extends React.Component {
               <Route
                 path="/register"
                 render={(props) => (
-                  <Register {...props} onCreate={this.create} />
+                  <UserRegister {...props} onCreate={this.create} />
                 )}
               />
               {/* ------------------------------------------------------------ */}
@@ -401,7 +401,11 @@ class App extends React.Component {
               <Route
                 path="/login"
                 render={(props) => (
-                  <Login {...props} userData={userData} onLogin={this.login} />
+                  <UserLogin
+                    {...props}
+                    userData={userData}
+                    onLogin={this.login}
+                  />
                 )}
               />
               {/* ------------------------------------------------------------ */}

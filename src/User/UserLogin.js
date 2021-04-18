@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Login.css";
+import "./UserLogin.css";
 
-class Login extends React.Component {
+class UserLogin extends React.Component {
   render() {
     // Get data from props
     const { userData, onLogin: login } = this.props;
@@ -30,7 +30,7 @@ class Login extends React.Component {
       </button>
     );
     return (
-      <main id="login">
+      <main id="user_login">
         <section id="login_user_list">
           {userList}
           {newUser}
@@ -40,4 +40,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default UserLogin;
