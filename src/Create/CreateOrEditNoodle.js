@@ -12,7 +12,7 @@ import CreateSection7 from "./CreateSection7";
 import CreateSubmitBar from "./CreateSubmitBar";
 
 // The create dream / event page
-class CreateOrEditEvent extends React.Component {
+class CreateOrEditNoodle extends React.Component {
   constructor(props) {
     super(props);
 
@@ -392,4 +392,4 @@ class CreateOrEditEvent extends React.Component {
   }
 }
 
-export default CreateOrEditEvent;
+export default CreateOrEditNoodle;

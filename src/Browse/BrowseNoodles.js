@@ -2,7 +2,7 @@ import "./BrowseNoodles.css";
 import React from "react";
 import NoodleList from "../Common/NoodleList";
 
-class Browse extends React.Component {
+class BrowseNoodles extends React.Component {
   render() {
     // Getting information about events
     // Create a filters object to pass to NoodleList
@@ -26,4 +26,4 @@ class Browse extends React.Component {
   }
 }
 
-export default Browse;
+export default BrowseNoodles;

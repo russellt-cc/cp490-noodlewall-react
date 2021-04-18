@@ -7,7 +7,7 @@ import getRandomImageFromPicsum from "../Images/getRandomImageFromPicsum";
 import getRandomImageFromUnsplash from "../Images/getRandomImageFromUnsplash";
 import usericon from "../Images/usericon.png";
 
-class UserEdit extends React.Component {
+class RegisterOrEditUser extends React.Component {
   constructor(props) {
     super(props);
     const { userData, currentUserID: userID } = this.props;
@@ -175,4 +175,4 @@ class UserEdit extends React.Component {
   }
 }
 
-export default UserEdit;
+export default RegisterOrEditUser;

@@ -3,7 +3,7 @@ import React from "react";
 import DetailsIntro from "./DetailsIntro";
 
 // The event / dreams details page
-class EventDetails extends React.Component {
+class NoodleDetails extends React.Component {
   render() {
     // Get the noodle and host details
     // Covert to zero-based index
@@ -60,4 +60,4 @@ class EventDetails extends React.Component {
   }
 }
 
-export default EventDetails;
+export default NoodleDetails;
