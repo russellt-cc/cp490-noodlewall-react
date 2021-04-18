@@ -1,6 +1,7 @@
 import React from "react";
 import DetailsIntroLeft from "./DetailsIntroLeft";
 import DetailsIntroRight from "./DetailsIntroRight";
+import "./DetailsIntro.css";
 
 // The intro section of the details page
 class DetailsIntro extends React.Component {
