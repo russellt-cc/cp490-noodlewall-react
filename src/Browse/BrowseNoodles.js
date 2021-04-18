@@ -1,4 +1,4 @@
-import "./Browse.css";
+import "./BrowseNoodles.css";
 import React from "react";
 import NoodleList from "../Common/NoodleList";
 

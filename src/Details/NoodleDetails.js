@@ -1,9 +1,9 @@
-import "./Details.css";
+import "./NoodleDetails.css";
 import React from "react";
 import DetailsIntro from "./DetailsIntro";
 
 // The event / dreams details page
-class Details extends React.Component {
+class EventDetails extends React.Component {
   render() {
     // Get the noodle and host details
     // Covert to zero-based index
@@ -60,4 +60,4 @@ class Details extends React.Component {
   }
 }
 
-export default Details;
+export default EventDetails;

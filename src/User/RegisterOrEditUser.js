@@ -2,7 +2,7 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import { Link } from "react-router-dom";
-import "./UserEdit.css";
+import "./RegisterOrEditUser.css";
 import getRandomImageFromPicsum from "../Images/getRandomImageFromPicsum";
 import getRandomImageFromUnsplash from "../Images/getRandomImageFromUnsplash";
 import usericon from "../Images/usericon.png";

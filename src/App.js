@@ -14,21 +14,19 @@ import Footer from "./Common/Footer";
 // Noodlewall pages as React components
 import Landing from "./Landing/Landing";
 // User Story 1: Login
-import UserLogin from "./User/UserLogin";
-// User Story 2: Register
-import UserRegister from "./User/UserRegister";
+import LoginUser from "./User/LoginUser";
+// User Story 2: Register and Edit Own Profile
+import RegisterOrEditUser from "./User/RegisterOrEditUser";
 // User Stories 3 and 9: Browse Events and Dreams
-import Browse from "./Browse/Browse";
+import BrowseNoodles from "./Browse/BrowseNoodles";
 // User Stories 4 and 8: View Event or Dream Details
-import Details from "./Details/Details";
+import NoodleDetails from "./Details/NoodleDetails";
 // User Story 5: Buy Ticket
 // buy goes here
 // User Stories 6, 7, 10, and 13: Create Event, Create Dream, Edit Event, Edit Dream
-import Create from "./Create/Create";
+import CreateOrEditNoodle from "./Create/CreateOrEditNoodle";
 // User Stories 11 and 12: View Other Profile, View Own Profile
-import User from "./User/User";
-// Edit Own Profile
-import UserEdit from "./User/UserEdit";
+import UserProfile from "./User/UserProfile";
 
 // React Router
 import {
@@ -389,19 +387,34 @@ class App extends React.Component {
             {/* Switch the main component based on the url */}
             <Switch>
               {/* ------------------------------------------------------------ */}
-              {/* Registration Module */}
+              {/* Registration or Edit User Module */}
               <Route
                 path="/register"
                 render={(props) => (
-                  <UserRegister {...props} onCreate={this.create} />
+                  <RegisterOrEditUser
+                    {...props}
+                    currentUserID={undefined}
+                    onCreate={this.create}
+                  />
+                )}
+              />
+              <Route
+                path="/user/edit"
+                render={(props) => (
+                  <RegisterOrEditUser
+                    {...props}
+                    userData={userData}
+                    currentUserID={currentUserID}
+                    onUpdate={this.update}
+                  />
                 )}
               />
               {/* ------------------------------------------------------------ */}
-              {/* Login Module */}
+              {/* Login User Module */}
               <Route
                 path="/login"
                 render={(props) => (
-                  <UserLogin
+                  <LoginUser
                     {...props}
                     userData={userData}
                     onLogin={this.login}
@@ -409,11 +422,11 @@ class App extends React.Component {
                 )}
               />
               {/* ------------------------------------------------------------ */}
-              {/* Create Module */}
+              {/* Create or Edit Noodle Module */}
               <Route
                 path="/details/:id/edit"
                 render={(props) => (
-                  <Create
+                  <CreateOrEditNoodle
                     {...props}
                     userData={userData}
                     currentUserID={currentUserID}
@@ -425,7 +438,7 @@ class App extends React.Component {
               <Route
                 path="/create/:type"
                 render={(props) => (
-                  <Create
+                  <CreateOrEditNoodle
                     {...props}
                     userData={userData}
                     currentUserID={currentUserID}
@@ -436,7 +449,7 @@ class App extends React.Component {
               <Route
                 path="/create"
                 render={(props) => (
-                  <Create
+                  <CreateOrEditNoodle
                     {...props}
                     userData={userData}
                     currentUserID={currentUserID}
@@ -445,22 +458,11 @@ class App extends React.Component {
                 )}
               />
               {/* ------------------------------------------------------------ */}
-              {/* User Module */}
-              <Route
-                path="/user/edit"
-                render={(props) => (
-                  <UserEdit
-                    {...props}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onUpdate={this.update}
-                  />
-                )}
-              />
+              {/* User Profile Module */}
               <Route
                 path="/user/:id/:action"
                 render={(props) => (
-                  <User
+                  <UserProfile
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -471,7 +473,7 @@ class App extends React.Component {
               <Route
                 path="/user/:id"
                 render={(props) => (
-                  <User
+                  <UserProfile
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -482,7 +484,7 @@ class App extends React.Component {
               <Route
                 path="/user"
                 render={(props) => (
-                  <User
+                  <UserProfile
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -491,11 +493,11 @@ class App extends React.Component {
                 )}
               />
               {/* ------------------------------------------------------------ */}
-              {/* Details Module */}
+              {/* Noodle Details Module */}
               <Route
                 path="/details/:filterType/:id"
                 render={(props) => (
-                  <Details
+                  <NoodleDetails
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -507,7 +509,7 @@ class App extends React.Component {
               <Route
                 path="/details/:id"
                 render={(props) => (
-                  <Details
+                  <NoodleDetails
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -517,11 +519,11 @@ class App extends React.Component {
                 )}
               />
               {/* ------------------------------------------------------------ */}
-              {/* Browse Module */}
+              {/* Browse Noodles Module */}
               <Route
                 path="/browse/:type/:tag"
                 render={(props) => (
-                  <Browse
+                  <BrowseNoodles
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -531,7 +533,7 @@ class App extends React.Component {
               <Route
                 path="/browse/:type"
                 render={(props) => (
-                  <Browse
+                  <BrowseNoodles
                     {...props}
                     noodleData={noodleData}
                     userData={userData}
@@ -541,7 +543,7 @@ class App extends React.Component {
               <Route
                 path="/browse"
                 render={(props) => (
-                  <Browse
+                  <BrowseNoodles
                     {...props}
                     noodleData={noodleData}
                     userData={userData}

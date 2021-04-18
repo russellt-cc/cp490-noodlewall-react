@@ -1,4 +1,4 @@
-import "./Create.css";
+import "./CreateOrEditNoodle.css";
 import React from "react";
 
 import CreateNavProgressBar from "./CreateNavProgressBar";
@@ -12,7 +12,7 @@ import CreateSection7 from "./CreateSection7";
 import CreateSubmitBar from "./CreateSubmitBar";
 
 // The create dream / event page
-class Create extends React.Component {
+class CreateOrEditEvent extends React.Component {
   constructor(props) {
     super(props);
 
@@ -392,4 +392,4 @@ class Create extends React.Component {
   }
 }
 
-export default Create;
+export default CreateOrEditEvent;
