@@ -27,6 +27,31 @@ class Navbar extends React.Component {
       userLastName = thisUser.userLastName;
       userImage = thisUser.userImage;
     }
+
+    // Create the create drop menu
+    const createDrop = userID ? (
+      <div id="create_drop" className="drop">
+        <div id="create_dream_button" className="create_drop_button">
+          <span className="dreams_color_text">
+            <Link to="/create/dream">Create a Dream</Link>
+          </span>
+        </div>
+        <div id="create_event_button" className="create_drop_button">
+          <span className="events_color_text">
+            <Link to="/create/event">Create an Event</Link>
+          </span>
+        </div>
+      </div>
+    ) : (
+      <div id="loggedout_create_drop" className="drop">
+        <div>
+          <Link className="noodle_button" to="/login">
+            You must log in to create a dream or event.
+          </Link>
+        </div>
+      </div>
+    );
+
     // Create the user menu
     const userDrop = userID ? (
       <div id="user_drop" className="drop">
@@ -130,18 +155,7 @@ class Navbar extends React.Component {
               <button>
                 <strong>Create</strong>
               </button>
-              <div id="create_drop" className="drop">
-                <div id="create_dream_button" className="create_drop_button">
-                  <span className="dreams_color_text">
-                    <Link to="/create/dream">Create a Dream</Link>
-                  </span>
-                </div>
-                <div id="create_event_button" className="create_drop_button">
-                  <span className="events_color_text">
-                    <Link to="/create/event">Create an Event</Link>
-                  </span>
-                </div>
-              </div>
+              {createDrop}
             </li>
             <li id="user_button" className="drop_button">
               <button id="user_button_button">
