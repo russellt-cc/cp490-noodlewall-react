@@ -3,6 +3,7 @@ import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import { Link } from "react-router-dom";
 import "./UserEdit.css";
+import getRandomImageFromUnsplash from "../Images/getRandomImageFromUnsplash";
 
 class UserEdit extends React.Component {
   constructor(props) {
@@ -68,7 +69,16 @@ class UserEdit extends React.Component {
             value={userImage}
             onChange={(value) => this.setState({ userImage: value })}
           ></Textbox>
-          <button class="noodle_button">
+          <button
+            class="noodle_button"
+            onClick={() => {
+              getRandomImageFromUnsplash(300, 300, ["fishing"]).then(
+                (userImage) => {
+                  this.setState({ userImage });
+                }
+              );
+            }}
+          >
             Get a random image from Unsplash
           </button>
         </section>

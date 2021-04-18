@@ -36,6 +36,7 @@ main#user_profile {
 
 #user_profile #user_profile_intro_left img {
   max-width: 300px;
+  border-radius: 150px;
 }
 
 #user_profile #user_profile_intro_left h3 {

@@ -194,7 +194,10 @@ class User extends React.Component {
               className="user_profile_intro_column"
               id="user_profile_intro_left"
             >
-              <img src={userImage ? userImage : usericon} alt={userName} />
+              <img
+                src={userImage ? decodeURIComponent(userImage) : usericon}
+                alt={userName}
+              />
               <h3>
                 {userFirstName} {userLastName}
               </h3>

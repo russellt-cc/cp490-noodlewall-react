@@ -83,7 +83,8 @@ nav #user_button_button {
 }
 
 /* the button when clicked */
-nav ul li > button:focus {
+/* nav ul li > button:focus, */
+nav ul li > button:hover {
   outline: none;
   background-color: var(--dreams-color);
 }
@@ -109,9 +110,12 @@ nav #browse_drop,
 }
 
 /* drop on click */
-nav #browse_button:focus-within .drop,
-nav #create_button:focus-within .drop,
-nav #user_button:focus-within .drop {
+/* nav #browse_button:focus-within .drop, */
+nav #browse_button:hover .drop,
+/* nav #create_button:focus-within .drop, */
+nav #create_button:hover .drop,
+/* nav #user_button:focus-within .drop, */
+nav #user_button:hover .drop {
   pointer-events: auto;
   right: 0px;
 }
@@ -120,7 +124,7 @@ nav #user_button:focus-within .drop {
 nav #browse_drop > *,
 nav #create_drop > * {
   width: 200px;
-  height: 50px;
+  height: 200px;
   background-color: black;
   border-radius: 10px;
 }
@@ -165,16 +169,22 @@ nav .user_drop_column > div {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  row-gap: 10px;
+  padding: 10px 0px;
 }
 
 nav .user_drop_column .noodle_button {
   width: 150px;
   color: white;
+  margin: 0px;
+  box-sizing: content-box;
 }
 
-nav .user_drop_column a {
+nav .user_drop_column a,
+nav .user_drop_column p,
+nav .user_drop_column h4 {
   color: black;
-  padding: 10px 0px;
+  margin: 0px;
 }
 
 /* the middle column in the user drop down */
@@ -183,8 +193,13 @@ nav #user_drop_middle {
   border-right: 3px solid var(--events-color);
 }
 
+nav #nav_user_image {
+  border-radius: 25px;
+}
+
 nav #user_drop_right img {
   max-width: 150px;
+  border-radius: 75px;
 }
 
 /* style for mobile */

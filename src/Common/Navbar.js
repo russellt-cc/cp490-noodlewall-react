@@ -71,7 +71,7 @@ class Navbar extends React.Component {
               <button id="user_button_button">
                 <img
                   id="nav_user_image"
-                  src={userImage ? userImage : usericon}
+                  src={userImage ? decodeURIComponent(userImage) : usericon}
                   height="50px"
                   width="50px"
                   alt="User"
@@ -85,32 +85,33 @@ class Navbar extends React.Component {
                   <h3>Following</h3>
                 </div>
                 <div className="user_drop_column" id="user_drop_right">
+                  <h3>Your Account</h3>
                   <div>
-                    <h3>Your Account</h3>
-                    <Link to={`/user/${userID}`}>
+                    <Link to="/user">
                       <img
-                        src={userImage ? userImage : usericon}
+                        src={
+                          userImage ? decodeURIComponent(userImage) : usericon
+                        }
                         alt="User"
                       ></img>
-                      <p>
+                      <h4>
                         {userFirstName} {userLastName}
-                      </p>
+                      </h4>
                     </Link>
-                    <Link
-                      className="noodle_button"
-                      to={`/user/${userID}/manage`}
-                    >
+                  </div>
+                  <div>
+                    {" "}
+                    <Link className="noodle_button" to="/manage">
                       Manage Your Account
                     </Link>
-                    <Link
-                      className="noodle_button"
-                      to={`/user/${userID}/dashboard`}
-                    >
+                    <Link className="noodle_button" to="/dashboard">
                       View Dashboard
                     </Link>
-                    <Link className="noodle_button" to="/">
+                    <Link className="noodle_button" to="/logout">
                       Sign Out
                     </Link>
+                  </div>
+                  <div>
                     <button className="noodle_button" onClick={() => refresh()}>
                       Refresh Noodlewall
                     </button>

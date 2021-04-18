@@ -11,7 +11,7 @@ function getRandomImageFromUnsplash(
     "x" +
     randomImageHeight;
   // Check if we have tags
-  if (noodleTags.length) {
+  if (noodleTags && noodleTags.length) {
     // Get images based on tags
     const tags = noodleTags.join();
     randomImageRequest = randomImageRequest + "/?" + tags;
