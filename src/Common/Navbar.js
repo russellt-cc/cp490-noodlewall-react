@@ -23,11 +23,12 @@ class Navbar extends React.Component {
       const thisUser = userData.filter((user) => {
         return parseInt(user.userID) === parseInt(userID);
       })[0];
-      userFirstName = thisUser.userFirstName;
-      userLastName = thisUser.userLastName;
-      userImage = thisUser.userImage;
+      if (thisUser) {
+        userFirstName = thisUser.userFirstName;
+        userLastName = thisUser.userLastName;
+        userImage = thisUser.userImage;
+      }
     }
-
     // Create the create drop menu
     const createDrop = userID ? (
       <div id="create_drop" className="drop">

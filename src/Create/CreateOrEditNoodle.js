@@ -234,6 +234,14 @@ class CreateOrEditNoodle extends React.Component {
     this.setState({ createMode });
   };
 
+  static getDerivedStateFromProps(props, state) {
+    // Set create mode to event if user selects create event in the navbar while already creating a dream
+    const { type: createMode } = props.match.params;
+    if (createMode === "event" && createMode !== state.createMode) {
+      state.createMode = createMode;
+    }
+  }
+
   render() {
     // Get data from state
     const {

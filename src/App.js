@@ -356,232 +356,246 @@ class App extends React.Component {
   // Render method
   render() {
     // Destructure the props and state
-    const {
-      error,
-      noodlesAreCooked,
-      noodlersAreLoaded,
-      noodleData,
-      userData,
-      currentUserID,
-    } = this.state;
-    // Check for error
-    if (error) {
-      return <p>Error: {error.message} noodles</p>;
-    } else if (!noodlesAreCooked) {
-      return <p>Cooking Noodles...</p>;
-    } else if (!noodlersAreLoaded) {
-      return (
-        <div>
-          <p>Cooking Noodles...</p>
-          <p>Searching for Noodlers...</p>
-        </div>
-      );
-    } else {
-      // Handle redirects
+    const { noodleData, userData, currentUserID } = this.state;
+    // Handle redirects
+    const redirect = () => {
       const { redirect } = this.state;
       let redirectJSX = <></>;
       if (redirect) {
         redirectJSX = <Redirect to={redirect} />;
         this.setState({ redirect: null });
       }
-      return (
-        // Return the main Noodlewall app
-        <div className="App">
-          {/* Router component to use React Router */}
-          <Router>
-            {/* Scroll to top */}
-            <ScrollToTop />
-            {/* Show the Noodlewall navbar */}
-            {/* Replace the static user id with
-            user id from session */}
-            <Navbar
-              userData={userData}
-              userID={currentUserID}
-              onRefresh={this.refresh}
-              onLogout={this.logout}
+      return redirectJSX;
+    };
+    // The main section of the app
+    const main = () => {
+      const { error, noodlesAreCooked, noodlersAreLoaded } = this.state;
+      // Check for error
+      if (error) {
+        return (
+          <main>
+            <p>Error: {error.message} noodles</p>
+          </main>
+        );
+      } else if (!noodlesAreCooked) {
+        return (
+          <main>
+            <p>Cooking Noodles...</p>
+          </main>
+        );
+      } else if (!noodlersAreLoaded) {
+        return (
+          <main>
+            <div>
+              <p>Cooking Noodles...</p>
+              <p>Searching for Noodlers...</p>
+            </div>
+          </main>
+        );
+      } else {
+        return (
+          <Switch>
+            {/* ------------------------------------------------------------ */}
+            {/* Registration or Edit User Module */}
+            <Route
+              path="/register"
+              render={(props) => (
+                <RegisterOrEditUser
+                  {...props}
+                  currentUserID={undefined}
+                  onCreate={this.create}
+                />
+              )}
             />
-            {/* Element to redirect if needed */}
-            {redirectJSX}
-            {/* Switch the main component based on the url */}
-            <Switch>
-              {/* ------------------------------------------------------------ */}
-              {/* Registration or Edit User Module */}
-              <Route
-                path="/register"
-                render={(props) => (
-                  <RegisterOrEditUser
-                    {...props}
-                    currentUserID={undefined}
-                    onCreate={this.create}
-                  />
-                )}
-              />
-              <Route
-                path="/user/edit"
-                render={(props) => (
-                  <RegisterOrEditUser
-                    {...props}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onUpdate={this.update}
-                    onDelete={this.delete}
-                  />
-                )}
-              />
-              {/* ------------------------------------------------------------ */}
-              {/* Login User Module */}
-              <Route
-                path="/login"
-                render={(props) => (
-                  <LoginUser
-                    {...props}
-                    userData={userData}
-                    onLogin={this.login}
-                  />
-                )}
-              />
-              {/* ------------------------------------------------------------ */}
-              {/* Create or Edit Noodle Module */}
-              <Route
-                path="/details/:id/edit"
-                render={(props) => (
-                  <CreateOrEditNoodle
-                    {...props}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onUpdate={this.update}
-                    noodleData={noodleData}
-                  />
-                )}
-              />
-              <Route
-                path="/create/:type"
-                render={(props) => (
-                  <CreateOrEditNoodle
-                    {...props}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onCreate={this.create}
-                  />
-                )}
-              />
-              <Route
-                path="/create"
-                render={(props) => (
-                  <CreateOrEditNoodle
-                    {...props}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onCreate={this.create}
-                  />
-                )}
-              />
-              {/* ------------------------------------------------------------ */}
-              {/* User Profile Module */}
-              <Route
-                path="/user/:id/:action"
-                render={(props) => (
-                  <UserProfile
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                  />
-                )}
-              />
-              <Route
-                path="/user/:id"
-                render={(props) => (
-                  <UserProfile
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                  />
-                )}
-              />
-              <Route
-                path="/user"
-                render={(props) => (
-                  <UserProfile
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                  />
-                )}
-              />
-              {/* ------------------------------------------------------------ */}
-              {/* Noodle Details Module */}
-              <Route
-                path="/details/:filterType/:id"
-                render={(props) => (
-                  <NoodleDetails
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onDelete={this.delete}
-                  />
-                )}
-              />
-              <Route
-                path="/details/:id"
-                render={(props) => (
-                  <NoodleDetails
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                    currentUserID={currentUserID}
-                    onDelete={this.delete}
-                  />
-                )}
-              />
-              {/* ------------------------------------------------------------ */}
-              {/* Browse Noodles Module */}
-              <Route
-                path="/browse/:type/:tag"
-                render={(props) => (
-                  <BrowseNoodles
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                  />
-                )}
-              />
-              <Route
-                path="/browse/:type"
-                render={(props) => (
-                  <BrowseNoodles
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                  />
-                )}
-              />
-              <Route
-                path="/browse"
-                render={(props) => (
-                  <BrowseNoodles
-                    {...props}
-                    noodleData={noodleData}
-                    userData={userData}
-                  />
-                )}
-              />
-              {/* ------------------------------------------------------------ */}
-              {/* Landing Module */}
-              <Route path="/">
-                <Landing />
-              </Route>
-              {/* ------------------------------------------------------------ */}
-            </Switch>
-            {/* Show the Noodlewall footer */}
-            <Footer />
-          </Router>
-        </div>
-      );
-    }
+            <Route
+              path="/user/edit"
+              render={(props) => (
+                <RegisterOrEditUser
+                  {...props}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                  onUpdate={this.update}
+                  onDelete={this.delete}
+                />
+              )}
+            />
+            {/* ------------------------------------------------------------ */}
+            {/* Login User Module */}
+            <Route
+              path="/login"
+              render={(props) => (
+                <LoginUser
+                  {...props}
+                  userData={userData}
+                  onLogin={this.login}
+                />
+              )}
+            />
+            {/* ------------------------------------------------------------ */}
+            {/* Create or Edit Noodle Module */}
+            <Route
+              path="/details/:id/edit"
+              render={(props) => (
+                <CreateOrEditNoodle
+                  {...props}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                  onUpdate={this.update}
+                  noodleData={noodleData}
+                />
+              )}
+            />
+            <Route
+              path="/create/:type"
+              render={(props) => (
+                <CreateOrEditNoodle
+                  {...props}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                  onCreate={this.create}
+                />
+              )}
+            />
+            <Route
+              path="/create"
+              render={(props) => (
+                <CreateOrEditNoodle
+                  {...props}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                  onCreate={this.create}
+                />
+              )}
+            />
+            {/* ------------------------------------------------------------ */}
+            {/* User Profile Module */}
+            <Route
+              path="/user/:id/:action"
+              render={(props) => (
+                <UserProfile
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                />
+              )}
+            />
+            <Route
+              path="/user/:id"
+              render={(props) => (
+                <UserProfile
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                />
+              )}
+            />
+            <Route
+              path="/user"
+              render={(props) => (
+                <UserProfile
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                />
+              )}
+            />
+            {/* ------------------------------------------------------------ */}
+            {/* Noodle Details Module */}
+            <Route
+              path="/details/:filterType/:id"
+              render={(props) => (
+                <NoodleDetails
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                  onDelete={this.delete}
+                />
+              )}
+            />
+            <Route
+              path="/details/:id"
+              render={(props) => (
+                <NoodleDetails
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                  currentUserID={currentUserID}
+                  onDelete={this.delete}
+                />
+              )}
+            />
+            {/* ------------------------------------------------------------ */}
+            {/* Browse Noodles Module */}
+            <Route
+              path="/browse/:type/:tag"
+              render={(props) => (
+                <BrowseNoodles
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                />
+              )}
+            />
+            <Route
+              path="/browse/:type"
+              render={(props) => (
+                <BrowseNoodles
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                />
+              )}
+            />
+            <Route
+              path="/browse"
+              render={(props) => (
+                <BrowseNoodles
+                  {...props}
+                  noodleData={noodleData}
+                  userData={userData}
+                />
+              )}
+            />
+            {/* ------------------------------------------------------------ */}
+            {/* Landing Module */}
+            <Route path="/">
+              <Landing />
+            </Route>
+            {/* ------------------------------------------------------------ */}
+          </Switch>
+        );
+      }
+    };
+    // Return the Noodlewall app
+    return (
+      // Return the main Noodlewall app
+      <div className="App">
+        {/* Router component to use React Router */}
+        <Router>
+          {/* Scroll to top */}
+          <ScrollToTop />
+          {/* Show the Noodlewall navbar */}
+          {/* Replace the static user id with
+            user id from session */}
+          <Navbar
+            userData={userData}
+            userID={currentUserID}
+            onRefresh={this.refresh}
+            onLogout={this.logout}
+          />
+          {/* Element to redirect if needed */}
+          {redirect()}
+          {/* Switch the main component based on the url */}
+          {main()}
+          {/* Show the Noodlewall footer */}
+          <Footer />
+        </Router>
+      </div>
+    );
   }
 }
 
