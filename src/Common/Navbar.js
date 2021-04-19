@@ -52,7 +52,6 @@ class Navbar extends React.Component {
         </div>
       </div>
     );
-
     // Create the user menu
     const userDrop = userID ? (
       <div id="user_drop" className="drop">

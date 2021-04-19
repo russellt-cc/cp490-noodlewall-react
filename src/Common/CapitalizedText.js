@@ -1,5 +1,4 @@
 // https://thefaze87.medium.com/build-a-capitalize-first-letter-component-for-reactjs-7ea4e7f799df
-
 // https://github.com/thefaze87/CapitalizedText
 
 import React from "react";

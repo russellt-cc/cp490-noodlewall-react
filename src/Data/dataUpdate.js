@@ -34,11 +34,11 @@ function dataUpdate(
       .then(
         (result) => {
           // Log data to console
-          console.log("Update Succeeded");
-          console.log("Outgoing Data:");
-          console.log(data);
-          console.log("Incoming Data:");
-          console.log(result);
+          // console.log("Update Succeeded");
+          // console.log("Outgoing Data:");
+          // console.log(data);
+          // console.log("Incoming Data:");
+          // console.log(result);
           // Reload data
           refresh();
           // Handle redirect
@@ -60,10 +60,16 @@ function dataUpdate(
           returnState({ redirect });
         },
         (error) => {
-          console.log("Update Failed");
-          console.log("Incoming Data:");
-          console.log(error);
-          alert(error.message);
+          // console.log("Update Failed");
+          // console.log("Incoming Data:");
+          // console.log(error);
+          alert(
+            "Failed to update " +
+              type +
+              "! Response from server: " +
+              error.message +
+              "."
+          );
         }
       );
   } else {

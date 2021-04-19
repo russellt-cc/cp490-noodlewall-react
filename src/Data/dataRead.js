@@ -13,18 +13,19 @@ function dataRead(apiConfig, returnState) {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("Read Noodles Succeeded");
-          console.log("Incoming data:");
-          console.log(result);
+          // console.log("Read Noodles Succeeded");
+          // console.log("Incoming data:");
+          // console.log(result);
           returnState({
             noodlesAreCooked: true,
             noodleData: result.records,
           });
         },
         (error) => {
-          console.log("Read Noodles Failed");
-          console.log("Incoming data:");
-          console.log(error);
+          // console.log("Read Noodles Failed");
+          // console.log("Incoming data:");
+          // console.log(error);
+          // alert(error.message);
           returnState({
             noodlesAreCooked: true,
             error,
@@ -37,18 +38,19 @@ function dataRead(apiConfig, returnState) {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("Read Users Succeeded");
-          console.log("Incoming data:");
-          console.log(result);
+          // console.log("Read Users Succeeded");
+          // console.log("Incoming data:");
+          // console.log(result);
           returnState({
             noodlersAreLoaded: true,
             userData: result.records,
           });
         },
         (error) => {
-          console.log("Read Users Failed");
-          console.log("Incoming data:");
-          console.log(error);
+          // console.log("Read Users Failed");
+          // console.log("Incoming data:");
+          // console.log(error);
+          // alert(error.message);
           returnState({
             noodlersAreLoaded: true,
             error,

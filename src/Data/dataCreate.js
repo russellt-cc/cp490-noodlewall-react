@@ -26,11 +26,11 @@ function dataCreate(type, data, apiConfig, returnState, refresh, login) {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log("Create Succeeded");
-          console.log("Outgoing data:");
-          console.log(data);
-          console.log("Incoming data:");
-          console.log(result);
+          // console.log("Create Succeeded");
+          // console.log("Outgoing data:");
+          // console.log(data);
+          // console.log("Incoming data:");
+          // console.log(result);
           // Reload data
           refresh();
           // Handle redirect
@@ -54,12 +54,18 @@ function dataCreate(type, data, apiConfig, returnState, refresh, login) {
           returnState({ redirect });
         },
         (error) => {
-          console.log("Create Failed");
-          console.log("Outgoing data:");
-          console.log(data);
-          console.log("Incoming data:");
-          console.log(error);
-          alert(error.message);
+          // console.log("Create Failed");
+          // console.log("Outgoing data:");
+          // console.log(data);
+          // console.log("Incoming data:");
+          // console.log(error);
+          alert(
+            "Failed to create " +
+              type +
+              "! Response from server: " +
+              error.message +
+              "."
+          );
         }
       );
   } else {

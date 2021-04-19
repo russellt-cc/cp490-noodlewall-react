@@ -32,11 +32,11 @@ function dataDelete(
       body: JSON.stringify(data),
     }).then(
       (result) => {
-        console.log("Delete Succeeded");
-        console.log("Outgoing Data:");
-        console.log(data);
-        console.log("Incoming Data:");
-        console.log(result);
+        // console.log("Delete Succeeded");
+        // console.log("Outgoing Data:");
+        // console.log(data);
+        // console.log("Incoming Data:");
+        // console.log(result);
         // Reload data
         refresh();
         // Handle redirect
@@ -60,10 +60,16 @@ function dataDelete(
         returnState({ redirect });
       },
       (error) => {
-        console.log("Delete Failed");
-        console.log("Incoming Data:");
-        console.log(error);
-        alert(error.message);
+        // console.log("Delete Failed");
+        // console.log("Incoming Data:");
+        // console.log(error);
+        alert(
+          "Failed to delete " +
+            type +
+            "! Response from server: " +
+            error.message +
+            "."
+        );
       }
     );
   } else {

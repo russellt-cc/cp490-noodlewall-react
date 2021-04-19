@@ -38,8 +38,8 @@ class CreateOrEditNoodle extends React.Component {
       const thisNoodle = noodleData.filter((noodle) => {
         return parseInt(noodle.noodleID) === parseInt(noodleID);
       })[0];
-      console.log("Editing noodle");
-      console.log(thisNoodle);
+      // console.log("Editing noodle");
+      // console.log(thisNoodle);
       // Put data in state for editing
       this.state = {
         noodleID,

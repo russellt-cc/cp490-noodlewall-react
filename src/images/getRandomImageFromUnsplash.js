@@ -19,13 +19,13 @@ function getRandomImageFromUnsplash(
   }
   // Get random image as a promise
   const randomImage = fetch(randomImageRequest).then((response) => {
-    console.log("Request for random image succeeded");
-    console.log("Outgoing Data");
-    console.log(randomImageRequest);
-    console.log("Incoming Data");
-    console.log(response);
-    console.log("Response URL");
-    console.log(response.url);
+    // console.log("Request for random image succeeded");
+    // console.log("Outgoing Data");
+    // console.log(randomImageRequest);
+    // console.log("Incoming Data");
+    // console.log(response);
+    // console.log("Response URL");
+    // console.log(response.url);
     // Break down the URL so it fits in the database
     // Split URL into URL and parameters and store in an array
     const splitURL = response.url.split("?");
