@@ -155,7 +155,7 @@ class CreateSection5 extends React.Component {
                   </button>
                 );
               } else {
-                return <></>;
+                return <div key={index}></div>;
               }
             })}
           </div>

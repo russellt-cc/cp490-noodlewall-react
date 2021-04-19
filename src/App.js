@@ -36,13 +36,15 @@ class App extends React.Component {
       userData: [],
       currentUserID: null,
       useAPI: true,
-      apiURL: "http://www.gatkinson.site/noodlewall/",
+      apiURL: "http://gatkinson.site/noodlewall/",
       apiCreate: "create.php",
       apiRead: "read.php",
       apiUpdate: "update.php",
       apiDelete: "delete.php",
       apiNoodlePath: "event/",
       apiUserPath: "user/",
+      apiNoodleUploadImage: "uploadEventImage.php",
+      apiNoodleDeleteImage: "deleteEventImage.php",
       redirectPath: null,
     };
   }
@@ -204,6 +206,10 @@ class App extends React.Component {
       noodleData,
       userData,
       currentUserID,
+      apiURL,
+      apiNoodlePath,
+      apiNoodleUploadImage,
+      apiNoodleDeleteImage,
     } = this.state;
     // Handle redirects
     const redirect = () => {
@@ -215,7 +221,12 @@ class App extends React.Component {
       }
       return redirectJSX;
     };
-
+    const apiConfig = {
+      apiURL,
+      apiNoodlePath,
+      apiNoodleUploadImage,
+      apiNoodleDeleteImage,
+    };
     // Return the Noodlewall app
     return (
       // Return the main Noodlewall app
@@ -248,6 +259,7 @@ class App extends React.Component {
             onUpdate={this.update}
             onDelete={this.delete}
             onLogin={this.login}
+            apiConfig={apiConfig}
           />
           {/* Show the Noodlewall footer */}
           <Footer />

@@ -129,39 +129,93 @@ class CreateOrEditNoodle extends React.Component {
     });
   };
 
+  // Method to upload an image to api
+  // Returns a promise with the image URL
+  apiUploadImage = (imageFile) => {
+    const { apiConfig } = this.props;
+    const { apiURL, apiNoodlePath, apiNoodleUploadImage } = apiConfig;
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    return fetch(apiURL + apiNoodlePath + apiNoodleUploadImage, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        return res.imageAddress;
+      });
+  };
+
   // Method to upload images
+  // Checks if there are any images that need to be uploaded
   uploadImages = () => {
     let { noodleImages } = this.state;
-    console.log(noodleImages);
     // Check for local images
     noodleImages.forEach((image, index) => {
       // Check if object
       if (typeof image === "object") {
-        console.log(image);
-        const formData = new FormData();
-        formData.append("image", image);
-        fetch(
-          "http://www.gatkinson.site/noodlewall/event/uploadEventImage.php",
-          { method: "POST", body: formData }
-        )
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              console.log(result);
-              const { imageAddress } = result;
-              let { noodleCoverImage } = this.state;
-              if (noodleCoverImage === image) {
-                noodleCoverImage = imageAddress;
-              }
-              noodleImages[index] = imageAddress;
-              this.setState({ noodleImages, noodleCoverImage });
-            },
-            (error) => {
-              console.log(error);
+        const uploadedImagePromise = this.apiUploadImage(image);
+        uploadedImagePromise.then(
+          (imageAddress) => {
+            let { noodleCoverImage } = this.state;
+            if (noodleCoverImage === image) {
+              noodleCoverImage = imageAddress;
             }
-          );
+            noodleImages[index] = imageAddress;
+            this.setState({ noodleImages, noodleCoverImage });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       }
     });
+  };
+
+  // Method to see which images can be deleted
+  deleteDeletedImages = () => {
+    // Get the old list of images from props
+    const { noodleData } = this.props;
+    const { noodleID } = this.state;
+    const thisNoodle = noodleData.filter((noodle) => {
+      return parseInt(noodle.noodleID) === parseInt(noodleID);
+    })[0];
+    const { noodleImages: noodleImagesOld } = thisNoodle;
+    // Get the new list of images from state
+    const { noodleImages: noodleImagesNew } = this.state;
+    // Go through the list of old images
+    noodleImagesOld.forEach((image, index) => {
+      // See if the image is hosted on the api
+      const { apiConfig } = this.props;
+      const { apiURL } = apiConfig;
+      if (
+        image.substring(0, apiURL.length) ===
+        "http://gatkinson.site/noodlewall/"
+      ) {
+        // Check to see if it is in the new list of images
+        if (!noodleImagesNew.includes(image)) {
+          // Delete the image from the server
+          this.apiDeleteImage(image);
+        }
+      }
+    });
+  };
+
+  // Method to delete a hosted image
+  apiDeleteImage = (imageAddress) => {
+    const { apiConfig } = this.props;
+    const { apiURL, apiNoodlePath, apiNoodleDeleteImage } = apiConfig;
+    fetch(apiURL + apiNoodlePath + apiNoodleDeleteImage, {
+      method: "POST",
+      body: { imageAddress },
+    }).then(
+      (response) => {
+        // console.log(response);
+      },
+      (error) => {
+        // console.log(error);
+      }
+    );
   };
 
   // Check if there are any images that need to be uploaded
@@ -223,9 +277,12 @@ class CreateOrEditNoodle extends React.Component {
         if (noodleTitle && noodleDescription && noodleTags.length) {
           // Check mode
           // Send the data to the main update or create function
-          noodleID
-            ? this.props.onUpdate(status, noodleData)
-            : this.props.onCreate(status, noodleData);
+          if (noodleID) {
+            this.props.onUpdate(status, noodleData);
+            this.deleteDeletedImages();
+          } else {
+            this.props.onCreate(status, noodleData);
+          }
         } else {
           alert("You must fill in the basic information to save as a dream!");
         }
@@ -250,9 +307,12 @@ class CreateOrEditNoodle extends React.Component {
         ) {
           // Check mode
           // Send the data to the main update or create function
-          noodleID
-            ? this.props.onUpdate(status, noodleData)
-            : this.props.onCreate(status, noodleData);
+          if (noodleID) {
+            this.props.onUpdate(status, noodleData);
+            this.deleteDeletedImages();
+          } else {
+            this.props.onCreate(status, noodleData);
+          }
         } else {
           alert("You must fill in all of the information to save as an event!");
         }

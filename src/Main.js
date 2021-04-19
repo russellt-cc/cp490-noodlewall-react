@@ -58,6 +58,7 @@ class Main extends React.Component {
         onUpdate,
         onDelete,
         onLogin,
+        apiConfig,
       } = this.props;
       // Switch the main component based on the url
       return (
@@ -117,6 +118,7 @@ class Main extends React.Component {
                 currentUserID={currentUserID}
                 onUpdate={onUpdate}
                 noodleData={noodleData}
+                apiConfig={apiConfig}
               />
             )}
           />
@@ -128,6 +130,7 @@ class Main extends React.Component {
                 userData={userData}
                 currentUserID={currentUserID}
                 onCreate={onCreate}
+                apiConfig={apiConfig}
               />
             )}
           />
@@ -139,6 +142,7 @@ class Main extends React.Component {
                 userData={userData}
                 currentUserID={currentUserID}
                 onCreate={onCreate}
+                apiConfig={apiConfig}
               />
             )}
           />
