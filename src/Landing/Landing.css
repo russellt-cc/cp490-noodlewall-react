@@ -2,6 +2,7 @@
 #landing #intro {
   display: flex;
   justify-content: space-evenly;
+  column-gap: 20px;
 }
 
 /* columns in the intro */
@@ -13,7 +14,7 @@
 
 /* left side of the intro */
 #landing #intro_left {
-  padding-right: 20px;
+  row-gap: 20px;
 }
 
 /* h1 header in the left column */
@@ -63,6 +64,7 @@
   #landing #intro {
     flex-direction: column;
     align-items: center;
+    row-gap: 60px;
   }
   #landing #intro_left {
     width: 100%;

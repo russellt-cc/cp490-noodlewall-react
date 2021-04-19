@@ -1,5 +1,5 @@
 #details #details_intro .details_column {
-  row-gap: 30px;
+  row-gap: 20px;
 }
 
 #details #details_intro_left img {
@@ -34,9 +34,11 @@
   padding: 0px;
 }
 
-#details #details_host_intro {
+#details #details_host_intro_event,
+#details #details_host_intro_dream {
   display: flex;
   flex-direction: column;
+  row-gap: 20px;
 }
 
 #details #details_host_intro_event > a,
@@ -44,7 +46,6 @@
 #details #details_host_intro_event > button,
 #details #details_host_intro_dream > button,
 #details #details_host_intro_dream > button.noodle_button {
-  margin: 5px 0px;
   height: 50px;
   display: flex;
   justify-content: center;

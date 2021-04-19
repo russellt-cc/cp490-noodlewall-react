@@ -1,8 +1,3 @@
-main#user_profile {
-  row-gap: 40px;
-  padding-top: 90px;
-}
-
 #user_profile #profile_own_profile_status_bar {
   border: 1px solid black;
   position: fixed;
@@ -13,6 +8,13 @@ main#user_profile {
   text-align: center;
   height: 50px;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#user_profile.own {
+  margin-top: 120px;
 }
 
 #user_profile #user_profile_intro {
@@ -48,12 +50,13 @@ main#user_profile {
 #user_profile #user_profile_intro_right {
   width: 50%;
   text-align: left;
+  row-gap: 20px;
 }
 
 #user_profile #user_profile_intro .user_actions {
   display: flex;
   justify-content: space-between;
-  column-gap: 5px;
+  column-gap: 20px;
 }
 
 #user_profile #user_profile_intro .noodle_button {
@@ -71,12 +74,9 @@ main#user_profile {
 }
 
 @media screen and (max-width: 800px) {
-  #user_profile #profile_own_profile_status_bar {
-    height: 75px;
-  }
   #user_profile #user_profile_intro {
     flex-direction: column;
-    row-gap: 50px;
+    row-gap: 20px;
   }
   #user_profile #user_profile_intro_left,
   #user_profile #user_profile_intro_right {

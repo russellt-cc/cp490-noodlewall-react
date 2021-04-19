@@ -5,6 +5,7 @@
   flex-direction: column;
   padding: 10px;
   row-gap: 10px;
+  margin-bottom: 60px;
 }
 
 #create section > * {
@@ -245,7 +246,7 @@ main#create.event {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px -20px -20px -20px;
+  margin: 0px -60px -60px -60px;
   padding: 10px;
   background-color: white;
   border: 1px solid black;
@@ -272,7 +273,7 @@ main#create.event {
   #create #create_nav_progress_bar {
     display: none;
   }
-  main#create {
+  main#create.event {
     margin-top: 70px;
   }
 }

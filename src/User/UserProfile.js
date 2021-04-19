@@ -64,7 +64,7 @@ class User extends React.Component {
               this.follow();
             }}
           >
-            Follow {userName}
+            Follow Me
           </button>
           <button
             className="noodle_button"
@@ -72,7 +72,7 @@ class User extends React.Component {
               this.contact();
             }}
           >
-            Contact {userName}
+            Contact Me
           </button>
         </p>
       );
@@ -88,7 +88,7 @@ class User extends React.Component {
       );
       // Return the profile page
       return (
-        <main id="user_profile">
+        <main id="user_profile" class={isOwnProfile ? "own" : "other"}>
           {isOwnProfile ? (
             <div id="profile_own_profile_status_bar">
               <p>
@@ -137,7 +137,7 @@ class User extends React.Component {
           {/* If the user has any dreams, show them here */}
           {ReactDOMServer.renderToString(<Router>{userDreams}</Router>) ? (
             <section id="user_dreams">
-              <p>Dreams by {userName}</p>
+              <h3>Dreams by {userName}</h3>
               {userDreams}
             </section>
           ) : (

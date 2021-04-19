@@ -1,9 +1,3 @@
-main#details {
-  row-gap: 30px;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
 #details section {
   display: flex;
   justify-content: space-evenly;
@@ -13,6 +7,7 @@ main#details {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  row-gap: 20px;
 }
 
 #details .details_column.left {
@@ -35,6 +30,7 @@ main#details {
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  row-gap: 20px;
 }
 
 #details #details_organizer_left_left {
@@ -48,7 +44,7 @@ main#details {
 
 #details #details_organizer_actions {
   display: flex;
-  column-gap: 10px;
+  column-gap: 20px;
 }
 
 /* Style for mobile */
@@ -56,11 +52,18 @@ main#details {
 @media screen and (max-width: 800px) {
   #details section {
     flex-direction: column;
-    row-gap: 50px;
+    row-gap: 60px;
   }
   #details .details_column.left,
   #details .details_column.right {
     width: 100%;
     text-align: center;
+  }
+  #details #details_organizer_column_container {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  #details #details_organizer_actions {
+    justify-content: center;
   }
 }

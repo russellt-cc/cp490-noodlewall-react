@@ -45,10 +45,24 @@ body,
 }
 
 main {
-  padding: 20px;
+  padding: 60px;
   margin-top: 70px;
   display: flex;
   flex-direction: column;
+  row-gap: 60px;
+}
+
+/* text */
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+  padding: 0px;
 }
 
 /* buttons, anchor tags, and react router links */
@@ -68,7 +82,6 @@ button.noodle_button {
   border: none;
   border-radius: 10px;
   padding: 10px;
-  margin: 16px 0px;
   color: white;
   font-family: century-gothic, sans-serif;
   font-weight: 400;
