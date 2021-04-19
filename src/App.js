@@ -372,18 +372,21 @@ class App extends React.Component {
       const { error, noodlesAreCooked, noodlersAreLoaded } = this.state;
       // Check for error
       if (error) {
+        // Show error message
         return (
           <main>
             <p>Error: {error.message} noodles</p>
           </main>
         );
       } else if (!noodlesAreCooked) {
+        // Show loading message
         return (
           <main>
             <p>Cooking Noodles...</p>
           </main>
         );
       } else if (!noodlersAreLoaded) {
+        // Show loading message
         return (
           <main>
             <div>
@@ -393,6 +396,7 @@ class App extends React.Component {
           </main>
         );
       } else {
+        // Switch the main component based on the url
         return (
           <Switch>
             {/* ------------------------------------------------------------ */}

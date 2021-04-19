@@ -2,6 +2,7 @@ import "./NoodleDetails.css";
 import React from "react";
 import DetailsIntro from "./DetailsIntro/DetailsIntro";
 import { Link } from "react-router-dom";
+import UserRating from "../Common/UserRating";
 
 // The event / dreams details page
 class NoodleDetails extends React.Component {
@@ -31,6 +32,7 @@ class NoodleDetails extends React.Component {
         userImage: hostImage,
         userBioLong: hostBioLong,
         userID: hostID,
+        userRating: hostRating,
       } = thisHost;
       // Get status and props
       const { currentUserID, onDelete } = this.props;
@@ -90,6 +92,7 @@ class NoodleDetails extends React.Component {
                     <p>
                       {hostFirstName} {hostLastName}
                     </p>
+                    <UserRating rating={hostRating} />
                   </Link>
                 </div>
                 <div
