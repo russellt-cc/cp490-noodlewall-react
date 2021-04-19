@@ -37,8 +37,11 @@ import {
 } from "react-router-dom";
 import ScrollToTop from "./Common/ScrollToTop";
 
-// Get local JSON file
-import { noodleData, userData } from "./Data/noodleData";
+// CRUD functions
+import dataCreate from "./Data/dataCreate";
+import dataRead from "./Data/dataRead";
+import dataUpdate from "./Data/dataUpdate";
+import dataDelete from "./Data/dataDelete";
 
 // Main App class
 // Uses React Router to show different components
@@ -64,276 +67,100 @@ class App extends React.Component {
       redirect: null,
     };
   }
+
+  // Component did mount lifecycle method
+  // Runs when the app is mounted in the DOM
   componentDidMount() {
     // Load data
     this.read();
   }
+
+  // Return state method so we can update app state in child components
+  // Pass this method as a parameter to components
+  returnState = (newState) => {
+    this.setState(newState);
+  };
+
   // Methods to handle CRUD
+
   // Create
   create = (type, data) => {
-    // Check whether we are using the API for data
-    const { useAPI, apiNoodlePath, apiUserPath } = this.state;
-    if (useAPI) {
-      let apiPath = "product";
-      // Check the type
-      switch (type) {
-        case "dream":
-        case "event":
-          apiPath = apiNoodlePath;
-          break;
-        case "user":
-          apiPath = apiUserPath;
-          break;
-        default:
-          alert("Error: Unknown Type");
-          return;
-      }
-      // AJAX request to PHP server
-      const { apiURL, apiCreate } = this.state;
-      fetch(apiURL + apiPath + apiCreate, {
-        method: "POST",
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            console.log("Create Succeeded");
-            console.log("Outgoing data:");
-            console.log(data);
-            console.log("Incoming data:");
-            console.log(result);
-            // Reload data
-            this.refresh();
-            // Handle redirect
-            let redirect;
-            switch (type) {
-              case "dream":
-              case "event":
-                // Redirect to noodle page
-                redirect = "/details/" + result.noodleID;
-                break;
-              case "user":
-                // Login to new account
-                this.login(result.userID);
-                // Redirect to user page
-                redirect = "/user/" + result.userID;
-                break;
-              default:
-                redirect = "/";
-                break;
-            }
-            this.setState({ redirect });
-          },
-          (error) => {
-            console.log("Create Failed");
-            console.log("Outgoing data:");
-            console.log(data);
-            console.log("Incoming data:");
-            console.log(error);
-            alert(error.message);
-          }
-        );
-    } else {
-      // Just show a message
-      alert("You can't create data when using the static JSON data.");
-    }
+    // Get configuration from state
+    const {
+      useAPI,
+      apiNoodlePath,
+      apiUserPath,
+      apiURL,
+      apiCreate,
+    } = this.state;
+    const apiConfig = { useAPI, apiNoodlePath, apiUserPath, apiURL, apiCreate };
+    // Create data using component function
+    dataCreate(
+      type,
+      data,
+      apiConfig,
+      this.returnState,
+      this.refresh,
+      this.login
+    );
   };
+
   // Read
   read = () => {
-    // Check whether we are using the API for data
-    const { useAPI } = this.state;
-    if (useAPI) {
-      // AJAX request to PHP server
-      // Get noodles
-      const { apiURL, apiRead } = this.state;
-      let apiPath = "event/";
-      fetch(apiURL + apiPath + apiRead)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            console.log("Read Noodles Succeeded");
-            console.log("Incoming data:");
-            console.log(result);
-            this.setState({
-              noodlesAreCooked: true,
-              noodleData: result.records,
-            });
-          },
-          (error) => {
-            console.log("Read Noodles Failed");
-            console.log("Incoming data:");
-            console.log(error);
-            this.setState({
-              noodlesAreCooked: true,
-              error,
-            });
-          }
-        );
-      // Get users
-      apiPath = "user/";
-      fetch(apiURL + apiPath + apiRead)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            console.log("Read Users Succeeded");
-            console.log("Incoming data:");
-            console.log(result);
-            this.setState({
-              noodlersAreLoaded: true,
-              userData: result.records,
-            });
-          },
-          (error) => {
-            console.log("Read Users Failed");
-            console.log("Incoming data:");
-            console.log(error);
-            this.setState({
-              noodlersAreLoaded: true,
-              error,
-            });
-          }
-        );
-    } else {
-      // Get the JSON data and put in state
-      this.setState({
-        noodleData: noodleData,
-        userData: userData,
-        noodlesAreCooked: true,
-        noodlersAreLoaded: true,
-      });
-    }
+    // Get configuration from state
+    const { useAPI, apiURL, apiRead } = this.state;
+    const apiConfig = { useAPI, apiURL, apiRead };
+    // Load data using component function
+    dataRead(apiConfig, this.returnState);
   };
+
   // Update
   update = (type, data) => {
-    // Check whether we are using the API for data
-    const { useAPI, apiNoodlePath, apiUserPath } = this.state;
-    if (useAPI) {
-      let apiPath = "product";
-      // Check the type
-      switch (type) {
-        case "dream":
-        case "event":
-          apiPath = apiNoodlePath;
-          break;
-        case "user":
-          apiPath = apiUserPath;
-          break;
-        default:
-          alert("Error: Unknown Type");
-          return;
-      }
-      // AJAX request to PHP server
-      const { apiURL, apiUpdate } = this.state;
-      fetch(apiURL + apiPath + apiUpdate, {
-        method: "POST",
-        body: JSON.stringify(data),
-      })
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            // Log data to console
-            console.log("Update Succeeded");
-            console.log("Outgoing Data:");
-            console.log(data);
-            console.log("Incoming Data:");
-            console.log(result);
-            // Reload data
-            this.refresh();
-            // Handle redirect
-            let redirect;
-            switch (type) {
-              case "dream":
-              case "event":
-                // Redirect to noodle page
-                redirect = "/details/" + data.noodleID;
-                break;
-              case "user":
-                // Redirect to user page
-                redirect = "/user/" + this.state.currentUserID;
-                break;
-              default:
-                redirect = "/";
-                break;
-            }
-            this.setState({ redirect });
-          },
-          (error) => {
-            console.log("Update Failed");
-            console.log("Incoming Data:");
-            console.log(error);
-            alert(error.message);
-          }
-        );
-    } else {
-      // Just show a message
-      alert("You can't update data when using the static JSON data.");
-    }
+    // Get configuration from state
+    const {
+      useAPI,
+      apiNoodlePath,
+      apiUserPath,
+      apiURL,
+      apiUpdate,
+      currentUserID,
+    } = this.state;
+    const apiConfig = { useAPI, apiNoodlePath, apiUserPath, apiURL, apiUpdate };
+    // Update data using component function
+    dataUpdate(
+      type,
+      data,
+      apiConfig,
+      this.returnState,
+      this.refresh,
+      currentUserID
+    );
   };
+
   // Delete
   delete = (type, data) => {
-    // Check whether we are using the API for data
-    const { useAPI, apiNoodlePath, apiUserPath } = this.state;
-    if (useAPI) {
-      let apiPath = "product";
-      // Check the type
-      switch (type) {
-        case "dream":
-        case "event":
-          apiPath = apiNoodlePath;
-          break;
-        case "user":
-          apiPath = apiUserPath;
-          break;
-        default:
-          alert("Error: Unknown Type");
-          return;
-      }
-      // AJAX request to PHP server
-      const { apiURL, apiDelete } = this.state;
-      fetch(apiURL + apiPath + apiDelete, {
-        method: "POST",
-        body: JSON.stringify(data),
-      }).then(
-        (result) => {
-          console.log("Delete Succeeded");
-          console.log("Outgoing Data:");
-          console.log(data);
-          console.log("Incoming Data:");
-          console.log(result);
-          // Reload data
-          this.refresh();
-          // Handle redirect
-          let redirect;
-          switch (type) {
-            case "dream":
-            case "event":
-              // Redirect to user page
-              redirect = "/user/" + this.state.currentUserID;
-              break;
-            case "user":
-              // Logout
-              this.logout();
-              // Redirect to login
-              redirect = "/login";
-              break;
-            default:
-              redirect = "/";
-              break;
-          }
-          this.setState({ redirect });
-        },
-        (error) => {
-          console.log("Delete Failed");
-          console.log("Incoming Data:");
-          console.log(error);
-          alert(error.message);
-        }
-      );
-    } else {
-      // Just show a message
-      alert("You can't delete data when using the static JSON data.");
-    }
+    // Get configuration from state
+    const {
+      useAPI,
+      apiNoodlePath,
+      apiUserPath,
+      apiURL,
+      apiDelete,
+      currentUserID,
+    } = this.state;
+    const apiConfig = { useAPI, apiNoodlePath, apiUserPath, apiURL, apiDelete };
+    // Delete data using component function
+    dataDelete(
+      type,
+      data,
+      apiConfig,
+      this.returnState,
+      this.refresh,
+      this.logout,
+      currentUserID
+    );
   };
+
   // Refresh
   refresh = () => {
     this.setState({
@@ -342,17 +169,20 @@ class App extends React.Component {
     });
     this.read();
   };
+
   // Login
   login = (currentUserID) => {
     const redirect = "/user/" + currentUserID;
     this.setState({ currentUserID, redirect });
   };
+
   // Logout
   logout = () => {
     const currentUserID = null;
     const redirect = "/login";
     this.setState({ currentUserID, redirect });
   };
+
   // Render method
   render() {
     // Destructure the props and state

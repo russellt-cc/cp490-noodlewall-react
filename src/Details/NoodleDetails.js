@@ -24,7 +24,12 @@ class NoodleDetails extends React.Component {
         return parseInt(user.userID) === parseInt(thisNoodle.userID);
       })[0];
       // Destructure the data
-      const { noodleStatus, noodleDescription } = thisNoodle;
+      const {
+        noodleStatus,
+        noodleDescription,
+        noodleLocation,
+        noodleDirections,
+      } = thisNoodle;
       const {
         userName: hostUserName,
         userFirstName: hostFirstName,
@@ -77,6 +82,17 @@ class NoodleDetails extends React.Component {
             <div
               className="details_column right"
               id="details_details_right"
+            ></div>
+          </section>
+          <section id="details_location">
+            <div className="details_column left" id="details_location_left">
+              <h3>Event Location</h3>
+              <p>{noodleLocation}</p>
+              <p>{noodleDirections}</p>
+            </div>
+            <div
+              className="details_column right"
+              id="details_location_right"
             ></div>
           </section>
           <section id="details_organizer">
