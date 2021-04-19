@@ -23,6 +23,7 @@ class CreateImage extends React.Component {
   changeImage = (noodleImage) => {
     const { onChangeImage, index } = this.props;
     onChangeImage(index, noodleImage);
+    // console.log(typeof noodleImage);
   };
 
   // Method to change the text associated with this image
@@ -60,17 +61,19 @@ class CreateImage extends React.Component {
             X
           </button>
         </div>
-        {/* <div className="noodle_image_file_upload">
-          <label htmlFor="noodleImage">Upload an image from your device</label>
+        <div className="noodle_image_file_upload">
+          <label htmlFor="noodleImageUpload">
+            Upload an image from your device
+          </label>
           <input
             type="file"
             accept="image/*"
-            name="noodleImage"
+            name="noodleImageUpload"
             onChange={(event) => {
-              this.changeImage(URL.createObjectURL(event.target.files[0]));
+              this.changeImage(event.target.files[0]);
             }}
           ></input>
-        </div> */}
+        </div>
         <div className="noodle_image_set_url">
           <label htmlFor="noodleImageLink">
             Get an image from the internet
@@ -129,7 +132,9 @@ class CreateImage extends React.Component {
           </div>
         </div>
         <div className="noodle_image_preview_container">
-          {noodleImage ? (
+          {noodleImage && typeof noodleImage === "object" ? (
+            <img src={URL.createObjectURL(noodleImage)} alt="Noodle" />
+          ) : noodleImage ? (
             <img src={decodeURIComponent(noodleImage)} alt="Noodle" />
           ) : (
             <></>

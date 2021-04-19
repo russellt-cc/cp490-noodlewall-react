@@ -129,6 +129,51 @@ class CreateOrEditNoodle extends React.Component {
     });
   };
 
+  // Method to upload images
+  uploadImages = () => {
+    let { noodleImages } = this.state;
+    console.log(noodleImages);
+    // Check for local images
+    noodleImages.forEach((image, index) => {
+      // Check if object
+      if (typeof image === "object") {
+        console.log(image);
+        const formData = new FormData();
+        formData.append("image", image);
+        fetch(
+          "http://www.gatkinson.site/noodlewall/event/uploadEventImage.php",
+          { method: "POST", body: formData }
+        )
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              console.log(result);
+              const { imageAddress } = result;
+              let { noodleCoverImage } = this.state;
+              if (noodleCoverImage === image) {
+                noodleCoverImage = imageAddress;
+              }
+              noodleImages[index] = imageAddress;
+              this.setState({ noodleImages, noodleCoverImage });
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      }
+    });
+  };
+
+  // Check if there are any images that need to be uploaded
+  readyToSubmit = () => {
+    const { noodleImages } = this.state;
+    if (noodleImages.some((image) => typeof image === "object")) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   // Method to create or update a noodle
   create = (status) => {
     // Get the required data
@@ -405,6 +450,8 @@ class CreateOrEditNoodle extends React.Component {
             createMode={createMode}
             setMode={this.setMode}
             onCreate={this.create}
+            onUploadImages={this.uploadImages}
+            readyToSubmit={this.readyToSubmit}
             noodleID={noodleID}
           />
         </form>

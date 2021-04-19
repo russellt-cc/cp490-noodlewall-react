@@ -54,11 +54,11 @@ function dataCreate(type, data, apiConfig, returnState, refresh, login) {
           returnState({ redirectPath });
         },
         (error) => {
-          console.log("Create Failed");
-          console.log("Outgoing data:");
-          console.log(data);
-          console.log("Incoming data:");
-          console.log(error);
+          // console.log("Create Failed");
+          // console.log("Outgoing data:");
+          // console.log(data);
+          // console.log("Incoming data:");
+          // console.log(error);
           alert(
             "Failed to create " +
               type +

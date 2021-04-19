@@ -35,7 +35,7 @@ class App extends React.Component {
       noodleData: [],
       userData: [],
       currentUserID: null,
-      useAPI: false,
+      useAPI: true,
       apiURL: "http://www.gatkinson.site/noodlewall/",
       apiCreate: "create.php",
       apiRead: "read.php",
