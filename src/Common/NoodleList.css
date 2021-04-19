@@ -4,6 +4,8 @@
   flex-flow: wrap;
   align-items: center;
   justify-content: center;
+  column-gap: 60px;
+  row-gap: 60px;
 }
 
 .noodle_list .noodle_link {

@@ -198,7 +198,7 @@ nav #nav_user_image {
 }
 
 nav #user_drop_right img {
-  max-width: 150px;
+  width: 150px;
   border-radius: 75px;
 }
 
