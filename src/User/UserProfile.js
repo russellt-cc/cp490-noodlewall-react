@@ -88,7 +88,7 @@ class User extends React.Component {
       );
       // Return the profile page
       return (
-        <main id="user_profile" class={isOwnProfile ? "own" : "other"}>
+        <main id="user_profile" className={isOwnProfile ? "own" : "other"}>
           {isOwnProfile ? (
             <div id="profile_own_profile_status_bar">
               <p>

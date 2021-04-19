@@ -5,6 +5,26 @@ import { Link } from "react-router-dom";
 import usericon from "../Images/usericon.png";
 
 class Navbar extends React.Component {
+  // Get current path
+  getCurrentPath = () => {
+    const splitURL = window.location.href.split("/");
+    let currentPath = "/";
+    switch (splitURL.length) {
+      case 4:
+        currentPath = "/" + splitURL[3];
+        break;
+      case 5:
+        currentPath = "/" + splitURL[3] + "/" + splitURL[4];
+        break;
+      case 6:
+        currentPath = "/" + splitURL[3] + "/" + splitURL[5];
+        break;
+      default:
+        break;
+    }
+    return currentPath;
+  };
+  // Render method
   render() {
     // Destructure props to get data
     const {
@@ -12,6 +32,7 @@ class Navbar extends React.Component {
       onLogout: logout,
       userData,
       userID,
+      returnState,
     } = this.props;
     let userFirstName,
       userLastName,
@@ -99,9 +120,15 @@ class Navbar extends React.Component {
     ) : (
       <div id="login_drop" className="drop">
         <div>
-          <Link className="noodle_button" to="/login">
+          <button
+            className="noodle_button"
+            onClick={() => {
+              const redirectPath = "/login" + this.getCurrentPath();
+              returnState({ redirectPath });
+            }}
+          >
             Login to Noodlewall
-          </Link>
+          </button>
         </div>
         <div>
           <button className="noodle_button" onClick={() => refresh()}>

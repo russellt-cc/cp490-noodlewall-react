@@ -150,38 +150,44 @@ class App extends React.Component {
   };
 
   // Login
-  login = (currentUserID, redirectComponent, redirectID) => {
-    // Set default redirect on login
-    let redirectPath = "/user/" + currentUserID;
+  login = (currentUserID, redirectPath, redirectComponent, redirectID) => {
     // Check for specified redirect
-    if (redirectComponent) {
-      // Set redirect
-      if (redirectID) {
-        // Redirect to a page with an id
-        redirectPath = "/" + redirectComponent + "/" + redirectID;
+    if (!redirectPath) {
+      if (redirectComponent) {
+        // Set redirect
+        if (redirectID) {
+          // Redirect to a page with an id
+          redirectPath = "/" + redirectComponent + "/" + redirectID;
+        } else {
+          // Redirect to a page
+          redirectPath = "/" + redirectComponent;
+        }
       } else {
-        // Redirect to a page
-        redirectPath = "/" + redirectComponent;
+        // Set default redirect on login
+        redirectPath = "/";
       }
     }
     this.setState({ currentUserID, redirectPath });
   };
 
   // Logout
-  logout = (redirectComponent, redirectID) => {
+  logout = (redirectPath, redirectComponent, redirectID) => {
     // Set current ID to null to logout
     const currentUserID = null;
-    // Set default redirect on logout
-    let redirectPath = "/";
     // Check for specified redirect
-    if (redirectComponent) {
-      // Set redirect
-      if (redirectID) {
-        // Redirect to a page with an id
-        redirectPath = "/" + redirectComponent + "/" + redirectID;
+    if (!redirectPath) {
+      if (redirectComponent) {
+        // Set redirect
+        if (redirectID) {
+          // Redirect to a page with an id
+          redirectPath = "/" + redirectComponent + "/" + redirectID;
+        } else {
+          // Redirect to a page
+          redirectPath = "/" + redirectComponent;
+        }
       } else {
-        // Redirect to a page
-        redirectPath = "/" + redirectComponent;
+        // Set default redirect on logout
+        redirectPath = null;
       }
     }
     // Set state to reflect the logout and redirect
@@ -209,6 +215,7 @@ class App extends React.Component {
       }
       return redirectJSX;
     };
+
     // Return the Noodlewall app
     return (
       // Return the main Noodlewall app
@@ -225,6 +232,7 @@ class App extends React.Component {
             userID={currentUserID}
             onRefresh={this.refresh}
             onLogout={this.logout}
+            returnState={this.returnState}
           />
           {/* Element to redirect if needed */}
           {redirect()}

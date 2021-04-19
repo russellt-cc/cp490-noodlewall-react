@@ -15,7 +15,7 @@ class UserLogin extends React.Component {
         <button
           key={index}
           className="login_user_button"
-          onClick={() => login(userID, redirect, id)}
+          onClick={() => login(userID, undefined, redirect, id)}
         >
           <img src={userImage} alt="User"></img>
           <p>{userName}</p>

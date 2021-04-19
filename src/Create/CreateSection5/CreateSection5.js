@@ -145,7 +145,7 @@ class CreateSection5 extends React.Component {
                   <button
                     key={index}
                     type="button"
-                    class={`noodle_image_selector ${
+                    className={`noodle_image_selector ${
                       item === noodleImage ? "selected" : "unselected"
                     }`}
                     onClick={() => this.changeGalleryImage(index)}
