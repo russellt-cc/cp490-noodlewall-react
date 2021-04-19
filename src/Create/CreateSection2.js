@@ -2,15 +2,22 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+// The second create section which deals with basics of the noodle
 class CreateSection2 extends React.Component {
+  // Constructor
   constructor(props) {
     super(props);
+    // Initialize the noodle add tag in state
     this.state = { noodleAddTag: undefined };
   }
 
+  // Method to add a new tag
   addNoodleTag = (noodleAddTag) => {
+    // Get method and data from props
     const { onChangeTags, noodleTags } = this.props;
+    // Check if the tag is alreay added
     if (!noodleTags.includes(noodleAddTag)) {
+      // Add the tag to the end of the tags object
       const index = noodleTags.length;
       let splicedNoodles = [...noodleTags];
       splicedNoodles.splice(index, 0, noodleAddTag);
@@ -18,14 +25,19 @@ class CreateSection2 extends React.Component {
     }
   };
 
+  // Method to remove a tag
   removeNoodleTag = (index) => {
+    // Get method and data from props
     const { onChangeTags, noodleTags } = this.props;
+    // Remove the tag from the tags object
     let splicedNoodles = [...noodleTags];
     splicedNoodles.splice(index, 1);
     onChangeTags(splicedNoodles);
   };
 
+  // Render method
   render() {
+    // Destructure the props to get existing data
     const {
       sections,
       onChange,
@@ -34,7 +46,9 @@ class CreateSection2 extends React.Component {
       noodleDescription,
       noodleTags,
     } = this.props;
+    // Destructure the state to get the new tag entered
     const { noodleAddTag } = this.state;
+    // Return the section
     return (
       <section id="the_basics" className={sections[2 - 1].className}>
         <h1 id="section2" className="create_section_heading">

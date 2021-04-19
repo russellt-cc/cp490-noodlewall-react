@@ -7,28 +7,36 @@
 import React from "react";
 import CreateImage from "./CreateImage";
 
+// The fifth create section which deals with images
 class CreateSection5 extends React.Component {
+  // Method to add a new empty image object
   addImage = () => {
+    // Get exisiting data from props
     const {
       noodleImages,
       noodleImagesText,
       onChangeImages,
       onChangeImagesText,
     } = this.props;
+    // Get the index to insert the new object
     const index = noodleImages ? noodleImages.length : 0;
+    // Make a copy of the images array
     let splicedImages = noodleImages ? [...noodleImages] : [];
+    // Add a new object to the images array
     splicedImages.splice(index, 0, undefined);
+    // Update the images array
     onChangeImages(splicedImages);
+    // Make a copy of the images text array
     let splicedImagesText = noodleImagesText ? [...noodleImagesText] : [];
+    // Add a new object to the array
     splicedImagesText.splice(index, 0, undefined);
+    // Update the text array
     onChangeImagesText(splicedImagesText);
   };
 
-  changeImage = (image) => {
-    this.props.onChangeImage(image);
-  };
-
+  // Method to change an image
   changeImages = (index, value) => {
+    // Get method and existing data from props
     const { noodleImages, onChangeImages, noodleImage } = this.props;
     // Check if we have a gallery image
     if (!noodleImage) {
@@ -46,34 +54,55 @@ class CreateSection5 extends React.Component {
     onChangeImages(changedNoodleImages);
   };
 
+  // Method to change an images text
   changeImagesText = (index, value) => {
+    // Get method and existing data from props
     const { noodleImagesText, onChangeImagesText } = this.props;
+    // Make a copy of the images text array
     let changedNoodleImagesText = [...noodleImagesText];
+    // Update the text in the copied array
     changedNoodleImagesText[index] = value;
+    // Update the array
     onChangeImagesText(changedNoodleImagesText);
   };
 
+  // Method to remove an image
   removeImage = (index) => {
+    // Get methods and existing data from props
     const {
       noodleImages,
       noodleImagesText,
       onChangeImages,
       onChangeImagesText,
     } = this.props;
+    // Make a copy of the images array
     let splicedImages = [...noodleImages];
+    // Remove the specified image
     splicedImages.splice(index, 1);
+    // Update the images array
     onChangeImages(splicedImages);
+    // Make a copy of the images text array
     let splicedImagesText = [...noodleImagesText];
+    // Remove the specified text
     splicedImagesText.splice(index, 1);
+    // Update the text array
     onChangeImagesText(splicedImagesText);
   };
 
+  // Method to change the gallery image based on value
+  changeImage = (image) => {
+    this.props.onChangeImage(image);
+  };
+
+  // Method to change the gallery image based on index
   changeGalleryImage = (index) => {
     const { onChangeImage, noodleImages } = this.props;
     onChangeImage(noodleImages[index]);
   };
 
+  // Render method
   render() {
+    // Get data from props
     const {
       sections,
       noodleImage,
@@ -82,6 +111,9 @@ class CreateSection5 extends React.Component {
       noodleTags,
     } = this.props;
 
+    // Create the image list by mapping the noodleImages array to CreateImage objects
+    // Get text data from parallel noodleImagesText array
+    // Send in methods as props to change images, change text, or remove the image
     const noodleImageList = noodleImages ? (
       noodleImages.map((item, index) => {
         return (
@@ -101,6 +133,7 @@ class CreateSection5 extends React.Component {
       <></>
     );
 
+    // Create the gallery component by mapping the noodleImages array to button objects
     const noodleImageGallery =
       noodleImages && noodleImages.length ? (
         <div id="noodle_image_gallery_container">
@@ -130,6 +163,7 @@ class CreateSection5 extends React.Component {
         <></>
       );
 
+    // Return the images section
     return (
       <section id="images" className={sections[5 - 1].className}>
         <h1 id="section5" className={"create_section_heading"}>

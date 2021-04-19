@@ -2,6 +2,7 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+// The first create section which deals with organizer information
 class CreateSection1 extends React.Component {
   render() {
     const { sections, onChange, userName, userBio, userBioLong } = this.props;

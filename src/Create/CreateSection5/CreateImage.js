@@ -5,9 +5,13 @@ import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import getRandomImageFromPicsum from "../../Images/getRandomImageFromPicsum";
 import getRandomImageFromUnsplash from "../../Images/getRandomImageFromUnsplash";
 
+// Class to structure the upload noodle image objects
+// Import into image list on create page
 class CreateImage extends React.Component {
+  // Constructor
   constructor(props) {
     super(props);
+    // Initialize change image to undefined and configure the size of random images
     this.state = {
       noodleChangeImage: undefined,
       randomImageWidth: 1280,
@@ -15,28 +19,35 @@ class CreateImage extends React.Component {
     };
   }
 
+  // Method to change this images URL
   changeImage = (noodleImage) => {
     const { onChangeImage, index } = this.props;
     onChangeImage(index, noodleImage);
   };
 
+  // Method to change the text associated with this image
   changeImageText = (noodleImageText) => {
     const { onChangeImageText, index } = this.props;
     onChangeImageText(index, noodleImageText);
   };
 
+  // Method to delete this image
   delete = () => {
     const { onRemoveImage, index } = this.props;
     onRemoveImage(index);
   };
 
+  // Render method
   render() {
+    // Destructure state to get configuration
     const {
       noodleChangeImage,
       randomImageWidth,
       randomImageHeight,
     } = this.state;
+    // Destructure props to get data
     const { noodleImage, noodleImageText, index, noodleTags } = this.props;
+    // Return the image component
     return (
       <div className="noodle_image_container">
         <div className="noodle_image_header_container">

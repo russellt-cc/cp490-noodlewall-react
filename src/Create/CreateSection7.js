@@ -1,6 +1,7 @@
 import React from "react";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+// The seventh create section which deals with Noodlewall specific information
 class CreateSection7 extends React.Component {
   render() {
     const {

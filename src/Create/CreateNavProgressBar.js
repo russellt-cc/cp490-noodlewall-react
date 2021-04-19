@@ -1,5 +1,6 @@
 import React from "react";
 
+// The nav / progress bar shown on top of the create page
 class CreateNavProgressBar extends React.Component {
   render() {
     const { createMode, sections } = this.props;

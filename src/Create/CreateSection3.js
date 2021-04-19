@@ -2,6 +2,7 @@ import React from "react";
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+// The third create section which deals with location information
 class CreateSection3 extends React.Component {
   render() {
     const { sections, onChange, noodleLocation, noodleDirections } = this.props;

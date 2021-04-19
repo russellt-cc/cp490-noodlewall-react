@@ -106,6 +106,7 @@ class CreateOrEditNoodle extends React.Component {
     }
   }
 
+  // Method to handle change in html input elements
   handleChange = (event) => {
     const target = event.target;
     let value = undefined;
@@ -126,6 +127,7 @@ class CreateOrEditNoodle extends React.Component {
     });
   };
 
+  // Method to create or update a noodle
   create = (status) => {
     // Get the required data
     const {
@@ -214,6 +216,9 @@ class CreateOrEditNoodle extends React.Component {
     }
   };
 
+  // Methods to update state based on child components
+  // Pass these methods as props to child components
+
   changeTags = (noodleTags) => {
     this.setState({ noodleTags });
   };
@@ -234,6 +239,7 @@ class CreateOrEditNoodle extends React.Component {
     this.setState({ createMode });
   };
 
+  // Get Derived State From Props lifecycle method
   static getDerivedStateFromProps(props, state) {
     // Set create mode to event if user selects create event in the navbar while already creating a dream
     const { type: createMode } = props.match.params;
@@ -242,6 +248,7 @@ class CreateOrEditNoodle extends React.Component {
     }
   }
 
+  // Render method
   render() {
     // Get data from state
     const {
@@ -268,9 +275,11 @@ class CreateOrEditNoodle extends React.Component {
       noodleID,
     } = this.state;
 
+    // Create an array to store data about the sections
     let sections = [];
 
     // Set data for the sections
+    // Classes are based on the status of entered data and are used in CSS to change the appearance of finished vs unfinished sections
     sections[1 - 1] = {
       name: "Organizer Information",
       className:
@@ -320,6 +329,7 @@ class CreateOrEditNoodle extends React.Component {
           : "unfinished",
     };
 
+    // The sections that are only shown when creating an event instead of a dream
     const eventDetails = () => {
       const { createMode } = this.state;
       if (createMode === "event") {

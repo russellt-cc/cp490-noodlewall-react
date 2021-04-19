@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// The button bar shown on the bottom of the create page
 class CreateSubmitBar extends React.Component {
   render() {
     const {
@@ -12,6 +13,8 @@ class CreateSubmitBar extends React.Component {
       noodleID,
     } = this.props;
 
+    // Create the cancel button based on current status
+    // If there is a status then we are editing so show the cancel button
     const cancelButton = () => {
       if (noodleStatus) {
         return (
@@ -28,6 +31,8 @@ class CreateSubmitBar extends React.Component {
       }
     };
 
+    // Create the create dream button based on status
+    // If the status is not already an event show the option to save as a dream
     const createDreamButton = () => {
       if (noodleStatus !== "event") {
         return (
@@ -51,6 +56,9 @@ class CreateSubmitBar extends React.Component {
       }
     };
 
+    // Create the create event button based on mode
+    // If the mode is event show make it happen button
+    // If the mode is dream show the show all button
     const createEventButton = () => {
       if (createMode === "event") {
         return (
@@ -89,6 +97,7 @@ class CreateSubmitBar extends React.Component {
       }
     };
 
+    // Return the submit bar
     return (
       <div id="create_submit_bar">
         {cancelButton()}
