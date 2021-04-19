@@ -80,7 +80,7 @@ class DetailsIntroRight extends React.Component {
               Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
             </p>
             <p>
-              <Link to="/login">
+              <Link to={`/login/details/${noodleID}`}>
                 Log in to contact, follow, or buy a ticket.
               </Link>
             </p>

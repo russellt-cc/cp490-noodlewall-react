@@ -43,7 +43,7 @@ class App extends React.Component {
       apiDelete: "delete.php",
       apiNoodlePath: "event/",
       apiUserPath: "user/",
-      redirect: null,
+      redirectPath: null,
     };
   }
 
@@ -150,16 +150,42 @@ class App extends React.Component {
   };
 
   // Login
-  login = (currentUserID) => {
-    const redirect = "/user/" + currentUserID;
-    this.setState({ currentUserID, redirect });
+  login = (currentUserID, redirectComponent, redirectID) => {
+    // Set default redirect on login
+    let redirectPath = "/user/" + currentUserID;
+    // Check for specified redirect
+    if (redirectComponent) {
+      // Set redirect
+      if (redirectID) {
+        // Redirect to a page with an id
+        redirectPath = "/" + redirectComponent + "/" + redirectID;
+      } else {
+        // Redirect to a page
+        redirectPath = "/" + redirectComponent;
+      }
+    }
+    this.setState({ currentUserID, redirectPath });
   };
 
   // Logout
-  logout = () => {
+  logout = (redirectComponent, redirectID) => {
+    // Set current ID to null to logout
     const currentUserID = null;
-    const redirect = "/login";
-    this.setState({ currentUserID, redirect });
+    // Set default redirect on logout
+    let redirectPath = "/";
+    // Check for specified redirect
+    if (redirectComponent) {
+      // Set redirect
+      if (redirectID) {
+        // Redirect to a page with an id
+        redirectPath = "/" + redirectComponent + "/" + redirectID;
+      } else {
+        // Redirect to a page
+        redirectPath = "/" + redirectComponent;
+      }
+    }
+    // Set state to reflect the logout and redirect
+    this.setState({ currentUserID, redirectPath });
   };
 
   // Render method
@@ -175,11 +201,11 @@ class App extends React.Component {
     } = this.state;
     // Handle redirects
     const redirect = () => {
-      const { redirect } = this.state;
+      const { redirectPath } = this.state;
       let redirectJSX = <></>;
-      if (redirect) {
-        redirectJSX = <Redirect to={redirect} />;
-        this.setState({ redirect: null });
+      if (redirectPath) {
+        redirectJSX = <Redirect to={redirectPath} />;
+        this.setState({ redirectPath: null });
       }
       return redirectJSX;
     };

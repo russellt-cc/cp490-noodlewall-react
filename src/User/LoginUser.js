@@ -6,6 +6,8 @@ class UserLogin extends React.Component {
   render() {
     // Get data from props
     const { userData, onLogin: login } = this.props;
+    // Get redirect
+    const { redirect, id } = this.props.match.params;
     // Create list of existing users
     const userList = userData.map((user, index) => {
       const { userID, userImage, userName } = user;
@@ -13,7 +15,7 @@ class UserLogin extends React.Component {
         <button
           key={index}
           className="login_user_button"
-          onClick={() => login(userID)}
+          onClick={() => login(userID, redirect, id)}
         >
           <img src={userImage} alt="User"></img>
           <p>{userName}</p>

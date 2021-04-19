@@ -89,6 +89,18 @@ class Main extends React.Component {
           {/* ------------------------------------------------------------ */}
           {/* Login User Module */}
           <Route
+            path="/login/:redirect/:id"
+            render={(props) => (
+              <LoginUser {...props} userData={userData} onLogin={onLogin} />
+            )}
+          />
+          <Route
+            path="/login/:redirect"
+            render={(props) => (
+              <LoginUser {...props} userData={userData} onLogin={onLogin} />
+            )}
+          />
+          <Route
             path="/login"
             render={(props) => (
               <LoginUser {...props} userData={userData} onLogin={onLogin} />
