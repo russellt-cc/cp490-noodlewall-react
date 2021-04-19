@@ -35,6 +35,28 @@ class NoodleDetails extends React.Component {
       // Get status and props
       const { currentUserID, onDelete } = this.props;
       const { filterType } = this.props.match.params;
+      // Get the user actions
+      const actionButtons = () => {
+        if (!currentUserID) {
+          // Actions for not logged in user
+          return <></>;
+        } else if (currentUserID === hostID) {
+          // Actions for viewing your own noodle
+          return <></>;
+        } else {
+          // Actions for viewing another users noodle
+          return (
+            <div id="details_organizer_actions">
+              <button className={`noodle_button ${noodleStatus}`}>
+                Follow Me
+              </button>
+              <button className={`noodle_button ${noodleStatus}`}>
+                Contact Me
+              </button>
+            </div>
+          );
+        }
+      };
       // Return the details page
       return (
         <main className={`${noodleStatus}`} id="details">
@@ -75,14 +97,7 @@ class NoodleDetails extends React.Component {
                   id="details_organizer_right_right"
                 >
                   <p>{hostBioLong}</p>
-                  <div id="details_organizer_actions">
-                    <button className={`noodle_button ${noodleStatus}`}>
-                      Follow Me
-                    </button>
-                    <button className={`noodle_button ${noodleStatus}`}>
-                      Contact Me
-                    </button>
-                  </div>
+                  {actionButtons()}
                 </div>
               </div>
             </div>

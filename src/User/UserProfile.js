@@ -119,7 +119,13 @@ class User extends React.Component {
             >
               <h1>About {userName}</h1>
               <p>{userBioLong}</p>
-              {isOwnProfile ? ownProfileActions : otherProfileActions}
+              {!currentUserID ? (
+                <></>
+              ) : isOwnProfile ? (
+                ownProfileActions
+              ) : (
+                otherProfileActions
+              )}
             </div>
           </section>
           {/* If the user has any events, show them here. 

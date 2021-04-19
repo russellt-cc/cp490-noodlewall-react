@@ -72,7 +72,18 @@ class DetailsIntroRight extends React.Component {
 
     // Get the action buttons depending on whether a user is viewing another users noodle
     const actionButtons = () => {
-      if (parseInt(hostID) !== parseInt(currentUserID)) {
+      if (!currentUserID) {
+        // Actions for not logged in user
+        return (
+          <div id={`details_host_intro_${noodleStatus}`}>
+            <p>
+              Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
+            </p>
+            <p>Log in to contact, follow, or buy a ticket.</p>
+          </div>
+        );
+      } else if (parseInt(hostID) !== parseInt(currentUserID)) {
+        // Actions for viewing your own noodle
         return (
           <div id={`details_host_intro_${noodleStatus}`}>
             <p>
@@ -88,6 +99,7 @@ class DetailsIntroRight extends React.Component {
           </div>
         );
       } else {
+        // Actions for viewing another users noodle
         const status = () => {
           switch (noodleStatus) {
             case "dream":
