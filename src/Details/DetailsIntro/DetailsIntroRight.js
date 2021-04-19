@@ -79,7 +79,11 @@ class DetailsIntroRight extends React.Component {
             <p>
               Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
             </p>
-            <p>Log in to contact, follow, or buy a ticket.</p>
+            <p>
+              <Link to="/login">
+                Log in to contact, follow, or buy a ticket.
+              </Link>
+            </p>
           </div>
         );
       } else if (parseInt(hostID) !== parseInt(currentUserID)) {

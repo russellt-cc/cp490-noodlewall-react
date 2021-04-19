@@ -12,23 +12,28 @@ class NoodleDetails extends React.Component {
     // Use object destructuring to get constants
     const { id: noodleID } = this.props.match.params;
     const { noodleData, userData } = this.props;
+
     // Get the right details page
     // filter returns an array so we need to get the first index which is 0
     const thisNoodle = noodleData.filter((noodle) => {
       return parseInt(noodle.noodleID) === parseInt(noodleID);
     })[0];
+
     // Check if we have a valid noodle
     if (thisNoodle !== undefined) {
       // Get the right user details
       const thisHost = userData.filter((user) => {
         return parseInt(user.userID) === parseInt(thisNoodle.userID);
       })[0];
+
       // Destructure the data
       const {
         noodleStatus,
         noodleDescription,
         noodleLocation,
         noodleDirections,
+        noodleImages,
+        noodleImageText,
       } = thisNoodle;
       const {
         userName: hostUserName,
@@ -39,9 +44,11 @@ class NoodleDetails extends React.Component {
         userID: hostID,
         userRating: hostRating,
       } = thisHost;
+
       // Get status and props
       const { currentUserID, onDelete } = this.props;
       const { filterType } = this.props.match.params;
+
       // Get the user actions
       const actionButtons = () => {
         if (!currentUserID) {
@@ -64,6 +71,19 @@ class NoodleDetails extends React.Component {
           );
         }
       };
+
+      // Get the images and image text
+      const detailsImageList = noodleImages ? (
+        noodleImages.map((imageURL, index) => {
+          <div key={index}>
+            <img src={decodeURIComponent(imageURL)} alt={index}></img>
+            <p>{noodleImageText[index]}</p>
+          </div>;
+        })
+      ) : (
+        <></>
+      );
+
       // Return the details page
       return (
         <main className={`${noodleStatus}`} id="details">
@@ -78,6 +98,7 @@ class NoodleDetails extends React.Component {
             <div className="details_column left" id="details_details_left">
               <h3>Event Description</h3>
               <p>{noodleDescription}</p>
+              {detailsImageList}
             </div>
             <div
               className="details_column right"
