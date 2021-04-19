@@ -40,24 +40,24 @@ function dataDelete(
         // Reload data
         refresh();
         // Handle redirect
-        let redirect;
+        let redirectPath;
         switch (type) {
           case "dream":
           case "event":
             // Redirect to user page
-            redirect = "/user/" + currentUserID;
+            redirectPath = "/user/" + currentUserID;
             break;
           case "user":
             // Logout
             logout();
             // Redirect to login
-            redirect = "/login";
+            redirectPath = "/login";
             break;
           default:
-            redirect = "/";
+            redirectPath = "/";
             break;
         }
-        returnState({ redirect });
+        returnState({ redirectPath });
       },
       (error) => {
         // console.log("Delete Failed");

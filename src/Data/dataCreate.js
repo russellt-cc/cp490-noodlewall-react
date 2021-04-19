@@ -34,31 +34,31 @@ function dataCreate(type, data, apiConfig, returnState, refresh, login) {
           // Reload data
           refresh();
           // Handle redirect
-          let redirect;
+          let redirectPath;
           switch (type) {
             case "dream":
             case "event":
               // Redirect to noodle page
-              redirect = "/details/" + result.noodleID;
+              redirectPath = "/details/" + result.noodleID;
               break;
             case "user":
               // Login to new account
               login(result.userID);
               // Redirect to user page
-              redirect = "/user/" + result.userID;
+              redirectPath = "/user/" + result.userID;
               break;
             default:
-              redirect = "/";
+              redirectPath = "/";
               break;
           }
-          returnState({ redirect });
+          returnState({ redirectPath });
         },
         (error) => {
-          // console.log("Create Failed");
-          // console.log("Outgoing data:");
-          // console.log(data);
-          // console.log("Incoming data:");
-          // console.log(error);
+          console.log("Create Failed");
+          console.log("Outgoing data:");
+          console.log(data);
+          console.log("Incoming data:");
+          console.log(error);
           alert(
             "Failed to create " +
               type +

@@ -42,22 +42,22 @@ function dataUpdate(
           // Reload data
           refresh();
           // Handle redirect
-          let redirect;
+          let redirectPath;
           switch (type) {
             case "dream":
             case "event":
               // Redirect to noodle page
-              redirect = "/details/" + data.noodleID;
+              redirectPath = "/details/" + data.noodleID;
               break;
             case "user":
               // Redirect to user page
-              redirect = "/user/" + currentUserID;
+              redirectPath = "/user/" + currentUserID;
               break;
             default:
-              redirect = "/";
+              redirectPath = "/";
               break;
           }
-          returnState({ redirect });
+          returnState({ redirectPath });
         },
         (error) => {
           // console.log("Update Failed");

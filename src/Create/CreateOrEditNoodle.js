@@ -62,17 +62,19 @@ class CreateOrEditNoodle extends React.Component {
         noodleDate: thisNoodle.noodleDate,
         noodleTime: thisNoodle.noodleTime,
         noodleTags: thisNoodle.noodleTags,
-        noodleImage: thisNoodle.noodleImage,
-        noodleImages: thisNoodle.noodleImages
-          ? thisNoodle.noodleImages
-          : thisNoodle.noodleImage
-          ? [thisNoodle.noodleImage]
-          : [],
-        noodleImagesText: thisNoodle.noodleImagesText
-          ? thisNoodle.noodleImagesText
-          : thisNoodle.noodleImage
-          ? [""]
-          : [],
+        noodleCoverImage: thisNoodle.noodleCoverImage,
+        noodleImages:
+          thisNoodle.noodleImages && thisNoodle.noodleImages[0]
+            ? thisNoodle.noodleImages
+            : thisNoodle.noodleCoverImage
+            ? [thisNoodle.noodleCoverImage]
+            : [],
+        noodleImageText:
+          thisNoodle.noodleImageText && thisNoodle.noodleImageText[0]
+            ? thisNoodle.noodleImageText
+            : thisNoodle.noodleCoverImage
+            ? [""]
+            : [],
         noodlePrice: thisNoodle.noodlePrice,
         noodleMinTickets: thisNoodle.noodleMinTickets,
         noodleMaxTickets: thisNoodle.noodleMaxTickets,
@@ -95,9 +97,9 @@ class CreateOrEditNoodle extends React.Component {
         noodleDate: undefined,
         noodleTime: undefined,
         noodleTags: [],
-        noodleImage: undefined,
+        noodleCoverImage: undefined,
         noodleImages: [],
-        noodleImagesText: [],
+        noodleImageText: [],
         noodlePrice: undefined,
         noodleMinTickets: undefined,
         noodleMaxTickets: undefined,
@@ -140,9 +142,9 @@ class CreateOrEditNoodle extends React.Component {
       noodleDirections,
       noodleDate,
       noodleTime,
-      noodleImage,
+      noodleCoverImage,
       noodleImages,
-      noodleImagesText,
+      noodleImageText,
       noodlePrice,
       noodleMinTickets,
       noodleMaxTickets,
@@ -161,9 +163,9 @@ class CreateOrEditNoodle extends React.Component {
       noodleDirections: noodleDirections,
       noodleDate: noodleDate,
       noodleTime: noodleTime,
-      noodleImage: noodleImage,
+      noodleCoverImage: noodleCoverImage,
       noodleImages: noodleImages,
-      noodleImagesText: noodleImagesText,
+      noodleImageText: noodleImageText,
       noodlePrice: noodlePrice,
       noodleMinTickets: noodleMinTickets,
       noodleMaxTickets: noodleMaxTickets,
@@ -195,7 +197,7 @@ class CreateOrEditNoodle extends React.Component {
           noodleDirections &&
           noodleDate &&
           noodleTime &&
-          noodleImage &&
+          noodleCoverImage &&
           noodlePrice &&
           noodleMinTickets &&
           noodleMaxTickets &&
@@ -223,16 +225,16 @@ class CreateOrEditNoodle extends React.Component {
     this.setState({ noodleTags });
   };
 
-  changeImage = (noodleImage) => {
-    this.setState({ noodleImage });
+  changeImage = (noodleCoverImage) => {
+    this.setState({ noodleCoverImage });
   };
 
   changeImages = (noodleImages) => {
     this.setState({ noodleImages });
   };
 
-  changeImagesText = (noodleImagesText) => {
-    this.setState({ noodleImagesText });
+  changeImagesText = (noodleImageText) => {
+    this.setState({ noodleImageText });
   };
 
   setMode = (createMode) => {
@@ -246,6 +248,7 @@ class CreateOrEditNoodle extends React.Component {
     if (createMode === "event" && createMode !== state.createMode) {
       state.createMode = createMode;
     }
+    return state;
   }
 
   // Render method
@@ -266,9 +269,9 @@ class CreateOrEditNoodle extends React.Component {
       noodleMinTickets,
       noodleMaxTickets,
       noodleCutoff,
-      noodleImage,
+      noodleCoverImage,
       noodleImages,
-      noodleImagesText,
+      noodleImageText,
       noodleStatus,
       noodleDate,
       noodleTime,
@@ -313,7 +316,7 @@ class CreateOrEditNoodle extends React.Component {
     };
     sections[5 - 1] = {
       name: "Upload Images",
-      className: this.state.noodleImage ? "finished" : "unfinished",
+      className: this.state.noodleCoverImage ? "finished" : "unfinished",
     };
     sections[6 - 1] = {
       name: "Create Tickets",
@@ -350,9 +353,9 @@ class CreateOrEditNoodle extends React.Component {
             <CreateSection5
               sections={sections}
               noodleTags={noodleTags}
-              noodleImage={noodleImage}
+              noodleCoverImage={noodleCoverImage}
               noodleImages={noodleImages}
-              noodleImagesText={noodleImagesText}
+              noodleImageText={noodleImageText}
               onChangeImage={this.changeImage}
               onChangeImages={this.changeImages}
               onChangeImagesText={this.changeImagesText}

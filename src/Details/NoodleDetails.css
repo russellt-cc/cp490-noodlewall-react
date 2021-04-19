@@ -47,6 +47,11 @@
   column-gap: 20px;
 }
 
+#details #details_details img {
+  width: 100%;
+  border-radius: 20px;
+}
+
 /* Style for mobile */
 
 @media screen and (max-width: 800px) {

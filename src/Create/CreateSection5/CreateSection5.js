@@ -14,7 +14,7 @@ class CreateSection5 extends React.Component {
     // Get exisiting data from props
     const {
       noodleImages,
-      noodleImagesText,
+      noodleImageText,
       onChangeImages,
       onChangeImagesText,
     } = this.props;
@@ -27,7 +27,7 @@ class CreateSection5 extends React.Component {
     // Update the images array
     onChangeImages(splicedImages);
     // Make a copy of the images text array
-    let splicedImagesText = noodleImagesText ? [...noodleImagesText] : [];
+    let splicedImagesText = noodleImageText ? [...noodleImageText] : [];
     // Add a new object to the array
     splicedImagesText.splice(index, 0, undefined);
     // Update the text array
@@ -37,12 +37,12 @@ class CreateSection5 extends React.Component {
   // Method to change an image
   changeImages = (index, value) => {
     // Get method and existing data from props
-    const { noodleImages, onChangeImages, noodleImage } = this.props;
+    const { noodleImages, onChangeImages, noodleCoverImage } = this.props;
     // Check if we have a gallery image
-    if (!noodleImage) {
+    if (!noodleCoverImage) {
       // Set gallery to the image
       this.changeImage(value);
-    } else if (noodleImage === noodleImages[index]) {
+    } else if (noodleCoverImage === noodleImages[index]) {
       // Set the gallery to the new image
       this.changeImage(value);
     }
@@ -57,13 +57,13 @@ class CreateSection5 extends React.Component {
   // Method to change an images text
   changeImagesText = (index, value) => {
     // Get method and existing data from props
-    const { noodleImagesText, onChangeImagesText } = this.props;
+    const { noodleImageText, onChangeImagesText } = this.props;
     // Make a copy of the images text array
-    let changedNoodleImagesText = [...noodleImagesText];
+    let changednoodleImageText = [...noodleImageText];
     // Update the text in the copied array
-    changedNoodleImagesText[index] = value;
+    changednoodleImageText[index] = value;
     // Update the array
-    onChangeImagesText(changedNoodleImagesText);
+    onChangeImagesText(changednoodleImageText);
   };
 
   // Method to remove an image
@@ -71,7 +71,7 @@ class CreateSection5 extends React.Component {
     // Get methods and existing data from props
     const {
       noodleImages,
-      noodleImagesText,
+      noodleImageText,
       onChangeImages,
       onChangeImagesText,
     } = this.props;
@@ -82,7 +82,7 @@ class CreateSection5 extends React.Component {
     // Update the images array
     onChangeImages(splicedImages);
     // Make a copy of the images text array
-    let splicedImagesText = [...noodleImagesText];
+    let splicedImagesText = [...noodleImageText];
     // Remove the specified text
     splicedImagesText.splice(index, 1);
     // Update the text array
@@ -105,37 +105,38 @@ class CreateSection5 extends React.Component {
     // Get data from props
     const {
       sections,
-      noodleImage,
+      noodleCoverImage,
       noodleImages,
-      noodleImagesText,
+      noodleImageText,
       noodleTags,
     } = this.props;
 
     // Create the image list by mapping the noodleImages array to CreateImage objects
-    // Get text data from parallel noodleImagesText array
+    // Get text data from parallel noodleImageText array
     // Send in methods as props to change images, change text, or remove the image
-    const noodleImageList = noodleImages ? (
-      noodleImages.map((item, index) => {
-        return (
-          <CreateImage
-            key={index}
-            index={index}
-            noodleImage={item}
-            noodleImageText={noodleImagesText[index]}
-            noodleTags={noodleTags}
-            onChangeImage={this.changeImages}
-            onChangeImageText={this.changeImagesText}
-            onRemoveImage={this.removeImage}
-          />
-        );
-      })
-    ) : (
-      <></>
-    );
+    const noodleImageList =
+      noodleImages && noodleImages[0] !== null ? (
+        noodleImages.map((item, index) => {
+          return (
+            <CreateImage
+              key={index}
+              index={index}
+              noodleImage={item}
+              noodleImageText={noodleImageText[index]}
+              noodleTags={noodleTags}
+              onChangeImage={this.changeImages}
+              onChangeImageText={this.changeImagesText}
+              onRemoveImage={this.removeImage}
+            />
+          );
+        })
+      ) : (
+        <></>
+      );
 
     // Create the gallery component by mapping the noodleImages array to button objects
     const noodleImageGallery =
-      noodleImages && noodleImages.length ? (
+      noodleImages && noodleImages.length && noodleImages[0] !== null ? (
         <div id="noodle_image_gallery_container">
           <label>Select the gallery image</label>
           <div id="noodle_image_gallery">
@@ -146,7 +147,7 @@ class CreateSection5 extends React.Component {
                     key={index}
                     type="button"
                     className={`noodle_image_selector ${
-                      item === noodleImage ? "selected" : "unselected"
+                      item === noodleCoverImage ? "selected" : "unselected"
                     }`}
                     onClick={() => this.changeGalleryImage(index)}
                   >

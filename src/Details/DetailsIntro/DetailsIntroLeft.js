@@ -46,7 +46,7 @@ class DetailsIntroLeft extends React.Component {
       noodleTitle,
       noodleTicketsSold,
       noodleMinTickets,
-      noodleImage,
+      noodleCoverImage,
       noodleStatus,
     } = this.props.thisNoodle;
     return (
@@ -71,9 +71,9 @@ class DetailsIntroLeft extends React.Component {
             <strong>{wholeDaysLeft}</strong>
           </span>
         </p>
-        {noodleImage ? (
+        {noodleCoverImage ? (
           <div id="details_image_container">
-            <img src={decodeURIComponent(noodleImage)} alt="Noodle"></img>
+            <img src={decodeURIComponent(noodleCoverImage)} alt="Noodle"></img>
             {NoodleOverlay(noodleStatus)}
           </div>
         ) : (

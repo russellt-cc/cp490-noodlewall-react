@@ -22,7 +22,7 @@ export const noodleData = [
     noodleDescription:
       "Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
     noodleTags: ["fishing", "food", "hobby", "friends", "sports"],
-    noodleImage: fishing,
+    noodleCoverImage: fishing,
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",
@@ -40,7 +40,7 @@ export const noodleData = [
     noodleDescription:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
     noodleTags: ["bowling", "hobby", "sports"],
-    noodleImage: bowling,
+    noodleCoverImage: bowling,
   },
   {
     noodleID: 3,
@@ -50,7 +50,7 @@ export const noodleData = [
     noodleDescription:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id sodales ex. Quisque vitae ultricies ipsum. Suspendisse pulvinar in ex a posuere.",
     noodleTags: ["cooking", "food", "hobby", "kids"],
-    noodleImage: cooking,
+    noodleCoverImage: cooking,
   },
   {
     noodleID: 4,
@@ -60,7 +60,7 @@ export const noodleData = [
     noodleDescription:
       "Felix Arvid Ulf Kjellberg, known online as PewDiePie, is a Swedish YouTuber and comedian, known primarily for his Let's Play videos and comedic formatted shows.",
     noodleTags: ["comedy", "youtube"],
-    noodleImage: pewdiepie,
+    noodleCoverImage: pewdiepie,
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",
@@ -78,7 +78,7 @@ export const noodleData = [
     noodleDescription:
       "Jamie Trevor Oliver MBE is a British chef and restaurateur. He is known for his approachable cuisine, which has led him to front numerous television shows and open many restaurants.",
     noodleTags: ["cooking", "food"],
-    noodleImage: jamie_oliver,
+    noodleCoverImage: jamie_oliver,
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",
@@ -96,7 +96,7 @@ export const noodleData = [
     noodleDescription:
       "Aimee Song is an American fashion blogger and fashion designer. She has over 2 million page views per month on her blog called Song of Style and five million Instagram followers. She started blogging in 2008 while studying Interior Architecture in San Francisco.",
     noodleTags: ["fashion", "instagram"],
-    noodleImage: aimee_song,
+    noodleCoverImage: aimee_song,
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",
@@ -114,7 +114,7 @@ export const noodleData = [
     noodleDescription:
       "Marques Keith Brownlee, also known professionally as MKBHD, is an American YouTuber and professional ultimate frisbee player, best known for his technology-focused videos as well as his podcast, Waveform: The MKBHD Podcast. The name of his YouTube channel is a concatenation of MKB and HD.",
     noodleTags: ["tech", "youtube"],
-    noodleImage: marques_brownlee,
+    noodleCoverImage: marques_brownlee,
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",
@@ -132,7 +132,7 @@ export const noodleData = [
     noodleDescription:
       "Turner Tenney, better known by his online alias Tfue, is an American streamer and esports player, best known for playing Fortnite.",
     noodleTags: ["gaming", "esports", "fortnite", "twitch"],
-    noodleImage: tfue,
+    noodleCoverImage: tfue,
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",
