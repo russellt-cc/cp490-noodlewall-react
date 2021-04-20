@@ -90,7 +90,21 @@
   height: 30px;
 }
 
-#create #create_nav_progress_bar.minimized:not(:hover) {
+#create #create_nav_progress_bar.minimized {
+  position: relative;
+  margin-left: -60px;
+  margin-right: -60px;
+  width: auto;
+  margin-top: -230px;
+  margin-bottom: 110px;
+}
+
+#create #create_nav_progress_bar.maximized #create_nav_progress_bar_maximize,
+#create #create_nav_progress_bar.minimized #create_nav_progress_bar_minimize {
+  display: none;
+}
+
+/* #create #create_nav_progress_bar.minimized:not(:hover) {
   height: 50px;
   width: 50px;
 }
@@ -101,11 +115,7 @@
 
 #create #create_nav_progress_bar.minimized #create_nav_progress_bar_maximize {
   display: block;
-}
-
-#create #create_nav_progress_bar.maximized #create_nav_progress_bar_maximize {
-  display: none;
-}
+}*/
 
 @media screen and (max-width: 800px) {
   #create #create_nav_progress_bar {

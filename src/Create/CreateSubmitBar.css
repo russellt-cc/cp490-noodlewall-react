@@ -1,0 +1,58 @@
+#create #create_submit_bar {
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px -60px -60px -60px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid black;
+  column-gap: 20px;
+}
+
+#create #create_submit_bar .noodle_button {
+  margin: 0px;
+}
+
+#create #create_submit_bar #create_dream_button.finished {
+  background-color: var(--dreams-color);
+}
+
+#create #create_submit_bar button.unfinished {
+  background-color: lightgray;
+  pointer-events: none;
+  user-select: none;
+}
+
+#create .create_submit_bar_toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: var(--events-color);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+#create #create_submit_bar.minimized {
+  position: relative;
+  margin-left: -60px;
+  margin-right: -60px;
+  width: auto;
+}
+
+#create #create_submit_bar.maximized #create_submit_bar_maximize,
+#create #create_submit_bar.minimized #create_submit_bar_minimize {
+  display: none;
+}
+
+/* style for mobile */
+
+@media screen and (max-height: 600px) {
+  #create #create_submit_bar {
+    position: static;
+  }
+}

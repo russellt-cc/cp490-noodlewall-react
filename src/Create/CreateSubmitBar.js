@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "./CreateSubmitBar.css";
+
 // The button bar shown on the bottom of the create page
 class CreateSubmitBar extends React.Component {
   render() {
@@ -99,10 +101,31 @@ class CreateSubmitBar extends React.Component {
 
     // Return the submit bar
     return (
-      <div id="create_submit_bar">
+      <div
+        id="create_submit_bar"
+        className={
+          this.state && this.state.minimized ? "minimized" : "maximized"
+        }
+      >
         {cancelButton()}
         {createDreamButton()}
         {createEventButton()}
+        <button
+          type="button"
+          id="create_submit_bar_mimimize"
+          className="create_submit_bar_toggle"
+          onClick={() => this.setState({ minimized: true })}
+        >
+          -
+        </button>
+        <button
+          type="button"
+          id="create_submit_bar_maximize"
+          className="create_submit_bar_toggle"
+          onClick={() => this.setState({ minimized: false })}
+        >
+          +
+        </button>
       </div>
     );
   }

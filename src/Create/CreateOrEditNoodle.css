@@ -177,33 +177,6 @@ main#create.event {
   column-gap: 10px;
 }
 
-#create #create_submit_bar {
-  position: sticky;
-  bottom: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px -60px -60px -60px;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid black;
-  column-gap: 20px;
-}
-
-#create #create_submit_bar .noodle_button {
-  margin: 0px;
-}
-
-#create #create_submit_bar #create_dream_button.finished {
-  background-color: var(--dreams-color);
-}
-
-#create #create_submit_bar button.unfinished {
-  background-color: lightgray;
-  pointer-events: none;
-  user-select: none;
-}
-
 /* style for mobile */
 
 @media screen and (max-width: 800px) {
@@ -216,8 +189,5 @@ main#create.event {
   #create .create_section_heading {
     padding-top: 20px;
     margin-top: -20px;
-  }
-  #create #create_submit_bar {
-    position: static;
   }
 }
