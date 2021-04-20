@@ -78,7 +78,13 @@ class NoodleDetails extends React.Component {
           return (
             <div key={index}>
               <img src={decodeURIComponent(imageURL)} alt={index}></img>
-              <p>{noodleImageText[index]}</p>
+              <p>
+                {noodleImageText[index] &&
+                noodleImageText[index] !== "undefined" &&
+                noodleImageText[index] !== "null"
+                  ? unescape(noodleImageText[index])
+                  : ""}
+              </p>
             </div>
           );
         })

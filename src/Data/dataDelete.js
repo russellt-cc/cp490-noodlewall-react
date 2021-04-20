@@ -1,6 +1,7 @@
 import apiConfig from "./apiConfig";
 
 // Function to handle deleting data using API
+// Return response as a promise
 function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
   // Check whether we are using the API for data
   const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
@@ -16,12 +17,12 @@ function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
         apiPath = apiUserPath;
         break;
       default:
-        alert("Error: Unknown Type");
-        return;
+        // alert("Error: Unknown Type");
+        return Promise.reject({ message: "Unknown Type!" });
     }
     // AJAX request to PHP server
     const { apiURL, apiDelete } = apiConfig();
-    fetch(apiURL + apiPath + apiDelete, {
+    return fetch(apiURL + apiPath + apiDelete, {
       method: "POST",
       body: JSON.stringify(data),
     }).then(
@@ -52,23 +53,26 @@ function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
             break;
         }
         returnState({ redirectPath });
+        return result;
       },
       (error) => {
         // console.log("Delete Failed");
         // console.log("Incoming Data:");
         // console.log(error);
-        alert(
-          "Failed to delete " +
-            type +
-            "! Response from server: " +
-            error.message +
-            "."
-        );
+        // alert(
+        //   "Failed to delete " +
+        //     type +
+        //     "! Response from server: " +
+        //     error.message +
+        //     "."
+        // );
+        return error;
       }
     );
   } else {
     // Just show a message
-    alert("You can't delete data when using the static JSON data.");
+    // alert("You can't delete data when using the static JSON data.");
+    return Promise.reject({ message: "Can't delete when not using API!" });
   }
 }
 

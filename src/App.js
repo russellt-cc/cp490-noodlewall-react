@@ -55,9 +55,10 @@ class App extends React.Component {
   // Methods to handle CRUD
 
   // Create
+  // Return promise
   create = (type, data) => {
     // Create data using component function
-    dataCreate(type, data, this.returnState, this.refresh, this.login);
+    return dataCreate(type, data, this.returnState, this.refresh, this.login);
   };
 
   // Read
@@ -82,11 +83,12 @@ class App extends React.Component {
   };
 
   // Delete
+  // Return promise
   delete = (type, data) => {
     // Get configuration from state
     const { currentUserID } = this.state;
     // Delete data using component function
-    dataDelete(
+    return dataDelete(
       type,
       data,
       this.returnState,

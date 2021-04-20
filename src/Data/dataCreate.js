@@ -1,6 +1,7 @@
 import apiConfig from "./apiConfig";
 
 // Function to handle creating data using API
+// Return response as a promise
 function dataCreate(type, data, returnState, refresh, login) {
   // Check whether we are using the API for data
   const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
@@ -16,12 +17,12 @@ function dataCreate(type, data, returnState, refresh, login) {
         apiPath = apiUserPath;
         break;
       default:
-        alert("Error: Unknown Type");
-        return;
+        // alert("Error: Unknown Type");
+        return Promise.reject({ message: "Unknown Type!" });
     }
     // AJAX request to PHP server
     const { apiURL, apiCreate } = apiConfig();
-    fetch(apiURL + apiPath + apiCreate, {
+    return fetch(apiURL + apiPath + apiCreate, {
       method: "POST",
       body: JSON.stringify(data),
     })
@@ -54,6 +55,7 @@ function dataCreate(type, data, returnState, refresh, login) {
               break;
           }
           returnState({ redirectPath });
+          return result;
         },
         (error) => {
           // console.log("Create Failed");
@@ -61,18 +63,20 @@ function dataCreate(type, data, returnState, refresh, login) {
           // console.log(data);
           // console.log("Incoming data:");
           // console.log(error);
-          alert(
-            "Failed to create " +
-              type +
-              "! Response from server: " +
-              error.message +
-              "."
-          );
+          // alert(
+          //   "Failed to create " +
+          //     type +
+          //     "! Response from server: " +
+          //     error.message +
+          //     "."
+          // );
+          return error;
         }
       );
   } else {
     // Just show a message
-    alert("You can't create data when using the static JSON data.");
+    // alert("You can't create data when using the static JSON data.");
+    return Promise.reject({ message: "Can't create when not using API!" });
   }
 }
 

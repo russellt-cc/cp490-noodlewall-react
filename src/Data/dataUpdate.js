@@ -17,8 +17,8 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
         apiPath = apiUserPath;
         break;
       default:
-        alert("Error: Unknown Type");
-        return Promise.reject("Unknown Type");
+        // alert("Error: Unknown Type");
+        return Promise.reject({ message: "Unknown Type!" });
     }
     // AJAX request to PHP server
     const { apiURL, apiUpdate } = apiConfig();
@@ -60,20 +60,20 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
           // console.log("Update Failed");
           // console.log("Incoming Data:");
           // console.log(error);
-          alert(
-            "Failed to update " +
-              type +
-              "! Response from server: " +
-              error.message +
-              "."
-          );
-          return error.message;
+          // alert(
+          //   "Failed to update " +
+          //     type +
+          //     "! Response from server: " +
+          //     error.message +
+          //     "."
+          // );
+          return error;
         }
       );
   } else {
     // Just show a message
-    alert("You can't update data when using the static JSON data.");
-    return Promise.reject("Can't update when not using API");
+    // alert("You can't update data when using the static JSON data.");
+    return Promise.reject({ message: "Can't update when not using API!" });
   }
 }
 
