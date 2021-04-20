@@ -28,86 +28,6 @@
   max-width: 200px;
 }
 
-#create #create_nav_progress_bar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  left: 0px;
-  background-color: white;
-  border: 1px solid black;
-  height: 100px;
-  /*----------------*/
-  /* Fixed Position */
-  position: fixed;
-  top: 70px;
-  width: 100%;
-  z-index: 1;
-  /*----------------*/
-  /* Sticky Position */
-  /* position: sticky;
-  top: 0px;
-  z-index: 999;
-  margin-top: -160px;
-  margin-left: -60px;
-  margin-right: -60px;
-  margin-bottom: 60px;
-  width: auto; */
-  /*----------------*/
-}
-
-#create #create_nav_progress_bar_buttons {
-  display: flex;
-  justify-content: center;
-  column-gap: 25px;
-  position: relative;
-}
-
-#create #create_nav_progress_bar_buttons > div {
-  width: 75px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#create #create_nav_progress_bar_buttons > div > a {
-  display: flex;
-  width: 50px;
-  height: 50px;
-  background-color: lightgray;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  border-radius: 25px;
-  font-weight: bold;
-}
-
-#create #create_nav_progress_bar_buttons > div > a.finished {
-  background-color: var(--events-color);
-}
-
-#create #create_nav_progress_bar_buttons > div > p {
-  margin: 0px;
-}
-
-#create #create_nav_progress_bar_line {
-  display: block;
-  height: 5px;
-  width: 600px;
-  position: absolute;
-  top: 30px;
-}
-
-#create #create_nav_progress_bar_line.unfinished {
-  background-color: lightgray;
-}
-
-#create #create_nav_progress_bar_line.finished {
-  background-color: var(--events-color);
-}
-
 main#create.event {
   margin-top: 170px;
 }
@@ -287,18 +207,12 @@ main#create.event {
 /* style for mobile */
 
 @media screen and (max-width: 800px) {
-  #create #create_nav_progress_bar {
-    display: none;
-  }
   main#create.event {
     margin-top: 70px;
   }
 }
 
 @media screen and (max-height: 600px) {
-  #create #create_nav_progress_bar {
-    position: absolute;
-  }
   #create .create_section_heading {
     padding-top: 20px;
     margin-top: -20px;

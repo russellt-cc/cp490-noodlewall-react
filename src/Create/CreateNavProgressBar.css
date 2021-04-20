@@ -1,0 +1,120 @@
+#create #create_nav_progress_bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: 0px;
+  background-color: white;
+  border: 1px solid black;
+  height: 100px;
+  /*----------------*/
+  /* Fixed Position */
+  position: fixed;
+  top: 70px;
+  width: 100%;
+  z-index: 1;
+  /*----------------*/
+  /* Sticky Position */
+  /* position: sticky;
+  top: 0px;
+  z-index: 999;
+  margin-top: -160px;
+  margin-left: -60px;
+  margin-right: -60px;
+  margin-bottom: 60px;
+  width: auto; */
+  /*----------------*/
+}
+
+#create #create_nav_progress_bar_buttons {
+  display: flex;
+  justify-content: center;
+  column-gap: 25px;
+  position: relative;
+}
+
+#create #create_nav_progress_bar_buttons > div {
+  width: 75px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#create #create_nav_progress_bar_buttons > div > a {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+#create #create_nav_progress_bar_buttons > div > a.finished {
+  background-color: var(--events-color);
+}
+
+#create #create_nav_progress_bar_buttons > div > p {
+  margin: 0px;
+}
+
+#create #create_nav_progress_bar_line {
+  display: block;
+  height: 5px;
+  width: 600px;
+  position: absolute;
+  top: 30px;
+}
+
+#create #create_nav_progress_bar_line.unfinished {
+  background-color: lightgray;
+}
+
+#create #create_nav_progress_bar_line.finished {
+  background-color: var(--events-color);
+}
+
+#create .create_nav_progress_bar_toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: var(--events-color);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+#create #create_nav_progress_bar.minimized:not(:hover) {
+  height: 50px;
+  width: 50px;
+}
+
+#create #create_nav_progress_bar.minimized:not(:hover) * {
+  display: none;
+}
+
+#create #create_nav_progress_bar.minimized #create_nav_progress_bar_maximize {
+  display: block;
+}
+
+#create #create_nav_progress_bar.maximized #create_nav_progress_bar_maximize {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  #create #create_nav_progress_bar {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  #create #create_nav_progress_bar {
+    position: absolute;
+  }
+}
