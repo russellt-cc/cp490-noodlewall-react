@@ -1,5 +1,13 @@
+/* https://www.npmjs.com/package/react-image-gallery */
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 #details #details_intro .details_column {
   row-gap: 20px;
+}
+
+#details #details_image_container {
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 #details #details_intro_left img {
@@ -91,7 +99,7 @@
   width: 25%;
   position: absolute;
   right: 0px;
-  bottom: 3px;
+  bottom: 0px;
 }
 
 #details .details_status_container,
