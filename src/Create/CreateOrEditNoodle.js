@@ -135,31 +135,46 @@ class CreateOrEditNoodle extends React.Component {
 
   // Method to upload images
   // Checks if there are any images that need to be uploaded
+  // Return a Promise.all
   uploadImages = () => {
     // Get image list from state
     let { noodleImages } = this.state;
     // Check for local images
-    noodleImages.forEach((image, index) => {
-      // Check if object
-      // If object then image is a file object and needs to be uploaded
-      if (typeof image === "object") {
-        // Upload the image and get the address back as a promise
-        const uploadedImagePromise = apiUploadImage(image);
-        uploadedImagePromise.then((imageAddress) => {
-          // Set the link in state to be the uploaded image
-          let { noodleCoverImage } = this.state;
-          if (noodleCoverImage === image) {
-            noodleCoverImage = imageAddress;
+    if (noodleImages && noodleImages[0]) {
+      return Promise.all(
+        noodleImages.map((image, index) => {
+          // Check if object
+          // If object then image is a file object and needs to be uploaded
+          if (typeof image === "object") {
+            // Upload the image and get the address back as a promise
+            const uploadedImagePromise = apiUploadImage(image);
+            return uploadedImagePromise.then((imageAddress) => {
+              // Set the link in state to be the uploaded image
+              let { noodleCoverImage } = this.state;
+              if (
+                URL.createObjectURL(noodleCoverImage) ===
+                URL.createObjectURL(image)
+              ) {
+                noodleCoverImage = imageAddress;
+              }
+              noodleImages[index] = imageAddress;
+              this.setState({ noodleImages, noodleCoverImage });
+              return imageAddress;
+            });
+          } else {
+            // return Promise.resolve("Image Not Hosted");
+            return image;
           }
-          noodleImages[index] = imageAddress;
-          this.setState({ noodleImages, noodleCoverImage });
-        });
-      }
-    });
+        })
+      );
+    } else {
+      return Promise.resolve([]);
+    }
   };
 
   // Method to see which images can be deleted
-  deleteDeletedImages = () => {
+  // Return a Promise.all
+  deleteImages = () => {
     // Get the old list of images from props
     const { noodleData } = this.props;
     const { noodleID } = this.state;
@@ -170,17 +185,23 @@ class CreateOrEditNoodle extends React.Component {
     // Get the new list of images from state
     const { noodleImages: noodleImagesNew } = this.state;
     // Go through the list of old images
-    noodleImagesOld.forEach((image, index) => {
-      // See if the image is hosted on the api
-      const { apiURL } = apiConfig();
-      if (image && image.substring(0, apiURL.length) === apiURL) {
-        // Check to see if it is in the new list of images
-        if (!noodleImagesNew.includes(image)) {
-          // Delete the image from the server
-          apiDeleteImage(image);
+    return Promise.all(
+      noodleImagesOld.map((image, index) => {
+        // See if the image is hosted on the api
+        const { apiURL } = apiConfig();
+        if (image && image.substring(0, apiURL.length) === apiURL) {
+          // Check to see if it is in the new list of images
+          if (!noodleImagesNew.includes(image)) {
+            // Delete the image from the server
+            return apiDeleteImage(image);
+          } else {
+            return Promise.resolve("Image Not Deleted");
+          }
+        } else {
+          return Promise.resolve("Image Not Hosted");
         }
-      }
-    });
+      })
+    );
   };
 
   // Check if there are any images that need to be uploaded
@@ -194,60 +215,16 @@ class CreateOrEditNoodle extends React.Component {
   };
 
   // Method to create or update a noodle
-  create = (status) => {
-    // Get the required data
-    const {
-      noodleID,
-      noodleTitle,
-      noodleDescription,
-      noodleTags,
-      noodleSummary,
-      noodleLocation,
-      noodleDirections,
-      noodleDate,
-      noodleTime,
-      noodleCoverImage,
-      noodleImages,
-      noodleImageText,
-      noodlePrice,
-      noodleMinTickets,
-      noodleMaxTickets,
-      noodleCutoff,
-    } = this.state;
-    const { currentUserID: userID } = this.props;
-    // Create the object to be sent to the API
-    const noodleData = {
-      noodleTitle: noodleTitle,
-      userID: userID,
-      noodleStatus: status,
-      noodleDescription: noodleDescription,
-      noodleTags: noodleTags,
-      noodleSummary: noodleSummary,
-      noodleLocation: noodleLocation,
-      noodleDirections: noodleDirections,
-      noodleDate: noodleDate,
-      noodleTime: noodleTime,
-      noodleCoverImage: noodleCoverImage,
-      noodleImages: noodleImages,
-      noodleImageText: noodleImageText,
-      noodlePrice: noodlePrice,
-      noodleMinTickets: noodleMinTickets,
-      noodleMaxTickets: noodleMaxTickets,
-      noodleCutoff: noodleCutoff,
-      noodleID: noodleID,
-    };
+  submit = (status) => {
     switch (status) {
       case "dream":
         // Validate the required data
-        if (noodleTitle && noodleDescription && noodleTags.length) {
-          // Check mode
-          // Send the data to the main update or create function
-          if (noodleID) {
-            this.props.onUpdate(status, noodleData);
-            this.deleteDeletedImages();
-          } else {
-            this.props.onCreate(status, noodleData);
-          }
+        if (
+          this.state.noodleTitle &&
+          this.state.noodleDescription &&
+          this.state.noodleTags.length
+        ) {
+          this.createOrUpdateNoodle(status);
         } else {
           alert("You must fill in the basic information to save as a dream!");
         }
@@ -255,29 +232,22 @@ class CreateOrEditNoodle extends React.Component {
       case "event":
         // Validate the required data
         if (
-          noodleTitle &&
-          noodleDescription &&
-          noodleTags.length &&
-          userID &&
-          noodleSummary &&
-          noodleLocation &&
-          noodleDirections &&
-          noodleDate &&
-          noodleTime &&
-          noodleCoverImage &&
-          noodlePrice &&
-          noodleMinTickets &&
-          noodleMaxTickets &&
-          noodleCutoff
+          this.state.noodleTitle &&
+          this.state.noodleDescription &&
+          this.state.noodleTags.length &&
+          this.state.userID &&
+          this.state.noodleSummary &&
+          this.state.noodleLocation &&
+          this.state.noodleDirections &&
+          this.state.noodleDate &&
+          this.state.noodleTime &&
+          this.state.noodleCoverImage &&
+          this.state.noodlePrice &&
+          this.state.noodleMinTickets &&
+          this.state.noodleMaxTickets &&
+          this.state.noodleCutoff
         ) {
-          // Check mode
-          // Send the data to the main update or create function
-          if (noodleID) {
-            this.props.onUpdate(status, noodleData);
-            this.deleteDeletedImages();
-          } else {
-            this.props.onCreate(status, noodleData);
-          }
+          this.createOrUpdateNoodle(status);
         } else {
           alert("You must fill in all of the information to save as an event!");
         }
@@ -285,6 +255,49 @@ class CreateOrEditNoodle extends React.Component {
       default:
         alert("Error: Invalid Type");
         break;
+    }
+  };
+
+  // Method to create or update a noodle
+  createOrUpdateNoodle = (status) => {
+    // Get the required data
+    // Create the object to be sent to the API
+    const noodleData = {
+      noodleTitle: this.state.noodleTitle,
+      userID: this.props.currentUserID,
+      noodleStatus: status,
+      noodleDescription: this.state.noodleDescription,
+      noodleTags: this.state.noodleTags,
+      noodleSummary: this.state.noodleSummary,
+      noodleLocation: this.state.noodleLocation,
+      noodleDirections: this.state.noodleDirections,
+      noodleDate: this.state.noodleDate,
+      noodleTime: this.state.noodleTime,
+      noodleCoverImage: this.state.noodleCoverImage,
+      noodleImages: this.state.noodleImages,
+      noodleImageText: this.state.noodleImageText,
+      noodlePrice: this.state.noodlePrice,
+      noodleMinTickets: this.state.noodleMinTickets,
+      noodleMaxTickets: this.state.noodleMaxTickets,
+      noodleCutoff: this.state.noodleCutoff,
+      noodleID: this.state.noodleID,
+    };
+    // Check mode
+    // Send the data to the main update or create function
+    if (this.state.noodleID) {
+      // Edit
+      // Use chained promised to keep synchronized
+      this.deleteImages().then((deleteImagesResult) =>
+        this.uploadImages().then((uploadImagesResult) => {
+          this.props.onUpdate(status, noodleData);
+        })
+      );
+    } else {
+      // Create
+      // Use chained promised to keep synchronized
+      this.uploadImages().then((uploadImagesResult) => {
+        this.props.onCreate(status, noodleData);
+      });
     }
   };
 
@@ -323,31 +336,6 @@ class CreateOrEditNoodle extends React.Component {
 
   // Render method
   render() {
-    // Get data from state
-    const {
-      createMode,
-      userName,
-      userBio,
-      userBioLong,
-      noodleSummary,
-      noodleDescription,
-      noodleLocation,
-      noodleDirections,
-      noodleTitle,
-      noodleTags,
-      noodlePrice,
-      noodleMinTickets,
-      noodleMaxTickets,
-      noodleCutoff,
-      noodleCoverImage,
-      noodleImages,
-      noodleImageText,
-      noodleStatus,
-      noodleDate,
-      noodleTime,
-      noodleID,
-    } = this.state;
-
     // Create an array to store data about the sections
     let sections = [];
 
@@ -410,36 +398,36 @@ class CreateOrEditNoodle extends React.Component {
           <>
             <CreateSection3
               sections={sections}
-              noodleLocation={noodleLocation}
-              noodleDirections={noodleDirections}
+              noodleLocation={this.state.noodleLocation}
+              noodleDirections={this.state.noodleDirections}
               onChange={this.handleChange}
             ></CreateSection3>
             <CreateSection4
               sections={sections}
-              noodleDate={noodleDate}
-              noodleTime={noodleTime}
+              noodleDate={this.state.noodleDate}
+              noodleTime={this.state.noodleTime}
               onChange={this.handleChange}
             ></CreateSection4>
             <CreateSection5
               sections={sections}
-              noodleTags={noodleTags}
-              noodleCoverImage={noodleCoverImage}
-              noodleImages={noodleImages}
-              noodleImageText={noodleImageText}
+              noodleTags={this.state.noodleTags}
+              noodleCoverImage={this.state.noodleCoverImage}
+              noodleImages={this.state.noodleImages}
+              noodleImageText={this.state.noodleImageText}
               onChangeImage={this.changeImage}
               onChangeImages={this.changeImages}
               onChangeImagesText={this.changeImagesText}
             ></CreateSection5>
             <CreateSection6
               sections={sections}
-              noodlePrice={noodlePrice}
+              noodlePrice={this.state.noodlePrice}
               onChange={this.handleChange}
             ></CreateSection6>
             <CreateSection7
               sections={sections}
-              noodleMinTickets={noodleMinTickets}
-              noodleMaxTickets={noodleMaxTickets}
-              noodleCutoff={noodleCutoff}
+              noodleMinTickets={this.state.noodleMinTickets}
+              noodleMaxTickets={this.state.noodleMaxTickets}
+              noodleCutoff={this.state.noodleCutoff}
               onChange={this.handleChange}
             ></CreateSection7>
           </>
@@ -449,35 +437,37 @@ class CreateOrEditNoodle extends React.Component {
 
     // Return the create page
     return (
-      <main id="create" className={createMode}>
+      <main id="create" className={this.state.createMode}>
         <form id="create_form" onSubmit={this.handleSubmit}>
-          <CreateNavProgressBar createMode={createMode} sections={sections} />
+          <CreateNavProgressBar
+            createMode={this.state.createMode}
+            sections={sections}
+          />
           <CreateSection1
             sections={sections}
-            userName={userName}
-            userBio={userBio}
-            userBioLong={userBioLong}
+            userName={this.state.userName}
+            userBio={this.state.userBio}
+            userBioLong={this.state.userBioLong}
             onChange={this.handleChange}
           />
           <CreateSection2
             sections={sections}
-            noodleTitle={noodleTitle}
-            noodleSummary={noodleSummary}
-            noodleDescription={noodleDescription}
-            noodleTags={noodleTags}
+            noodleTitle={this.state.noodleTitle}
+            noodleSummary={this.state.noodleSummary}
+            noodleDescription={this.state.noodleDescription}
+            noodleTags={this.state.noodleTags}
             onChange={this.handleChange}
             onChangeTags={this.changeTags}
           />
           {eventDetails()}
           <CreateSubmitBar
             sections={sections}
-            noodleStatus={noodleStatus}
-            createMode={createMode}
+            noodleStatus={this.state.noodleStatus}
+            createMode={this.state.createMode}
             setMode={this.setMode}
-            onCreate={this.create}
+            onSubmit={this.submit}
             onUploadImages={this.uploadImages}
-            readyToSubmit={this.readyToSubmit}
-            noodleID={noodleID}
+            noodleID={this.state.noodleID}
           />
         </form>
       </main>

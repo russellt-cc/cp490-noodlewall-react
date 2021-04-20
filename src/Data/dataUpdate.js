@@ -18,7 +18,7 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
         break;
       default:
         alert("Error: Unknown Type");
-        return false;
+        return Promise.reject("Unknown Type");
     }
     // AJAX request to PHP server
     const { apiURL, apiUpdate } = apiConfig();
@@ -67,13 +67,13 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
               error.message +
               "."
           );
-          return error;
+          return error.message;
         }
       );
   } else {
     // Just show a message
     alert("You can't update data when using the static JSON data.");
-    return false;
+    return Promise.reject("Can't update when not using API");
   }
 }
 

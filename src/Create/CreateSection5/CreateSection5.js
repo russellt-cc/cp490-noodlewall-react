@@ -151,7 +151,13 @@ class CreateSection5 extends React.Component {
                     }`}
                     onClick={() => this.changeGalleryImage(index)}
                   >
-                    <img src={decodeURIComponent(item)} alt={index}></img>
+                    {item && typeof item === "object" ? (
+                      <img src={URL.createObjectURL(item)} alt={index} />
+                    ) : item ? (
+                      <img src={decodeURIComponent(item)} alt={index} />
+                    ) : (
+                      <></>
+                    )}
                   </button>
                 );
               } else {

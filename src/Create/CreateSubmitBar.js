@@ -9,10 +9,8 @@ class CreateSubmitBar extends React.Component {
       noodleStatus,
       createMode,
       setMode,
-      onCreate,
-      onUploadImages,
+      onSubmit,
       noodleID,
-      readyToSubmit,
     } = this.props;
 
     // Create the cancel button based on current status
@@ -48,7 +46,7 @@ class CreateSubmitBar extends React.Component {
             }`}
             name="create_dream"
             type="button"
-            onClick={() => onCreate("dream")}
+            onClick={() => onSubmit("dream")}
           >
             Save as Dream
           </button>
@@ -73,14 +71,13 @@ class CreateSubmitBar extends React.Component {
               sections[4 - 1].className === "finished" &&
               sections[5 - 1].className === "finished" &&
               sections[6 - 1].className === "finished" &&
-              sections[7 - 1].className === "finished" &&
-              readyToSubmit()
+              sections[7 - 1].className === "finished"
                 ? "finished"
                 : "unfinished"
             }`}
             name="create_event"
             type="button"
-            onClick={() => onCreate("event")}
+            onClick={() => onSubmit("event")}
           >
             Make it Happen
           </button>
@@ -100,30 +97,11 @@ class CreateSubmitBar extends React.Component {
       }
     };
 
-    const uploadImagesButton = () => {
-      if (createMode === "event") {
-        return (
-          <button
-            type="button"
-            className={`noodle_button ${
-              readyToSubmit() ? "unfinished" : "finished"
-            }`}
-            onClick={() => onUploadImages()}
-          >
-            Upload Images
-          </button>
-        );
-      } else {
-        return <></>;
-      }
-    };
-
     // Return the submit bar
     return (
       <div id="create_submit_bar">
         {cancelButton()}
         {createDreamButton()}
-        {uploadImagesButton()}
         {createEventButton()}
       </div>
     );

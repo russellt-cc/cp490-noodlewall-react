@@ -19,6 +19,7 @@ function apiUploadImage(imageFile) {
       (error) => {
         // console.log(error);
         alert("Error uploading image! Response from server: " + error.message);
+        return error.message;
       }
     );
 }
