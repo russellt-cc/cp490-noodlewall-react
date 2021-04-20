@@ -11,6 +11,10 @@ import CreateSection6 from "./CreateSection6";
 import CreateSection7 from "./CreateSection7";
 import CreateSubmitBar from "./CreateSubmitBar";
 
+import apiUploadImage from "../Data/apiUploadImage";
+import apiDeleteImage from "../Data/apiDeleteImage";
+import apiConfig from "../Data/apiConfig";
+
 // The create dream / event page
 class CreateOrEditNoodle extends React.Component {
   constructor(props) {
@@ -129,23 +133,6 @@ class CreateOrEditNoodle extends React.Component {
     });
   };
 
-  // Method to upload an image to api
-  // Returns a promise with the image URL
-  apiUploadImage = (imageFile) => {
-    const { apiConfig } = this.props;
-    const { apiURL, apiNoodlePath, apiNoodleUploadImage } = apiConfig;
-    const formData = new FormData();
-    formData.append("image", imageFile);
-    return fetch(apiURL + apiNoodlePath + apiNoodleUploadImage, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        return res.imageAddress;
-      });
-  };
-
   // Method to upload images
   // Checks if there are any images that need to be uploaded
   uploadImages = () => {
@@ -154,20 +141,15 @@ class CreateOrEditNoodle extends React.Component {
     noodleImages.forEach((image, index) => {
       // Check if object
       if (typeof image === "object") {
-        const uploadedImagePromise = this.apiUploadImage(image);
-        uploadedImagePromise.then(
-          (imageAddress) => {
-            let { noodleCoverImage } = this.state;
-            if (noodleCoverImage === image) {
-              noodleCoverImage = imageAddress;
-            }
-            noodleImages[index] = imageAddress;
-            this.setState({ noodleImages, noodleCoverImage });
-          },
-          (error) => {
-            console.log(error);
+        const uploadedImagePromise = apiUploadImage(image);
+        uploadedImagePromise.then((imageAddress) => {
+          let { noodleCoverImage } = this.state;
+          if (noodleCoverImage === image) {
+            noodleCoverImage = imageAddress;
           }
-        );
+          noodleImages[index] = imageAddress;
+          this.setState({ noodleImages, noodleCoverImage });
+        });
       }
     });
   };
@@ -186,36 +168,15 @@ class CreateOrEditNoodle extends React.Component {
     // Go through the list of old images
     noodleImagesOld.forEach((image, index) => {
       // See if the image is hosted on the api
-      const { apiConfig } = this.props;
-      const { apiURL } = apiConfig;
-      if (
-        image.substring(0, apiURL.length) ===
-        "http://gatkinson.site/noodlewall/"
-      ) {
+      const { apiURL } = apiConfig();
+      if (image && image.substring(0, apiURL.length) === apiURL) {
         // Check to see if it is in the new list of images
         if (!noodleImagesNew.includes(image)) {
           // Delete the image from the server
-          this.apiDeleteImage(image);
+          apiDeleteImage(image);
         }
       }
     });
-  };
-
-  // Method to delete a hosted image
-  apiDeleteImage = (imageAddress) => {
-    const { apiConfig } = this.props;
-    const { apiURL, apiNoodlePath, apiNoodleDeleteImage } = apiConfig;
-    fetch(apiURL + apiNoodlePath + apiNoodleDeleteImage, {
-      method: "POST",
-      body: { imageAddress },
-    }).then(
-      (response) => {
-        // console.log(response);
-      },
-      (error) => {
-        // console.log(error);
-      }
-    );
   };
 
   // Check if there are any images that need to be uploaded

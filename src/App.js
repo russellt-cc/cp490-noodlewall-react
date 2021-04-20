@@ -35,16 +35,6 @@ class App extends React.Component {
       noodleData: [],
       userData: [],
       currentUserID: null,
-      useAPI: true,
-      apiURL: "http://gatkinson.site/noodlewall/",
-      apiCreate: "create.php",
-      apiRead: "read.php",
-      apiUpdate: "update.php",
-      apiDelete: "delete.php",
-      apiNoodlePath: "event/",
-      apiUserPath: "user/",
-      apiNoodleUploadImage: "uploadEventImage.php",
-      apiNoodleDeleteImage: "deleteEventImage.php",
       redirectPath: null,
     };
   }
@@ -66,75 +56,32 @@ class App extends React.Component {
 
   // Create
   create = (type, data) => {
-    // Get configuration from state
-    const {
-      useAPI,
-      apiNoodlePath,
-      apiUserPath,
-      apiURL,
-      apiCreate,
-    } = this.state;
-    const apiConfig = { useAPI, apiNoodlePath, apiUserPath, apiURL, apiCreate };
     // Create data using component function
-    dataCreate(
-      type,
-      data,
-      apiConfig,
-      this.returnState,
-      this.refresh,
-      this.login
-    );
+    dataCreate(type, data, this.returnState, this.refresh, this.login);
   };
 
   // Read
   read = () => {
-    // Get configuration from state
-    const { useAPI, apiURL, apiRead } = this.state;
-    const apiConfig = { useAPI, apiURL, apiRead };
     // Load data using component function
-    dataRead(apiConfig, this.returnState);
+    dataRead(this.returnState);
   };
 
   // Update
   update = (type, data) => {
     // Get configuration from state
-    const {
-      useAPI,
-      apiNoodlePath,
-      apiUserPath,
-      apiURL,
-      apiUpdate,
-      currentUserID,
-    } = this.state;
-    const apiConfig = { useAPI, apiNoodlePath, apiUserPath, apiURL, apiUpdate };
+    const { currentUserID } = this.state;
     // Update data using component function
-    dataUpdate(
-      type,
-      data,
-      apiConfig,
-      this.returnState,
-      this.refresh,
-      currentUserID
-    );
+    dataUpdate(type, data, this.returnState, this.refresh, currentUserID);
   };
 
   // Delete
   delete = (type, data) => {
     // Get configuration from state
-    const {
-      useAPI,
-      apiNoodlePath,
-      apiUserPath,
-      apiURL,
-      apiDelete,
-      currentUserID,
-    } = this.state;
-    const apiConfig = { useAPI, apiNoodlePath, apiUserPath, apiURL, apiDelete };
+    const { currentUserID } = this.state;
     // Delete data using component function
     dataDelete(
       type,
       data,
-      apiConfig,
       this.returnState,
       this.refresh,
       this.logout,
@@ -206,10 +153,6 @@ class App extends React.Component {
       noodleData,
       userData,
       currentUserID,
-      apiURL,
-      apiNoodlePath,
-      apiNoodleUploadImage,
-      apiNoodleDeleteImage,
     } = this.state;
     // Handle redirects
     const redirect = () => {
@@ -220,12 +163,6 @@ class App extends React.Component {
         this.setState({ redirectPath: null });
       }
       return redirectJSX;
-    };
-    const apiConfig = {
-      apiURL,
-      apiNoodlePath,
-      apiNoodleUploadImage,
-      apiNoodleDeleteImage,
     };
     // Return the Noodlewall app
     return (
@@ -259,7 +196,6 @@ class App extends React.Component {
             onUpdate={this.update}
             onDelete={this.delete}
             onLogin={this.login}
-            apiConfig={apiConfig}
           />
           {/* Show the Noodlewall footer */}
           <Footer />

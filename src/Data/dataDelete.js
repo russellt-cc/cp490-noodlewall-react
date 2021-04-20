@@ -1,15 +1,9 @@
+import apiConfig from "./apiConfig";
+
 // Function to handle deleting data using API
-function dataDelete(
-  type,
-  data,
-  apiConfig,
-  returnState,
-  refresh,
-  logout,
-  currentUserID
-) {
+function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
   // Check whether we are using the API for data
-  const { useAPI, apiNoodlePath, apiUserPath } = apiConfig;
+  const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
   if (useAPI) {
     let apiPath = "product";
     // Check the type
@@ -26,7 +20,7 @@ function dataDelete(
         return;
     }
     // AJAX request to PHP server
-    const { apiURL, apiDelete } = apiConfig;
+    const { apiURL, apiDelete } = apiConfig();
     fetch(apiURL + apiPath + apiDelete, {
       method: "POST",
       body: JSON.stringify(data),

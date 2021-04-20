@@ -1,14 +1,9 @@
+import apiConfig from "./apiConfig";
+
 // Function to handle updating data using API
-function dataUpdate(
-  type,
-  data,
-  apiConfig,
-  returnState,
-  refresh,
-  currentUserID
-) {
+function dataUpdate(type, data, returnState, refresh, currentUserID) {
   // Check whether we are using the API for data
-  const { useAPI, apiNoodlePath, apiUserPath } = apiConfig;
+  const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
   if (useAPI) {
     let apiPath = "product";
     // Check the type
@@ -25,7 +20,7 @@ function dataUpdate(
         return;
     }
     // AJAX request to PHP server
-    const { apiURL, apiUpdate } = apiConfig;
+    const { apiURL, apiUpdate } = apiConfig();
     fetch(apiURL + apiPath + apiUpdate, {
       method: "POST",
       body: JSON.stringify(data),

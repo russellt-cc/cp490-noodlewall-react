@@ -1,9 +1,11 @@
+import apiConfig from "./apiConfig";
+
 // Get local JSON file
 import { noodleData, userData } from "./noodleData";
 
 // Function to handle reading data from API or local JSON
-function dataRead(apiConfig, returnState) {
-  const { useAPI, apiURL, apiRead } = apiConfig;
+function dataRead(returnState) {
+  const { useAPI, apiURL, apiRead } = apiConfig();
   // Check whether we are using the API for data
   if (useAPI) {
     // AJAX request to PHP server

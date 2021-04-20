@@ -1,7 +1,9 @@
+import apiConfig from "./apiConfig";
+
 // Function to handle creating data using API
-function dataCreate(type, data, apiConfig, returnState, refresh, login) {
+function dataCreate(type, data, returnState, refresh, login) {
   // Check whether we are using the API for data
-  const { useAPI, apiNoodlePath, apiUserPath } = apiConfig;
+  const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
   if (useAPI) {
     let apiPath = "product";
     // Check the type
@@ -18,7 +20,7 @@ function dataCreate(type, data, apiConfig, returnState, refresh, login) {
         return;
     }
     // AJAX request to PHP server
-    const { apiURL, apiCreate } = apiConfig;
+    const { apiURL, apiCreate } = apiConfig();
     fetch(apiURL + apiPath + apiCreate, {
       method: "POST",
       body: JSON.stringify(data),
