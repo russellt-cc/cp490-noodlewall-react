@@ -127,4 +127,7 @@
   #create #create_nav_progress_bar {
     position: absolute;
   }
+  #create .create_nav_progress_bar_toggle {
+    display: none;
+  }
 }

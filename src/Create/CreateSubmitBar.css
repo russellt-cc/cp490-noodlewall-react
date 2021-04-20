@@ -55,4 +55,7 @@
   #create #create_submit_bar {
     position: static;
   }
+  #create .create_submit_bar_toggle {
+    display: none;
+  }
 }
