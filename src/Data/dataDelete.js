@@ -25,50 +25,53 @@ function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
     return fetch(apiURL + apiPath + apiDelete, {
       method: "POST",
       body: JSON.stringify(data),
-    }).then(
-      (result) => {
-        // console.log("Delete Succeeded");
-        // console.log("Outgoing Data:");
-        // console.log(data);
-        // console.log("Incoming Data:");
-        // console.log(result);
-        // Reload data
-        refresh();
-        // Handle redirect
-        let redirectPath;
-        switch (type) {
-          case "dream":
-          case "event":
-            // Redirect to user page
-            redirectPath = "/user/" + currentUserID;
-            break;
-          case "user":
-            // Logout
-            logout();
-            // Redirect to login
-            redirectPath = "/login";
-            break;
-          default:
-            redirectPath = "/";
-            break;
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          // console.log("Delete Succeeded");
+          // console.log("Outgoing Data:");
+          // console.log(data);
+          // console.log("Incoming Data:");
+          // console.log(result);
+          // Reload data
+          refresh();
+          // Handle redirect
+          let redirectPath;
+          switch (type) {
+            case "dream":
+            case "event":
+              // Redirect to user page
+              redirectPath = "/user/" + currentUserID;
+              break;
+            case "user":
+              // Logout
+              logout();
+              // Redirect to login
+              redirectPath = "/login";
+              break;
+            default:
+              redirectPath = "/";
+              break;
+          }
+          returnState({ redirectPath });
+          // console.log(result);
+          return result;
+        },
+        (error) => {
+          // console.log("Delete Failed");
+          // console.log("Incoming Data:");
+          // console.log(error);
+          // alert(
+          //   "Failed to delete " +
+          //     type +
+          //     "! Response from server: " +
+          //     error.message +
+          //     "."
+          // );
+          return error;
         }
-        returnState({ redirectPath });
-        return result;
-      },
-      (error) => {
-        // console.log("Delete Failed");
-        // console.log("Incoming Data:");
-        // console.log(error);
-        // alert(
-        //   "Failed to delete " +
-        //     type +
-        //     "! Response from server: " +
-        //     error.message +
-        //     "."
-        // );
-        return error;
-      }
-    );
+      );
   } else {
     // Just show a message
     // alert("You can't delete data when using the static JSON data.");

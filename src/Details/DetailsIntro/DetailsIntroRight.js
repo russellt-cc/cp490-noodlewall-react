@@ -12,7 +12,16 @@ class DetailsIntroRight extends React.Component {
       // Create the data object
       const data = { noodleID: noodleID };
       // Call the delete method
-      this.props.onDelete(noodleStatus, data);
+      this.props.onDelete(noodleStatus, data).then(
+        (result) => {
+          // Delete successful
+          // console.log(result);
+        },
+        (error) => {
+          // Delete failed
+          // console.log(error);
+        }
+      );
     }
   };
   // Render Method
@@ -87,7 +96,7 @@ class DetailsIntroRight extends React.Component {
           </div>
         );
       } else if (parseInt(hostID) !== parseInt(currentUserID)) {
-        // Actions for viewing your own noodle
+        // Actions for viewing another users noodle
         return (
           <div id={`details_host_intro_${noodleStatus}`}>
             <p>
@@ -103,7 +112,7 @@ class DetailsIntroRight extends React.Component {
           </div>
         );
       } else {
-        // Actions for viewing another users noodle
+        // Actions for viewing your own noodle
         const status = () => {
           switch (noodleStatus) {
             case "dream":

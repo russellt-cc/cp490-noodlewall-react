@@ -194,7 +194,11 @@ class CreateOrEditNoodle extends React.Component {
             // Check to see if it is in the new list of images
             if (!noodleImagesNew.includes(image)) {
               // Delete the image from the server
-              const deletedImagePromise = apiDeleteImage(status, image);
+              const splitImageAddress = image.split("/");
+              const imageAddress =
+                splitImageAddress[splitImageAddress.length - 1];
+              const data = { imageAddress };
+              const deletedImagePromise = apiDeleteImage(status, data);
               return deletedImagePromise.then((result) => {
                 return result;
               });
@@ -273,37 +277,37 @@ class CreateOrEditNoodle extends React.Component {
       this.deleteImages(status).then(
         (deleteImagesResult) => {
           // Deletion completed successfully
-          console.log(deleteImagesResult);
+          // console.log(deleteImagesResult);
           // Then once deletion is completed upload all new images
           this.uploadImages(status).then(
             (uploadImagesResult) => {
               // Upload completed successfully
-              console.log(uploadImagesResult);
+              // console.log(uploadImagesResult);
               // Then once upload is completed get the noodleData object from state and props
               const noodleData = this.noodleData(status);
               // Update the entry in the database with the new data
               this.props.onUpdate(status, noodleData).then(
                 (updateNoodleResult) => {
                   // Update completed successfully
-                  console.log(updateNoodleResult);
+                  // console.log(updateNoodleResult);
                 },
                 (updateNoodleError) => {
                   // Update failed
-                  console.log(updateNoodleError);
+                  // console.log(updateNoodleError);
                   alert("Update Failed! Error: " + updateNoodleError.message);
                 }
               );
             },
             (uploadImagesError) => {
               // Upload failed
-              console.log(uploadImagesError);
+              // console.log(uploadImagesError);
               alert("Image Upload Failed! Error: " + uploadImagesError.message);
             }
           );
         },
         (deleteImagesError) => {
           // Deletion failed
-          console.log(deleteImagesError);
+          // console.log(deleteImagesError);
           alert("Image Deletion Failed! Error: " + deleteImagesError.message);
         }
       );
