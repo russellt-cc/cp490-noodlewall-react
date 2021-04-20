@@ -91,26 +91,12 @@ class CreateOrEditNoodle extends React.Component {
       // Put default data in state for testing
       this.state = {
         createMode: noodleStatus,
-        noodleID: undefined,
-        noodleStatus: undefined,
         userName: userName ? userName : "User Name",
         userBio: userBio ? userBio : "User Bio",
         userBioLong: userBioLong ? userBioLong : "User Bio Long",
-        noodleTitle: undefined,
-        noodleSummary: undefined,
-        noodleDescription: undefined,
-        noodleLocation: undefined,
-        noodleDirections: undefined,
-        noodleDate: undefined,
-        noodleTime: undefined,
         noodleTags: [],
-        noodleCoverImage: undefined,
         noodleImages: [],
         noodleImageText: [],
-        noodlePrice: undefined,
-        noodleMinTickets: undefined,
-        noodleMaxTickets: undefined,
-        noodleCutoff: undefined,
       };
     }
   }
@@ -156,10 +142,7 @@ class CreateOrEditNoodle extends React.Component {
                 // Set the link in state to be the uploaded image
                 let { noodleCoverImage } = this.state;
                 // Compare the cover image with this image
-                if (
-                  typeof noodleCoverImage === "object" &&
-                  noodleCoverImage.size === image.size
-                ) {
+                if (noodleCoverImage === image) {
                   // Set the cover image to the uploaded file url
                   noodleCoverImage = result.imageAddress;
                 }
@@ -371,7 +354,10 @@ class CreateOrEditNoodle extends React.Component {
       noodleDirections: this.state.noodleDirections,
       noodleDate: this.state.noodleDate,
       noodleTime: this.state.noodleTime,
-      noodleCoverImage: this.state.noodleCoverImage,
+      noodleCoverImage:
+        this.state.noodleImages && this.state.noodleImages.length
+          ? this.state.noodleCoverImage
+          : null,
       noodleImages: this.state.noodleImages,
       noodleImageText: this.state.noodleImageText.map((text, index) => {
         // Encode noodle image text so it can be stored as CSV

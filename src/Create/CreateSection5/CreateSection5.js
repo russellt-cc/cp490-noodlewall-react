@@ -74,7 +74,22 @@ class CreateSection5 extends React.Component {
       noodleImageText,
       onChangeImages,
       onChangeImagesText,
+      noodleCoverImage,
     } = this.props;
+    // Check if this is the gallery image
+    if (noodleCoverImage === noodleImages[index]) {
+      // See if we have another image
+      if (index > 0 && noodleImages[0]) {
+        // Change to the first image
+        this.changeImage(noodleImages[0]);
+      } else if (index === 0 && noodleImages[1]) {
+        // Change to second image
+        this.changeImage(noodleImages[1]);
+      } else {
+        // Delete the gallery image
+        this.changeImage(null);
+      }
+    }
     // Make a copy of the images array
     let splicedImages = [...noodleImages];
     // Remove the specified image
