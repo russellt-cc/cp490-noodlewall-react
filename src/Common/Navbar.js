@@ -67,7 +67,7 @@ class Navbar extends React.Component {
     ) : (
       <div id="loggedout_create_drop" className="drop">
         <div>
-          <Link className="noodle_button" to="/login">
+          <Link className="noodle_button" to="/login/create">
             You must log in to create a dream or event.
           </Link>
         </div>
