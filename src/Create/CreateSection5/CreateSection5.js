@@ -195,6 +195,7 @@ class CreateSection5 extends React.Component {
           Upload as many images as you would like to be displayed on the event
           page.
         </p>
+        {noodleImageList}
         <button
           type="button"
           id="noodleAddImageButton"
@@ -204,7 +205,6 @@ class CreateSection5 extends React.Component {
         >
           Add Image
         </button>
-        {noodleImageList}
         {noodleImageGallery}
       </section>
     );

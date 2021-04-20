@@ -76,7 +76,7 @@ class NoodleDetails extends React.Component {
       const detailsImageList = noodleImages ? (
         noodleImages.map((imageURL, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="details_details_image_text_container">
               <img src={decodeURIComponent(imageURL)} alt={index}></img>
               <p>
                 {noodleImageText[index] &&

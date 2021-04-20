@@ -17,6 +17,17 @@ class CreateImage extends React.Component {
       randomImageWidth: 1280,
       randomImageHeight: 720,
     };
+    // Check to see if we have an image already
+    if (!this.props.noodleImage) {
+      // We don't have an image
+      // Get a random image from unsplash
+      const randomImage = getRandomImageFromUnsplash(
+        this.state.randomImageWidth,
+        this.state.randomImageHeight,
+        this.props.noodleTags
+      );
+      randomImage.then((randomImage) => this.changeImage(randomImage));
+    }
   }
 
   // Method to change this images URL
