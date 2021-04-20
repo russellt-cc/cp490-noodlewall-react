@@ -43,7 +43,7 @@ class App extends React.Component {
   // Runs when the app is mounted in the DOM
   componentDidMount() {
     // Load data
-    this.read();
+    this.refresh();
   }
 
   // Return state method so we can update app state in child components
@@ -62,9 +62,10 @@ class App extends React.Component {
   };
 
   // Read
-  read = () => {
+  // Return promise
+  read = (type) => {
     // Load data using component function
-    dataRead(this.returnState);
+    return dataRead(type);
   };
 
   // Update
@@ -100,11 +101,55 @@ class App extends React.Component {
 
   // Refresh
   refresh = () => {
-    this.setState({
-      noodlesAreCooked: false,
-      noodlersAreLoaded: false,
-    });
-    this.read();
+    // Set state to not loaded
+    this.setState(
+      {
+        noodlesAreCooked: false,
+        noodlersAreLoaded: false,
+      },
+      () => {
+        // Load data in callback function
+        this.read("noodles")
+          .then(
+            (result) => {
+              // Noodles loaded successfully
+              // console.log(result);
+              this.setState({
+                noodlesAreCooked: true,
+                noodleData: result.records,
+              });
+            },
+            (error) => {
+              // Noodles failed to load
+              // console.log(error);
+              this.setState({
+                noodlesAreCooked: true,
+                error,
+              });
+            }
+          )
+          .then(
+            this.read("users").then(
+              (result) => {
+                // Users loaded successfully
+                // console.log(result);
+                this.setState({
+                  noodlersAreLoaded: true,
+                  userData: result.records,
+                });
+              },
+              (error) => {
+                // Users failed to load
+                // console.log(error);
+                this.setState({
+                  noodlersAreLoaded: true,
+                  error,
+                });
+              }
+            )
+          );
+      }
+    );
   };
 
   // Login

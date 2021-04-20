@@ -139,7 +139,7 @@ class CreateOrEditNoodle extends React.Component {
   // Method to upload images
   // Checks if there are any images that need to be uploaded
   // Return a Promise.all
-  uploadImages = () => {
+  uploadImages = (status) => {
     // Get image list from state
     let { noodleImages } = this.state;
     // Check for local images
@@ -151,7 +151,7 @@ class CreateOrEditNoodle extends React.Component {
             // If object then image is a file object and needs to be uploaded
             if (typeof image === "object") {
               // Upload the image and get the address back as a promise
-              const uploadedImagePromise = apiUploadImage(image);
+              const uploadedImagePromise = apiUploadImage(status, image);
               return uploadedImagePromise.then((result) => {
                 // Set the link in state to be the uploaded image
                 let { noodleCoverImage } = this.state;
@@ -190,7 +190,7 @@ class CreateOrEditNoodle extends React.Component {
 
   // Method to see which images can be deleted
   // Return a Promise.all
-  deleteImages = () => {
+  deleteImages = (status) => {
     // Get the old list of images from props
     const { noodleData } = this.props;
     const { noodleID } = this.state;
@@ -211,7 +211,7 @@ class CreateOrEditNoodle extends React.Component {
             // Check to see if it is in the new list of images
             if (!noodleImagesNew.includes(image)) {
               // Delete the image from the server
-              const deletedImagePromise = apiDeleteImage(image);
+              const deletedImagePromise = apiDeleteImage(status, image);
               return deletedImagePromise.then((result) => {
                 return result;
               });
@@ -287,40 +287,40 @@ class CreateOrEditNoodle extends React.Component {
       // Edit
       // Use chained promises to keep synchronized
       // First delete all deleted images from server
-      this.deleteImages().then(
+      this.deleteImages(status).then(
         (deleteImagesResult) => {
           // Deletion completed successfully
-          // console.log(deleteImagesResult);
+          console.log(deleteImagesResult);
           // Then once deletion is completed upload all new images
-          this.uploadImages().then(
+          this.uploadImages(status).then(
             (uploadImagesResult) => {
               // Upload completed successfully
-              // console.log(uploadImagesResult);
+              console.log(uploadImagesResult);
               // Then once upload is completed get the noodleData object from state and props
               const noodleData = this.noodleData(status);
               // Update the entry in the database with the new data
               this.props.onUpdate(status, noodleData).then(
                 (updateNoodleResult) => {
                   // Update completed successfully
-                  // console.log(updateNoodleResult);
+                  console.log(updateNoodleResult);
                 },
                 (updateNoodleError) => {
                   // Update failed
-                  // console.log(updateNoodleError);
+                  console.log(updateNoodleError);
                   alert("Update Failed! Error: " + updateNoodleError.message);
                 }
               );
             },
             (uploadImagesError) => {
               // Upload failed
-              // console.log(uploadImagesError);
+              console.log(uploadImagesError);
               alert("Image Upload Failed! Error: " + uploadImagesError.message);
             }
           );
         },
         (deleteImagesError) => {
           // Deletion failed
-          // console.log(deleteImagesError);
+          console.log(deleteImagesError);
           alert("Image Deletion Failed! Error: " + deleteImagesError.message);
         }
       );
@@ -328,7 +328,7 @@ class CreateOrEditNoodle extends React.Component {
       // Create
       // Use chained promises to keep synchronized
       // First upload all images to server
-      this.uploadImages().then(
+      this.uploadImages(status).then(
         (uploadImagesResult) => {
           // Upload completed successfully
           // console.log(uploadImagesResult);

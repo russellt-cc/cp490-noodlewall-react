@@ -2,12 +2,34 @@ import apiConfig from "./apiConfig";
 
 // Function to upload an image to api
 // Returns a promise with the image URL
-function apiUploadImage(imageFile) {
-  const { useAPI, apiURL, apiNoodlePath, apiNoodleUploadImage } = apiConfig();
+function apiUploadImage(type, imageFile) {
+  const {
+    useAPI,
+    apiURL,
+    apiNoodlePath,
+    apiUserPath,
+    apiNoodleUploadImage,
+    apiUserUploadImage,
+  } = apiConfig();
   if (useAPI) {
+    let apiPath;
+    let apiFile;
+    switch (type) {
+      case "dream":
+      case "event":
+        apiPath = apiNoodlePath;
+        apiFile = apiNoodleUploadImage;
+        break;
+      case "user":
+        apiPath = apiUserPath;
+        apiFile = apiUserUploadImage;
+        break;
+      default:
+        return Promise.reject({ message: "Unknown Type!" });
+    }
     const formData = new FormData();
     formData.append("image", imageFile);
-    return fetch(apiURL + apiNoodlePath + apiNoodleUploadImage, {
+    return fetch(apiURL + apiPath + apiFile, {
       method: "POST",
       body: formData,
     })

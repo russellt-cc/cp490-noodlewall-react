@@ -2,12 +2,36 @@ import apiConfig from "./apiConfig";
 
 // Function to delete a hosted image
 // Return result as a promise
-function apiDeleteImage(imageAddress) {
-  const { useAPI, apiURL, apiNoodlePath, apiNoodleDeleteImage } = apiConfig();
+function apiDeleteImage(type, imageAddress) {
+  const {
+    useAPI,
+    apiURL,
+    apiNoodlePath,
+    apiUserPath,
+    apiNoodleDeleteImage,
+    apiUserDeleteImage,
+  } = apiConfig();
   if (useAPI) {
-    return fetch(apiURL + apiNoodlePath + apiNoodleDeleteImage, {
+    let apiPath;
+    let apiFile;
+    switch (type) {
+      case "dream":
+      case "event":
+        apiPath = apiNoodlePath;
+        apiFile = apiNoodleDeleteImage;
+        break;
+      case "user":
+        apiPath = apiUserPath;
+        apiFile = apiUserDeleteImage;
+        break;
+      default:
+        return Promise.reject({ message: "Unknown Type!" });
+    }
+    const splitImageAddress = imageAddress.split("/");
+    const fileName = splitImageAddress[splitImageAddress.length - 1];
+    return fetch(apiURL + apiPath + apiFile, {
       method: "POST",
-      body: { imageAddress },
+      body: { fileName },
     }).then(
       (result) => {
         // console.log(result);

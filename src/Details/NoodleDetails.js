@@ -106,7 +106,7 @@ class NoodleDetails extends React.Component {
             <div className="details_column left" id="details_details_left">
               <h3>Event Description</h3>
               <p>{noodleDescription}</p>
-              {detailsImageList}
+              {noodleImages && noodleImages[0] ? detailsImageList : <></>}
             </div>
             <div
               className="details_column right"
