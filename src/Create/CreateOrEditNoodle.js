@@ -136,13 +136,17 @@ class CreateOrEditNoodle extends React.Component {
   // Method to upload images
   // Checks if there are any images that need to be uploaded
   uploadImages = () => {
+    // Get image list from state
     let { noodleImages } = this.state;
     // Check for local images
     noodleImages.forEach((image, index) => {
       // Check if object
+      // If object then image is a file object and needs to be uploaded
       if (typeof image === "object") {
+        // Upload the image and get the address back as a promise
         const uploadedImagePromise = apiUploadImage(image);
         uploadedImagePromise.then((imageAddress) => {
+          // Set the link in state to be the uploaded image
           let { noodleCoverImage } = this.state;
           if (noodleCoverImage === image) {
             noodleCoverImage = imageAddress;

@@ -67,11 +67,18 @@ class App extends React.Component {
   };
 
   // Update
+  // Return promise
   update = (type, data) => {
     // Get configuration from state
     const { currentUserID } = this.state;
     // Update data using component function
-    dataUpdate(type, data, this.returnState, this.refresh, currentUserID);
+    return dataUpdate(
+      type,
+      data,
+      this.returnState,
+      this.refresh,
+      currentUserID
+    );
   };
 
   // Delete

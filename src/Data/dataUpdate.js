@@ -1,6 +1,7 @@
 import apiConfig from "./apiConfig";
 
 // Function to handle updating data using API
+// Return response as a promise
 function dataUpdate(type, data, returnState, refresh, currentUserID) {
   // Check whether we are using the API for data
   const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
@@ -17,11 +18,11 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
         break;
       default:
         alert("Error: Unknown Type");
-        return;
+        return false;
     }
     // AJAX request to PHP server
     const { apiURL, apiUpdate } = apiConfig();
-    fetch(apiURL + apiPath + apiUpdate, {
+    return fetch(apiURL + apiPath + apiUpdate, {
       method: "POST",
       body: JSON.stringify(data),
     })
@@ -53,6 +54,7 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
               break;
           }
           returnState({ redirectPath });
+          return result;
         },
         (error) => {
           // console.log("Update Failed");
@@ -65,11 +67,13 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
               error.message +
               "."
           );
+          return error;
         }
       );
   } else {
     // Just show a message
     alert("You can't update data when using the static JSON data.");
+    return false;
   }
 }
 
