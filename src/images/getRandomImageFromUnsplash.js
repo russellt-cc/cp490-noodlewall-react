@@ -18,17 +18,12 @@ function getRandomImageFromUnsplash(
     randomImageRequest = randomImageRequest + "/?" + tags;
   }
   // Get random image as a promise
-  const randomImage = fetch(randomImageRequest).then((response) => {
-    // console.log("Request for random image succeeded");
-    // console.log("Outgoing Data");
-    // console.log(randomImageRequest);
-    // console.log("Incoming Data");
+  return fetch(randomImageRequest).then((response) => {
     // console.log(response);
-    // console.log("Response URL");
-    // console.log(response.url);
+    const url = response.url;
     // Break down the URL so it fits in the database
     // Split URL into URL and parameters and store in an array
-    const splitURL = response.url.split("?");
+    const splitURL = url.split("?");
     // Split parameters and store in an array
     const splitParams = splitURL[1].split("&");
     // Split parameters into key and value and store in parallel arrays
@@ -57,10 +52,8 @@ function getRandomImageFromUnsplash(
     // Encode the URL so we can store in the database
     const encodedURL = encodeURIComponent(myURL);
     // Return the encoded URL
-    return encodedURL;
+    return Promise.resolve({ url, encodedURL });
   });
-  // Return the promise
-  return randomImage;
 }
 
 export default getRandomImageFromUnsplash;

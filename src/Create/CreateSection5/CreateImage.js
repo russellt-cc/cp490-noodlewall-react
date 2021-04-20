@@ -26,7 +26,17 @@ class CreateImage extends React.Component {
         this.state.randomImageHeight,
         this.props.noodleTags
       );
-      randomImage.then((randomImage) => this.changeImage(randomImage));
+      randomImage.then(
+        (result) => {
+          // Got random image
+          // console.log(result);
+          this.changeImage(result.encodedURL);
+        },
+        (error) => {
+          // Random image failed
+          // console.log(error);
+        }
+      );
     }
   }
 
@@ -133,8 +143,16 @@ class CreateImage extends React.Component {
                   randomImageHeight,
                   noodleTags
                 );
-                randomImage.then((randomImage) =>
-                  this.changeImage(randomImage)
+                randomImage.then(
+                  (result) => {
+                    // Got random image
+                    // console.log(result);
+                    this.changeImage(result.encodedURL);
+                  },
+                  (error) => {
+                    // Random image failed
+                    // console.log(error);
+                  }
                 );
               }}
             >
