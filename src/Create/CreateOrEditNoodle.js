@@ -151,14 +151,19 @@ class CreateOrEditNoodle extends React.Component {
             return uploadedImagePromise.then((imageAddress) => {
               // Set the link in state to be the uploaded image
               let { noodleCoverImage } = this.state;
+              // Compare the cover image with this image
               if (
-                URL.createObjectURL(noodleCoverImage) ===
-                URL.createObjectURL(image)
+                typeof noodleCoverImage === "object" &&
+                noodleCoverImage.size === image.size
               ) {
+                // Set the cover image to the uploaded file url
                 noodleCoverImage = imageAddress;
               }
+              // Set the image to the uploaded file url
               noodleImages[index] = imageAddress;
+              // Update state
               this.setState({ noodleImages, noodleCoverImage });
+              // Return image address to promise
               return imageAddress;
             });
           } else {
@@ -260,6 +265,29 @@ class CreateOrEditNoodle extends React.Component {
 
   // Method to create or update a noodle
   createOrUpdateNoodle = (status) => {
+    // Check mode
+    // Send the data to the main update or create function
+    if (this.state.noodleID) {
+      // Edit
+      // Use chained promised to keep synchronized
+      this.deleteImages().then((deleteImagesResult) =>
+        this.uploadImages().then((uploadImagesResult) => {
+          const noodleData = this.noodleData(status);
+          this.props.onUpdate(status, noodleData);
+        })
+      );
+    } else {
+      // Create
+      // Use chained promised to keep synchronized
+      this.uploadImages().then((uploadImagesResult) => {
+        const noodleData = this.noodleData(status);
+        this.props.onCreate(status, noodleData);
+      });
+    }
+  };
+
+  // Method to get data for a noodle
+  noodleData = (status) => {
     // Get the required data
     // Create the object to be sent to the API
     const noodleData = {
@@ -282,23 +310,7 @@ class CreateOrEditNoodle extends React.Component {
       noodleCutoff: this.state.noodleCutoff,
       noodleID: this.state.noodleID,
     };
-    // Check mode
-    // Send the data to the main update or create function
-    if (this.state.noodleID) {
-      // Edit
-      // Use chained promised to keep synchronized
-      this.deleteImages().then((deleteImagesResult) =>
-        this.uploadImages().then((uploadImagesResult) => {
-          this.props.onUpdate(status, noodleData);
-        })
-      );
-    } else {
-      // Create
-      // Use chained promised to keep synchronized
-      this.uploadImages().then((uploadImagesResult) => {
-        this.props.onCreate(status, noodleData);
-      });
-    }
+    return noodleData;
   };
 
   // Methods to update state based on child components
