@@ -158,7 +158,6 @@
 
 function apiConfig() {
   return {
-    useAPI: true,
     apiURL: "http://gatkinson.site/noodlewall/",
     apiCreate: "create.php",
     apiRead: "read.php",
