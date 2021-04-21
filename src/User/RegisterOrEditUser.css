@@ -20,7 +20,10 @@
 
 #user_edit img {
   border-radius: 150px;
-  max-width: 300px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: 100% 0%;
 }
 
 #user_edit #user_edit_image_buttons {

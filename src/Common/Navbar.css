@@ -195,11 +195,16 @@ nav #user_drop_middle {
 
 nav #nav_user_image {
   border-radius: 25px;
+  object-fit: cover;
+  object-position: 100% 0%;
 }
 
 nav #user_drop_right img {
   width: 150px;
+  height: 150px;
   border-radius: 75px;
+  object-fit: cover;
+  object-position: 100% 0%;
 }
 
 nav #login_drop,

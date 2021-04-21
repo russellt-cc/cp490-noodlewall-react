@@ -36,7 +36,10 @@
 
 #user_profile #user_profile_intro_left img {
   width: 300px;
+  height: 300px;
   border-radius: 150px;
+  object-fit: cover;
+  object-position: 100% 0%;
 }
 
 #user_profile #user_profile_intro_left h3 {
