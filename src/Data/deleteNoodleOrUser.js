@@ -3,9 +3,9 @@ import apiConfig from "./apiConfig";
 // Function to handle deleting data using API
 // Return response as a promise
 function deleteNoodleOrUser(type, data, returnState, logout, currentUser) {
-  // Check whether we are using the API for data
+  // Get paths from the api configuration
   const { apiNoodlePath, apiUserPath } = apiConfig();
-  let apiPath = "product";
+  let apiPath;
   // Check the type
   switch (type) {
     case "dream":

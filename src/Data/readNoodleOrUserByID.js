@@ -3,6 +3,7 @@ import apiConfig from "./apiConfig";
 // Function to read data by ID
 // Return response as a promise
 function readNoodleOrUserByID(type, id) {
+  // Get paths from the api configuration
   const { apiURL, apiNoodlePath, apiUserPath, apiReadByID } = apiConfig();
   let apiPath;
   switch (type) {

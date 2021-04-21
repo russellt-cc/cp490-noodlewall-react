@@ -3,8 +3,9 @@ import apiConfig from "./apiConfig";
 // Function to handle updating data using API
 // Return response as a promise
 function updateNoodleOrUser(type, data, returnState, currentUser) {
+  // Get paths from the api configuration
   const { apiNoodlePath, apiUserPath } = apiConfig();
-  let apiPath = "product";
+  let apiPath;
   // Check the type
   switch (type) {
     case "dream":

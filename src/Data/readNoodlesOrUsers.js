@@ -3,18 +3,19 @@ import apiConfig from "./apiConfig";
 // Function to handle reading data from API
 // Return response as a promise
 function readNoodlesOrUsers(type) {
-  const { apiURL, apiRead } = apiConfig();
+  // Get paths from the api configuration
+  const { apiURL, apiNoodlePath, apiUserPath, apiRead } = apiConfig();
   let apiPath;
   switch (type) {
     case "noodles":
     case "events":
     case "dreams":
       // Get noodles
-      apiPath = "event/";
+      apiPath = apiNoodlePath;
       break;
     case "users":
       // Get users
-      apiPath = "user/";
+      apiPath = apiUserPath;
       break;
     default:
       return Promise.reject({ message: "Unknown Type!" });

@@ -166,6 +166,7 @@ function apiConfig() {
     apiRead: "read.php",
     apiUpdate: "update.php",
     apiDelete: "delete.php",
+    apiSearch: "search.php?s=",
     apiNoodlePath: "event/",
     apiUserPath: "user/",
     apiNoodleUploadImage: "uploadEventImage.php",

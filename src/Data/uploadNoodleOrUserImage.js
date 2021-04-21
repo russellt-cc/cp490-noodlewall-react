@@ -3,6 +3,7 @@ import apiConfig from "./apiConfig";
 // Function to upload an image to api
 // Returns a promise with the image URL
 function uploadNoodleOrUserImage(type, imageFile) {
+  // Get paths from the api configuration
   const {
     apiURL,
     apiNoodlePath,

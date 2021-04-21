@@ -4,6 +4,7 @@ import apiConfig from "./apiConfig";
 // or read user from a noodle ID
 // Return response as a promise
 function readNoodleOrUserByOtherID(type, otherID) {
+  // Get paths from the api configuration
   const {
     apiURL,
     apiNoodlePath,

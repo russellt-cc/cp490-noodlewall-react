@@ -3,6 +3,7 @@ import apiConfig from "./apiConfig";
 // Function to delete a hosted image
 // Return result as a promise
 function deleteNoodleOrUserImage(type, data) {
+  // Get paths from the api configuration
   const {
     apiURL,
     apiNoodlePath,
