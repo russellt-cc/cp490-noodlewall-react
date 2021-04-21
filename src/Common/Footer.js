@@ -1,7 +1,13 @@
-import logo from "../Images/noodlewall-logo-50p.png";
-import "./Footer.css";
+// React
 import React from "react";
 
+// Noodlewall logo
+import logo from "../Images/noodlewall-logo-50p.png";
+
+// CSS
+import "./Footer.css";
+
+// The Noodlewall footer
 class Footer extends React.Component {
   render() {
     // Return the Noodlewall footer

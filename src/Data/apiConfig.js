@@ -156,9 +156,12 @@
 //     "iconAddress" : "http://gatkinson.site/noodlewall/images/events/example.png"
 // }
 
+// Configure API calls
+
 function apiConfig() {
   return {
     apiURL: "http://gatkinson.site/noodlewall/",
+    // apiURL: "http://www.localhost/noodlewall/",
     apiCreate: "create.php",
     apiRead: "read.php",
     apiUpdate: "update.php",

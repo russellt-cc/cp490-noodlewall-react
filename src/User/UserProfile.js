@@ -1,11 +1,23 @@
+// React
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+
+// React Router
 import { BrowserRouter as Router, Link } from "react-router-dom";
+
+// CSS
 import "./UserProfile.css";
+
+// User Rating component
 import UserRating from "../Common/UserRating";
+
+// Noodle List component
 import NoodleList from "../Common/NoodleList";
+
+// Default user icon
 import usericon from "../Images/usericon.png";
 
+// API functions
 import dataReadByID from "../Data/dataReadByID";
 import dataReadByOtherID from "../Data/dataReadByOtherID";
 
@@ -100,7 +112,7 @@ class User extends React.Component {
             <button
               className="noodle_button"
               onClick={() => {
-                this.follow();
+                alert("Thanks for the follow!");
               }}
             >
               Follow Me
@@ -108,7 +120,7 @@ class User extends React.Component {
             <button
               className="noodle_button"
               onClick={() => {
-                this.contact();
+                alert("I'll get back to you soon.");
               }}
             >
               Contact Me

@@ -7,6 +7,8 @@ function dataRead(type) {
   let apiPath;
   switch (type) {
     case "noodles":
+    case "events":
+    case "dreams":
       // Get noodles
       apiPath = "event/";
       break;

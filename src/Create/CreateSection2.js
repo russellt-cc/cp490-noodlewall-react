@@ -1,4 +1,7 @@
+// React
 import React from "react";
+
+// React inputs validation
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
@@ -10,7 +13,6 @@ class CreateSection2 extends React.Component {
     // Initialize the noodle add tag in state
     this.state = { noodleAddTag: undefined };
   }
-
   // Method to add a new tag
   addNoodleTag = (noodleAddTag) => {
     // Get method and data from props
@@ -24,7 +26,6 @@ class CreateSection2 extends React.Component {
       onChangeTags(splicedNoodles);
     }
   };
-
   // Method to remove a tag
   removeNoodleTag = (index) => {
     // Get method and data from props
@@ -34,7 +35,6 @@ class CreateSection2 extends React.Component {
     splicedNoodles.splice(index, 1);
     onChangeTags(splicedNoodles);
   };
-
   // Render method
   render() {
     // Destructure the props to get existing data

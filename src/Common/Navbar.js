@@ -1,9 +1,19 @@
-import logo from "../Images/noodlewall-logo-50p.png";
-import "./Navbar.css";
+// React
 import React from "react";
+
+// Noodlewall logo
+import logo from "../Images/noodlewall-logo-50p.png";
+
+// CSS
+import "./Navbar.css";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// Default user icon
 import usericon from "../Images/usericon.png";
 
+// Noodlewall Navbar
 class Navbar extends React.Component {
   // Get current path
   getCurrentPath = () => {

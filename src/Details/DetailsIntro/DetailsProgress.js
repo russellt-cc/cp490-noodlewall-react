@@ -1,3 +1,4 @@
+// React
 import React from "react";
 
 // The progress bar element on the details page

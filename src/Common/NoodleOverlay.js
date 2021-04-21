@@ -1,3 +1,4 @@
+// Dream overlay image
 import noodleOverlay from "../Images/dream_watermark_512.png";
 
 // Functional Stateless Component

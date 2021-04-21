@@ -1,4 +1,7 @@
+// React
 import React from "react";
+
+// React inputs validation
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 

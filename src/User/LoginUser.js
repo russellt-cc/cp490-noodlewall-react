@@ -1,9 +1,17 @@
+// React
 import React from "react";
+
+// React router
 import { Link } from "react-router-dom";
+
+// CSS
 import "./LoginUser.css";
 
+// API function
 import dataRead from "../Data/dataRead";
 
+// The login / user switcher component
+// Replace with a proper login
 class LoginUser extends React.Component {
   componentDidMount() {
     // Get the latest data from the API

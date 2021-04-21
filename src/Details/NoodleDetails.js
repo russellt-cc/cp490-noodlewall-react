@@ -1,9 +1,19 @@
-import "./NoodleDetails.css";
+// React
 import React from "react";
+
+// CSS
+import "./NoodleDetails.css";
+
+// Intro section component
 import DetailsIntro from "./DetailsIntro/DetailsIntro";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// User Rating component
 import UserRating from "../Common/UserRating";
 
+// API function
 import dataReadByID from "../Data/dataReadByID";
 
 // The event / dreams details page
@@ -12,53 +22,43 @@ class NoodleDetails extends React.Component {
     const { id } = this.props.match.params;
     // Load the latest data
     dataReadByID("noodle", id).then(
-      (result) => {
+      (noodleReadResult) => {
         // Noodle loaded successfully
-        // console.log(result);
-        let thisNoodle = result ? result : null;
-        // Parse CSV to array
-        // if (typeof thisNoodle.noodleTags === "string") {
-        //   thisNoodle.noodleTags = thisNoodle.noodleTags.split(",");
-        // }
-        // if (typeof thisNoodle.noodleImages === "string") {
-        //   thisNoodle.noodleImages = thisNoodle.noodleImages.split(",");
-        // }
-        // if (typeof thisNoodle.noodleImageText === "string") {
-        //   thisNoodle.noodleImageText = thisNoodle.noodleImageText.split(",");
-        // }
+        // console.log(noodleReadResult);
+        let thisNoodle = noodleReadResult ? noodleReadResult : null;
         const noodleIsCooked = true;
         this.setState({ thisNoodle, noodleIsCooked });
         // Load latest user data
-        dataReadByID("user", result.userID).then(
-          (result) => {
+        dataReadByID("user", noodleReadResult.userID).then(
+          (hostReadResult) => {
             // User loaded successfully
-            // console.log(result);
-            const thisHost = result ? result : {};
+            // console.log(hostReadResult);
+            const thisHost = hostReadResult ? hostReadResult : {};
             const hostIsLoaded = true;
             this.setState({ thisHost, hostIsLoaded });
           },
-          (error) => {
+          (hostReadError) => {
             // User failed to load
-            // console.log(error);
-            alert("User failed to load! Error: " + error.message);
-            const hostError = error;
+            // console.log(hostReadError);
+            alert("User failed to load! Error: " + hostReadError.message);
+            const hostError = hostReadError;
             const hostIsLoaded = true;
             this.setState({ hostError, hostIsLoaded });
           }
         );
       },
-      (error) => {
+      (noodleReadError) => {
         // Noodle failed to load
-        // console.log(error);
-        alert("Noodle failed to load! Error: " + error.message);
-        const noodleError = error;
+        // console.log(noodleReadError);
+        alert("Noodle failed to load! Error: " + noodleReadError.message);
+        const noodleError = noodleReadError;
         const noodleIsCooked = true;
         this.setState({ noodleError, noodleIsCooked });
       }
     );
   }
   render() {
-    if (this.state && this.state.noodleIsCooked) {
+    if (this.state && this.state.noodleIsCooked && this.state.hostIsLoaded) {
       // Get the noodle and host details
       const { thisNoodle } = this.state;
       let { thisHost } = this.state;

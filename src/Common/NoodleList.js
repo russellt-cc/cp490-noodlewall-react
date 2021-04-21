@@ -1,8 +1,13 @@
+// React
 import React from "react";
+
+// NoodleCard component
 import NoodleCard from "./NoodleCard";
+
+// CSS
 import "./NoodleList.css";
 
-// The list of noodles from the JSON data
+// The list of noodles from the database
 class NoodleList extends React.Component {
   // Method to determine if the noodle matches the filters
   filterNoodles = (item, filters) => {

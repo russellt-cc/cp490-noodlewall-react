@@ -1,7 +1,13 @@
-import "./CreateOrEditNoodle.css";
+// React
 import React from "react";
 
+// CSS
+import "./CreateOrEditNoodle.css";
+
+// Progress Bar
 import CreateNavProgressBar from "./CreateNavProgressBar";
+
+// Create Form Sections
 import CreateSection1 from "./CreateSection1";
 import CreateSection2 from "./CreateSection2";
 import CreateSection3 from "./CreateSection3";
@@ -9,12 +15,14 @@ import CreateSection4 from "./CreateSection4";
 import CreateSection5 from "./CreateSection5/CreateSection5";
 import CreateSection6 from "./CreateSection6";
 import CreateSection7 from "./CreateSection7";
+
+// Submit Bar
 import CreateSubmitBar from "./CreateSubmitBar";
 
+// API Functions and Configuration
 import apiUploadImage from "../Data/apiUploadImage";
 import apiDeleteImage from "../Data/apiDeleteImage";
 import apiConfig from "../Data/apiConfig";
-
 import dataReadByID from "../Data/dataReadByID";
 
 // The create dream / event page
@@ -344,7 +352,7 @@ class CreateOrEditNoodle extends React.Component {
           this.props.onCreate(status, noodleData).then(
             (createNoodleResult) => {
               // Create completed successfully
-              // console.log(createNoodleResult);
+              console.log(createNoodleResult);
             },
             (createNoodleError) => {
               // Create failed
@@ -422,7 +430,7 @@ class CreateOrEditNoodle extends React.Component {
   static getDerivedStateFromProps(props, state) {
     // Set create mode to event if user selects create event in the navbar while already creating a dream
     const { type: createMode } = props.match.params;
-    if (createMode === "event" && createMode !== state.createMode) {
+    if (state && createMode === "event" && createMode !== state.createMode) {
       state.createMode = createMode;
     }
     return state;

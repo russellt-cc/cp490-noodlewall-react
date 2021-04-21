@@ -1,5 +1,10 @@
+// React
 import React from "react";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// User rating
 import UserRating from "../Common/UserRating";
 
 // Class to structure the data for a user

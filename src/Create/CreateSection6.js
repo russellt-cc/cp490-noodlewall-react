@@ -1,5 +1,5 @@
+// React
 import React from "react";
-import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 // The sixth create section which deals with tickets
 // Need to add multiple ticket support here

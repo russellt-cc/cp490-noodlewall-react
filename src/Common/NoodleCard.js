@@ -1,7 +1,14 @@
+// React
 import React from "react";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// Components
 import NoodlerSummary from "./NoodlerSummary";
 import NoodleOverlay from "../Common/NoodleOverlay";
+
+// CSS
 import "./NoodleCard.css";
 
 // Class to structure the data for each noodle

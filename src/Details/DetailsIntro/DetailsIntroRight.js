@@ -1,4 +1,7 @@
+// React
 import React from "react";
+
+// React Router
 import { Link } from "react-router-dom";
 
 // The right column of the details intro
@@ -43,17 +46,16 @@ class DetailsIntroRight extends React.Component {
       userID: hostID,
       noodleID,
     } = this.props.thisNoodle;
-
+    // Get ticket numbers
     const sold = parseInt(noodleTicketsSold);
     const min = parseInt(noodleMinTickets);
     const max = parseInt(noodleMaxTickets);
-
+    // Get host name
     let hostName = undefined;
-
     if (this.props.thisHost !== undefined) {
       hostName = this.props.thisHost.userName;
     }
-
+    // Get the buy or like button depending on status
     const buyOrLikeButton = () => {
       if (noodleStatus === "event") {
         return (
@@ -78,7 +80,6 @@ class DetailsIntroRight extends React.Component {
         );
       }
     };
-
     // Get the action buttons depending on whether a user is viewing another users noodle
     const actionButtons = () => {
       if (!currentUser.userID) {
@@ -145,7 +146,7 @@ class DetailsIntroRight extends React.Component {
         );
       }
     };
-
+    // Return the right column of the intro section
     return (
       <div id="details_intro_right" className="details_column right">
         <h3>{noodleStatus === "dream" ? "Dream " : ""}Event Details</h3>

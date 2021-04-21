@@ -1,5 +1,7 @@
+// React
 import React from "react";
 
+// CSS
 import "./CreateNavProgressBar.css";
 
 // The nav / progress bar shown on top of the create page

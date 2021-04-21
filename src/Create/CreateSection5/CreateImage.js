@@ -1,7 +1,11 @@
+// React
 import React from "react";
+
+// React inputs validation
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+// Random image functions
 import getRandomImageFromPicsum from "../../Images/getRandomImageFromPicsum";
 import getRandomImageFromUnsplash from "../../Images/getRandomImageFromUnsplash";
 
@@ -17,6 +21,9 @@ class CreateImage extends React.Component {
       randomImageWidth: 1280,
       randomImageHeight: 720,
     };
+  }
+  // Component did mount
+  componentDidMount() {
     // Check to see if we have an image already
     if (!this.props.noodleImage) {
       // We don't have an image
@@ -39,26 +46,22 @@ class CreateImage extends React.Component {
       );
     }
   }
-
   // Method to change this images URL
   changeImage = (noodleImage) => {
     const { onChangeImage, index } = this.props;
     onChangeImage(index, noodleImage);
     // console.log(typeof noodleImage);
   };
-
   // Method to change the text associated with this image
   changeImageText = (noodleImageText) => {
     const { onChangeImageText, index } = this.props;
     onChangeImageText(index, noodleImageText);
   };
-
   // Method to delete this image
   delete = () => {
     const { onRemoveImage, index } = this.props;
     onRemoveImage(index);
   };
-
   // Render method
   render() {
     // Destructure state to get configuration

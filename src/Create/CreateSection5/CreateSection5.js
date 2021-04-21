@@ -4,7 +4,10 @@
 //https://allegra9.medium.com/unsplash-without-api-ab2dcdb503a0
 //https://stackoverflow.com/questions/15130091/amp-character-from-api-url-not-saved-to-mysql-database
 
+// React
 import React from "react";
+
+// Image component
 import CreateImage from "./CreateImage";
 
 // The fifth create section which deals with images
@@ -33,7 +36,6 @@ class CreateSection5 extends React.Component {
     // Update the text array
     onChangeImagesText(splicedImagesText);
   };
-
   // Method to change an image
   changeImages = (index, value) => {
     // Get method and existing data from props
@@ -53,7 +55,6 @@ class CreateSection5 extends React.Component {
     // Send the new array to change function
     onChangeImages(changedNoodleImages);
   };
-
   // Method to change an images text
   changeImagesText = (index, value) => {
     // Get method and existing data from props
@@ -65,7 +66,6 @@ class CreateSection5 extends React.Component {
     // Update the array
     onChangeImagesText(changednoodleImageText);
   };
-
   // Method to remove an image
   removeImage = (index) => {
     // Get methods and existing data from props
@@ -103,18 +103,15 @@ class CreateSection5 extends React.Component {
     // Update the text array
     onChangeImagesText(splicedImagesText);
   };
-
   // Method to change the gallery image based on value
   changeImage = (image) => {
     this.props.onChangeImage(image);
   };
-
   // Method to change the gallery image based on index
   changeGalleryImage = (index) => {
     const { onChangeImage, noodleImages } = this.props;
     onChangeImage(noodleImages[index]);
   };
-
   // Render method
   render() {
     // Get data from props
@@ -125,7 +122,6 @@ class CreateSection5 extends React.Component {
       noodleImageText,
       noodleTags,
     } = this.props;
-
     // Create the image list by mapping the noodleImages array to CreateImage objects
     // Get text data from parallel noodleImageText array
     // Send in methods as props to change images, change text, or remove the image
@@ -148,7 +144,6 @@ class CreateSection5 extends React.Component {
       ) : (
         <></>
       );
-
     // Create the gallery component by mapping the noodleImages array to button objects
     const noodleImageGallery =
       noodleImages && noodleImages.length && noodleImages[0] !== null ? (
@@ -184,7 +179,6 @@ class CreateSection5 extends React.Component {
       ) : (
         <></>
       );
-
     // Return the images section
     return (
       <section id="images" className={sections[5 - 1].className}>

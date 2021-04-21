@@ -5,10 +5,12 @@ import React from "react";
 import NoodleOverlay from "../../Common/NoodleOverlay";
 import DetailsProgress from "./DetailsProgress";
 
+// Luxon
 // https://moment.github.io/luxon/
 // https://www.npmjs.com/package/luxon
 import { DateTime, Interval } from "luxon";
 
+// React Image Gallery
 // https://www.npmjs.com/package/react-image-gallery
 // https://www.linxtion.com/demo/react-image-gallery/
 import ImageGallery from "react-image-gallery";

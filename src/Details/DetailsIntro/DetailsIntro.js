@@ -1,6 +1,11 @@
+// React
 import React from "react";
+
+// Details column components
 import DetailsIntroLeft from "./DetailsIntroLeft";
 import DetailsIntroRight from "./DetailsIntroRight";
+
+// CSS
 import "./DetailsIntro.css";
 
 // The intro section of the details page

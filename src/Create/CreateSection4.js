@@ -1,5 +1,5 @@
+// React
 import React from "react";
-import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 // The fourth create section which deals with date and time
 class CreateSection4 extends React.Component {
