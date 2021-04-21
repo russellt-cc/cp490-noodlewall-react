@@ -54,9 +54,10 @@ class NoodleList extends React.Component {
         {noodleData.map((item, i) => {
           // If the filters match, return the data
           if (this.filterNoodles(item, filters)) {
-            // Get the user data
-            // Covert to zero-based index
-            const hostData = userData[item.userID - 1];
+            // Get the right user details
+            const hostData = userData.filter((user) => {
+              return parseInt(user.userID) === parseInt(item.userID);
+            })[0];
             // Increment our count
             noodleCount++;
             return (

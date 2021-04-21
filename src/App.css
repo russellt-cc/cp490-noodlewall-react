@@ -27,6 +27,10 @@
   --events-text-color: white;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 html,
 body,
 #root {

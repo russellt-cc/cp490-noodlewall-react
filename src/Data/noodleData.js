@@ -23,6 +23,8 @@ export const noodleData = [
       "Hey, I am Pam! I love fishing but none of my friends do! I have a boat, and all the gear you could possibly need. Fish is on the menu but if we get skunked, I have food available as well.",
     noodleTags: ["fishing", "food", "hobby", "friends", "sports"],
     noodleCoverImage: fishing,
+    noodleImages: [fishing],
+    noodleImageText: ["Lorem ipsum."],
     noodleLocation: "Sydney, Ontario",
     noodleDate: "2021-05-15",
     noodleTime: "8:30AM-5:00PM",

@@ -100,6 +100,8 @@ class CreateOrEditNoodle extends React.Component {
           noodleImageText: [],
         };
       }
+    } else {
+      this.state = {};
     }
   }
 

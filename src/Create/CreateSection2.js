@@ -103,6 +103,7 @@ class CreateSection2 extends React.Component {
               id="noodleAddTagButton"
               onClick={() => {
                 this.addNoodleTag(noodleAddTag);
+                this.setState({ noodleAddTag: undefined });
               }}
             >
               Add Tag
