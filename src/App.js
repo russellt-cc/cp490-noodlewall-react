@@ -29,21 +29,9 @@ class App extends React.Component {
     super(props);
     // Initialize state
     this.state = {
-      error: null,
-      noodlesAreCooked: false,
-      noodlersAreLoaded: false,
-      noodleData: [],
-      userData: [],
-      currentUserID: null,
+      currentUser: {},
       redirectPath: null,
     };
-  }
-
-  // Component did mount lifecycle method
-  // Runs when the app is mounted in the DOM
-  componentDidMount() {
-    // Load data
-    this.refresh();
   }
 
   // Return state method so we can update app state in child components
@@ -58,7 +46,7 @@ class App extends React.Component {
   // Return promise
   create = (type, data) => {
     // Create data using component function
-    return dataCreate(type, data, this.returnState, this.refresh, this.login);
+    return dataCreate(type, data, this.returnState, this.login);
   };
 
   // Read
@@ -72,88 +60,22 @@ class App extends React.Component {
   // Return promise
   update = (type, data) => {
     // Get configuration from state
-    const { currentUserID } = this.state;
+    const { currentUser } = this.state;
     // Update data using component function
-    return dataUpdate(
-      type,
-      data,
-      this.returnState,
-      this.refresh,
-      currentUserID
-    );
+    return dataUpdate(type, data, this.returnState, currentUser);
   };
 
   // Delete
   // Return promise
   delete = (type, data) => {
     // Get configuration from state
-    const { currentUserID } = this.state;
+    const { currentUser } = this.state;
     // Delete data using component function
-    return dataDelete(
-      type,
-      data,
-      this.returnState,
-      this.refresh,
-      this.logout,
-      currentUserID
-    );
-  };
-
-  // Refresh
-  refresh = () => {
-    // Set state to not loaded
-    this.setState(
-      {
-        noodlesAreCooked: false,
-        noodlersAreLoaded: false,
-      },
-      () => {
-        // Load data in callback function
-        this.read("noodles")
-          .then(
-            (result) => {
-              // Noodles loaded successfully
-              // console.log(result);
-              this.setState({
-                noodlesAreCooked: true,
-                noodleData: result.records,
-              });
-            },
-            (error) => {
-              // Noodles failed to load
-              // console.log(error);
-              this.setState({
-                noodlesAreCooked: true,
-                error,
-              });
-            }
-          )
-          .then(
-            this.read("users").then(
-              (result) => {
-                // Users loaded successfully
-                // console.log(result);
-                this.setState({
-                  noodlersAreLoaded: true,
-                  userData: result.records,
-                });
-              },
-              (error) => {
-                // Users failed to load
-                // console.log(error);
-                this.setState({
-                  noodlersAreLoaded: true,
-                  error,
-                });
-              }
-            )
-          );
-      }
-    );
+    return dataDelete(type, data, this.returnState, this.logout, currentUser);
   };
 
   // Login
-  login = (currentUserID, redirectPath, redirectComponent, redirectID) => {
+  login = (currentUser, redirectPath, redirectComponent, redirectID) => {
     // Check for specified redirect
     if (!redirectPath) {
       if (redirectComponent) {
@@ -170,13 +92,13 @@ class App extends React.Component {
         redirectPath = "/";
       }
     }
-    this.setState({ currentUserID, redirectPath });
+    this.setState({ currentUser, redirectPath });
   };
 
   // Logout
   logout = (redirectPath, redirectComponent, redirectID) => {
     // Set current ID to null to logout
-    const currentUserID = null;
+    const currentUser = {};
     // Check for specified redirect
     if (!redirectPath) {
       if (redirectComponent) {
@@ -194,20 +116,13 @@ class App extends React.Component {
       }
     }
     // Set state to reflect the logout and redirect
-    this.setState({ currentUserID, redirectPath });
+    this.setState({ currentUser, redirectPath });
   };
 
   // Render method
   render() {
     // Destructure the props and state
-    const {
-      error,
-      noodlesAreCooked,
-      noodlersAreLoaded,
-      noodleData,
-      userData,
-      currentUserID,
-    } = this.state;
+    const { currentUser } = this.state;
     // Handle redirects
     const redirect = () => {
       const { redirectPath } = this.state;
@@ -230,8 +145,7 @@ class App extends React.Component {
           {/* Replace the static user id with
             user id from session */}
           <Navbar
-            userData={userData}
-            userID={currentUserID}
+            currentUser={currentUser}
             onRefresh={this.refresh}
             onLogout={this.logout}
             returnState={this.returnState}
@@ -240,12 +154,7 @@ class App extends React.Component {
           {redirect()}
           {/* Switch the main component based on the url */}
           <Main
-            error={error}
-            noodlesAreCooked={noodlesAreCooked}
-            noodlersAreLoaded={noodlersAreLoaded}
-            noodleData={noodleData}
-            userData={userData}
-            currentUserID={currentUserID}
+            currentUser={currentUser}
             onCreate={this.create}
             onUpdate={this.update}
             onDelete={this.delete}

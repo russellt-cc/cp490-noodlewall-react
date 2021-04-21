@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to handle updating data using API
 // Return response as a promise
-function dataUpdate(type, data, returnState, refresh, currentUserID) {
+function dataUpdate(type, data, returnState, currentUser) {
   // Check whether we are using the API for data
   const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
   if (useAPI) {
@@ -29,14 +29,7 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
       .then((res) => res.json())
       .then(
         (result) => {
-          // Log data to console
-          // console.log("Update Succeeded");
-          // console.log("Outgoing Data:");
-          // console.log(data);
-          // console.log("Incoming Data:");
           // console.log(result);
-          // Reload data
-          refresh();
           // Handle redirect
           let redirectPath;
           switch (type) {
@@ -47,26 +40,19 @@ function dataUpdate(type, data, returnState, refresh, currentUserID) {
               break;
             case "user":
               // Redirect to user page
-              redirectPath = "/user/" + currentUserID;
+              redirectPath = "/user";
+              // Update user info
+              currentUser = data;
               break;
             default:
               redirectPath = "/";
               break;
           }
-          returnState({ redirectPath });
+          returnState({ redirectPath, currentUser });
           return result;
         },
         (error) => {
-          // console.log("Update Failed");
-          // console.log("Incoming Data:");
           // console.log(error);
-          // alert(
-          //   "Failed to update " +
-          //     type +
-          //     "! Response from server: " +
-          //     error.message +
-          //     "."
-          // );
           return error;
         }
       );

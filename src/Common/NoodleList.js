@@ -41,42 +41,47 @@ class NoodleList extends React.Component {
   render() {
     // Destructure the props
     const { filters, noodleData, userData } = this.props;
-    // Let to count our filtered noodles
-    let noodleCount = 0;
-    // Create the noodle list and start looping through entries
-    // Create the list of noodles that match filters
-    const noodleList = (
-      <div className="noodle_list">
-        {/* Mapping array of objects.
+    if (noodleData) {
+      // Let to count our filtered noodles
+      let noodleCount = 0;
+      // Create the noodle list and start looping through entries
+      // Create the list of noodles that match filters
+      const noodleList = (
+        <div className="noodle_list">
+          {/* Mapping array of objects.
       Send the data to filter noodles function
       to return the data or not
       depending on filters. */}
-        {noodleData.map((item, i) => {
-          // If the filters match, return the data
-          if (this.filterNoodles(item, filters)) {
-            // Get the right user details
-            const hostData = userData.filter((user) => {
-              return parseInt(user.userID) === parseInt(item.userID);
-            })[0];
-            // Increment our count
-            noodleCount++;
-            return (
-              <NoodleCard
-                data={item}
-                hostData={hostData}
-                key={i}
-                filterType={filters.type}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
-      </div>
-    );
-    if (noodleCount > 0) {
-      // Return the list if we have data
-      return noodleList;
+          {noodleData.map((item, i) => {
+            // If the filters match, return the data
+            if (this.filterNoodles(item, filters)) {
+              // Get the right user details
+              const hostData = userData.filter((user) => {
+                return parseInt(user.userID) === parseInt(item.userID);
+              })[0];
+              // Increment our count
+              noodleCount++;
+              return (
+                <NoodleCard
+                  data={item}
+                  hostData={hostData}
+                  key={i}
+                  filterType={filters.type}
+                />
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
+      );
+      if (noodleCount > 0) {
+        // Return the list if we have data
+        return noodleList;
+      } else {
+        // Return empty element
+        return <></>;
+      }
     } else {
       // Return empty element
       return <></>;

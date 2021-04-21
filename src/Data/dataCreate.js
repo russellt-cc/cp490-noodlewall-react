@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to handle creating data using API
 // Return response as a promise
-function dataCreate(type, data, returnState, refresh, login) {
+function dataCreate(type, data, returnState, login) {
   // Check whether we are using the API for data
   const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
   if (useAPI) {
@@ -29,13 +29,7 @@ function dataCreate(type, data, returnState, refresh, login) {
       .then((res) => res.json())
       .then(
         (result) => {
-          // console.log("Create Succeeded");
-          // console.log("Outgoing data:");
-          // console.log(data);
-          // console.log("Incoming data:");
           // console.log(result);
-          // Reload data
-          refresh();
           // Handle redirect
           let redirectPath;
           switch (type) {
@@ -46,9 +40,9 @@ function dataCreate(type, data, returnState, refresh, login) {
               break;
             case "user":
               // Login to new account
-              login(result.userID);
+              login(result);
               // Redirect to user page
-              redirectPath = "/user/" + result.userID;
+              redirectPath = "/user";
               break;
             default:
               redirectPath = "/";
@@ -58,18 +52,7 @@ function dataCreate(type, data, returnState, refresh, login) {
           return result;
         },
         (error) => {
-          // console.log("Create Failed");
-          // console.log("Outgoing data:");
-          // console.log(data);
-          // console.log("Incoming data:");
           // console.log(error);
-          // alert(
-          //   "Failed to create " +
-          //     type +
-          //     "! Response from server: " +
-          //     error.message +
-          //     "."
-          // );
           return error;
         }
       );

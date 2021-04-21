@@ -6,156 +6,211 @@ import UserRating from "../Common/UserRating";
 import NoodleList from "../Common/NoodleList";
 import usericon from "../Images/usericon.png";
 
+import dataReadByID from "../Data/dataReadByID";
+import dataReadByOtherID from "../Data/dataReadByOtherID";
+
 // The user profile page
 class User extends React.Component {
-  render() {
-    // Destructure the props
-    const { userData, currentUserID, noodleData } = this.props;
-    let { id: profileUserID } = this.props.match.params;
+  componentDidMount() {
+    let { id } = this.props.match.params;
+    const { currentUser } = this.props;
     // Go to users own page by default
-    if (!profileUserID) profileUserID = currentUserID;
-    const thisUser = userData.filter((user) => {
-      return parseInt(user.userID) === parseInt(profileUserID);
-    })[0];
-    if (thisUser !== undefined) {
-      // Check to see if a user is viewing their own page
-      let isOwnProfile = false;
-      if (parseInt(currentUserID) === parseInt(profileUserID)) {
-        isOwnProfile = true;
+    // Check if we are not going to a specific id
+    if (!id) {
+      // Check if user is signed in
+      if (currentUser.userID) {
+        // Load current user
+        id = currentUser.userID;
+        const isOwnProfile = true;
+        this.setState({ isOwnProfile });
+      } else {
+        // Just show user not found
+        id = null;
+        const userIsLoaded = true;
+        this.setState({ userIsLoaded });
       }
-      // Destructure the user data
-      const {
-        userID,
-        userFirstName,
-        userImage,
-        userName,
-        userLastName,
-        userRating,
-        userBioLong,
-      } = thisUser;
-      // Get the events organized by the user
-      const userEvents = (
-        <NoodleList
-          noodleData={noodleData}
-          userData={userData}
-          filters={{
-            type: "events",
-            userID: userID,
-          }}
-        />
+    }
+    // Fetch data for the id
+    if (id) {
+      dataReadByID("user", id).then(
+        (userLoadResult) => {
+          // console.log(userLoadResult);
+          const thisUser = userLoadResult;
+          const userIsLoaded = true;
+          this.setState({ thisUser, userIsLoaded });
+          // Get users noodles
+          dataReadByOtherID("noodles", id).then(
+            (userNoodlesResult) => {
+              // console.log(userNoodlesResult);
+              const userNoodles = userNoodlesResult.records;
+              const userNoodlesLoaded = true;
+              this.setState({ userNoodles, userNoodlesLoaded });
+            },
+            (userNoodlesError) => {
+              // console.log(userNoodlesError);
+              const userNoodlesLoaded = true;
+              const userNoodles = [];
+              this.setState({
+                userNoodles,
+                userNoodlesError,
+                userNoodlesLoaded,
+              });
+            }
+          );
+        },
+        (userLoadError) => {
+          // console.log(userLoadError);
+          const userIsLoaded = true;
+          this.setState({ userLoadError, userIsLoaded });
+          alert("User failed to load! Error: " + userLoadError.message);
+        }
       );
-      // Get the dreams created by the user
-      const userDreams = (
-        <NoodleList
-          noodleData={this.props.noodleData}
-          userData={this.props.userData}
-          filters={{
-            type: "dreams",
-            userID: userID,
-          }}
-        />
-      );
-      // Actions when viewing a users own profile
-      const otherProfileActions = (
-        <p className="user_actions">
-          <button
-            className="noodle_button"
-            onClick={() => {
-              this.follow();
+    }
+  }
+  // Render method
+  render() {
+    if (this.state && this.state.userIsLoaded) {
+      if (this.state && this.state.thisUser) {
+        const { thisUser, userNoodles } = this.state;
+        // Get the events organized by the user
+        const userEvents = (
+          <NoodleList
+            noodleData={userNoodles}
+            userData={[thisUser]}
+            filters={{
+              type: "events",
+              userID: thisUser.userID,
             }}
-          >
-            Follow Me
-          </button>
-          <button
-            className="noodle_button"
-            onClick={() => {
-              this.contact();
+          />
+        );
+        // Get the dreams created by the user
+        const userDreams = (
+          <NoodleList
+            noodleData={userNoodles}
+            userData={[thisUser]}
+            filters={{
+              type: "dreams",
+              userID: thisUser.userID,
             }}
+          />
+        );
+        // Actions when viewing a users own profile
+        const otherProfileActions = (
+          <p className="user_actions">
+            <button
+              className="noodle_button"
+              onClick={() => {
+                this.follow();
+              }}
+            >
+              Follow Me
+            </button>
+            <button
+              className="noodle_button"
+              onClick={() => {
+                this.contact();
+              }}
+            >
+              Contact Me
+            </button>
+          </p>
+        );
+        // Actions when viewing another users profile
+        const ownProfileActions = (
+          <p className="user_actions">
+            <Link className="noodle_button" to="/user/edit">
+              Edit Profile
+            </Link>
+            <button className="noodle_button">Manage Events</button>
+            <button className="noodle_button">View Dashboard</button>
+          </p>
+        );
+        // Return the profile page
+        return (
+          <main
+            id="user_profile"
+            className={this.state.isOwnProfile ? "own" : "other"}
           >
-            Contact Me
-          </button>
-        </p>
-      );
-      // Actions when viewing another users profile
-      const ownProfileActions = (
-        <p className="user_actions">
-          <Link className="noodle_button" to="/user/edit">
-            Edit Profile
-          </Link>
-          <button className="noodle_button">Manage Events</button>
-          <button className="noodle_button">View Dashboard</button>
-        </p>
-      );
-      // Return the profile page
-      return (
-        <main id="user_profile" className={isOwnProfile ? "own" : "other"}>
-          {isOwnProfile ? (
-            <div id="profile_own_profile_status_bar">
-              <p>
-                Hi {userFirstName}! You can edit your profile, manage events,
-                and view your dashboard from this page.
-              </p>
-            </div>
-          ) : (
-            <></>
-          )}
-          <section id="user_profile_intro">
-            <div
-              className="user_profile_intro_column"
-              id="user_profile_intro_left"
-            >
-              <img
-                src={userImage ? decodeURIComponent(userImage) : usericon}
-                alt={userName}
-              />
-              <h3>
-                {userFirstName} {userLastName}
-              </h3>
-              <UserRating rating={userRating} />
-            </div>
-            <div
-              className="user_profile_intro_column"
-              id="user_profile_intro_right"
-            >
-              <h1>About {userName}</h1>
-              <p>{userBioLong}</p>
-              {!currentUserID ? (
-                <></>
-              ) : isOwnProfile ? (
-                ownProfileActions
-              ) : (
-                otherProfileActions
-              )}
-            </div>
-          </section>
-          {/* If the user has any events, show them here. 
-          Use ReactDOMServer.renderToString to return a truthy or falsey 
-          value from the userEvents JSX. Include Router tags because we have Link
-          components inside the userEvents component if it returns true. */}
-          {ReactDOMServer.renderToString(<Router>{userEvents}</Router>) ? (
-            <section id="user_events">
-              <h3>Events by {userName}</h3>
-              {userEvents}
+            {this.state.isOwnProfile ? (
+              <div id="profile_own_profile_status_bar">
+                <p>
+                  Hi {thisUser.userFirstName}! You can edit your profile, manage
+                  events, and view your dashboard from this page.
+                </p>
+              </div>
+            ) : (
+              <></>
+            )}
+            <section id="user_profile_intro">
+              <div
+                className="user_profile_intro_column"
+                id="user_profile_intro_left"
+              >
+                <img
+                  src={
+                    thisUser.userImage
+                      ? decodeURIComponent(thisUser.userImage)
+                      : usericon
+                  }
+                  alt={thisUser.userName}
+                />
+                <h3>
+                  {thisUser.userFirstName} {thisUser.userLastName}
+                </h3>
+                <UserRating rating={thisUser.userRating} />
+              </div>
+              <div
+                className="user_profile_intro_column"
+                id="user_profile_intro_right"
+              >
+                <h1>About {thisUser.userName}</h1>
+                <p>{thisUser.userBioLong}</p>
+                {!this.props.currentUser.userID ? (
+                  <></>
+                ) : this.state.isOwnProfile ? (
+                  ownProfileActions
+                ) : (
+                  otherProfileActions
+                )}
+              </div>
             </section>
-          ) : (
-            <></>
-          )}
-          {/* If the user has any dreams, show them here */}
-          {ReactDOMServer.renderToString(<Router>{userDreams}</Router>) ? (
-            <section id="user_dreams">
-              <h3>Dreams by {userName}</h3>
-              {userDreams}
-            </section>
-          ) : (
-            <></>
-          )}
-        </main>
-      );
+            {/* If the user has any events, show them here. 
+            Use ReactDOMServer.renderToString to return a truthy or falsey 
+            value from the userEvents JSX. Include Router tags because we have Link
+            components inside the userEvents component if it returns true. */}
+            {this.state.userNoodlesLoaded &&
+            ReactDOMServer.renderToString(<Router>{userEvents}</Router>) ? (
+              <section id="user_events">
+                <h3>Events by {thisUser.userName}</h3>
+                {userEvents}
+              </section>
+            ) : (
+              <></>
+            )}
+            {/* If the user has any dreams, show them here */}
+            {this.state.userNoodlesLoaded &&
+            ReactDOMServer.renderToString(<Router>{userDreams}</Router>) ? (
+              <section id="user_dreams">
+                <h3>Dreams by {thisUser.userName}</h3>
+                {userDreams}
+              </section>
+            ) : (
+              <></>
+            )}
+          </main>
+        );
+      } else {
+        // Return error message
+        return (
+          <main>
+            <p>User not found!</p>
+          </main>
+        );
+      }
     } else {
-      // Return error message
       return (
         <main>
-          <p>User not found!</p>
+          <p>Loading User...</p>
         </main>
       );
     }

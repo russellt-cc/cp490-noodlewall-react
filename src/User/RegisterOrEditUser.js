@@ -1,49 +1,49 @@
+// React
 import React from "react";
 
+// React Inputs Validation
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
+// React Router
 import { Link } from "react-router-dom";
 
+// CSS
 import "./RegisterOrEditUser.css";
 
+// Random Images
 import getRandomImageFromPicsum from "../Images/getRandomImageFromPicsum";
 import getRandomImageFromUnsplash from "../Images/getRandomImageFromUnsplash";
 
+// Default User Icon
 import usericon from "../Images/usericon.png";
 
+// API Calls and Configuration
 import apiUploadImage from "../Data/apiUploadImage";
 import apiDeleteImage from "../Data/apiDeleteImage";
 import apiConfig from "../Data/apiConfig";
 
+// Form to register a new user or edit an existing one
 class RegisterOrEditUser extends React.Component {
-  // Constructor
   // Load data into state for editing
-  constructor(props) {
-    super(props);
-    const { currentUserID: userID } = this.props;
+  componentDidMount() {
+    const { currentUser } = this.props;
     // Check to see if we are editing or creating a new user
-    if (userID) {
+    if (currentUser) {
       // Edit mode
-      const { userData } = this.props;
-      const thisUser = userData.filter((user) => {
-        return parseInt(user.userID) === parseInt(userID);
-      })[0];
-      this.state = {
-        userID,
-        userName: thisUser.userName,
-        userFirstName: thisUser.userFirstName,
-        userLastName: thisUser.userLastName,
-        userBio: thisUser.userBio,
-        userBioLong: thisUser.userBioLong,
-        userImage: thisUser.userImage,
-        userRating: thisUser.userRating,
-      };
-    } else {
-      this.state = {};
+      this.setState({
+        userID: currentUser.userID,
+        userName: currentUser.userName,
+        userFirstName: currentUser.userFirstName,
+        userLastName: currentUser.userLastName,
+        userBio: currentUser.userBio,
+        userBioLong: currentUser.userBioLong,
+        userImage: currentUser.userImage,
+        userImageOld: currentUser.userImage,
+        userRating: currentUser.userRating,
+      });
     }
   }
-
   // Validate data and submit the form
   submit = () => {
     // Check if we have the required data
@@ -55,7 +55,6 @@ class RegisterOrEditUser extends React.Component {
       alert("You must enter a user name, first name, and last name.");
     }
   };
-
   // Handle the create or update process
   // Uses promise chaining to keep in sync
   createOrUpdateUser = () => {
@@ -125,15 +124,11 @@ class RegisterOrEditUser extends React.Component {
       }
     );
   };
-
   // Delete the old image if needed
   // Return a promise
   deleteImage = () => {
     // Check if the user changed their image
-    const { userData } = this.props;
-    const thisUser = userData.filter((user) => {
-      return parseInt(user.userID) === parseInt(this.state.userID);
-    })[0];
+    const { currentUser: thisUser } = this.props;
     const { userImage: oldImage } = thisUser;
     if (this.state.userImage !== oldImage) {
       // See if we are hosting the image
@@ -161,7 +156,6 @@ class RegisterOrEditUser extends React.Component {
       return Promise.resolve({ message: "Image Didn't Change." });
     }
   };
-
   // Upload the image if needed
   // Return a promise
   uploadImage = () => {
@@ -189,7 +183,6 @@ class RegisterOrEditUser extends React.Component {
       return Promise.resolve({ message: "No image found." });
     }
   };
-
   // Confirm and delete account
   deleteAccount = () => {
     // Confirm that a user really wants to delete their account
@@ -203,11 +196,7 @@ class RegisterOrEditUser extends React.Component {
           // Delete successful
           // console.log(deleteUserResult);
           // Get old image link
-          const { userData } = this.props;
-          const thisUser = userData.filter((user) => {
-            return parseInt(user.userID) === parseInt(this.state.userID);
-          })[0];
-          const { userImage: oldImage } = thisUser;
+          const { userImageOld: oldImage } = this.state;
           // Check to see if their image was hosted
           const { apiURL } = apiConfig();
           if (oldImage.substring(0, apiURL.length) === apiURL) {
@@ -242,162 +231,170 @@ class RegisterOrEditUser extends React.Component {
       );
     }
   };
-
   // Render method
   render() {
-    const {
-      userID,
-      userName,
-      userFirstName,
-      userLastName,
-      userBio,
-      userBioLong,
-      userImage,
-      userImageNew,
-    } = this.state;
-
-    // The action buttons depending on whether user is editing or creating an account
-    const actionButtons = userID ? (
-      <div id="user_edit_action_bar">
-        <Link className="noodle_button" to="/user">
-          Cancel Editing
-        </Link>
-        <button className="noodle_button" onClick={() => this.submit()}>
-          Submit Changes
-        </button>
-        <button className="noodle_button" onClick={() => this.deleteAccount()}>
-          Delete Account
-        </button>
-      </div>
-    ) : (
-      <div id="user_edit_action_bar">
-        <Link className="noodle_button" to="/login">
-          Cancel Registration
-        </Link>
-        <button className="noodle_button" onClick={() => this.submit()}>
-          Submit Registration
-        </button>
-      </div>
-    );
-
-    // Return the user edit form
-    return (
-      <main id="user_edit">
-        <section>
-          <h1>Profile Picture</h1>
-          <img
-            src={
-              userImage
-                ? typeof userImage === "object"
-                  ? URL.createObjectURL(userImage)
-                  : decodeURIComponent(userImage)
-                : usericon
-            }
-            onError={() => {
-              this.setState({ userImage: undefined });
-            }}
-            alt="User"
-          ></img>
-          <label htmlFor="noodleImageUpload">
-            Upload an image from your device
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            name="noodleImageUpload"
-            onChange={(event) => {
-              this.setState({ userImage: event.target.files[0] });
-            }}
-          ></input>
-          <label htmlFor="noodleImageLink">
-            Get an image from the internet
-          </label>
-          <Textbox
-            attributesInput={{
-              name: "noodleImageLink",
-            }}
-            value={userImageNew}
-            onChange={(value) => this.setState({ userImageNew: value })}
-          ></Textbox>
-          <div id="user_edit_image_buttons">
-            <button
-              className="noodle_button"
-              onClick={() =>
-                this.setState({ userImage: this.state.userImageNew })
+    if (this.state) {
+      const {
+        userID,
+        userName,
+        userFirstName,
+        userLastName,
+        userBio,
+        userBioLong,
+        userImage,
+        userImageNew,
+      } = this.state;
+      // The action buttons depending on whether user is editing or creating an account
+      const actionButtons = userID ? (
+        <div id="user_edit_action_bar">
+          <Link className="noodle_button" to="/user">
+            Cancel Editing
+          </Link>
+          <button className="noodle_button" onClick={() => this.submit()}>
+            Submit Changes
+          </button>
+          <button
+            className="noodle_button"
+            onClick={() => this.deleteAccount()}
+          >
+            Delete Account
+          </button>
+        </div>
+      ) : (
+        <div id="user_edit_action_bar">
+          <Link className="noodle_button" to="/login">
+            Cancel Registration
+          </Link>
+          <button className="noodle_button" onClick={() => this.submit()}>
+            Submit Registration
+          </button>
+        </div>
+      );
+      // Return the user edit form
+      return (
+        <main id="user_edit">
+          <section>
+            <h1>Profile Picture</h1>
+            <img
+              src={
+                userImage
+                  ? typeof userImage === "object"
+                    ? URL.createObjectURL(userImage)
+                    : decodeURIComponent(userImage)
+                  : usericon
               }
-            >
-              Get an Image from URL
-            </button>
-            <button
-              className="noodle_button"
-              onClick={() =>
-                this.setState({
-                  userImage: getRandomImageFromPicsum(300, 300),
-                })
-              }
-            >
-              Get a Random Image from Picsum
-            </button>
-            <button
-              className="noodle_button"
-              onClick={() => {
-                getRandomImageFromUnsplash(300, 300).then((result) => {
-                  this.setState({ userImage: result.encodedURL });
-                });
+              onError={() => {
+                this.setState({ userImage: undefined });
               }}
-            >
-              Get a Random Image from Unsplash
-            </button>
-          </div>
-        </section>
-        <section>
-          <h1>User Information</h1>
-          <div>
-            <label htmlFor="userName">Organizer Name</label>
+              alt="User"
+            ></img>
+            <label htmlFor="noodleImageUpload">
+              Upload an image from your device
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              name="noodleImageUpload"
+              onChange={(event) => {
+                this.setState({ userImage: event.target.files[0] });
+              }}
+            ></input>
+            <label htmlFor="noodleImageLink">
+              Get an image from the internet
+            </label>
             <Textbox
-              name="userName"
-              value={userName}
-              onChange={(value) => this.setState({ userName: value })}
+              attributesInput={{
+                name: "noodleImageLink",
+              }}
+              value={userImageNew}
+              onChange={(value) => this.setState({ userImageNew: value })}
             ></Textbox>
-          </div>
-          <div>
-            <label htmlFor="userFirstName">First Name</label>
-            <Textbox
-              name="userFirstName"
-              value={userFirstName}
-              onChange={(value) => this.setState({ userFirstName: value })}
-            ></Textbox>
-          </div>
-          <div>
-            <label htmlFor="userLastName">Last Name</label>
-            <Textbox
-              name="userLastName"
-              value={userLastName}
-              onChange={(value) => this.setState({ userLastName: value })}
-            ></Textbox>
-          </div>
-          <div>
-            <label htmlFor="userBio">User Detail Short</label>
-            <Textarea
-              attributesInput={{ rows: 3 }}
-              name="userBio"
-              value={userBio}
-              onChange={(value) => this.setState({ userBio: value })}
-            ></Textarea>
-          </div>
-          <div>
-            <label htmlFor="userBioLong">User Detail Long</label>
-            <Textarea
-              attributesInput={{ rows: 5 }}
-              name="userBioLong"
-              value={userBioLong}
-              onChange={(value) => this.setState({ userBioLong: value })}
-            ></Textarea>
-          </div>
-        </section>
-        {actionButtons}
-      </main>
-    );
+            <div id="user_edit_image_buttons">
+              <button
+                className="noodle_button"
+                onClick={() =>
+                  this.setState({ userImage: this.state.userImageNew })
+                }
+              >
+                Get an Image from URL
+              </button>
+              <button
+                className="noodle_button"
+                onClick={() =>
+                  this.setState({
+                    userImage: getRandomImageFromPicsum(300, 300),
+                  })
+                }
+              >
+                Get a Random Image from Picsum
+              </button>
+              <button
+                className="noodle_button"
+                onClick={() => {
+                  getRandomImageFromUnsplash(300, 300).then((result) => {
+                    this.setState({ userImage: result.encodedURL });
+                  });
+                }}
+              >
+                Get a Random Image from Unsplash
+              </button>
+            </div>
+          </section>
+          <section>
+            <h1>User Information</h1>
+            <div>
+              <label htmlFor="userName">Organizer Name</label>
+              <Textbox
+                name="userName"
+                value={userName}
+                onChange={(value) => this.setState({ userName: value })}
+              ></Textbox>
+            </div>
+            <div>
+              <label htmlFor="userFirstName">First Name</label>
+              <Textbox
+                name="userFirstName"
+                value={userFirstName}
+                onChange={(value) => this.setState({ userFirstName: value })}
+              ></Textbox>
+            </div>
+            <div>
+              <label htmlFor="userLastName">Last Name</label>
+              <Textbox
+                name="userLastName"
+                value={userLastName}
+                onChange={(value) => this.setState({ userLastName: value })}
+              ></Textbox>
+            </div>
+            <div>
+              <label htmlFor="userBio">User Detail Short</label>
+              <Textarea
+                attributesInput={{ rows: 3 }}
+                name="userBio"
+                value={userBio}
+                onChange={(value) => this.setState({ userBio: value })}
+              ></Textarea>
+            </div>
+            <div>
+              <label htmlFor="userBioLong">User Detail Long</label>
+              <Textarea
+                attributesInput={{ rows: 5 }}
+                name="userBioLong"
+                value={userBioLong}
+                onChange={(value) => this.setState({ userBioLong: value })}
+              ></Textarea>
+            </div>
+          </section>
+          {actionButtons}
+        </main>
+      );
+    } else {
+      return (
+        <main>
+          <p>Loading...</p>
+        </main>
+      );
+    }
   }
 }
 

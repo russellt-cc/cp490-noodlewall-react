@@ -28,7 +28,7 @@ class DetailsIntroRight extends React.Component {
   render() {
     // Get data from props
     // Get the type for tag links
-    const { element_classes, filterType, currentUserID } = this.props;
+    const { element_classes, filterType, currentUser } = this.props;
     // Destructure the details and rename user id to host id
     const {
       noodleStatus,
@@ -81,7 +81,7 @@ class DetailsIntroRight extends React.Component {
 
     // Get the action buttons depending on whether a user is viewing another users noodle
     const actionButtons = () => {
-      if (!currentUserID) {
+      if (!currentUser.userID) {
         // Actions for not logged in user
         return (
           <div id={`details_host_intro_${noodleStatus}`}>
@@ -95,7 +95,7 @@ class DetailsIntroRight extends React.Component {
             </p>
           </div>
         );
-      } else if (parseInt(hostID) !== parseInt(currentUserID)) {
+      } else if (parseInt(hostID) !== parseInt(currentUser.userID)) {
         // Actions for viewing another users noodle
         return (
           <div id={`details_host_intro_${noodleStatus}`}>

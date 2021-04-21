@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to handle deleting data using API
 // Return response as a promise
-function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
+function dataDelete(type, data, returnState, logout, currentUser) {
   // Check whether we are using the API for data
   const { useAPI, apiNoodlePath, apiUserPath } = apiConfig();
   if (useAPI) {
@@ -29,20 +29,14 @@ function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
       .then((res) => res.json())
       .then(
         (result) => {
-          // console.log("Delete Succeeded");
-          // console.log("Outgoing Data:");
-          // console.log(data);
-          // console.log("Incoming Data:");
           // console.log(result);
-          // Reload data
-          refresh();
           // Handle redirect
           let redirectPath;
           switch (type) {
             case "dream":
             case "event":
               // Redirect to user page
-              redirectPath = "/user/" + currentUserID;
+              redirectPath = "/user/" + currentUser.userID;
               break;
             case "user":
               // Logout
@@ -59,16 +53,7 @@ function dataDelete(type, data, returnState, refresh, logout, currentUserID) {
           return result;
         },
         (error) => {
-          // console.log("Delete Failed");
-          // console.log("Incoming Data:");
           // console.log(error);
-          // alert(
-          //   "Failed to delete " +
-          //     type +
-          //     "! Response from server: " +
-          //     error.message +
-          //     "."
-          // );
           return error;
         }
       );
