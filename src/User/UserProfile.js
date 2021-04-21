@@ -88,7 +88,7 @@ class User extends React.Component {
         const userEvents = (
           <NoodleList
             noodleData={userNoodles}
-            userData={[thisUser]}
+            hostData={thisUser}
             filters={{
               type: "events",
               userID: thisUser.userID,
@@ -99,7 +99,7 @@ class User extends React.Component {
         const userDreams = (
           <NoodleList
             noodleData={userNoodles}
-            userData={[thisUser]}
+            hostData={thisUser}
             filters={{
               type: "dreams",
               userID: thisUser.userID,

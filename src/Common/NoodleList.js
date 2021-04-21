@@ -45,7 +45,7 @@ class NoodleList extends React.Component {
   // Render
   render() {
     // Destructure the props
-    const { filters, noodleData, userData } = this.props;
+    const { filters, noodleData, hostData } = this.props;
     if (noodleData) {
       // Let to count our filtered noodles
       let noodleCount = 0;
@@ -60,10 +60,6 @@ class NoodleList extends React.Component {
           {noodleData.map((item, i) => {
             // If the filters match, return the data
             if (this.filterNoodles(item, filters)) {
-              // Get the right user details
-              const hostData = userData.filter((user) => {
-                return parseInt(user.userID) === parseInt(item.userID);
-              })[0];
               // Increment our count
               noodleCount++;
               return (

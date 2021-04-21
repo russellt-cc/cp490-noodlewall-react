@@ -11,8 +11,42 @@ import NoodleOverlay from "../Common/NoodleOverlay";
 // CSS
 import "./NoodleCard.css";
 
+// API call
+import readNoodleOrUserByOtherID from "../Data/readNoodleOrUserByOtherID";
+
 // Class to structure the data for each noodle
 class NoodleCard extends React.Component {
+  // Constructor
+  constructor(props) {
+    super(props);
+    // Initialize host data in state
+    const hostData = {};
+    this.state = { hostData };
+  }
+  // Component did mount
+  componentDidMount() {
+    // Check to see if we have host data
+    const { hostData } = this.props;
+    if (hostData) {
+      // Set the host data to props
+      this.setState({ hostData });
+    } else {
+      // Get host data from database
+      const { noodleID } = this.props.data;
+      readNoodleOrUserByOtherID("user", noodleID).then(
+        (result) => {
+          // Got the user data
+          const hostData = result.record[0];
+          this.setState({ hostData });
+        },
+        (error) => {
+          // Error
+          console.log(error);
+        }
+      );
+    }
+  }
+  // Render
   render() {
     // Get the noodle data
     // Use object destructuring to get constants from data
@@ -49,7 +83,7 @@ class NoodleCard extends React.Component {
           <span className="noodle_label">Status: </span>
           {noodleStatus}
         </p>
-        <NoodlerSummary data={this.props.hostData} />
+        <NoodlerSummary data={this.state.hostData} />
         <p className={`noodle_description`}>
           <span className="noodle_label">Description: </span>
           {noodleDescription}

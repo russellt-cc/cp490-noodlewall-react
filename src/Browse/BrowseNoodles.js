@@ -20,19 +20,6 @@ class BrowseNoodles extends React.Component {
         const noodleData = result.records;
         // Save in state
         this.setState({ noodleData });
-        // Get user data
-        readNoodlesOrUsers("users").then(
-          (result) => {
-            // Users read successfully
-            const userData = result.records;
-            // Save in state
-            this.setState({ userData });
-          },
-          (error) => {
-            // Users failed to read
-            alert("Users failed to load! Error: " + error.message);
-          }
-        );
       },
       (error) => {
         // Data failed to read
@@ -41,7 +28,7 @@ class BrowseNoodles extends React.Component {
     );
   }
   render() {
-    if (this.state && this.state.noodleData && this.state.userData) {
+    if (this.state && this.state.noodleData) {
       // Getting information about events
       // Create a filters object to pass to NoodleList
       const filters = {
@@ -55,7 +42,6 @@ class BrowseNoodles extends React.Component {
           {/* Pass data to the NoodleList as properties */}
           <NoodleList
             noodleData={this.state.noodleData}
-            userData={this.state.userData}
             query={this.props.location.search}
             filters={filters}
           />
