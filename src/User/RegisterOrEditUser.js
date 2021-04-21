@@ -1,13 +1,24 @@
 import React from "react";
+
 import { Textbox, Textarea } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
+
 import { Link } from "react-router-dom";
+
 import "./RegisterOrEditUser.css";
+
 import getRandomImageFromPicsum from "../Images/getRandomImageFromPicsum";
 import getRandomImageFromUnsplash from "../Images/getRandomImageFromUnsplash";
+
 import usericon from "../Images/usericon.png";
 
+import apiUploadImage from "../Data/apiUploadImage";
+import apiDeleteImage from "../Data/apiDeleteImage";
+import apiConfig from "../Data/apiConfig";
+
 class RegisterOrEditUser extends React.Component {
+  // Constructor
+  // Load data into state for editing
   constructor(props) {
     super(props);
     const { currentUserID: userID } = this.props;
@@ -18,116 +29,221 @@ class RegisterOrEditUser extends React.Component {
       const thisUser = userData.filter((user) => {
         return parseInt(user.userID) === parseInt(userID);
       })[0];
-      const {
-        userName,
-        userFirstName,
-        userLastName,
-        userBio,
-        userBioLong,
-        userImage,
-      } = thisUser;
       this.state = {
         userID,
-        userName,
-        userFirstName,
-        userLastName,
-        userBio,
-        userBioLong,
-        userImage,
-        userImageNew: undefined,
+        userName: thisUser.userName,
+        userFirstName: thisUser.userFirstName,
+        userLastName: thisUser.userLastName,
+        userBio: thisUser.userBio,
+        userBioLong: thisUser.userBioLong,
+        userImage: thisUser.userImage,
+        userRating: thisUser.userRating,
       };
     } else {
-      // Register mode
-      this.state = {
-        userID: undefined,
-        userName: undefined,
-        userFirstName: undefined,
-        userLastName: undefined,
-        userBio: undefined,
-        userBioLong: undefined,
-        userImage: undefined,
-        userImageNew: undefined,
-      };
+      this.state = {};
     }
   }
 
-  create = () => {
-    // Create the object to be sent to the API
-    const {
-      userName,
-      userFirstName,
-      userLastName,
-      userBio,
-      userBioLong,
-      userImage,
-    } = this.state;
+  // Validate data and submit the form
+  submit = () => {
     // Check if we have the required data
-    if ((userName, userFirstName, userLastName)) {
-      const { onCreate } = this.props;
-      const userData = {
-        userName,
-        userFirstName,
-        userLastName,
-        userBio,
-        userBioLong,
-        userImage,
-      };
-      onCreate("user", userData);
+    if (
+      (this.state.userName, this.state.userFirstName, this.state.userLastName)
+    ) {
+      this.createOrUpdateUser();
     } else {
       alert("You must enter a user name, first name, and last name.");
     }
   };
 
-  update = () => {
-    // Create the object to be sent to the API
-    const {
-      userName,
-      userFirstName,
-      userLastName,
-      userBio,
-      userBioLong,
-      userImage,
-    } = this.state;
-    // Check if we have the required data
-    if ((userName, userFirstName, userLastName)) {
-      const { currentUserID: userID, onUpdate } = this.props;
-      const userData = {
-        userID,
-        userName,
-        userFirstName,
-        userLastName,
-        userBio,
-        userBioLong,
-        userImage,
-      };
-      onUpdate("user", userData);
+  // Handle the create or update process
+  // Uses promise chaining to keep in sync
+  createOrUpdateUser = () => {
+    // Upload image if needed
+    this.uploadImage().then(
+      (uploadImageResult) => {
+        // Image Uploaded Successfully
+        // console.log(uploadImageResult);
+        // Create the data object
+        const data = {
+          userID: this.state.userID,
+          userName: this.state.userName,
+          userFirstName: this.state.userFirstName,
+          userLastName: this.state.userLastName,
+          userBio: this.state.userBio,
+          userBioLong: this.state.userBioLong,
+          userImage: uploadImageResult.imageAddress
+            ? uploadImageResult.imageAddress
+            : this.state.userImage,
+          userRating: this.state.userRating ? this.state.userRating : 3,
+        };
+        // Check if we are creating or updating
+        if (!this.state.userID) {
+          // Create
+          this.props.onCreate("user", data).then(
+            (createResult) => {
+              // Creation completed successfully
+              // console.log(createResult);
+            },
+            (creationError) => {
+              // Creation failed
+              // console.log(creationError);
+              alert("User Creation Failed! Error: " + creationError.message);
+            }
+          );
+        } else {
+          // Delete old image if needed
+          this.deleteImage().then(
+            (deleteResult) => {
+              // Delete completed successfully
+              // console.log(deleteResult);
+              // Update
+              this.props.onUpdate("user", data).then(
+                (updateResult) => {
+                  // Update completed successfully
+                  // console.log(updateResult);
+                },
+                (updateError) => {
+                  // Update failed
+                  // console.log(updateError);
+                  alert("User Update Failed! Error: " + updateError.message);
+                }
+              );
+            },
+            (deleteError) => {
+              // Delete failed
+              // console.log(deleteError);
+              alert("Image Deletion Failed! Error: " + deleteError.message);
+            }
+          );
+        }
+      },
+      (uploadImageError) => {
+        // Image Failed to Upload
+        // console.log(uploadImageError);
+        alert("Image Upload Failed! Error: " + uploadImageError.message);
+      }
+    );
+  };
+
+  // Delete the old image if needed
+  // Return a promise
+  deleteImage = () => {
+    // Check if the user changed their image
+    const { userData } = this.props;
+    const thisUser = userData.filter((user) => {
+      return parseInt(user.userID) === parseInt(this.state.userID);
+    })[0];
+    const { userImage: oldImage } = thisUser;
+    if (this.state.userImage !== oldImage) {
+      // See if we are hosting the image
+      const { apiURL } = apiConfig();
+      if (oldImage.substring(0, apiURL.length) === apiURL) {
+        // Delete the image from the server
+        const splitImageAddress = oldImage.split("/");
+        const imageAddress = splitImageAddress[splitImageAddress.length - 1];
+        const data = { imageAddress };
+        const deletedImagePromise = apiDeleteImage("user", data);
+        return deletedImagePromise.then(
+          (result) => {
+            // Delete succeeded
+            return result;
+          },
+          (error) => {
+            // Delete failed
+            return error;
+          }
+        );
+      } else {
+        return Promise.resolve({ message: "Image Not Hosted." });
+      }
     } else {
-      alert("You must enter a user name, first name, and last name.");
+      return Promise.resolve({ message: "Image Didn't Change." });
     }
   };
 
-  delete = () => {
+  // Upload the image if needed
+  // Return a promise
+  uploadImage = () => {
+    // Check to see if the image needs to be uploaded
+    if (this.state.userImage) {
+      if (typeof this.state.userImage === "object") {
+        return apiUploadImage("user", this.state.userImage).then(
+          (uploadImageResult) => {
+            // Image Uploaded Successfully
+            // console.log(uploadImageResult);
+            return uploadImageResult;
+          },
+          (uploadImageError) => {
+            // Image Failed to Upload
+            // console.log(uploadImageError);
+            return uploadImageError;
+          }
+        );
+      } else {
+        return Promise.resolve({
+          message: "Image doesn't need to be uploaded.",
+        });
+      }
+    } else {
+      return Promise.resolve({ message: "No image found." });
+    }
+  };
+
+  // Confirm and delete account
+  deleteAccount = () => {
     // Confirm that a user really wants to delete their account
     if (window.confirm("Are you sure you want to delete your account?")) {
       // Create the object to be sent to the API
       const { userID } = this.state;
       const userData = { userID };
       const { onDelete } = this.props;
-      onDelete("user", userData);
+      onDelete("user", userData).then(
+        (deleteUserResult) => {
+          // Delete successful
+          // console.log(deleteUserResult);
+          // Get old image link
+          const { userData } = this.props;
+          const thisUser = userData.filter((user) => {
+            return parseInt(user.userID) === parseInt(this.state.userID);
+          })[0];
+          const { userImage: oldImage } = thisUser;
+          // Check to see if their image was hosted
+          const { apiURL } = apiConfig();
+          if (oldImage.substring(0, apiURL.length) === apiURL) {
+            // Delete the image from the server
+            const splitImageAddress = oldImage.split("/");
+            const imageAddress =
+              splitImageAddress[splitImageAddress.length - 1];
+            const data = { imageAddress };
+            const deletedImagePromise = apiDeleteImage("user", data);
+            return deletedImagePromise.then(
+              (deleteImageResult) => {
+                // Delete succeeded
+                // console.log(deleteImageResult);
+              },
+              (deleteImageError) => {
+                // Delete failed
+                // console.log(deleteImageError);
+                alert(
+                  "Image Deletion Failed! Error: " + deleteImageError.message
+                );
+              }
+            );
+          } else {
+            // console.log({ message: "Image Not Hosted." });
+          }
+        },
+        (deleteUserError) => {
+          // Delete failed
+          // console.log(deleteUserError);
+          alert("User Deletion Failed! Error: " + deleteUserError.message);
+        }
+      );
     }
   };
 
-  getPicture = () => {
-    const { userImageNew: imageURL } = this.state;
-    fetch(imageURL).then((response) => {
-      const responseURL = response.url;
-      // if (responseURL.substring(0, 16) !== "http://localhost") {
-      const encodedURL = encodeURIComponent(responseURL);
-      this.setState({ userImage: encodedURL });
-      // }
-    });
-  };
-
+  // Render method
   render() {
     const {
       userID,
@@ -140,15 +256,16 @@ class RegisterOrEditUser extends React.Component {
       userImageNew,
     } = this.state;
 
+    // The action buttons depending on whether user is editing or creating an account
     const actionButtons = userID ? (
       <div id="user_edit_action_bar">
         <Link className="noodle_button" to="/user">
           Cancel Editing
         </Link>
-        <button className="noodle_button" onClick={() => this.update()}>
+        <button className="noodle_button" onClick={() => this.submit()}>
           Submit Changes
         </button>
-        <button className="noodle_button" onClick={() => this.delete()}>
+        <button className="noodle_button" onClick={() => this.deleteAccount()}>
           Delete Account
         </button>
       </div>
@@ -157,29 +274,58 @@ class RegisterOrEditUser extends React.Component {
         <Link className="noodle_button" to="/login">
           Cancel Registration
         </Link>
-        <button className="noodle_button" onClick={() => this.create()}>
+        <button className="noodle_button" onClick={() => this.submit()}>
           Submit Registration
         </button>
       </div>
     );
 
+    // Return the user edit form
     return (
       <main id="user_edit">
         <section>
           <h1>Profile Picture</h1>
           <img
-            src={userImage ? decodeURIComponent(userImage) : usericon}
+            src={
+              userImage
+                ? typeof userImage === "object"
+                  ? URL.createObjectURL(userImage)
+                  : decodeURIComponent(userImage)
+                : usericon
+            }
             onError={() => {
               this.setState({ userImage: undefined });
             }}
             alt="User"
           ></img>
+          <label htmlFor="noodleImageUpload">
+            Upload an image from your device
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            name="noodleImageUpload"
+            onChange={(event) => {
+              this.setState({ userImage: event.target.files[0] });
+            }}
+          ></input>
+          <label htmlFor="noodleImageLink">
+            Get an image from the internet
+          </label>
           <Textbox
+            attributesInput={{
+              name: "noodleImageLink",
+            }}
             value={userImageNew}
             onChange={(value) => this.setState({ userImageNew: value })}
           ></Textbox>
           <div id="user_edit_image_buttons">
-            <button className="noodle_button" onClick={() => this.getPicture()}>
+            <button
+              className="noodle_button"
+              onClick={() =>
+                this.setState({ userImage: this.state.userImageNew })
+              }
+            >
               Get an Image from URL
             </button>
             <button
@@ -195,8 +341,8 @@ class RegisterOrEditUser extends React.Component {
             <button
               className="noodle_button"
               onClick={() => {
-                getRandomImageFromUnsplash(300, 300).then((userImage) => {
-                  this.setState({ userImage });
+                getRandomImageFromUnsplash(300, 300).then((result) => {
+                  this.setState({ userImage: result.encodedURL });
                 });
               }}
             >

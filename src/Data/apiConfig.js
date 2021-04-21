@@ -10,6 +10,8 @@ function apiConfig() {
     apiUserPath: "user/",
     apiNoodleUploadImage: "uploadEventImage.php",
     apiNoodleDeleteImage: "deleteEventImage.php",
+    apiUserUploadImage: "uploadUserIcon.php",
+    apiUserDeleteImage: "deleteUserIcon.php",
   };
 }
 

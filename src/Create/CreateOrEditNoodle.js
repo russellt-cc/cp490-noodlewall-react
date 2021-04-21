@@ -140,23 +140,29 @@ class CreateOrEditNoodle extends React.Component {
             if (typeof image === "object") {
               // Upload the image and get the address back as a promise
               const uploadedImagePromise = apiUploadImage(status, image);
-              return uploadedImagePromise.then((result) => {
-                // Set the link in state to be the uploaded image
-                let { noodleCoverImage } = this.state;
-                // Compare the cover image with this image
-                if (noodleCoverImage === image) {
-                  // Set the cover image to the uploaded file url
-                  noodleCoverImage = result.imageAddress;
+              return uploadedImagePromise.then(
+                (result) => {
+                  // Set the link in state to be the uploaded image
+                  let { noodleCoverImage } = this.state;
+                  // Compare the cover image with this image
+                  if (noodleCoverImage === image) {
+                    // Set the cover image to the uploaded file url
+                    noodleCoverImage = result.imageAddress;
+                  }
+                  // Set the image to the uploaded file url
+                  noodleImages[index] = result.imageAddress;
+                  // Update state
+                  this.setState({ noodleImages, noodleCoverImage });
+                  // return Promise.resolve({
+                  //   message: "Image Uploaded Successfully!",
+                  // });
+                  return result;
+                },
+                (error) => {
+                  // Upload failed
+                  return error;
                 }
-                // Set the image to the uploaded file url
-                noodleImages[index] = result.imageAddress;
-                // Update state
-                this.setState({ noodleImages, noodleCoverImage });
-                // return Promise.resolve({
-                //   message: "Image Uploaded Successfully!",
-                // });
-                return result;
-              });
+              );
             } else {
               return Promise.resolve({
                 message: "Image Not Hosted.",
@@ -201,9 +207,16 @@ class CreateOrEditNoodle extends React.Component {
                 splitImageAddress[splitImageAddress.length - 1];
               const data = { imageAddress };
               const deletedImagePromise = apiDeleteImage(status, data);
-              return deletedImagePromise.then((result) => {
-                return result;
-              });
+              return deletedImagePromise.then(
+                (result) => {
+                  // Delete succeeded
+                  return result;
+                },
+                (error) => {
+                  // Delete failed
+                  return error;
+                }
+              );
             } else {
               return Promise.resolve({
                 message: "Image Not Deleted.",
