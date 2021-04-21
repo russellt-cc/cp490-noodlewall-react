@@ -18,8 +18,8 @@ import NoodleList from "../Common/NoodleList";
 import usericon from "../Images/usericon.png";
 
 // API functions
-import dataReadByID from "../Data/dataReadByID";
-import dataReadByOtherID from "../Data/dataReadByOtherID";
+import readNoodleOrUserByID from "../Data/readNoodleOrUserByID";
+import readNoodleOrUserByOtherID from "../Data/readNoodleOrUserByOtherID";
 
 // The user profile page
 class User extends React.Component {
@@ -44,14 +44,14 @@ class User extends React.Component {
     }
     // Fetch data for the id
     if (id) {
-      dataReadByID("user", id).then(
+      readNoodleOrUserByID("user", id).then(
         (userLoadResult) => {
           // console.log(userLoadResult);
           const thisUser = userLoadResult;
           const userIsLoaded = true;
           this.setState({ thisUser, userIsLoaded });
           // Get users noodles
-          dataReadByOtherID("noodles", id).then(
+          readNoodleOrUserByOtherID("noodles", id).then(
             (userNoodlesResult) => {
               // console.log(userNoodlesResult);
               const userNoodles = userNoodlesResult.records;

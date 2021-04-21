@@ -17,10 +17,10 @@ import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import ScrollToTop from "./Common/ScrollToTop";
 
 // CRUD functions
-import dataCreate from "./Data/dataCreate";
-import dataRead from "./Data/dataRead";
-import dataUpdate from "./Data/dataUpdate";
-import dataDelete from "./Data/dataDelete";
+import createNoodleOrUser from "./Data/createNoodleOrUser";
+import readNoodlesOrUsers from "./Data/readNoodlesOrUsers";
+import updateNoodleOrUser from "./Data/updateNoodleOrUser";
+import deleteNoodleOrUser from "./Data/deleteNoodleOrUser";
 
 // Main App class
 // Uses React Router to show different components
@@ -46,14 +46,14 @@ class App extends React.Component {
   // Return promise
   create = (type, data) => {
     // Create data using component function
-    return dataCreate(type, data, this.returnState, this.login);
+    return createNoodleOrUser(type, data, this.returnState, this.login);
   };
 
   // Read
   // Return promise
   read = (type) => {
     // Load data using component function
-    return dataRead(type);
+    return readNoodlesOrUsers(type);
   };
 
   // Update
@@ -62,7 +62,7 @@ class App extends React.Component {
     // Get configuration from state
     const { currentUser } = this.state;
     // Update data using component function
-    return dataUpdate(type, data, this.returnState, currentUser);
+    return updateNoodleOrUser(type, data, this.returnState, currentUser);
   };
 
   // Delete
@@ -71,7 +71,13 @@ class App extends React.Component {
     // Get configuration from state
     const { currentUser } = this.state;
     // Delete data using component function
-    return dataDelete(type, data, this.returnState, this.logout, currentUser);
+    return deleteNoodleOrUser(
+      type,
+      data,
+      this.returnState,
+      this.logout,
+      currentUser
+    );
   };
 
   // Login

@@ -20,10 +20,10 @@ import CreateSection7 from "./CreateSection7";
 import CreateSubmitBar from "./CreateSubmitBar";
 
 // API Functions and Configuration
-import apiUploadImage from "../Data/apiUploadImage";
-import apiDeleteImage from "../Data/apiDeleteImage";
+import uploadNoodleOrUserImage from "../Data/uploadNoodleOrUserImage";
+import deleteNoodleOrUserImage from "../Data/deleteNoodleOrUserImage";
 import apiConfig from "../Data/apiConfig";
-import dataReadByID from "../Data/dataReadByID";
+import readNoodleOrUserByID from "../Data/readNoodleOrUserByID";
 
 // The create dream / event page
 class CreateOrEditNoodle extends React.Component {
@@ -44,7 +44,7 @@ class CreateOrEditNoodle extends React.Component {
       const { id: noodleID } = this.props.match.params;
       if (noodleID) {
         // Get current noodle data to pre fill the form
-        dataReadByID("noodle", noodleID).then(
+        readNoodleOrUserByID("noodle", noodleID).then(
           (result) => {
             // Data read successfully
             console.log(result);
@@ -156,7 +156,10 @@ class CreateOrEditNoodle extends React.Component {
             // If object then image is a file object and needs to be uploaded
             if (typeof image === "object") {
               // Upload the image and get the address back as a promise
-              const uploadedImagePromise = apiUploadImage(status, image);
+              const uploadedImagePromise = uploadNoodleOrUserImage(
+                status,
+                image
+              );
               return uploadedImagePromise.then(
                 (result) => {
                   // Set the link in state to be the uploaded image
@@ -218,7 +221,7 @@ class CreateOrEditNoodle extends React.Component {
               const imageAddress =
                 splitImageAddress[splitImageAddress.length - 1];
               const data = { imageAddress };
-              const deletedImagePromise = apiDeleteImage(status, data);
+              const deletedImagePromise = deleteNoodleOrUserImage(status, data);
               return deletedImagePromise.then(
                 (result) => {
                   // Delete succeeded

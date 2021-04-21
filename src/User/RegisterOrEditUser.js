@@ -19,8 +19,8 @@ import getRandomImageFromUnsplash from "../Images/getRandomImageFromUnsplash";
 import usericon from "../Images/usericon.png";
 
 // API Calls and Configuration
-import apiUploadImage from "../Data/apiUploadImage";
-import apiDeleteImage from "../Data/apiDeleteImage";
+import uploadNoodleOrUserImage from "../Data/uploadNoodleOrUserImage";
+import deleteNoodleOrUserImage from "../Data/deleteNoodleOrUserImage";
 import apiConfig from "../Data/apiConfig";
 
 // Form to register a new user or edit an existing one
@@ -138,7 +138,7 @@ class RegisterOrEditUser extends React.Component {
         const splitImageAddress = oldImage.split("/");
         const imageAddress = splitImageAddress[splitImageAddress.length - 1];
         const data = { imageAddress };
-        const deletedImagePromise = apiDeleteImage("user", data);
+        const deletedImagePromise = deleteNoodleOrUserImage("user", data);
         return deletedImagePromise.then(
           (result) => {
             // Delete succeeded
@@ -162,7 +162,7 @@ class RegisterOrEditUser extends React.Component {
     // Check to see if the image needs to be uploaded
     if (this.state.userImage) {
       if (typeof this.state.userImage === "object") {
-        return apiUploadImage("user", this.state.userImage).then(
+        return uploadNoodleOrUserImage("user", this.state.userImage).then(
           (uploadImageResult) => {
             // Image Uploaded Successfully
             // console.log(uploadImageResult);
@@ -205,7 +205,7 @@ class RegisterOrEditUser extends React.Component {
             const imageAddress =
               splitImageAddress[splitImageAddress.length - 1];
             const data = { imageAddress };
-            const deletedImagePromise = apiDeleteImage("user", data);
+            const deletedImagePromise = deleteNoodleOrUserImage("user", data);
             return deletedImagePromise.then(
               (deleteImageResult) => {
                 // Delete succeeded

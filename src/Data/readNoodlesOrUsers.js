@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to handle reading data from API
 // Return response as a promise
-function dataRead(type) {
+function readNoodlesOrUsers(type) {
   const { apiURL, apiRead } = apiConfig();
   let apiPath;
   switch (type) {
@@ -32,4 +32,4 @@ function dataRead(type) {
     );
 }
 
-export default dataRead;
+export default readNoodlesOrUsers;

@@ -8,20 +8,20 @@ import "./BrowseNoodles.css";
 import NoodleList from "../Common/NoodleList";
 
 // Data Read function
-import dataRead from "../Data/dataRead";
+import readNoodlesOrUsers from "../Data/readNoodlesOrUsers";
 
 // The Browse Noodles page
 class BrowseNoodles extends React.Component {
   componentDidMount() {
     // Get the latest data from the API
-    dataRead("noodles").then(
+    readNoodlesOrUsers("noodles").then(
       (result) => {
         // Data read successfully
         const noodleData = result.records;
         // Save in state
         this.setState({ noodleData });
         // Get user data
-        dataRead("users").then(
+        readNoodlesOrUsers("users").then(
           (result) => {
             // Users read successfully
             const userData = result.records;

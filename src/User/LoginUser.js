@@ -8,14 +8,14 @@ import { Link } from "react-router-dom";
 import "./LoginUser.css";
 
 // API function
-import dataRead from "../Data/dataRead";
+import readNoodlesOrUsers from "../Data/readNoodlesOrUsers";
 
 // The login / user switcher component
 // Replace with a proper login
 class LoginUser extends React.Component {
   componentDidMount() {
     // Get the latest data from the API
-    dataRead("users").then(
+    readNoodlesOrUsers("users").then(
       (userLoadResult) => {
         // Data read successfully
         const userData = userLoadResult.records;

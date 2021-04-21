@@ -1,8 +1,9 @@
 import apiConfig from "./apiConfig";
 
-// Function to handle updating data using API
+// Function to handle creating data using API
 // Return response as a promise
-function dataUpdate(type, data, returnState, currentUser) {
+function createNoodleOrUser(type, data, returnState, login) {
+  // Check whether we are using the API for data
   const { apiNoodlePath, apiUserPath } = apiConfig();
   let apiPath = "product";
   // Check the type
@@ -19,33 +20,34 @@ function dataUpdate(type, data, returnState, currentUser) {
       return Promise.reject({ message: "Unknown Type!" });
   }
   // AJAX request to PHP server
-  const { apiURL, apiUpdate } = apiConfig();
-  return fetch(apiURL + apiPath + apiUpdate, {
+  const { apiURL, apiCreate } = apiConfig();
+  return fetch(apiURL + apiPath + apiCreate, {
     method: "POST",
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
     .then(
       (result) => {
+        // console.log(result);
         // Handle redirect
         let redirectPath;
         switch (type) {
           case "dream":
           case "event":
             // Redirect to noodle page
-            redirectPath = "/details/" + data.noodleID;
+            redirectPath = "/details/" + result.noodleID;
             break;
           case "user":
+            // Login to new account
+            login(result);
             // Redirect to user page
             redirectPath = "/user";
-            // Update user info
-            currentUser = data;
             break;
           default:
             redirectPath = "/";
             break;
         }
-        returnState({ redirectPath, currentUser });
+        returnState({ redirectPath });
         return result;
       },
       (error) => {
@@ -54,4 +56,4 @@ function dataUpdate(type, data, returnState, currentUser) {
     );
 }
 
-export default dataUpdate;
+export default createNoodleOrUser;

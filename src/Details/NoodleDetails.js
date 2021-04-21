@@ -14,14 +14,14 @@ import { Link } from "react-router-dom";
 import UserRating from "../Common/UserRating";
 
 // API function
-import dataReadByID from "../Data/dataReadByID";
+import readNoodleOrUserByID from "../Data/readNoodleOrUserByID";
 
 // The event / dreams details page
 class NoodleDetails extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     // Load the latest data
-    dataReadByID("noodle", id).then(
+    readNoodleOrUserByID("noodle", id).then(
       (noodleReadResult) => {
         // Noodle loaded successfully
         // console.log(noodleReadResult);
@@ -29,7 +29,7 @@ class NoodleDetails extends React.Component {
         const noodleIsCooked = true;
         this.setState({ thisNoodle, noodleIsCooked });
         // Load latest user data
-        dataReadByID("user", noodleReadResult.userID).then(
+        readNoodleOrUserByID("user", noodleReadResult.userID).then(
           (hostReadResult) => {
             // User loaded successfully
             // console.log(hostReadResult);

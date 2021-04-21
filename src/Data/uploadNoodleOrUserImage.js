@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to upload an image to api
 // Returns a promise with the image URL
-function apiUploadImage(type, imageFile) {
+function uploadNoodleOrUserImage(type, imageFile) {
   const {
     apiURL,
     apiNoodlePath,
@@ -42,4 +42,4 @@ function apiUploadImage(type, imageFile) {
     );
 }
 
-export default apiUploadImage;
+export default uploadNoodleOrUserImage;

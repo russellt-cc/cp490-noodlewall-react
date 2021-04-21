@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to delete a hosted image
 // Return result as a promise
-function apiDeleteImage(type, data) {
+function deleteNoodleOrUserImage(type, data) {
   const {
     apiURL,
     apiNoodlePath,
@@ -40,4 +40,4 @@ function apiDeleteImage(type, data) {
     );
 }
 
-export default apiDeleteImage;
+export default deleteNoodleOrUserImage;

@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to read data by ID
 // Return response as a promise
-function dataReadByID(type, id) {
+function readNoodleOrUserByID(type, id) {
   const { apiURL, apiNoodlePath, apiUserPath, apiReadByID } = apiConfig();
   let apiPath;
   switch (type) {
@@ -25,4 +25,4 @@ function dataReadByID(type, id) {
   return fetch(apiURL + apiPath + apiReadByID + id).then((res) => res.json());
 }
 
-export default dataReadByID;
+export default readNoodleOrUserByID;

@@ -2,7 +2,7 @@ import apiConfig from "./apiConfig";
 
 // Function to handle deleting data using API
 // Return response as a promise
-function dataDelete(type, data, returnState, logout, currentUser) {
+function deleteNoodleOrUser(type, data, returnState, logout, currentUser) {
   // Check whether we are using the API for data
   const { apiNoodlePath, apiUserPath } = apiConfig();
   let apiPath = "product";
@@ -56,4 +56,4 @@ function dataDelete(type, data, returnState, logout, currentUser) {
     );
 }
 
-export default dataDelete;
+export default deleteNoodleOrUser;

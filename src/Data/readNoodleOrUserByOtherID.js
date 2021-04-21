@@ -3,7 +3,7 @@ import apiConfig from "./apiConfig";
 // Function to return noodles from a user ID
 // or read user from a noodle ID
 // Return response as a promise
-function dataReadByOtherID(type, otherID) {
+function readNoodleOrUserByOtherID(type, otherID) {
   const {
     apiURL,
     apiNoodlePath,
@@ -35,4 +35,4 @@ function dataReadByOtherID(type, otherID) {
   return fetch(apiURL + apiPath + apiFile + otherID).then((res) => res.json());
 }
 
-export default dataReadByOtherID;
+export default readNoodleOrUserByOtherID;
