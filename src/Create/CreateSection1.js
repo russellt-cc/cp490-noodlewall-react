@@ -14,7 +14,7 @@ class CreateSection1 extends React.Component {
         <h1 id="section1" className="create_section_heading">
           {sections[1 - 1].name}
         </h1>
-        <p>Enter some information about who is organizing the event.</p>
+        <p>Edit your profile to change this information.</p>
         <div>
           <label htmlFor="userName">Organizer Name</label>
           <Textbox

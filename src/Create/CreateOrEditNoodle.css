@@ -185,6 +185,18 @@ main#create.event {
   width: 200px;
 }
 
+#create input[name="userName"],
+#create textarea[name="userBio"],
+#create textarea[name="userBioLong"] {
+  pointer-events: none;
+}
+
+#create h1,
+#create p,
+#create label {
+  user-select: none;
+}
+
 /* style for mobile */
 
 @media screen and (max-width: 800px) {
