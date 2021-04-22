@@ -87,10 +87,15 @@
 
 #details #details_image_container {
   position: relative;
+  background-color: black;
 }
 
 #details #details_image_container > img {
   width: 100%;
+}
+
+#details img.image-gallery-image {
+  aspect-ratio: 16/9;
 }
 
 #details #details_image_container > img.overlay {

@@ -177,6 +177,10 @@ main#create.event {
   column-gap: 10px;
 }
 
+#create input[name="noodleTicketsSold"] {
+  width: 100px;
+}
+
 /* style for mobile */
 
 @media screen and (max-width: 800px) {

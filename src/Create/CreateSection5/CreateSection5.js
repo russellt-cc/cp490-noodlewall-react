@@ -26,13 +26,13 @@ class CreateSection5 extends React.Component {
     // Make a copy of the images array
     let splicedImages = noodleImages ? [...noodleImages] : [];
     // Add a new object to the images array
-    splicedImages.splice(index, 0, undefined);
+    splicedImages.splice(index, 0, "");
     // Update the images array
     onChangeImages(splicedImages);
     // Make a copy of the images text array
     let splicedImagesText = noodleImageText ? [...noodleImageText] : [];
     // Add a new object to the array
-    splicedImagesText.splice(index, 0, undefined);
+    splicedImagesText.splice(index, 0, "");
     // Update the text array
     onChangeImagesText(splicedImagesText);
   };

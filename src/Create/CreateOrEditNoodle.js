@@ -106,6 +106,7 @@ class CreateOrEditNoodle extends React.Component {
               noodleMinTickets: thisNoodle.noodleMinTickets,
               noodleMaxTickets: thisNoodle.noodleMaxTickets,
               noodleCutoff: thisNoodle.noodleCutoff,
+              noodleTicketsSold: thisNoodle.noodleTicketsSold,
             });
           },
           (error) => {
@@ -400,6 +401,7 @@ class CreateOrEditNoodle extends React.Component {
       noodleMaxTickets: this.state.noodleMaxTickets,
       noodleCutoff: this.state.noodleCutoff,
       noodleID: this.state.noodleID,
+      noodleTicketsSold: this.state.noodleTicketsSold,
     };
     return noodleData;
   };
@@ -531,6 +533,20 @@ class CreateOrEditNoodle extends React.Component {
                     noodleCutoff={this.state.noodleCutoff}
                     onChange={this.handleChange}
                   ></CreateSection7>
+                  <section>
+                    <h1>Development Only</h1>
+                    <label htmlFor="noodleTicketsSold">Set Tickets Sold</label>
+                    <input
+                      type="number"
+                      name="noodleTicketsSold"
+                      value={this.state.noodleTicketsSold}
+                      min="0"
+                      step="1"
+                      onChange={(event) =>
+                        this.setState({ noodleTicketsSold: event.target.value })
+                      }
+                    ></input>
+                  </section>
                 </>
               );
             }
