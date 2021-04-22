@@ -87,6 +87,18 @@
     width: 100%;
     text-align: center;
   }
+  #user_profile #user_profile_intro .user_actions {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+  }
+  #user_profile #user_profile_intro .user_actions {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  #user_profile #user_profile_intro .noodle_button {
+    width: auto;
+  }
 }
 
 @media screen and (max-height: 600px) {

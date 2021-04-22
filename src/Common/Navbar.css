@@ -82,39 +82,11 @@ nav #user_button_button {
   align-items: center;
 }
 
-/* the button when clicked */
-/* nav ul li > button:focus, */
-nav ul li > a:hover {
-  outline: none;
-  background-color: var(--dreams-color);
-}
-
-/* drop down elements */
-nav .drop {
-  position: absolute;
-  top: 70px;
-  right: -650px;
-  display: flex;
-  justify-content: right;
-  background-color: white;
-  border: 3px solid var(--events-color);
-  border-bottom-left-radius: 10px;
-  transition: right 0.5s ease-in-out;
-}
-
 /* the browse and create drop downs */
 nav #browse_drop,
 #create_drop {
   column-gap: 5px;
   padding: 5px;
-}
-
-/* drop on hover */
-nav #browse_button:hover .drop,
-nav #create_button:hover .drop,
-nav #user_button:hover .drop {
-  pointer-events: auto;
-  right: 0px;
 }
 
 /* items in the browse and create drop downs */
@@ -241,6 +213,35 @@ nav #loggedout_create_drop .noodle_button {
   height: 200px;
 }
 
+/* style for desktop */
+
+@media screen and (min-width: 600px) {
+  /* drop on hover */
+  nav #browse_button:hover .drop,
+  nav #create_button:hover .drop,
+  nav #user_button:hover .drop {
+    pointer-events: auto;
+    right: 0px;
+  }
+  /* the button when hovered over */
+  nav ul li > a:hover {
+    outline: none;
+    background-color: var(--dreams-color);
+  }
+  /* drop down elements */
+  nav .drop {
+    position: absolute;
+    top: 70px;
+    right: -650px;
+    display: flex;
+    justify-content: right;
+    background-color: white;
+    border: 3px solid var(--events-color);
+    border-bottom-left-radius: 10px;
+    transition: right 0.5s ease-in-out;
+  }
+}
+
 /* style for mobile */
 
 @media screen and (max-width: 800px) {
@@ -248,6 +249,9 @@ nav #loggedout_create_drop .noodle_button {
     width: 50px;
     object-fit: cover;
     object-position: 0% 100%;
+  }
+  nav .drop {
+    display: none;
   }
 }
 
@@ -261,15 +265,6 @@ nav #loggedout_create_drop .noodle_button {
   }
   #nav_right ul {
     padding-left: 0px;
-  }
-  nav #browse_drop,
-  nav #create_drop {
-    flex-direction: column;
-    width: 95%;
-  }
-  nav #browse_drop > *,
-  nav #create_drop > * {
-    width: 100%;
   }
 }
 
