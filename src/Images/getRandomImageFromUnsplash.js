@@ -1,11 +1,13 @@
 //https://stackoverflow.com/questions/38869197/fetch-set-variable-with-fetch-response-and-return-from-function
 //https://stackoverflow.com/questions/4651990/remove-url-parameters-with-javascript-or-jquery
 
+// Function to get a random image from unsplash
 function getRandomImageFromUnsplash(
   randomImageWidth,
   randomImageHeight,
   noodleTags
 ) {
+  // Start building the request URL using parameters
   let randomImageRequest =
     "https://source.unsplash.com/random/" +
     randomImageWidth +
@@ -15,10 +17,13 @@ function getRandomImageFromUnsplash(
   if (noodleTags && noodleTags.length) {
     // Get images based on tags
     const tags = noodleTags.join();
+    // Append the tags to the request URL
     randomImageRequest = randomImageRequest + "/?" + tags;
   }
   // Get random image as a promise
   return fetch(randomImageRequest).then((response) => {
+    // We got a response
+    // Get the response URL
     const url = response.url;
     // Break down the URL so it fits in the database
     // Split URL into URL and parameters and store in an array
