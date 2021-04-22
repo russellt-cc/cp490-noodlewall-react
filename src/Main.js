@@ -101,19 +101,31 @@ class Main extends React.Component {
         <Route
           path="/user/:id/:action"
           render={(props) => (
-            <UserProfile {...props} currentUser={currentUser} />
+            <UserProfile
+              {...props}
+              currentUser={currentUser}
+              onLogout={this.props.onLogout}
+            />
           )}
         />
         <Route
           path="/user/:id"
           render={(props) => (
-            <UserProfile {...props} currentUser={currentUser} />
+            <UserProfile
+              {...props}
+              currentUser={currentUser}
+              onLogout={this.props.onLogout}
+            />
           )}
         />
         <Route
           path="/user"
           render={(props) => (
-            <UserProfile {...props} currentUser={currentUser} />
+            <UserProfile
+              {...props}
+              currentUser={currentUser}
+              onLogout={this.props.onLogout}
+            />
           )}
         />
         {/* ------------------------------------------------------------ */}

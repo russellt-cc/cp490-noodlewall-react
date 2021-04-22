@@ -58,7 +58,7 @@ nav ul li {
 }
 
 /* right side buttons */
-nav ul li > button {
+nav ul li button {
   border: none;
   padding: 10px;
   background: none;
@@ -84,7 +84,7 @@ nav #user_button_button {
 
 /* the button when clicked */
 /* nav ul li > button:focus, */
-nav ul li > button:hover {
+nav ul li a button:hover {
   outline: none;
   background-color: var(--dreams-color);
 }
@@ -109,12 +109,9 @@ nav #browse_drop,
   padding: 5px;
 }
 
-/* drop on click */
-/* nav #browse_button:focus-within .drop, */
+/* drop on hover */
 nav #browse_button:hover .drop,
-/* nav #create_button:focus-within .drop, */
 nav #create_button:hover .drop,
-/* nav #user_button:focus-within .drop, */
 nav #user_button:hover .drop {
   pointer-events: auto;
   right: 0px;

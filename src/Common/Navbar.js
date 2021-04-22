@@ -169,9 +169,11 @@ class Navbar extends React.Component {
         <div id="nav_right" className="nav_column">
           <ul>
             <li id="browse_button" className="drop_button">
-              <button>
-                <strong>Browse</strong>
-              </button>
+              <Link to="/browse">
+                <button>
+                  <strong>Browse</strong>
+                </button>
+              </Link>
               <div id="browse_drop" className="drop">
                 <div id="browse_dreams_button" className="browse_drop_button">
                   <span className="dreams_color_text">
@@ -191,21 +193,25 @@ class Navbar extends React.Component {
               </div>
             </li>
             <li id="create_button" className="drop_button">
-              <button>
-                <strong>Create</strong>
-              </button>
+              <Link to={userID ? "/create/dream" : "/login/create/dream"}>
+                <button>
+                  <strong>Create</strong>
+                </button>
+              </Link>
               {createDrop}
             </li>
             <li id="user_button" className="drop_button">
-              <button id="user_button_button">
-                <img
-                  id="nav_user_image"
-                  src={userImage ? decodeURIComponent(userImage) : usericon}
-                  height="50px"
-                  width="50px"
-                  alt="User"
-                />
-              </button>
+              <Link to={userID ? "/user" : "/login"}>
+                <button id="user_button_button">
+                  <img
+                    id="nav_user_image"
+                    src={userImage ? decodeURIComponent(userImage) : usericon}
+                    height="50px"
+                    width="50px"
+                    alt="User"
+                  />
+                </button>
+              </Link>
               {userDrop}
             </li>
           </ul>

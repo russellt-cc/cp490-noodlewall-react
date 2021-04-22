@@ -102,7 +102,7 @@ class User extends React.Component {
               }}
             />
           );
-          // Actions when viewing a users own profile
+          // Actions when viewing another users profile
           const otherProfileActions = (
             <p className="user_actions">
               <button
@@ -123,7 +123,7 @@ class User extends React.Component {
               </button>
             </p>
           );
-          // Actions when viewing another users profile
+          // Actions when viewing a users own profile
           const ownProfileActions = (
             <p className="user_actions">
               <Link className="noodle_button" to="/user/edit">
@@ -131,6 +131,12 @@ class User extends React.Component {
               </Link>
               <button className="noodle_button">Manage Events</button>
               <button className="noodle_button">View Dashboard</button>
+              <button
+                className="noodle_button"
+                onClick={() => this.props.onLogout()}
+              >
+                Log Out
+              </button>
             </p>
           );
           // Return the profile page

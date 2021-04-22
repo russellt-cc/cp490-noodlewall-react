@@ -156,6 +156,7 @@ class App extends React.Component {
             onUpdate={this.update}
             onDelete={this.delete}
             onLogin={this.login}
+            onLogout={this.logout}
           />
           {/* Show the Noodlewall footer */}
           <Footer />
