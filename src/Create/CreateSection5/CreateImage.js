@@ -36,12 +36,11 @@ class CreateImage extends React.Component {
       randomImage.then(
         (result) => {
           // Got random image
-          // console.log(result);
           this.changeImage(result.encodedURL);
         },
         (error) => {
           // Random image failed
-          // console.log(error);
+          console.log(error);
         }
       );
     }
@@ -50,7 +49,6 @@ class CreateImage extends React.Component {
   changeImage = (noodleImage) => {
     const { onChangeImage, index } = this.props;
     onChangeImage(index, noodleImage);
-    // console.log(typeof noodleImage);
   };
   // Method to change the text associated with this image
   changeImageText = (noodleImageText) => {
@@ -149,12 +147,11 @@ class CreateImage extends React.Component {
                 randomImage.then(
                   (result) => {
                     // Got random image
-                    // console.log(result);
                     this.changeImage(result.encodedURL);
                   },
                   (error) => {
                     // Random image failed
-                    // console.log(error);
+                    console.log(error);
                   }
                 );
               }}

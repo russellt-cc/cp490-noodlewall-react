@@ -16,7 +16,6 @@ function updateNoodleOrUser(type, data, returnState, currentUser) {
       apiPath = apiUserPath;
       break;
     default:
-      // alert("Error: Unknown Type");
       return Promise.reject({ message: "Unknown Type!" });
   }
   // AJAX request to PHP server

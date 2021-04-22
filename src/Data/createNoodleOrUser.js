@@ -16,7 +16,6 @@ function createNoodleOrUser(type, data, returnState, login) {
       apiPath = apiUserPath;
       break;
     default:
-      // alert("Error: Unknown Type");
       return Promise.reject({ message: "Unknown Type!" });
   }
   // AJAX request to PHP server
@@ -28,7 +27,6 @@ function createNoodleOrUser(type, data, returnState, login) {
     .then((res) => res.json())
     .then(
       (result) => {
-        // console.log(result);
         // Handle redirect
         let redirectPath;
         switch (type) {

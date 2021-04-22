@@ -40,7 +40,7 @@ class NoodleCard extends React.Component {
           this.setState({ hostData });
         },
         (error) => {
-          // Error
+          // Error loading host data
           console.log(error);
         }
       );

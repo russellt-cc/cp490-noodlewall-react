@@ -31,16 +31,7 @@ function uploadNoodleOrUserImage(type, imageFile) {
   return fetch(apiURL + apiPath + apiFile, {
     method: "POST",
     body: formData,
-  })
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        return result;
-      },
-      (error) => {
-        return error;
-      }
-    );
+  }).then((res) => res.json());
 }
 
 export default uploadNoodleOrUserImage;

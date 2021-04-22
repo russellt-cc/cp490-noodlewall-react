@@ -62,7 +62,6 @@ class RegisterOrEditUser extends React.Component {
     this.uploadImage().then(
       (uploadImageResult) => {
         // Image Uploaded Successfully
-        // console.log(uploadImageResult);
         // Create the data object
         const data = {
           userID: this.state.userID,
@@ -82,11 +81,10 @@ class RegisterOrEditUser extends React.Component {
           this.props.onCreate("user", data).then(
             (createResult) => {
               // Creation completed successfully
-              // console.log(createResult);
             },
             (creationError) => {
               // Creation failed
-              // console.log(creationError);
+              console.log(creationError);
               alert("User Creation Failed! Error: " + creationError.message);
             }
           );
@@ -95,23 +93,21 @@ class RegisterOrEditUser extends React.Component {
           this.deleteImage().then(
             (deleteResult) => {
               // Delete completed successfully
-              // console.log(deleteResult);
               // Update
               this.props.onUpdate("user", data).then(
                 (updateResult) => {
                   // Update completed successfully
-                  // console.log(updateResult);
                 },
                 (updateError) => {
                   // Update failed
-                  // console.log(updateError);
+                  console.log(updateError);
                   alert("User Update Failed! Error: " + updateError.message);
                 }
               );
             },
             (deleteError) => {
               // Delete failed
-              // console.log(deleteError);
+              console.log(deleteError);
               alert("Image Deletion Failed! Error: " + deleteError.message);
             }
           );
@@ -119,7 +115,7 @@ class RegisterOrEditUser extends React.Component {
       },
       (uploadImageError) => {
         // Image Failed to Upload
-        // console.log(uploadImageError);
+        console.log(uploadImageError);
         alert("Image Upload Failed! Error: " + uploadImageError.message);
       }
     );
@@ -165,12 +161,11 @@ class RegisterOrEditUser extends React.Component {
         return uploadNoodleOrUserImage("user", this.state.userImage).then(
           (uploadImageResult) => {
             // Image Uploaded Successfully
-            // console.log(uploadImageResult);
             return uploadImageResult;
           },
           (uploadImageError) => {
             // Image Failed to Upload
-            // console.log(uploadImageError);
+            console.log(uploadImageError);
             return uploadImageError;
           }
         );
@@ -194,7 +189,6 @@ class RegisterOrEditUser extends React.Component {
       onDelete("user", userData).then(
         (deleteUserResult) => {
           // Delete successful
-          // console.log(deleteUserResult);
           // Get old image link
           const { userImageOld: oldImage } = this.state;
           // Check to see if their image was hosted
@@ -209,11 +203,10 @@ class RegisterOrEditUser extends React.Component {
             return deletedImagePromise.then(
               (deleteImageResult) => {
                 // Delete succeeded
-                // console.log(deleteImageResult);
               },
               (deleteImageError) => {
                 // Delete failed
-                // console.log(deleteImageError);
+                console.log(deleteImageError);
                 alert(
                   "Image Deletion Failed! Error: " + deleteImageError.message
                 );
@@ -225,7 +218,7 @@ class RegisterOrEditUser extends React.Component {
         },
         (deleteUserError) => {
           // Delete failed
-          // console.log(deleteUserError);
+          console.log(deleteUserError);
           alert("User Deletion Failed! Error: " + deleteUserError.message);
         }
       );

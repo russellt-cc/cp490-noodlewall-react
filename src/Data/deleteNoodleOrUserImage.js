@@ -29,16 +29,7 @@ function deleteNoodleOrUserImage(type, data) {
   return fetch(apiURL + apiPath + apiFile, {
     method: "POST",
     body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        return result;
-      },
-      (error) => {
-        return error;
-      }
-    );
+  }).then((res) => res.json());
 }
 
 export default deleteNoodleOrUserImage;

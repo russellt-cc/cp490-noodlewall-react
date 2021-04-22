@@ -21,16 +21,7 @@ function readNoodlesOrUsers(type) {
       return Promise.reject({ message: "Unknown Type!" });
   }
   // AJAX request to PHP server
-  return fetch(apiURL + apiPath + apiRead)
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        return result;
-      },
-      (error) => {
-        return error;
-      }
-    );
+  return fetch(apiURL + apiPath + apiRead).then((res) => res.json());
 }
 
 export default readNoodlesOrUsers;

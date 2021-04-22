@@ -18,11 +18,10 @@ class DetailsIntroRight extends React.Component {
       this.props.onDelete(noodleStatus, data).then(
         (result) => {
           // Delete successful
-          // console.log(result);
         },
         (error) => {
           // Delete failed
-          // console.log(error);
+          console.log(error);
         }
       );
     }
