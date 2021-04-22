@@ -33,29 +33,24 @@ class App extends React.Component {
       redirectPath: null,
     };
   }
-
   // Return state method so we can update app state in child components
   // Pass this method as a parameter to components
   returnState = (newState) => {
     this.setState(newState);
   };
-
   // Methods to handle CRUD
-
   // Create
   // Return promise
   create = (type, data) => {
     // Create data using component function
     return createNoodleOrUser(type, data, this.returnState, this.login);
   };
-
   // Read
   // Return promise
   read = (type) => {
     // Load data using component function
     return readNoodlesOrUsers(type);
   };
-
   // Update
   // Return promise
   update = (type, data) => {
@@ -64,7 +59,6 @@ class App extends React.Component {
     // Update data using component function
     return updateNoodleOrUser(type, data, this.returnState, currentUser);
   };
-
   // Delete
   // Return promise
   delete = (type, data) => {
@@ -79,7 +73,6 @@ class App extends React.Component {
       currentUser
     );
   };
-
   // Login
   login = (currentUser, redirectPath, redirectComponent, redirectID) => {
     // Check for specified redirect
@@ -100,7 +93,6 @@ class App extends React.Component {
     }
     this.setState({ currentUser, redirectPath });
   };
-
   // Logout
   logout = (redirectPath, redirectComponent, redirectID) => {
     // Set current ID to null to logout
@@ -124,7 +116,6 @@ class App extends React.Component {
     // Set state to reflect the logout and redirect
     this.setState({ currentUser, redirectPath });
   };
-
   // Render method
   render() {
     // Destructure the props and state
