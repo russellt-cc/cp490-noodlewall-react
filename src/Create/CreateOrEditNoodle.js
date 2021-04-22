@@ -27,6 +27,15 @@ import readNoodleOrUserByID from "../Data/readNoodleOrUserByID";
 
 // The create dream / event page
 class CreateOrEditNoodle extends React.Component {
+  // Constructor
+  constructor(props) {
+    super(props);
+    // Initialize state
+    const noodleTags = [];
+    const noodleImages = [];
+    const noodleImageText = [];
+    this.state = { noodleTags, noodleImages, noodleImageText };
+  }
   // Component did mount
   componentDidMount() {
     // Check to see if user is logged in
