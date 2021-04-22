@@ -65,7 +65,7 @@ class NoodleCard extends React.Component {
     return (
       // div for each noodle
       // <Link className="noodle_link" to={noodleLink}>
-      <div className={`noodle_card ${this.props.data.oodleStatus}`}>
+      <div className={`noodle_card ${this.props.data.noodleStatus}`}>
         <Link className="noodle_image_link" to={noodleLink}>
           <img
             src={decodeURIComponent(this.props.data.noodleCoverImage)}
