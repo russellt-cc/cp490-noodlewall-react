@@ -35,6 +35,7 @@ class NoodleDetails extends React.Component {
           },
           (hostReadError) => {
             // User failed to load
+            console.log(hostReadError);
             const error = hostReadError;
             const thisHost = {};
             this.setState({ thisHost, error });
@@ -43,6 +44,7 @@ class NoodleDetails extends React.Component {
       },
       (noodleReadError) => {
         // Noodle failed to load
+        console.log(noodleReadError);
         const error = noodleReadError;
         const thisNoodle = {};
         const thisHost = {};

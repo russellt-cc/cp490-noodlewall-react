@@ -24,6 +24,7 @@ class LoginUser extends React.Component {
       },
       (error) => {
         // Data failed to read
+        console.log(error);
         const userData = {};
         this.setState({ userData, error });
       }

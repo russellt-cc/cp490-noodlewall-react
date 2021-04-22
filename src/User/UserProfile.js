@@ -56,12 +56,14 @@ class User extends React.Component {
               this.setState({ userNoodles });
             },
             (userNoodlesError) => {
+              console.log(userNoodlesError);
               const userNoodles = [];
               this.setState({ userNoodles });
             }
           );
         },
         (userLoadError) => {
+          console.log(userLoadError);
           const userIsLoaded = true;
           const error = userLoadError;
           this.setState({ error, userIsLoaded });

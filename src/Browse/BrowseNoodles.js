@@ -18,7 +18,6 @@ class BrowseNoodles extends React.Component {
     const { search: query } = this.props.location;
     if (query) {
       // Read data using the search function
-      console.log("Testing");
       searchForNoodleOrUser("noodles", query).then(
         (result) => {
           // Data read successfully
@@ -30,6 +29,7 @@ class BrowseNoodles extends React.Component {
             this.setState({ noodleData });
           } else {
             // Show message
+            console.log(result);
             const noodleData = {};
             const error = result;
             this.setState({ noodleData, error });
@@ -37,6 +37,7 @@ class BrowseNoodles extends React.Component {
         },
         (error) => {
           // Data failed to read
+          console.log(error);
           const noodleData = {};
           this.setState({ noodleData, error });
         }
@@ -52,6 +53,7 @@ class BrowseNoodles extends React.Component {
         },
         (error) => {
           // Data failed to read
+          console.log(error);
           const noodleData = {};
           this.setState({ noodleData, error });
         }

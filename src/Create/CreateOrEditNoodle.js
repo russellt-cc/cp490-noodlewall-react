@@ -100,6 +100,7 @@ class CreateOrEditNoodle extends React.Component {
           },
           (error) => {
             // Data failed to read
+            console.log(error);
             this.setState({ error });
           }
         );
