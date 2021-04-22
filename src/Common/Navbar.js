@@ -55,14 +55,10 @@ class Navbar extends React.Component {
     const createDrop = userID ? (
       <div id="create_drop" className="drop">
         <div id="create_dream_button" className="create_drop_button">
-          <span className="dreams_color_text">
-            <Link to="/create/dream">Create a Dream</Link>
-          </span>
+          <Link to="/create/dream">Create a Dream</Link>
         </div>
         <div id="create_event_button" className="create_drop_button">
-          <span className="events_color_text">
-            <Link to="/create/event">Create an Event</Link>
-          </span>
+          <Link to="/create/event">Create an Event</Link>
         </div>
       </div>
     ) : (
@@ -107,11 +103,6 @@ class Navbar extends React.Component {
               Sign Out
             </button>
           </div>
-          {/* <div>
-            <button className="noodle_button" onClick={() => refresh()}>
-              Refresh Noodlewall
-            </button>
-          </div> */}
           <div>
             <Link to="/">Terms of Service</Link>
             <Link to="/">Privacy Policy</Link>
@@ -142,11 +133,6 @@ class Navbar extends React.Component {
             Register for Noodlewall
           </button>
         </div>
-        {/* <div>
-          <button className="noodle_button" onClick={() => refresh()}>
-            Refresh Noodlewall
-          </button>
-        </div> */}
         <div>
           <Link to="/">Terms of Service</Link>
           <Link to="/">Privacy Policy</Link>
@@ -170,47 +156,35 @@ class Navbar extends React.Component {
           <ul>
             <li id="browse_button" className="drop_button">
               <Link to="/browse">
-                <button>
-                  <strong>Browse</strong>
-                </button>
+                <strong>Browse</strong>
               </Link>
               <div id="browse_drop" className="drop">
                 <div id="browse_dreams_button" className="browse_drop_button">
-                  <span className="dreams_color_text">
-                    <Link to="/browse/dreams">Browse Dreams</Link>
-                  </span>
+                  <Link to="/browse/dreams">Browse Dreams</Link>
                 </div>
                 <div id="browse_all_button" className="browse_drop_button">
-                  <span>
-                    <Link to="/browse/all">Browse All</Link>
-                  </span>
+                  <Link to="/browse/all">Browse All</Link>
                 </div>
                 <div id="browse_events_button" className="browse_drop_button">
-                  <span className="events_color_text">
-                    <Link to="/browse/events">Browse Events</Link>
-                  </span>
+                  <Link to="/browse/events">Browse Events</Link>
                 </div>
               </div>
             </li>
             <li id="create_button" className="drop_button">
               <Link to={userID ? "/create/dream" : "/login/create/dream"}>
-                <button>
-                  <strong>Create</strong>
-                </button>
+                <strong>Create</strong>
               </Link>
               {createDrop}
             </li>
             <li id="user_button" className="drop_button">
-              <Link to={userID ? "/user" : "/login"}>
-                <button id="user_button_button">
-                  <img
-                    id="nav_user_image"
-                    src={userImage ? decodeURIComponent(userImage) : usericon}
-                    height="50px"
-                    width="50px"
-                    alt="User"
-                  />
-                </button>
+              <Link to={userID ? "/user" : "/login"} id="user_button_button">
+                <img
+                  id="nav_user_image"
+                  src={userImage ? decodeURIComponent(userImage) : usericon}
+                  height="50px"
+                  width="50px"
+                  alt="User"
+                />
               </Link>
               {userDrop}
             </li>
