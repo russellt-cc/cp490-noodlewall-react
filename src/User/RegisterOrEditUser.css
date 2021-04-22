@@ -18,6 +18,10 @@
   padding: 10px;
 }
 
+#user_edit input[name="userRating"] {
+  width: 100px;
+}
+
 #user_edit img {
   border-radius: 150px;
   width: 300px;

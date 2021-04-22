@@ -73,7 +73,7 @@ class RegisterOrEditUser extends React.Component {
           userImage: uploadImageResult.imageAddress
             ? uploadImageResult.imageAddress
             : this.state.userImage,
-          userRating: this.state.userRating ? this.state.userRating : 3,
+          userRating: this.state.userRating,
         };
         // Check if we are creating or updating
         if (!this.state.userID) {
@@ -377,6 +377,20 @@ class RegisterOrEditUser extends React.Component {
                 onChange={(value) => this.setState({ userBioLong: value })}
               ></Textarea>
             </div>
+          </section>
+          <section>
+            <h1>Development Only</h1>
+            <label htmlFor="userRating">Set User Rating</label>
+            <input
+              type="number"
+              name="userRating"
+              value={this.state.userRating}
+              min="1"
+              max="5"
+              onChange={(event) =>
+                this.setState({ userRating: event.target.value })
+              }
+            ></input>
           </section>
           {actionButtons}
         </main>
