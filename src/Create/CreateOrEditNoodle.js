@@ -291,7 +291,17 @@ class CreateOrEditNoodle extends React.Component {
           this.state.noodleMaxTickets &&
           this.state.noodleCutoff
         ) {
-          this.createOrUpdateNoodle(status);
+          if (this.state.noodleMinTickets <= this.state.noodleMaxTickets) {
+            if (this.state.noodleCutoff <= this.state.noodleDate) {
+              this.createOrUpdateNoodle(status);
+            } else {
+              alert("The cutoff date cannot be after the event date!");
+            }
+          } else {
+            alert(
+              "The minimum number of tickets cannot be more than the maximum!"
+            );
+          }
         } else {
           alert("You must fill in all of the information to save as an event!");
         }
@@ -547,7 +557,7 @@ class CreateOrEditNoodle extends React.Component {
                         step="1"
                         onChange={(event) =>
                           this.setState({
-                            noodleTicketsSold: event.target.value,
+                            noodleTicketsSold: parseInt(event.target.value),
                           })
                         }
                       ></input>

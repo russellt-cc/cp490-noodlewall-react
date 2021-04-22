@@ -385,11 +385,13 @@ class RegisterOrEditUser extends React.Component {
               type="number"
               name="userRating"
               value={this.state.userRating}
-              min="1"
+              min="0"
               max="5"
-              onChange={(event) =>
-                this.setState({ userRating: event.target.value })
-              }
+              onChange={(event) => {
+                const { value } = event.target;
+                if (value >= 0 && value <= 5)
+                  this.setState({ userRating: parseInt(value) });
+              }}
             ></input>
           </section>
           {actionButtons}

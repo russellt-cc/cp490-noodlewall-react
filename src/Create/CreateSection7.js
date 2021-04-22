@@ -21,22 +21,26 @@ class CreateSection7 extends React.Component {
           <label htmlFor="noodleMinTickets">Minimum Tickets Required</label>
           <input
             type="number"
-            min="1"
+            min="0"
             step="1"
-            max="2500"
             name="noodleMinTickets"
             value={noodleMinTickets}
-            onChange={(event) => onChange(event)}
+            onChange={(event) => {
+              event.target.value = parseInt(event.target.value);
+              onChange(event);
+            }}
           ></input>
           <label htmlFor="noodleMaxTickets">Maximum Tickets Available</label>
           <input
             type="number"
             min="1"
             step="1"
-            max="2500"
             name="noodleMaxTickets"
             value={noodleMaxTickets}
-            onChange={(event) => onChange(event)}
+            onChange={(event) => {
+              event.target.value = parseInt(event.target.value);
+              onChange(event);
+            }}
           ></input>
           <label htmlFor="noodleCutoff">Cutoff Date</label>
           <input
