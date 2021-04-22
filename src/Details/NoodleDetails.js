@@ -18,6 +18,7 @@ import readNoodleOrUserByID from "../Data/readNoodleOrUserByID";
 
 // The event / dreams details page
 class NoodleDetails extends React.Component {
+  // Component did mount
   componentDidMount() {
     const { id } = this.props.match.params;
     // Load the latest data
@@ -52,6 +53,7 @@ class NoodleDetails extends React.Component {
       }
     );
   }
+  // Render
   render() {
     // Check if we are loaded
     if (this.state && this.state.thisNoodle && this.state.thisHost) {
@@ -186,6 +188,7 @@ class NoodleDetails extends React.Component {
             </main>
           );
         } else {
+          // Show message
           return (
             <main>
               <p>Noodle not found!</p>
@@ -201,6 +204,7 @@ class NoodleDetails extends React.Component {
         );
       }
     } else {
+      // Show loading
       return (
         <main>
           <p>Loading Noodle...</p>

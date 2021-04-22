@@ -27,6 +27,7 @@ import readNoodleOrUserByID from "../Data/readNoodleOrUserByID";
 
 // The create dream / event page
 class CreateOrEditNoodle extends React.Component {
+  // Component did mount
   componentDidMount() {
     // Check to see if user is logged in
     const { currentUser } = this.props;
@@ -118,7 +119,6 @@ class CreateOrEditNoodle extends React.Component {
       }
     }
   }
-
   // Method to handle change in html input elements
   handleChange = (event) => {
     const target = event.target;
@@ -139,7 +139,6 @@ class CreateOrEditNoodle extends React.Component {
       [name]: value,
     });
   };
-
   // Method to upload images
   // Checks if there are any images that need to be uploaded
   // Return a Promise.all
@@ -197,7 +196,6 @@ class CreateOrEditNoodle extends React.Component {
       return Promise.resolve({ message: "No Images Found." });
     }
   };
-
   // Method to see which images can be deleted
   // Return a Promise.all
   deleteImages = (status) => {
@@ -249,7 +247,6 @@ class CreateOrEditNoodle extends React.Component {
       return Promise.resolve({ message: "No Images to Delete." });
     }
   };
-
   // Method to create or update a noodle
   submit = (status) => {
     switch (status) {
@@ -294,7 +291,6 @@ class CreateOrEditNoodle extends React.Component {
         break;
     }
   };
-
   // Method to create or update a noodle
   createOrUpdateNoodle = (status) => {
     // Check mode
@@ -366,7 +362,6 @@ class CreateOrEditNoodle extends React.Component {
       );
     }
   };
-
   // Method to get data for a noodle
   noodleData = (status) => {
     // Get the required data
@@ -399,30 +394,23 @@ class CreateOrEditNoodle extends React.Component {
     };
     return noodleData;
   };
-
   // Methods to update state based on child components
   // Pass these methods as props to child components
-
   changeTags = (noodleTags) => {
     this.setState({ noodleTags });
   };
-
   changeImage = (noodleCoverImage) => {
     this.setState({ noodleCoverImage });
   };
-
   changeImages = (noodleImages) => {
     this.setState({ noodleImages });
   };
-
   changeImagesText = (noodleImageText) => {
     this.setState({ noodleImageText });
   };
-
   setMode = (createMode) => {
     this.setState({ createMode });
   };
-
   // Get Derived State From Props lifecycle method
   static getDerivedStateFromProps(props, state) {
     // Set create mode to event if user selects create event in the navbar while already creating a dream
@@ -432,7 +420,6 @@ class CreateOrEditNoodle extends React.Component {
     }
     return state;
   }
-
   // Render method
   render() {
     // Check if user is logged in
@@ -577,6 +564,7 @@ class CreateOrEditNoodle extends React.Component {
             </main>
           );
         } else {
+          // Show error
           return (
             <main>
               <p>Noodle failed to load! Error: {this.state.error.message}</p>
@@ -584,6 +572,7 @@ class CreateOrEditNoodle extends React.Component {
           );
         }
       } else {
+        // Show loading
         return (
           <main>
             <p>Loading...</p>

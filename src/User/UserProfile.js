@@ -23,6 +23,7 @@ import readNoodleOrUserByOtherID from "../Data/readNoodleOrUserByOtherID";
 
 // The user profile page
 class User extends React.Component {
+  // Component did mount
   componentDidMount() {
     let { id } = this.props.match.params;
     const { currentUser } = this.props;
@@ -207,6 +208,7 @@ class User extends React.Component {
             </main>
           );
         } else {
+          // Show message
           return (
             <main>
               <p>User not found!</p>
@@ -222,6 +224,7 @@ class User extends React.Component {
         );
       }
     } else {
+      // Show loading
       return (
         <main>
           <p>Loading User...</p>

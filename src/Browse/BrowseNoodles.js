@@ -13,6 +13,7 @@ import searchForNoodleOrUser from "../Data/searchForNoodleOrUser";
 
 // The Browse Noodles page
 class BrowseNoodles extends React.Component {
+  // Component did mount
   componentDidMount() {
     // Check to see if we are doing a search
     const { search: query } = this.props.location;
@@ -60,8 +61,11 @@ class BrowseNoodles extends React.Component {
       );
     }
   }
+  // Render
   render() {
+    // Check if we are loaded
     if (this.state && this.state.noodleData) {
+      // Check for error
       if (!this.state.error) {
         // Getting information about events
         // Create a filters object to pass to NoodleList
@@ -78,6 +82,7 @@ class BrowseNoodles extends React.Component {
           </main>
         );
       } else {
+        // Show error message
         return (
           <main>
             <p>Noodles failed to load! Error: {this.state.error.message}</p>
@@ -85,6 +90,7 @@ class BrowseNoodles extends React.Component {
         );
       }
     } else {
+      // Show loading screen
       return (
         <main>
           <p>Loading Noodles...</p>

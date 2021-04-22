@@ -382,6 +382,7 @@ class RegisterOrEditUser extends React.Component {
         </main>
       );
     } else {
+      // Show loading
       return (
         <main>
           <p>Loading...</p>

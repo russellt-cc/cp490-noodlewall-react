@@ -13,6 +13,7 @@ import readNoodlesOrUsers from "../Data/readNoodlesOrUsers";
 // The login / user switcher component
 // Replace with a proper login
 class LoginUser extends React.Component {
+  // Component did mount
   componentDidMount() {
     // Get the latest data from the API
     readNoodlesOrUsers("users").then(
@@ -30,6 +31,7 @@ class LoginUser extends React.Component {
       }
     );
   }
+  // Render
   render() {
     // Check if we are loaded
     if (this.state && this.state.userData) {
@@ -63,6 +65,7 @@ class LoginUser extends React.Component {
             </Link>
           </button>
         );
+        // Return the login page
         return (
           <main id="user_login">
             <section id="login_user_list">
@@ -72,6 +75,7 @@ class LoginUser extends React.Component {
           </main>
         );
       } else {
+        // Show error
         return (
           <main>
             <p>Users failed to load! Error: {this.state.error.message}</p>
@@ -79,6 +83,7 @@ class LoginUser extends React.Component {
         );
       }
     } else {
+      // Show loading
       return (
         <main>
           <p>Loading Users...</p>
