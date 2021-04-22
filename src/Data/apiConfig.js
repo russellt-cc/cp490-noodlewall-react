@@ -166,16 +166,16 @@ function apiConfig() {
     apiRead: "read.php",
     apiUpdate: "update.php",
     apiDelete: "delete.php",
-    apiSearch: "search.php?s=",
+    apiSearch: "search.php",
     apiNoodlePath: "event/",
     apiUserPath: "user/",
     apiNoodleUploadImage: "uploadEventImage.php",
     apiNoodleDeleteImage: "deleteEventImage.php",
     apiUserUploadImage: "uploadUserIcon.php",
     apiUserDeleteImage: "deleteUserIcon.php",
-    apiReadByID: "getByID.php?id=",
-    apiReadNoodlesByUserID: "getEventsByUserID.php?id=",
-    apiReadUserByNoodleID: "getUserByEventID.php?id=",
+    apiReadByID: "getByID.php",
+    apiReadNoodlesByUserID: "getEventsByUserID.php",
+    apiReadUserByNoodleID: "getUserByEventID.php",
   };
 }
 

@@ -23,7 +23,9 @@ function readNoodleOrUserByID(type, id) {
       return Promise.reject({ message: "Unknown Type" });
   }
   // Load data from API
-  return fetch(apiURL + apiPath + apiReadByID + id).then((res) => res.json());
+  return fetch(apiURL + apiPath + apiReadByID + "?id=" + id).then((res) =>
+    res.json()
+  );
 }
 
 export default readNoodleOrUserByID;

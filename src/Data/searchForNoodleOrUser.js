@@ -1,3 +1,5 @@
+import apiConfig from "./apiConfig";
+
 // Function to handle searching for a noodle or user
 // Return response as a promise
 function searchForNoodleOrUser(type, query) {
@@ -21,3 +23,5 @@ function searchForNoodleOrUser(type, query) {
   // Load data from API
   return fetch(apiURL + apiPath + apiSearch + query).then((res) => res.json());
 }
+
+export default searchForNoodleOrUser;

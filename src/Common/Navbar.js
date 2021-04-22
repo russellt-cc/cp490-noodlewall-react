@@ -162,7 +162,7 @@ class Navbar extends React.Component {
             <img id="nav_logo" src={logo} height="50px" alt="Noodlewall Logo" />
           </Link>
           <form action="/browse" autoComplete="off">
-            <input type="search" id="mySearch" name="q" placeholder="Search" />
+            <input type="search" id="mySearch" name="s" placeholder="Search" />
           </form>
         </div>
         {/* right div has the browse, create, and user buttons */}
