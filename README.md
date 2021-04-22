@@ -11,7 +11,7 @@
 
 ## Intro
 
-- This frontend web app was developed by Russell Tennant, April 2021, in order to prototype the Noodlewall project, as part of a coop placement at FRMH at Confederation College.
+- This frontend web app was developed by Russell Tennant, April 2021, in order to prototype the Noodlewall project, as part of a co op placement at FRMH at Confederation College.
 - This web app can be used locally, or deployed to a remote server. The details for deploying locally are covered in this document.
 - Currently there is an existing remote API that this web app utilizes, although it is personally hosted and will likely be unavailable shortly after the coop placement ends. The details for exclusively using local data are included in this document.
 
@@ -40,22 +40,13 @@
 
 ###### download NoodleWall.mp4 and navigate to Cp490-noodlewall-react/src/videos/videos.txt and replace it with NoodleWall.mp4
 
-##### 3 npm init
+##### 3 npm install
 
-###### assuming you have node.js and react installed on your machine, opend command prompt and navigate to the repository root folder and run "npm init"
+###### assuming you have node.js and react installed on your machine, open command prompt and navigate to the repository root folder and run "npm install"
 
-##### 4 npm install react-scripts
+##### 4 npm start
 
-###### run "npm install react-scripts" in the command prompt
-
-##### 5 modify CP490-NOODLEWALL-REACT/package.json
-
-###### assuming the initialization process was performed regularly and successfully, the homepage is automatically set to the wrong directory, open up Cp490-noodlewall-react/Package.json
-
-> change ->
-> "homepage": "https://github.com/russellt-cc/cp490-noodlewall-react#readme"
-> to ->
-> "homepage": "/"
+###### run "npm start"
 
 # File Structure
 
@@ -126,90 +117,102 @@
 # Functions Overview
 
 Browse All
--Hover mouse pointer over the "Browse" button in the upper right corner of the browser window.
--Click on "Browse All".
--The Browse component will load. You can click on a card to view the details for a specific event or dream event, or click on a user to view their profile and created events and dream events.
+
+- Hover mouse pointer over the "Browse" button in the upper right corner of the browser window.
+- Click on "Browse All".
+- The Browse component will load. You can click on a card to view the details for a specific event or dream event, or click on a user to view their profile and created events and dream events.
 
 Browse Events
--Hover mouse pointer over the "Browse" button in the upper right corner of the browser window.
--Click on "Browse Events".
--The Browse component will load. Only events with a status of "event" will be displayed.
+
+- Hover mouse pointer over the "Browse" button in the upper right corner of the browser window.
+- Click on "Browse Events".
+- The Browse component will load. Only events with a status of "event" will be displayed.
 
 Browse Dream Events
--Hover mouse pointer over the "Browse" button in the upper right corner of the browser window.
--Click on "Browse Dreams".
--The Browse component will load. Only events with a status of "dream" will be displayed.
+
+- Hover mouse pointer over the "Browse" button in the upper right corner of the browser window.
+- Click on "Browse Dreams".
+- The Browse component will load. Only events with a status of "dream" will be displayed.
 
 Search for an Event or Dream Event
--Click on the search box at the top of the browser window.
--Enter a search query into the search box.
--Press enter to submit your query.
--Events and dream events that contain the given text will be displayed in the browse page.
+
+- Click on the search box at the top of the browser window.
+- Enter a search query into the search box.
+- Press enter to submit your query.
+- Events and dream events that contain the given text will be displayed in the browse page.
 
 User Registration
--Hover mouse pointer over the user icon in the upper right corner of the browser window.
--Click on "Register For Noodlewall"
--Enter the information for the new user account. A user image can be uploaded here or linked to an existing URL. A random image can be used by clicking on one of the random image buttons.
--The required fields are user name, first name, and last name.
--Scroll down to the bottom of the page and click Submit Registration when ready to submit.
+
+- Hover mouse pointer over the user icon in the upper right corner of the browser window.
+- Click on "Register For Noodlewall"
+- Enter the information for the new user account. A user image can be uploaded here or linked to an existing URL. A random image can be used by clicking on one of the random image buttons.
+- The required fields are user name, first name, and last name.
+- Scroll down to the bottom of the page and click Submit Registration when ready to submit.
 
 Log Out
--Hover mouse pointer over the user icon in the upper right corner of the browser window.
--Click on "Sign Out" to log out of the account.
+
+- Hover mouse pointer over the user icon in the upper right corner of the browser window.
+- Click on "Sign Out" to log out of the account.
 
 Log In
--Hover mouse pointer over the user icon in the upper right corner of the browser window.
--Click on "Login To Noodlewall".
--Click on any user account to log in as that user.
+
+- Hover mouse pointer over the user icon in the upper right corner of the browser window.
+- Click on "Login To Noodlewall".
+- Click on any user account to log in as that user.
 
 Edit User
--Sign in as a user by following the Login instructions above.
--Hover mouse pointer over the user icon in the upper right corner of the browser window.
--Click on the image for the current user to go to the profile page.
--Click on "Edit Profile".
--Make any desired changes to the user information.
--When complete, scroll to the bottom of the page and click on "Submit Changes."
+
+- Sign in as a user by following the Login instructions above.
+- Hover mouse pointer over the user icon in the upper right corner of the browser window.
+- Click on the image for the current user to go to the profile page.
+- Click on "Edit Profile".
+- Make any desired changes to the user information.
+- When complete, scroll to the bottom of the page and click on "Submit Changes."
 
 Create Dream Event
--Sign in as a user by following the Login instructions above.
--Hover mouse pointer over the "Create" button in the upper right corner of the browser window.
--Click on "Create Dream".
--The Create component will load. If you don't have a user summary and bio created, you must follow the steps to edit your profile and then return here.
--You must fill in the Basic Info section.
--Once completed, click on "Save as Dream" at the bottom of the browser window to save as a dream. If you want to create an event, click on "Show All" and then fill in all the sections. After clicking "Show All" you can still save as a dream if desired.
+
+- Sign in as a user by following the Login instructions above.
+- Hover mouse pointer over the "Create" button in the upper right corner of the browser window.
+- Click on "Create Dream".
+- The Create component will load. If you don't have a user summary and bio created, you must follow the steps to edit your profile and then return here.
+- You must fill in the Basic Info section.
+- Once completed, click on "Save as Dream" at the bottom of the browser window to save as a dream. If you want to create an event, click on "Show All" and then fill in all the sections. After clicking "Show All" you can still save as a dream if desired.
 
 Create Event
--Sign in as a user by following the Login instructions above.
--Hover mouse pointer over the "Create" button in the upper right corner of the browser window.
--Click on "Create Event".
--The Create component will load. You can click on the numbers in the navigation bar to jump to different sections.
--Once a section is filled in, the number in the navigation bar will light up.
--To add images, go to the Upload Images section. Clicking on "Add Image" will add a new image that is randomized by default. You can change it to a specific URL or upload an image. You can add as many images as you like.
--Once all information has been entered, click on the "Make it Happen" button on the bottom of the browser window. You can also choose to "Save as Dream" if you change your mind.
+
+- Sign in as a user by following the Login instructions above.
+- Hover mouse pointer over the "Create" button in the upper right corner of the browser window.
+- Click on "Create Event".
+- The Create component will load. You can click on the numbers in the navigation bar to jump to different sections.
+- Once a section is filled in, the number in the navigation bar will light up.
+- To add images, go to the Upload Images section. Clicking on "Add Image" will add a new image that is randomized by default. You can change it to a specific URL or upload an image. You can add as many images as you like.
+- Once all information has been entered, click on the "Make it Happen" button on the bottom of the browser window. You can also choose to "Save as Dream" if you change your mind.
 
 Edit Event or Dream Event
--Sign in as a user by following the Login instructions above.
--Hover mouse pointer over the user icon in the upper right corner of the browser window.
--Click on the image for the current user to go to the profile page.
--Scroll down to "Events by" or "Dreams by" sections to see the events and dream events created by the current user.
--Click on the image for an event to view the details page.
--On the right side, click on "Edit" button.
--The creation form will load to edit the event.
--If editing a dream event, you will need to click on "Show All" to see all of the sections.
--Make any changes and then click on "Save as Dream" to save as a dream event or "Make it Happen" to save as an event.
+
+- Sign in as a user by following the Login instructions above.
+- Hover mouse pointer over the user icon in the upper right corner of the browser window.
+- Click on the image for the current user to go to the profile page.
+- Scroll down to "Events by" or "Dreams by" sections to see the events and dream events created by the current user.
+- Click on the image for an event to view the details page.
+- On the right side, click on the "Edit" button.
+- The creation form will load to edit the event.
+- If editing a dream event, you will need to click on "Show All" to see all of the sections.
+- Make any changes and then click on "Save as Dream" to save as a dream event or "Make it Happen" to save as an event.
 
 Delete Event or Dream Event
--Sign in as a user by following the Login instructions above.
--Hover mouse pointer over the user icon in the upper right corner of the browser window.
--Click on the image for the current user to go to the profile page.
--Scroll down to "Events by" or "Dreams by" sections to see the events and dream events created by the current user.
--Click on the image for an event to view the details page.
--On the right side, click on "Delete Button".
--Confirm the deletion to proceed.
+
+- Sign in as a user by following the Login instructions above.
+- Hover mouse pointer over the user icon in the upper right corner of the browser window.
+- Click on the image for the current user to go to the profile page.
+- Scroll down to "Events by" or "Dreams by" sections to see the events and dream events created by the current user.
+- Click on the image for an event to view the details page.
+- On the right side, click on "Delete Button".
+- Confirm the deletion to proceed.
 
 ## User Profile Form Details
 
-> This form is used to create and edit user accounts, once the minimum details are entered (username, firstname, lastname) you are able to save and create the account. More details are required to become an event organizer, and can be entered later.
+> This form is used when creating and editing user accounts, once the minimum details are entered (username, firstname, lastname) you are able to save and create the account. More details are required to become an event organizer, and can be entered later.
 
 - Profile Picture
 
@@ -223,8 +226,8 @@ Delete Event or Dream Event
 - User Information
 
   - Organizer Name - Set a username for the account
-  - First Name - User first name
-  - Last Name - user last name
+  - First Name
+  - Last Name
   - User Detail Short - short version of user bio
   - User Detail Long - long version of user bio
 
@@ -237,9 +240,61 @@ Delete Event or Dream Event
   - Submit Changes - Saves changes and redirects to user's profile page
   - Delete Account - Deletes account from database
 
+## Dream Form Details
+
+> This form is used when creating and editing Dreams, the only input fields displayed are the bare minimum required to create a dream. More details are required for dream to become an event, and can be entered later.
+
+- Organizer Information - user account information required for user to become event organizer
+  - Organizer Name
+  - Organizer Detail Short - short version of user bio
+  - Organizer Detail Long - long version of user bio
+- Basic Info
+  - Event Name
+  - Event Summary - short description of event
+  - Event Description - full description of event
+  - Event Tags - one word tags or categories that can be attached to events to categorize them
+- Control Buttons
+  - "Save as Dream" - saves/publishes dream
+  - "Show All" - opens the event form, which allows user to save more details to the dream
+
 ## Event Form Details
 
-## Dream Form Details
+> This form is used when creating and editing Events and adding detail to Dreams, it contains fields to enter every bit of information attached to an event. It contains a dynamic navigation/status bar at the top. If all fields are not filled out, the event can only be saved as a dream, once all information fields are filled the form allows user to save as an event,
+
+- Organizer Information - user account information required for user to become event organizer
+  - Organizer Name
+  - Organizer Detail Short - short version of user bio
+  - Organizer Detail Long - long version of user bio
+- Basic Info
+  - Event Name
+  - Event Summary - short description of event
+  - Event Description - full description of event
+  - Event Tags - one word tags or categories that can be attached to events to categorize them
+- Location
+  - Event Location
+  - Event Directions
+- Date and Time
+  - Event Date
+  - Event Time
+- Upload Images
+  - Add Image - when clicked adds an option to add an image with description
+    - Upload an image
+      - "Choose File" button - prompt to upload an image from local storage
+    - Get an image from the internet
+      - "Get an image from URL" - click once you've put an image's url in the input box
+      - "Get a random image from Picsum" button - randomly pulls an image from Picsum
+      - "Get a random image from Unsplash" button - randomly pulls an image from Unsplash
+    - Enter text to go along with image - text displayed with individual images in gallery
+  - Select the Gallery Image - control to select main image displayed on event
+- Create Tickets
+  - Ticket Price - set the price for individual event tickets
+- Make it Happen
+  - Minimum Tickets Required - minimum number of tickets sold required for event to take place
+  - Maximum Tickets Available - maximum number of tickets available for event
+  - Cutoff Date - cutoff date where minimum number of tickets must be sold for event to take place
+- Control Buttons
+  - "Save as Dream" - saves/publishes dream
+  - "Make it Happen" - saves/publishes dream, unlocks once all input fields are filled
 
 # Pages Overview
 
@@ -263,7 +318,7 @@ Delete Event or Dream Event
     - all event details: event name, images, location, date+time, ticket price, tickets sold, min+max tickets sold, event tags, event status, and description
     - organizer's name, short bio, and profile picture
   - links:
-    - pruchase ticket (buy ticket button)
+    - purchase ticket (buy ticket button)
     - organizer profile page (contact button)
     - follow organizer (follow button)
 
@@ -276,7 +331,7 @@ Delete Event or Dream Event
   - links:
     - dream and event cards contain links to the event's page
     - follow organizer (follow button)
-    - edit profile (if viewing user's logged in account's profile) (edit profile button)
+    - edit profile (if viewing users logged in account's profile) (edit profile button)
 
 - Nav Bar (available on every page)
   - displays:
@@ -297,7 +352,7 @@ Delete Event or Dream Event
 - Register
   Assuming you're not logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with two buttons, click "Register For Noodlewall." You will be redirected to the form for creating a user account. For a detailed breakdown of the form see "User Profile Form Details."
 - Login
-  Assuming you're not logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with with two buttons, click "Login to Noodlewall." You will be redirected to a page displaying icons for every registered user account, click on an icon to login to that account.
+  Assuming you're not logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with two buttons, click "Login to Noodlewall." You will be redirected to a page displaying icons for every registered user account, click on an icon to login to that account.
 - Logout
   Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click the "Sign Out" button.
 - Edit Profile
@@ -306,14 +361,14 @@ Delete Event or Dream Event
   Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the "Edit Profile" button. You will be redirected to the form for editing user accounts, from there scroll to the bottom, and click the "Delete Account" button.
 
 - Create Event
-  Assuming you're logged in, from any page, hover the "Create" Button on the navbar in the top-right. From there a dropdown will appear with with two large square buttons, click "Create an Event." You will be redirected to the form for creating an event. For a detailed breakdown of the form see "Event Form Details."
+  Assuming you're logged in, from any page, hover the "Create" Button on the navbar in the top-right. From there a dropdown will appear with two large square buttons, click "Create an Event." You will be redirected to the form for creating an event. For a detailed breakdown of the form see "Event Form Details."
 - Edit Event
   Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the event card you wish to edit. You will be redirected to the event display page. Click the "Edit this Event" button. You will be redirected to the form for editing an event. For a detailed breakdown of the form see "Event Form Details."
 - Delete Event
   Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the event card you wish to edit. You will be redirected to the event display page. Click the "Delete this Event" button.
 
 - Create Dream
-  Assuming you're logged in, from any page, hover the "Create" Button on the navbar in the top-right. From there a dropdown will appear with with two large square buttons, click "Create a Dream." You will be redirected to the form for creating an Dream. For a detailed breakdown of the form see "Dream Form Details."
+  Assuming you're logged in, from any page, hover the "Create" Button on the navbar in the top-right. From there a dropdown will appear with two large square buttons, click "Create a Dream." You will be redirected to the form for creating a Dream. For a detailed breakdown of the form see "Dream Form Details."
 - Edit Dream
   Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the Dream card you wish to edit. You will be redirected to the Dream display page. Click the "Edit this Dream Event" button. You will be redirected to the form for editing an Dream. For a detailed breakdown of the form see "Dream Form Details."
 - Delete Dream
@@ -326,35 +381,17 @@ Delete Event or Dream Event
 - Browse Dreams
   From any page, hover the "Browse" button on the navbar in the top-right. From there a dropdown will appear with three buttons, click the "Browse Dreams" button. You will be redirected to the browse page, displaying all dreams.
 
-# Known Issues
+# Common Issues
 
     Issue #1 -> running npm start opens the app up to a blank screen
         the displayed address is -> http://localhost:3000/russellt-cc/cp490-noodlewall-reac
-    Cause -> the homepage is not set to the project's root directory
-    Fix -> see/redo Getting Started step 5
-
-# Dillinger
-
-## _The Last Markdown Editor, Ever_
-
-[![Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
-Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
-AngularJS-powered HTML5 Markdown editor.
-
-- Type some Markdown on the left
-- See HTML in the right
-- ✨Magic ✨
-
-## Features
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.NOTES
+    Cause -> The install was not performed properly, the homepage is not set to the project's root directory
+    Fix -> set the directory manually
+        open up Cp490-noodlewall-react/Package.json
+        change line	->
+        "homepage": "https://github.com/russellt-cc/cp490-noodlewall-react#readme"
+        to 	->
+        "homepage": "/"
 
 # Getting Started with Create React App
 
