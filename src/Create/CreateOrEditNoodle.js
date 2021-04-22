@@ -47,7 +47,6 @@ class CreateOrEditNoodle extends React.Component {
         readNoodleOrUserByID("noodle", noodleID).then(
           (result) => {
             // Data read successfully
-            console.log(result);
             const thisNoodle = result;
             // Put data in state for editing
             this.setState({
@@ -101,8 +100,7 @@ class CreateOrEditNoodle extends React.Component {
           },
           (error) => {
             // Data failed to read
-            console.log(error);
-            alert("Noodle failed to load! Error: " + error.message);
+            this.setState({ error });
           }
         );
       } else {
@@ -307,37 +305,34 @@ class CreateOrEditNoodle extends React.Component {
       this.deleteImages(status).then(
         (deleteImagesResult) => {
           // Deletion completed successfully
-          // console.log(deleteImagesResult);
           // Then once deletion is completed upload all new images
           this.uploadImages(status).then(
             (uploadImagesResult) => {
               // Upload completed successfully
-              // console.log(uploadImagesResult);
               // Then once upload is completed get the noodleData object from state and props
               const noodleData = this.noodleData(status);
               // Update the entry in the database with the new data
               this.props.onUpdate(status, noodleData).then(
                 (updateNoodleResult) => {
                   // Update completed successfully
-                  // console.log(updateNoodleResult);
                 },
                 (updateNoodleError) => {
                   // Update failed
-                  // console.log(updateNoodleError);
+                  console.log(updateNoodleError);
                   alert("Update Failed! Error: " + updateNoodleError.message);
                 }
               );
             },
             (uploadImagesError) => {
               // Upload failed
-              // console.log(uploadImagesError);
+              console.log(uploadImagesError);
               alert("Image Upload Failed! Error: " + uploadImagesError.message);
             }
           );
         },
         (deleteImagesError) => {
           // Deletion failed
-          // console.log(deleteImagesError);
+          console.log(deleteImagesError);
           alert("Image Deletion Failed! Error: " + deleteImagesError.message);
         }
       );
@@ -348,25 +343,23 @@ class CreateOrEditNoodle extends React.Component {
       this.uploadImages(status).then(
         (uploadImagesResult) => {
           // Upload completed successfully
-          // console.log(uploadImagesResult);
           // Then once upload is completed get the noodleData object from state and props
           const noodleData = this.noodleData(status);
           // Create a new entry in the database
           this.props.onCreate(status, noodleData).then(
             (createNoodleResult) => {
               // Create completed successfully
-              console.log(createNoodleResult);
             },
             (createNoodleError) => {
               // Create failed
-              // console.log(createNoodleError);
+              console.log(createNoodleError);
               alert("Creation Failed! Error: " + createNoodleError.message);
             }
           );
         },
         (uploadImagesError) => {
           // Upload failed
-          // console.log(uploadImagesError);
+          console.log(uploadImagesError);
           alert("Image Upload Failed! Error: " + uploadImagesError.message);
         }
       );
@@ -445,139 +438,150 @@ class CreateOrEditNoodle extends React.Component {
     if (this.props.currentUser.userID) {
       // Check if we are loaded
       if (this.state) {
-        // Create an array to store data about the sections
-        let sections = [];
-        // Set data for the sections
-        // Classes are based on the status of entered data and are used in CSS to change the appearance of finished vs unfinished sections
-        sections[1 - 1] = {
-          name: "Organizer Information",
-          className:
-            this.state.userName && this.state.userBio && this.state.userBioLong
-              ? "finished"
-              : "unfinished",
-        };
-        sections[2 - 1] = {
-          name: "Basic Info",
-          className:
-            this.state.noodleTitle &&
-            this.state.noodleSummary &&
-            this.state.noodleDescription &&
-            this.state.noodleTags.length
-              ? "finished"
-              : "unfinished",
-        };
-        sections[3 - 1] = {
-          name: "Location",
-          className:
-            this.state.noodleLocation && this.state.noodleDirections
-              ? "finished"
-              : "unfinished",
-        };
-        sections[4 - 1] = {
-          name: "Date and Time",
-          className:
-            this.state.noodleDate && this.state.noodleTime
-              ? "finished"
-              : "unfinished",
-        };
-        sections[5 - 1] = {
-          name: "Upload Images",
-          className: this.state.noodleCoverImage ? "finished" : "unfinished",
-        };
-        sections[6 - 1] = {
-          name: "Create Tickets",
-          className: this.state.noodlePrice ? "finished" : "unfinished",
-        };
-        sections[7 - 1] = {
-          name: "Make It Happen",
-          className:
-            this.state.noodleMinTickets &&
-            this.state.noodleMaxTickets &&
-            this.state.noodleCutoff
-              ? "finished"
-              : "unfinished",
-        };
-        // The sections that are only shown when creating an event instead of a dream
-        const eventDetails = () => {
-          const { createMode } = this.state;
-          if (createMode === "event") {
-            return (
-              <>
-                <CreateSection3
+        // Check for error
+        if (!this.state.error) {
+          // Create an array to store data about the sections
+          let sections = [];
+          // Set data for the sections
+          // Classes are based on the status of entered data and are used in CSS to change the appearance of finished vs unfinished sections
+          sections[1 - 1] = {
+            name: "Organizer Information",
+            className:
+              this.state.userName &&
+              this.state.userBio &&
+              this.state.userBioLong
+                ? "finished"
+                : "unfinished",
+          };
+          sections[2 - 1] = {
+            name: "Basic Info",
+            className:
+              this.state.noodleTitle &&
+              this.state.noodleSummary &&
+              this.state.noodleDescription &&
+              this.state.noodleTags.length
+                ? "finished"
+                : "unfinished",
+          };
+          sections[3 - 1] = {
+            name: "Location",
+            className:
+              this.state.noodleLocation && this.state.noodleDirections
+                ? "finished"
+                : "unfinished",
+          };
+          sections[4 - 1] = {
+            name: "Date and Time",
+            className:
+              this.state.noodleDate && this.state.noodleTime
+                ? "finished"
+                : "unfinished",
+          };
+          sections[5 - 1] = {
+            name: "Upload Images",
+            className: this.state.noodleCoverImage ? "finished" : "unfinished",
+          };
+          sections[6 - 1] = {
+            name: "Create Tickets",
+            className: this.state.noodlePrice ? "finished" : "unfinished",
+          };
+          sections[7 - 1] = {
+            name: "Make It Happen",
+            className:
+              this.state.noodleMinTickets &&
+              this.state.noodleMaxTickets &&
+              this.state.noodleCutoff
+                ? "finished"
+                : "unfinished",
+          };
+          // The sections that are only shown when creating an event instead of a dream
+          const eventDetails = () => {
+            const { createMode } = this.state;
+            if (createMode === "event") {
+              return (
+                <>
+                  <CreateSection3
+                    sections={sections}
+                    noodleLocation={this.state.noodleLocation}
+                    noodleDirections={this.state.noodleDirections}
+                    onChange={this.handleChange}
+                  ></CreateSection3>
+                  <CreateSection4
+                    sections={sections}
+                    noodleDate={this.state.noodleDate}
+                    noodleTime={this.state.noodleTime}
+                    onChange={this.handleChange}
+                  ></CreateSection4>
+                  <CreateSection5
+                    sections={sections}
+                    noodleTags={this.state.noodleTags}
+                    noodleCoverImage={this.state.noodleCoverImage}
+                    noodleImages={this.state.noodleImages}
+                    noodleImageText={this.state.noodleImageText}
+                    onChangeImage={this.changeImage}
+                    onChangeImages={this.changeImages}
+                    onChangeImagesText={this.changeImagesText}
+                  ></CreateSection5>
+                  <CreateSection6
+                    sections={sections}
+                    noodlePrice={this.state.noodlePrice}
+                    onChange={this.handleChange}
+                  ></CreateSection6>
+                  <CreateSection7
+                    sections={sections}
+                    noodleMinTickets={this.state.noodleMinTickets}
+                    noodleMaxTickets={this.state.noodleMaxTickets}
+                    noodleCutoff={this.state.noodleCutoff}
+                    onChange={this.handleChange}
+                  ></CreateSection7>
+                </>
+              );
+            }
+          };
+          // Return the create page
+          return (
+            <main id="create" className={this.state.createMode}>
+              <form id="create_form" onSubmit={this.handleSubmit}>
+                <CreateNavProgressBar
+                  createMode={this.state.createMode}
                   sections={sections}
-                  noodleLocation={this.state.noodleLocation}
-                  noodleDirections={this.state.noodleDirections}
+                />
+                <CreateSection1
+                  sections={sections}
+                  userName={this.state.userName}
+                  userBio={this.state.userBio}
+                  userBioLong={this.state.userBioLong}
                   onChange={this.handleChange}
-                ></CreateSection3>
-                <CreateSection4
+                />
+                <CreateSection2
                   sections={sections}
-                  noodleDate={this.state.noodleDate}
-                  noodleTime={this.state.noodleTime}
-                  onChange={this.handleChange}
-                ></CreateSection4>
-                <CreateSection5
-                  sections={sections}
+                  noodleTitle={this.state.noodleTitle}
+                  noodleSummary={this.state.noodleSummary}
+                  noodleDescription={this.state.noodleDescription}
                   noodleTags={this.state.noodleTags}
-                  noodleCoverImage={this.state.noodleCoverImage}
-                  noodleImages={this.state.noodleImages}
-                  noodleImageText={this.state.noodleImageText}
-                  onChangeImage={this.changeImage}
-                  onChangeImages={this.changeImages}
-                  onChangeImagesText={this.changeImagesText}
-                ></CreateSection5>
-                <CreateSection6
-                  sections={sections}
-                  noodlePrice={this.state.noodlePrice}
                   onChange={this.handleChange}
-                ></CreateSection6>
-                <CreateSection7
+                  onChangeTags={this.changeTags}
+                />
+                {eventDetails()}
+                <CreateSubmitBar
                   sections={sections}
-                  noodleMinTickets={this.state.noodleMinTickets}
-                  noodleMaxTickets={this.state.noodleMaxTickets}
-                  noodleCutoff={this.state.noodleCutoff}
-                  onChange={this.handleChange}
-                ></CreateSection7>
-              </>
-            );
-          }
-        };
-        // Return the create page
-        return (
-          <main id="create" className={this.state.createMode}>
-            <form id="create_form" onSubmit={this.handleSubmit}>
-              <CreateNavProgressBar
-                createMode={this.state.createMode}
-                sections={sections}
-              />
-              <CreateSection1
-                sections={sections}
-                userName={this.state.userName}
-                userBio={this.state.userBio}
-                userBioLong={this.state.userBioLong}
-                onChange={this.handleChange}
-              />
-              <CreateSection2
-                sections={sections}
-                noodleTitle={this.state.noodleTitle}
-                noodleSummary={this.state.noodleSummary}
-                noodleDescription={this.state.noodleDescription}
-                noodleTags={this.state.noodleTags}
-                onChange={this.handleChange}
-                onChangeTags={this.changeTags}
-              />
-              {eventDetails()}
-              <CreateSubmitBar
-                sections={sections}
-                noodleStatus={this.state.noodleStatus}
-                createMode={this.state.createMode}
-                setMode={this.setMode}
-                onSubmit={this.submit}
-                onUploadImages={this.uploadImages}
-                noodleID={this.state.noodleID}
-              />
-            </form>
-          </main>
-        );
+                  noodleStatus={this.state.noodleStatus}
+                  createMode={this.state.createMode}
+                  setMode={this.setMode}
+                  onSubmit={this.submit}
+                  onUploadImages={this.uploadImages}
+                  noodleID={this.state.noodleID}
+                />
+              </form>
+            </main>
+          );
+        } else {
+          return (
+            <main>
+              <p>Noodle failed to load! Error: {this.state.error.message}</p>
+            </main>
+          );
+        }
       } else {
         return (
           <main>
