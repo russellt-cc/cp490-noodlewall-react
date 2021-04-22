@@ -84,7 +84,7 @@
             /index.js    - the initial page that is opened by the react server and opens the root component App.js
             /Main.js     - the handler react component that directly holds pages
 
-# React Structure -- how the react components are layed out, and roughly what each one accomplishes
+# React Structure
 
     <Index>	    The initial component that renders the App component into the root of the HTML document.
          <App>	    The main App component that contains the Noodlewall application.
@@ -207,6 +207,40 @@ Delete Event or Dream Event
 -On the right side, click on "Delete Button".
 -Confirm the deletion to proceed.
 
+## User Profile Form Details
+
+> This form is used to create and edit user accounts, once the minimum details are entered (username, firstname, lastname) you are able to save and create the account. More details are required to become an event organizer, and can be entered later.
+
+- Profile Picture
+
+  - Upload an image
+    - "Choose File" button - prompt to upload an image from local storage
+  - Get an image from the internet
+    - "Get an image from URL" - click once you've put an image's url in the input box
+    - "Get a random image from Picsum" button - randomly pulls an image from Picsum
+    - "Get a random image from Unsplash" button - randomly pulls an image from Unsplash
+
+- User Information
+
+  - Organizer Name - Set a username for the account
+  - First Name - User first name
+  - Last Name - user last name
+  - User Detail Short - short version of user bio
+  - User Detail Long - long version of user bio
+
+- Development Only
+
+  - Set user rating - allows developer to set a user's rating
+
+- Control Buttons
+  - Cancel Editing - leaves form without saving changes
+  - Submit Changes - Saves changes and redirects to user's profile page
+  - Delete Account - Deletes account from database
+
+## Event Form Details
+
+## Dream Form Details
+
 # Pages Overview
 
 - Landing (home) Page
@@ -255,6 +289,42 @@ Delete Event or Dream Event
     - browse page (search bar, browse dropdown buttons)
     - create event/dream form (create dropdown)
     - user account login, logout, and register (user profile icon dropdown)
+
+# User Guide
+
+> User guide for using the main functions
+
+- Register
+  Assuming you're not logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with two buttons, click "Register For Noodlewall." You will be redirected to the form for creating a user account. For a detailed breakdown of the form see "User Profile Form Details."
+- Login
+  Assuming you're not logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with with two buttons, click "Login to Noodlewall." You will be redirected to a page displaying icons for every registered user account, click on an icon to login to that account.
+- Logout
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click the "Sign Out" button.
+- Edit Profile
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the "Edit Profile" button. You will be redirected to the form for editing user accounts.
+- Delete Account
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the "Edit Profile" button. You will be redirected to the form for editing user accounts, from there scroll to the bottom, and click the "Delete Account" button.
+
+- Create Event
+  Assuming you're logged in, from any page, hover the "Create" Button on the navbar in the top-right. From there a dropdown will appear with with two large square buttons, click "Create an Event." You will be redirected to the form for creating an event. For a detailed breakdown of the form see "Event Form Details."
+- Edit Event
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the event card you wish to edit. You will be redirected to the event display page. Click the "Edit this Event" button. You will be redirected to the form for editing an event. For a detailed breakdown of the form see "Event Form Details."
+- Delete Event
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the event card you wish to edit. You will be redirected to the event display page. Click the "Delete this Event" button.
+
+- Create Dream
+  Assuming you're logged in, from any page, hover the "Create" Button on the navbar in the top-right. From there a dropdown will appear with with two large square buttons, click "Create a Dream." You will be redirected to the form for creating an Dream. For a detailed breakdown of the form see "Dream Form Details."
+- Edit Dream
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the Dream card you wish to edit. You will be redirected to the Dream display page. Click the "Edit this Dream Event" button. You will be redirected to the form for editing an Dream. For a detailed breakdown of the form see "Dream Form Details."
+- Delete Dream
+  Assuming you're logged in, from any page, hover the profile icon on the navbar in the top-right. From there a dropdown will appear with three columns, under the "Your Account" column, click your large profile picture. You will be redirected to your profile page, click on the Dream card you wish to edit. You will be redirected to the Dream display page. Click the "Delete this Dream Event" button.
+
+- Browse All Events and Dreams
+  From any page, hover the "Browse" button on the navbar in the top-right. From there a dropdown will appear with three buttons, click the "Browse All" button. You will be redirected to the browse page, displaying all events and dreams.
+- Browse Events
+  From any page, hover the "Browse" button on the navbar in the top-right. From there a dropdown will appear with three buttons, click the "Browse Events" button. You will be redirected to the browse page, displaying all events.
+- Browse Dreams
+  From any page, hover the "Browse" button on the navbar in the top-right. From there a dropdown will appear with three buttons, click the "Browse Dreams" button. You will be redirected to the browse page, displaying all dreams.
 
 # Known Issues
 
