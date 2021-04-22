@@ -6,6 +6,7 @@ function readNoodlesOrUsers(type) {
   // Get paths from the api configuration
   const { apiURL, apiNoodlePath, apiUserPath, apiRead } = apiConfig();
   let apiPath;
+  // Check the type
   switch (type) {
     case "noodles":
     case "events":
@@ -18,9 +19,11 @@ function readNoodlesOrUsers(type) {
       apiPath = apiUserPath;
       break;
     default:
+      // Reject the request
       return Promise.reject({ message: "Unknown Type!" });
   }
-  // AJAX request to PHP server
+  // Fetch request to PHP server and return the response
+  // Use JSON parse to convert the response to an object
   return fetch(apiURL + apiPath + apiRead).then((res) => res.json());
 }
 

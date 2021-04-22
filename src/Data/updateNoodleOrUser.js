@@ -8,18 +8,25 @@ function updateNoodleOrUser(type, data, returnState, currentUser) {
   let apiPath;
   // Check the type
   switch (type) {
+    case "noodle":
     case "dream":
     case "event":
+      // Set path to noodles
       apiPath = apiNoodlePath;
       break;
     case "user":
+      // Set path to users
       apiPath = apiUserPath;
       break;
     default:
+      // Reject the request
       return Promise.reject({ message: "Unknown Type!" });
   }
-  // AJAX request to PHP server
+  // Get URL from api config
   const { apiURL, apiUpdate } = apiConfig();
+  // Fetch request to PHP server and return the response
+  // Use JSON stringify to convert the data object to a string
+  // Use JSON parse to convert the response to an object
   return fetch(apiURL + apiPath + apiUpdate, {
     method: "POST",
     body: JSON.stringify(data),
@@ -45,6 +52,7 @@ function updateNoodleOrUser(type, data, returnState, currentUser) {
             redirectPath = "/";
             break;
         }
+        // Use return state method to redirect and change current user data in state
         returnState({ redirectPath, currentUser });
         return result;
       },

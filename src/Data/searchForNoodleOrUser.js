@@ -6,6 +6,7 @@ function searchForNoodleOrUser(type, query) {
   // Get paths from the api configuration
   const { apiURL, apiNoodlePath, apiUserPath, apiSearch } = apiConfig();
   let apiPath;
+  // Check the type
   switch (type) {
     case "noodles":
     case "events":
@@ -18,9 +19,11 @@ function searchForNoodleOrUser(type, query) {
       apiPath = apiUserPath;
       break;
     default:
+      // Reject the request
       return Promise.reject({ message: "Unknown Type!" });
   }
-  // Load data from API
+  // Fetch request to PHP server and return the response
+  // Use JSON parse to convert the response to an object
   return fetch(apiURL + apiPath + apiSearch + query).then((res) => res.json());
 }
 
