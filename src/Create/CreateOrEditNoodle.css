@@ -181,6 +181,10 @@ main#create.event {
   width: 100px;
 }
 
+#create button.dev_button {
+  width: 200px;
+}
+
 /* style for mobile */
 
 @media screen and (max-width: 800px) {

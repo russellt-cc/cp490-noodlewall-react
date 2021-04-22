@@ -535,17 +535,75 @@ class CreateOrEditNoodle extends React.Component {
                   ></CreateSection7>
                   <section>
                     <h1>Development Only</h1>
-                    <label htmlFor="noodleTicketsSold">Set Tickets Sold</label>
-                    <input
-                      type="number"
-                      name="noodleTicketsSold"
-                      value={this.state.noodleTicketsSold}
-                      min="0"
-                      step="1"
-                      onChange={(event) =>
-                        this.setState({ noodleTicketsSold: event.target.value })
-                      }
-                    ></input>
+                    <div>
+                      <label htmlFor="noodleTicketsSold">
+                        Set Tickets Sold
+                      </label>
+                      <input
+                        type="number"
+                        name="noodleTicketsSold"
+                        value={this.state.noodleTicketsSold}
+                        min="0"
+                        step="1"
+                        onChange={(event) =>
+                          this.setState({
+                            noodleTicketsSold: event.target.value,
+                          })
+                        }
+                      ></input>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        class="dev_button"
+                        id="forceNotHappeningButton"
+                        onClick={() => this.setState({ noodleTicketsSold: 0 })}
+                      >
+                        Set Tickets to Not Happening
+                      </button>
+                      <button
+                        type="button"
+                        class="dev_button"
+                        id="forceHappeningButton"
+                        onClick={() =>
+                          this.setState({
+                            noodleTicketsSold: this.state.noodleMinTickets,
+                          })
+                        }
+                      >
+                        Set Tickets to Happening
+                      </button>
+                      <button
+                        type="button"
+                        class="dev_button"
+                        id="forceHappeningButton"
+                        onClick={() =>
+                          this.setState({
+                            noodleTicketsSold: this.state.noodleMaxTickets,
+                          })
+                        }
+                      >
+                        Set Tickets to Sold Out
+                      </button>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        class="dev_button"
+                        id="resetStatusButton"
+                        onClick={() => this.setState({ noodleStatus: "dream" })}
+                      >
+                        Reset Status to Dream
+                      </button>
+                      <button
+                        type="button"
+                        class="dev_button"
+                        id="forceStatusButton"
+                        onClick={() => this.setState({ noodleStatus: "event" })}
+                      >
+                        Force Status to Event
+                      </button>
+                    </div>
                   </section>
                 </>
               );
