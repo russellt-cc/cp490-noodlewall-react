@@ -306,7 +306,9 @@ class RegisterOrEditUser extends React.Component {
               <button
                 className="noodle_button"
                 onClick={() =>
-                  this.setState({ userImage: this.state.userImageNew })
+                  this.setState({
+                    userImage: encodeURIComponent(this.state.userImageNew),
+                  })
                 }
               >
                 Get an Image from URL
