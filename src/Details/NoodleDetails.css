@@ -71,13 +71,15 @@
 @media screen and (max-width: 800px) {
   #details section {
     flex-direction: column;
-    row-gap: 60px;
+    row-gap: 20px;
   }
-  #details .details_column.left,
-  #details .details_column.right {
+  #details .details_column.left {
     width: auto;
     text-align: center;
     row-gap: 20px;
+  }
+  #details .details_column.right {
+    display: none;
   }
   #details #details_organizer_column_container {
     flex-direction: column;

@@ -123,7 +123,7 @@
   }
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 700px) {
   #create #create_nav_progress_bar {
     position: absolute;
   }

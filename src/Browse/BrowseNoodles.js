@@ -1,9 +1,6 @@
 // React
 import React from "react";
 
-// CSS
-import "./BrowseNoodles.css";
-
 // NoodleList component
 import NoodleList from "../Common/NoodleList";
 

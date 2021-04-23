@@ -85,9 +85,25 @@
   border-top-right-radius: 0px;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 800px) {
   .noodle_card {
-    margin-left: 0px;
-    margin-right: 0px;
+    width: 100%;
+    height: auto;
+    row-gap: 20px;
+  }
+  .noodle_card img,
+  .noodle_card .noodle_image_link {
+    width: 100%;
+    height: auto;
+  }
+  .noodle_card > .noodle_description {
+    height: auto;
+  }
+  .noodle_card .noodle_tag_list {
+    display: flex;
+    height: auto;
+  }
+  .noodle_card img.overlay {
+    bottom: 3px;
   }
 }

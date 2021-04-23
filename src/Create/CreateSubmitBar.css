@@ -51,7 +51,22 @@
 
 /* style for mobile */
 
-@media screen and (max-height: 600px) {
+@media screen and (max-width: 800px) {
+  #create #create_submit_bar {
+    flex-direction: column;
+    margin: 0px -20px -20px -20px;
+    row-gap: 10px;
+    position: static;
+  }
+  #create .create_submit_bar_toggle {
+    display: none;
+  }
+  #create .noodle_button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 700px) {
   #create #create_submit_bar {
     position: static;
   }
