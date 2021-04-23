@@ -57,13 +57,12 @@
   display: none;
 }
 
-#details #details_host_intro_dream > a,
-#details #details_host_intro_dream > button {
+#details.dream #details_action_buttons .noodle_button {
   background-color: var(--dreams-color);
 }
 
 #details #details_buy_button,
-#details #details_host_intro_dream > #details_like_button {
+#details #details_like_button {
   height: 100px;
   width: 100%;
 }
