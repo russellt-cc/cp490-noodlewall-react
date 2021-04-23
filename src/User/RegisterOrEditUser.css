@@ -52,4 +52,15 @@
   #user_edit img {
     align-self: center;
   }
+  #user_edit #user_edit_image_buttons {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  #user_edit .noodle_button {
+    width: auto;
+  }
+  #user_edit #user_edit_action_bar {
+    flex-direction: column;
+    row-gap: 10px;
+  }
 }

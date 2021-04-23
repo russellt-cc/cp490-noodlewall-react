@@ -79,8 +79,6 @@
 }
 
 #details .details_status_container_container {
-  /* background-color: lightgray; */
-  /* padding: 10px 10px 10px 10px; */
   padding: 10px 0px;
   border-radius: 10px;
 }
@@ -137,7 +135,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: lightgray; */
 }
 
 #details meter::-webkit-meter-bar {
@@ -229,7 +226,6 @@
 }
 
 #details .details_status_dream.checked {
-  /* color: white; */
   background-color: var(--dreams-color);
   color: var(--dreams-color);
 }
@@ -252,16 +248,7 @@
   border-bottom-left-radius: 10px;
 }
 
-/* #details .details_status_not_happening.checked {
-  color: white;
-} */
-
-/* #details .details_status_happening.checked {
-  color: white;
-} */
-
 #details .details_status_sold_out.checked {
-  /* color: white; */
   border-bottom-right-radius: 10px;
 }
 
@@ -289,5 +276,9 @@
 @media screen and (max-width: 800px) {
   #details #details_tags {
     justify-content: center;
+  }
+  #details #details_host_intro_event,
+  #details #details_host_intro_dream {
+    row-gap: 10px;
   }
 }

@@ -165,10 +165,12 @@ class NoodleDetails extends React.Component {
                     >
                       <Link to={`/user/${thisHost.userID}`}>
                         <img src={thisHost.userImage} alt="Host"></img>
-                        <p>
-                          {thisHost.userFirstName} {thisHost.userLastName}
-                        </p>
-                        <UserRating rating={thisHost.userRating} />
+                        <div>
+                          <p>
+                            {thisHost.userFirstName} {thisHost.userLastName}
+                          </p>
+                          <UserRating rating={thisHost.userRating} />
+                        </div>
                       </Link>
                     </div>
                     <div

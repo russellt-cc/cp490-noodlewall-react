@@ -268,7 +268,7 @@ nav #loggedout_create_drop .noodle_button {
   }
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 700px) {
   nav {
     position: absolute;
   }

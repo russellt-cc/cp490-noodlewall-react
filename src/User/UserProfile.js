@@ -168,10 +168,12 @@ class User extends React.Component {
                     }
                     alt={thisUser.userName}
                   />
-                  <h3>
-                    {thisUser.userFirstName} {thisUser.userLastName}
-                  </h3>
-                  <UserRating rating={thisUser.userRating} />
+                  <div>
+                    <h3>
+                      {thisUser.userFirstName} {thisUser.userLastName}
+                    </h3>
+                    <UserRating rating={thisUser.userRating} />
+                  </div>
                 </div>
                 <div
                   className="user_profile_intro_column"

@@ -11,3 +11,9 @@
 .noodle_list .noodle_link {
   text-decoration: none;
 }
+
+@media screen and (max-width: 800px) {
+  .noodle_list {
+    row-gap: 20px;
+  }
+}
