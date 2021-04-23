@@ -27,11 +27,17 @@
   column-gap: 10px;
 }
 
+#details #details_action_buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
 #details #details_host_intro_event,
 #details #details_host_intro_dream {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 10px;
 }
 
 #details #details_host_intro_event > a,
@@ -56,7 +62,7 @@
   background-color: var(--dreams-color);
 }
 
-#details #details_host_intro_event > #details_buy_button,
+#details #details_buy_button,
 #details #details_host_intro_dream > #details_like_button {
   height: 100px;
   width: 100%;

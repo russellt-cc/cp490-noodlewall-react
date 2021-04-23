@@ -98,16 +98,18 @@ class DetailsIntroRight extends React.Component {
       } else if (parseInt(hostID) !== parseInt(currentUser.userID)) {
         // Actions for viewing another users noodle
         return (
-          <div id={`details_host_intro_${noodleStatus}`}>
-            <p>
-              Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
-            </p>
-            <Link className="noodle_button" to={`/user/${hostID}/contact`}>
-              Contact {hostName}
-            </Link>
-            <Link className="noodle_button" to={`/user/${hostID}/follow`}>
-              Follow {hostName}
-            </Link>
+          <div id="details_action_buttons">
+            <div id={`details_host_intro_${noodleStatus}`}>
+              <p>
+                Host: <Link to={`/user/${hostID}`}>{hostName}</Link>
+              </p>
+              <Link className="noodle_button" to={`/user/${hostID}/contact`}>
+                Contact {hostName}
+              </Link>
+              <Link className="noodle_button" to={`/user/${hostID}/follow`}>
+                Follow {hostName}
+              </Link>
+            </div>
             {buyOrLikeButton()}
           </div>
         );

@@ -133,6 +133,6 @@ button:focus {
 @media screen and (max-width: 800px) {
   main {
     padding: 20px;
-    row-gap: 20px;
+    row-gap: 40px;
   }
 }
