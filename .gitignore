@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/videos/NoodleWall.mp4
+
+nohup.out
