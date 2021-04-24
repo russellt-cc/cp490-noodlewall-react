@@ -45,8 +45,9 @@ class CreateOrEditNoodle extends React.Component {
       // Get the type of noodle we are creating
       let { type: noodleStatus } = this.props.match.params;
       // Check validity of the status
+      // Set default status
       if (noodleStatus !== "dream" && noodleStatus !== "event") {
-        noodleStatus = "event";
+        noodleStatus = "dream";
       }
       // Get current user data to pre fill the form
       const { userName, userBio, userBioLong } = currentUser;
