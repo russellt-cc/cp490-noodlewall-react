@@ -125,6 +125,7 @@ class CreateOrEditNoodle extends React.Component {
           noodleTags: [],
           noodleImages: [],
           noodleImageText: [],
+          noodleID: null,
         });
       }
     }
@@ -392,11 +393,15 @@ class CreateOrEditNoodle extends React.Component {
       noodleStatus: status,
       noodleDescription: this.state.noodleDescription,
       noodleTags: this.state.noodleTags,
-      noodleSummary: this.state.noodleSummary,
-      noodleLocation: this.state.noodleLocation,
-      noodleDirections: this.state.noodleDirections,
-      noodleDate: this.state.noodleDate,
-      noodleTime: this.state.noodleTime,
+      noodleSummary: this.state.noodleSummary ? this.state.noodleSummary : null,
+      noodleLocation: this.state.noodleLocation
+        ? this.state.noodleLocation
+        : null,
+      noodleDirections: this.state.noodleDirections
+        ? this.state.noodleDirections
+        : null,
+      noodleDate: this.state.noodleDate ? this.state.noodleDate : null,
+      noodleTime: this.state.noodleTime ? this.state.noodleTime : null,
       noodleCoverImage:
         this.state.noodleImages && this.state.noodleImages.length
           ? this.state.noodleCoverImage
@@ -406,12 +411,27 @@ class CreateOrEditNoodle extends React.Component {
         // Encode noodle image text so it can be stored as CSV
         return escape(text);
       }),
-      noodlePrice: this.state.noodlePrice,
-      noodleMinTickets: this.state.noodleMinTickets,
-      noodleMaxTickets: this.state.noodleMaxTickets,
-      noodleCutoff: this.state.noodleCutoff,
-      noodleID: this.state.noodleID,
-      noodleTicketsSold: this.state.noodleTicketsSold,
+      noodlePrice:
+        this.state.noodlePrice !== undefined && this.state.noodlePrice !== null
+          ? this.state.noodlePrice
+          : null,
+      noodleMinTickets:
+        this.state.noodleMinTickets !== undefined &&
+        this.state.noodleMinTickets !== null
+          ? this.state.noodleMinTickets
+          : null,
+      noodleMaxTickets:
+        this.state.noodleMaxTickets !== undefined &&
+        this.state.noodleMaxTickets !== null
+          ? this.state.noodleMaxTickets
+          : null,
+      noodleCutoff: this.state.noodleCutoff ? this.state.noodleCutoff : null,
+      noodleID: this.state.noodleID ? this.state.noodleID : null,
+      noodleTicketsSold:
+        this.state.noodleTicketsSold !== undefined &&
+        this.state.noodleTicketsSold !== null
+          ? this.state.noodleTicketsSold
+          : null,
     };
     return noodleData;
   };
