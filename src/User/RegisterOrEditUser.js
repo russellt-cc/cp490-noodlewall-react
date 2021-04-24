@@ -64,16 +64,18 @@ class RegisterOrEditUser extends React.Component {
         // Image Uploaded Successfully
         // Create the data object
         const data = {
-          userID: this.state.userID,
+          userID: this.state.userID ? this.state.userID : null,
           userName: this.state.userName,
           userFirstName: this.state.userFirstName,
           userLastName: this.state.userLastName,
-          userBio: this.state.userBio,
-          userBioLong: this.state.userBioLong,
+          userBio: this.state.userBio ? this.state.userBio : null,
+          userBioLong: this.state.userBioLong ? this.state.userBioLong : null,
           userImage: uploadImageResult.imageAddress
             ? uploadImageResult.imageAddress
-            : this.state.userImage,
-          userRating: this.state.userRating,
+            : this.state.userImage
+            ? this.state.userImage
+            : null,
+          userRating: this.state.userRating ? this.state.userRating : null,
         };
         // Check if we are creating or updating
         if (!this.state.userID) {
