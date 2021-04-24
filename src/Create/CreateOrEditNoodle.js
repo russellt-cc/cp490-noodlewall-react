@@ -586,7 +586,7 @@ class CreateOrEditNoodle extends React.Component {
                     <div>
                       <button
                         type="button"
-                        class="dev_button"
+                        className="dev_button"
                         id="forceNotHappeningButton"
                         onClick={() => this.setState({ noodleTicketsSold: 0 })}
                       >
@@ -594,7 +594,7 @@ class CreateOrEditNoodle extends React.Component {
                       </button>
                       <button
                         type="button"
-                        class="dev_button"
+                        className="dev_button"
                         id="forceHappeningButton"
                         onClick={() =>
                           this.setState({
@@ -606,7 +606,7 @@ class CreateOrEditNoodle extends React.Component {
                       </button>
                       <button
                         type="button"
-                        class="dev_button"
+                        className="dev_button"
                         id="forceHappeningButton"
                         onClick={() =>
                           this.setState({
@@ -620,7 +620,7 @@ class CreateOrEditNoodle extends React.Component {
                     <div>
                       <button
                         type="button"
-                        class="dev_button"
+                        className="dev_button"
                         id="resetStatusButton"
                         onClick={() => this.setState({ noodleStatus: "dream" })}
                       >
@@ -628,7 +628,7 @@ class CreateOrEditNoodle extends React.Component {
                       </button>
                       <button
                         type="button"
-                        class="dev_button"
+                        className="dev_button"
                         id="forceStatusButton"
                         onClick={() => this.setState({ noodleStatus: "event" })}
                       >
