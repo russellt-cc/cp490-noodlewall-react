@@ -160,8 +160,9 @@
 
 function apiConfig() {
   return {
-    apiURL: "http://gatkinson.site/noodlewall/",
+    // apiURL: "http://gatkinson.site/noodlewall/",
     // apiURL: "http://www.localhost/noodlewall/",
+    apiURL: "http://35.182.244.152/noodlewall/",
     apiCreate: "create.php",
     apiRead: "read.php",
     apiUpdate: "update.php",
