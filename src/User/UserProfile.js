@@ -31,7 +31,7 @@ class User extends React.Component {
     // Check if we are not going to a specific id
     if (!id) {
       // Check if user is signed in
-      if (currentUser.userID) {
+      if (currentUser && currentUser.userID) {
         // Load current user
         id = currentUser.userID;
         const isOwnProfile = true;
