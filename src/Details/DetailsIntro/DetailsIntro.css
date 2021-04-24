@@ -57,7 +57,7 @@
   display: none;
 }
 
-#details.dream #details_action_buttons .noodle_button {
+#details.dream .noodle_button {
   background-color: var(--dreams-color);
 }
 
