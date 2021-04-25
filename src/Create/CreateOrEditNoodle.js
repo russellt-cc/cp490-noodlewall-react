@@ -88,7 +88,7 @@ class CreateOrEditNoodle extends React.Component {
                   : thisNoodle.noodleCoverImage
                   ? [thisNoodle.noodleCoverImage]
                   : [],
-              noodleOldImages:
+              noodleImagesOld:
                 thisNoodle.noodleImages && thisNoodle.noodleImages[0]
                   ? thisNoodle.noodleImages
                   : thisNoodle.noodleCoverImage
@@ -222,11 +222,12 @@ class CreateOrEditNoodle extends React.Component {
         noodleImagesOld.map((image, index) => {
           // See if the image is hosted on the api
           const { apiURL } = apiConfig();
-          if (image && image.substring(0, apiURL.length) === apiURL) {
+          const decodedImage = decodeURIComponent(image);
+          if (image && decodedImage.substring(0, apiURL.length) === apiURL) {
             // Check to see if it is in the new list of images
             if (!noodleImagesNew.includes(image)) {
               // Delete the image from the server
-              const splitImageAddress = image.split("/");
+              const splitImageAddress = decodedImage.split("/");
               const imageAddress =
                 splitImageAddress[splitImageAddress.length - 1];
               const data = { imageAddress };
