@@ -131,9 +131,10 @@ class RegisterOrEditUser extends React.Component {
     if (this.state.userImage !== oldImage) {
       // See if we are hosting the image
       const { apiURL } = apiConfig();
-      if (oldImage.substring(0, apiURL.length) === apiURL) {
+      const decodedOldImage = decodeURIComponent(oldImage);
+      if (decodedOldImage.substring(0, apiURL.length) === apiURL) {
         // Delete the image from the server
-        const splitImageAddress = oldImage.split("/");
+        const splitImageAddress = decodedOldImage.split("/");
         const imageAddress = splitImageAddress[splitImageAddress.length - 1];
         const data = { imageAddress };
         const deletedImagePromise = deleteNoodleOrUserImage("user", data);
